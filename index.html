@@ -3,1012 +3,626 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ADL Functional Friction Index — ADL Lab</title>
+<title>Ahra Roh, OTR/L, ATP — Physical Disability & Accessibility Consultant</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   :root {
+    --cream: #F7F5F0;
+    --warm-white: #FDFCFA;
+    --charcoal: #1C1C1A;
+    --mid: #5F5E5A;
+    --light: #B4B2A9;
+    --accent: #0F6E56;
+    --accent-light: #E1F5EE;
+    --border: rgba(28,28,26,0.1);
     --navy: #1E2B4A;
     --gold: #C9A84C;
-    --cream: #F7F4EF;
-    --warm-white: #FDFBF8;
-    --muted: #8A8A8A;
-    --light-border: #E8E2D9;
-    --low: #6B8F71;
-    --mid: #C9A84C;
-    --high: #B85C4A;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
   body {
-    background: var(--warm-white);
-    color: var(--navy);
     font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    font-size: 16px;
     line-height: 1.7;
-    min-height: 100vh;
   }
 
-  /* HEADER */
-  header {
-    padding: 40px 48px 32px;
-    border-bottom: 1px solid var(--light-border);
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(253,252,250,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 2.5rem;
+    height: 58px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  .logo {
+  .nav-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--navy);
+    font-size: 18px;
     font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--charcoal);
+    text-decoration: none;
   }
 
-  .logo span {
-    color: var(--gold);
-    margin: 0 6px;
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
   }
 
-  .credential {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--muted);
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--mid);
+    text-decoration: none;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
+    transition: color 0.2s;
   }
 
-  /* HERO */
+  .nav-links a:hover { color: var(--charcoal); }
+
   .hero {
-    max-width: 720px;
-    margin: 72px auto 0;
-    padding: 0 48px;
-    text-align: center;
+    padding-top: 130px;
+    padding-bottom: 80px;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 5rem;
+    align-items: center;
   }
 
-  .hero-eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.3em;
+  .hero-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 20px;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
   }
 
   .hero h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 5vw, 54px);
+    font-size: clamp(40px, 4.5vw, 60px);
     font-weight: 300;
-    line-height: 1.15;
-    color: var(--navy);
-    margin-bottom: 24px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--charcoal);
+    margin-bottom: 1.5rem;
   }
 
   .hero h1 em {
     font-style: italic;
-    color: var(--gold);
+    color: var(--accent);
   }
 
-  .hero p {
+  .hero-sub {
     font-size: 15px;
-    color: var(--muted);
-    max-width: 480px;
-    margin: 0 auto 16px;
-    line-height: 1.8;
+    color: var(--mid);
+    line-height: 1.85;
+    margin-bottom: 2.5rem;
+    max-width: 420px;
   }
 
-  .hero-note {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    margin-top: 8px;
-  }
-
-  .divider {
-    width: 40px;
-    height: 1px;
-    background: var(--gold);
-    margin: 32px auto;
-    opacity: 0.6;
-  }
-
-  /* MAIN */
-  main {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 48px 48px 120px;
-  }
-
-  /* PROGRESS */
-  .progress-bar {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 56px;
-  }
-
-  .progress-segment {
-    flex: 1;
-    height: 2px;
-    background: var(--light-border);
-    transition: background 0.4s ease;
-    border-radius: 2px;
-  }
-
-  .progress-segment.active { background: var(--navy); }
-  .progress-segment.done { background: var(--gold); }
-
-  /* DOMAIN SECTIONS */
-  .domain {
-    display: none;
-    animation: fadeIn 0.4s ease;
-  }
-
-  .domain.active { display: block; }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .domain-header {
-    margin-bottom: 40px;
-  }
-
-  .domain-number {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 10px;
-  }
-
-  .domain-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
-    font-weight: 300;
-    color: var(--navy);
-    margin-bottom: 10px;
-  }
-
-  .domain-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  /* QUESTIONS */
-  .question {
-    margin-bottom: 32px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid var(--light-border);
-  }
-
-  .question:last-of-type {
-    border-bottom: none;
-  }
-
-  .question-text {
-    font-size: 15px;
-    color: var(--navy);
-    margin-bottom: 16px;
-    line-height: 1.6;
-    font-weight: 400;
-  }
-
-  .options {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-  }
-
-  .option {
-    cursor: pointer;
-    border: 1px solid var(--light-border);
-    border-radius: 4px;
-    padding: 12px 8px;
-    text-align: center;
-    transition: all 0.2s ease;
-    background: white;
-  }
-
-  .option:hover {
-    border-color: var(--navy);
-    background: var(--cream);
-  }
-
-  .option.selected {
-    border-color: var(--navy);
-    background: var(--navy);
-    color: white;
-  }
-
-  .option-score {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 300;
-    display: block;
-    margin-bottom: 2px;
-  }
-
-  .option-label {
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .option.selected .option-label {
-    color: rgba(255,255,255,0.6);
-  }
-
-  /* NAV BUTTONS */
-  .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 48px;
-    padding-top: 32px;
-    border-top: 1px solid var(--light-border);
-  }
+  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
 
   .btn {
-    font-family: 'DM Sans', sans-serif;
+    display: inline-block;
+    padding: 13px 30px;
     font-size: 12px;
-    letter-spacing: 0.15em;
+    font-weight: 500;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    padding: 14px 32px;
-    border: 1px solid var(--navy);
-    cursor: pointer;
-    transition: all 0.2s ease;
+    text-decoration: none;
     border-radius: 2px;
-    background: transparent;
-    color: var(--navy);
-  }
-
-  .btn:hover {
-    background: var(--navy);
-    color: white;
+    transition: all 0.25s;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    border: none;
   }
 
   .btn-primary {
-    background: var(--navy);
-    color: white;
+    background: var(--charcoal);
+    color: var(--warm-white);
   }
 
-  .btn-primary:hover {
-    background: var(--gold);
-    border-color: var(--gold);
-  }
+  .btn-primary:hover { background: var(--accent); }
 
-  .btn-ghost {
-    border-color: transparent;
-    color: var(--muted);
-    padding-left: 0;
-  }
-
-  .btn-ghost:hover {
+  .btn-secondary {
     background: transparent;
-    color: var(--navy);
+    color: var(--charcoal);
+    border: 1px solid var(--border);
   }
 
-  .nav-hint {
+  .btn-secondary:hover { border-color: var(--charcoal); }
+
+  .hero-right {
+    position: relative;
+  }
+
+  .hero-photo-wrap {
+    position: relative;
+  }
+
+  .hero-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 4px;
+    display: block;
+    filter: grayscale(8%);
+  }
+
+  .photo-caption {
+    position: absolute;
+    bottom: -1.5rem;
+    right: 0;
     font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
-
-  /* RESULTS */
-  #results { display: none; animation: fadeIn 0.5s ease; }
-
-  .results-hero {
-    text-align: center;
-    padding: 48px 0 56px;
-    border-bottom: 1px solid var(--light-border);
-    margin-bottom: 56px;
-  }
-
-  .results-eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
+    color: var(--light);
   }
 
-  .results-hero h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 300;
-    color: var(--navy);
-    margin-bottom: 12px;
-    line-height: 1.2;
-  }
-
-  .results-hero p {
-    font-size: 14px;
-    color: var(--muted);
-    max-width: 440px;
+  .divider {
+    height: 0.5px;
+    background: var(--border);
+    max-width: 1040px;
     margin: 0 auto;
   }
 
-  /* DOMAIN RESULTS */
-  .domain-results {
+  section {
+    padding: 5rem 2.5rem;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: var(--charcoal);
+  }
+
+  .section-body {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 1.85;
+    max-width: 580px;
+    margin-bottom: 1.5rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 3rem;
+    margin-top: 3rem;
+  }
+
+  .service-item {
+    border-top: 1.5px solid var(--accent);
+    padding-top: 1.25rem;
+  }
+
+  .service-item h3 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+  }
+
+  .service-item p {
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.75;
+  }
+
+  .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 48px;
+    gap: 5rem;
+    align-items: start;
   }
 
-  .domain-card {
-    border: 1px solid var(--light-border);
-    border-radius: 4px;
-    padding: 24px;
-    background: white;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .domain-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 3px;
-    height: 100%;
-  }
-
-  .domain-card.low::before { background: var(--low); }
-  .domain-card.mid::before { background: var(--mid); }
-  .domain-card.high::before { background: var(--high); }
-
-  .dc-label {
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-
-  .dc-name {
+  .about-quote {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    font-weight: 400;
-    color: var(--navy);
-    margin-bottom: 16px;
-    line-height: 1.3;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.5;
+    border-left: 1.5px solid var(--accent);
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
   }
 
-  .dc-bar-wrap {
-    height: 4px;
-    background: var(--light-border);
-    border-radius: 2px;
-    margin-bottom: 10px;
-    overflow: hidden;
-  }
-
-  .dc-bar {
-    height: 100%;
-    border-radius: 2px;
-    transition: width 1s ease;
-  }
-
-  .domain-card.low .dc-bar { background: var(--low); }
-  .domain-card.mid .dc-bar { background: var(--mid); }
-  .domain-card.high .dc-bar { background: var(--high); }
-
-  .dc-score-row {
+  .bio-list {
+    list-style: none;
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+    flex-direction: column;
+    gap: 0.875rem;
   }
 
-  .dc-score {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 300;
-    color: var(--navy);
-  }
-
-  .dc-max {
-    font-size: 11px;
-    color: var(--muted);
-  }
-
-  .dc-status {
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-
-  .domain-card.low .dc-status { color: var(--low); }
-  .domain-card.mid .dc-status { color: var(--mid); }
-  .domain-card.high .dc-status { color: var(--high); }
-
-  /* PRIMARY INSIGHT */
-  .insight-block {
-    background: var(--navy);
-    color: white;
-    padding: 40px;
-    border-radius: 4px;
-    margin-bottom: 32px;
-  }
-
-  .insight-block .eyebrow {
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
-  }
-
-  .insight-block h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-weight: 300;
-    margin-bottom: 16px;
-    line-height: 1.3;
-  }
-
-  .insight-block p {
+  .bio-list li {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
     font-size: 14px;
-    color: rgba(255,255,255,0.72);
-    line-height: 1.8;
+    color: var(--mid);
+    line-height: 1.6;
   }
 
-  /* RECOMMENDATIONS */
-  .rec-section {
-    margin-bottom: 48px;
+  .bio-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 8px;
+    flex-shrink: 0;
   }
 
-  .rec-section h4 {
-    font-size: 10px;
-    letter-spacing: 0.3em;
+  .adl-section {
+    background: var(--cream);
+    padding: 5rem 2.5rem;
+  }
+
+  .adl-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .adl-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.25rem;
+  }
+
+  .adl-tag img {
+    height: 28px;
+    width: auto;
+  }
+
+  .adl-tag-text {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 20px;
+    color: var(--accent);
   }
 
-  .rec-card {
-    border: 1px solid var(--light-border);
+  .adl-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .adl-card {
+    border: 0.5px solid var(--border);
     border-radius: 4px;
-    padding: 28px 32px;
-    margin-bottom: 12px;
+    padding: 1.25rem 1.5rem;
     background: white;
     display: flex;
     align-items: flex-start;
-    gap: 20px;
+    gap: 1rem;
+    text-decoration: none;
+    transition: border-color 0.2s;
   }
 
-  .rec-priority {
+  .adl-card:hover { border-color: var(--accent); }
+
+  .adl-card-num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
+    font-size: 20px;
     font-weight: 300;
-    color: var(--light-border);
+    color: var(--light);
     line-height: 1;
     flex-shrink: 0;
-    margin-top: -4px;
+    padding-top: 2px;
   }
 
-  .rec-card.primary-rec .rec-priority { color: var(--gold); }
-
-  .rec-content h5 {
+  .adl-card-content h4 {
     font-size: 14px;
     font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 6px;
+    color: var(--charcoal);
+    margin-bottom: 0.2rem;
   }
 
-  .rec-content p {
+  .adl-card-content p {
     font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-    margin-bottom: 12px;
+    color: var(--mid);
   }
 
-  .rec-cta {
-    display: inline-block;
-    font-size: 11px;
+  .contact-section {
+    text-align: center;
+    padding: 5rem 2.5rem;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .contact-section .section-label {
+    justify-content: center;
+  }
+
+  .contact-section .section-label::before { display: none; }
+
+  .contact-section .section-title { margin: 0 auto 1rem; }
+
+  .contact-section .section-body {
+    margin: 0 auto 2.5rem;
+    max-width: 440px;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 2.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 0.5px solid var(--border);
+  }
+
+  .contact-link-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: center;
+  }
+
+  .contact-link-item .clabel {
+    font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--navy);
+    color: var(--light);
+  }
+
+  .contact-link-item a {
+    font-size: 14px;
+    color: var(--charcoal);
     text-decoration: none;
-    border-bottom: 1px solid var(--gold);
-    padding-bottom: 1px;
-    transition: color 0.2s;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
   }
 
-  .rec-cta:hover { color: var(--gold); }
+  .contact-link-item a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
 
-  /* DISCLAIMER */
-  .disclaimer {
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 1.75rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    color: var(--light);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-copy {
     font-size: 11px;
-    color: var(--muted);
-    line-height: 1.7;
-    padding: 24px 0;
-    border-top: 1px solid var(--light-border);
-    margin-top: 48px;
+    color: var(--light);
+    letter-spacing: 0.04em;
   }
 
-  .restart-row {
-    text-align: center;
-    margin-top: 32px;
-  }
-
-  /* MOBILE */
-  @media (max-width: 600px) {
-    header { padding: 24px 24px 20px; }
-    .hero, main { padding-left: 24px; padding-right: 24px; }
-    .hero { margin-top: 48px; }
-    .options { grid-template-columns: repeat(4, 1fr); gap: 6px; }
-    .domain-results { grid-template-columns: 1fr; }
-    .insight-block { padding: 28px 24px; }
-    .rec-card { flex-direction: column; gap: 8px; }
+  @media (max-width: 720px) {
+    .hero { grid-template-columns: 1fr; gap: 3rem; padding-top: 100px; }
+    .hero-right { order: -1; }
+    .hero-photo { aspect-ratio: 4/3; object-position: center 20%; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .adl-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .nav-links { display: none; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">ADL <span>·</span> Lab</div>
-  <div class="credential">Ahra Roh, OTR/L, ATP</div>
-</header>
+<nav>
+  <a href="#" class="nav-name">Ahra Roh</a>
+  <ul class="nav-links">
+    <li><a href="#consulting">Consulting</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#adl-lab">ADL Lab</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-<!-- QUIZ -->
-<div id="quiz">
+<div style="max-width:1040px; margin:0 auto; padding:0 2.5rem;">
   <div class="hero">
-    <div class="hero-eyebrow">Structural Self-Assessment</div>
-    <h1>The ADL Functional<br><em>Friction Index</em></h1>
-    <p>A clinical-grade analysis tool to identify where your energy is silently leaking — and what to do about it.</p>
-    <p class="hero-note">20 questions · 4 domains · Personalized result</p>
-    <div class="divider"></div>
-    <button class="btn btn-primary" onclick="startQuiz()">Begin Assessment</button>
+    <div>
+      <p class="hero-label">OTR/L · ATP · Los Angeles</p>
+      <h1>Where clinical expertise meets <em>real-world</em> design.</h1>
+      <p class="hero-sub">Physical disability and accessibility consulting for companies building products that actually work — for the people who need them most.</p>
+      <div class="btn-group">
+        <a href="#contact" class="btn btn-primary">Work with me</a>
+        <a href="#adl-lab" class="btn btn-secondary">Visit ADL Lab</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-photo-wrap">
+        <img src="Headshot_USC_1.png" alt="Ahra Roh, OTR/L, ATP" class="hero-photo">
+        <span class="photo-caption">USC · Los Angeles</span>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- DOMAIN SCREENS -->
-<div id="assessment" style="display:none;">
-  <main>
-    <div class="progress-bar" id="progressBar">
-      <div class="progress-segment" id="seg0"></div>
-      <div class="progress-segment" id="seg1"></div>
-      <div class="progress-segment" id="seg2"></div>
-      <div class="progress-segment" id="seg3"></div>
-    </div>
+<div class="divider"></div>
 
-    <!-- DOMAIN 1 -->
-    <div class="domain active" id="domain0">
-      <div class="domain-header">
-        <div class="domain-number">Domain 01 of 04</div>
-        <div class="domain-title">Cognitive &<br>Executive Bandwidth</div>
-        <div class="domain-desc">How efficiently your mental system initiates, sustains, and switches between tasks.</div>
-      </div>
-      <div id="questions0"></div>
-      <div class="nav">
-        <span class="nav-hint">Rate each item: 0 = Never · 3 = Always</span>
-        <button class="btn btn-primary" onclick="nextDomain(0)">Continue →</button>
-      </div>
-    </div>
+<section id="consulting">
+  <p class="section-label">Consulting</p>
+  <h2 class="section-title">Your product works.<br>But does it work <em style="font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent);">for them?</em></h2>
+  <p class="section-body">With 14+ years of clinical OT experience specializing in spinal cord injury and complex physical needs, I evaluate whether your products, environments, and interfaces actually function for users with physical disabilities — not just in theory, but in daily life.</p>
+  <p class="section-body">This is a perspective engineers and UX researchers can't replicate. It comes from years of watching real patients navigate real products in real homes.</p>
 
-    <!-- DOMAIN 2 -->
-    <div class="domain" id="domain1">
-      <div class="domain-header">
-        <div class="domain-number">Domain 02 of 04</div>
-        <div class="domain-title">Sensory &<br>Environmental Load</div>
-        <div class="domain-desc">How much your surrounding conditions are taxing your nervous system's processing capacity.</div>
-      </div>
-      <div id="questions1"></div>
-      <div class="nav">
-        <button class="btn btn-ghost" onclick="prevDomain(1)">← Back</button>
-        <button class="btn btn-primary" onclick="nextDomain(1)">Continue →</button>
-      </div>
+  <div class="services-grid">
+    <div class="service-item">
+      <h3>Product usability evaluation</h3>
+      <p>Physical disability lens — SCI, mobility impairments, motor function, grip and reach. I find what your testing misses.</p>
     </div>
+    <div class="service-item">
+      <h3>Environmental accessibility</h3>
+      <p>Home appliance, workspace, and built environment assessment grounded in OT and AT principles.</p>
+    </div>
+    <div class="service-item">
+      <h3>Design recommendations</h3>
+      <p>Actionable, prioritized guidance your team can implement — not just compliance checklists.</p>
+    </div>
+    <div class="service-item">
+      <h3>Team consultation</h3>
+      <p>Workshops and advisory sessions for product, design, and accessibility teams.</p>
+    </div>
+  </div>
+</section>
 
-    <!-- DOMAIN 3 -->
-    <div class="domain" id="domain2">
-      <div class="domain-header">
-        <div class="domain-number">Domain 03 of 04</div>
-        <div class="domain-title">Somatic &<br>Physical Capacity</div>
-        <div class="domain-desc">The biological resource base your system is actually operating from — not what you assume it should be.</div>
-      </div>
-      <div id="questions2"></div>
-      <div class="nav">
-        <button class="btn btn-ghost" onclick="prevDomain(2)">← Back</button>
-        <button class="btn btn-primary" onclick="nextDomain(2)">Continue →</button>
-      </div>
-    </div>
+<div class="divider"></div>
 
-    <!-- DOMAIN 4 -->
-    <div class="domain" id="domain3">
-      <div class="domain-header">
-        <div class="domain-number">Domain 04 of 04</div>
-        <div class="domain-title">Interpersonal &<br>Social Friction</div>
-        <div class="domain-desc">The relational and role-based demands that accumulate as invisible load across the day.</div>
-      </div>
-      <div id="questions3"></div>
-      <div class="nav">
-        <button class="btn btn-ghost" onclick="prevDomain(3)">← Back</button>
-        <button class="btn btn-primary" onclick="showResults()">View My Results →</button>
-      </div>
+<section id="about">
+  <p class="section-label">About</p>
+  <div class="about-grid">
+    <div>
+      <p class="about-quote">"Accessibility isn't a legal standard to meet. It's a design problem to solve."</p>
+      <p class="section-body" style="max-width:100%;">I've spent 14 years as an occupational therapist watching patients — intelligent, capable people — struggle with products that were designed without them in mind. I've seen what works and what fails, not in focus groups, but in real homes, with real limitations.</p>
+      <p class="section-body" style="max-width:100%;">That clinical depth is what I bring to product and environment consulting. If you're building for users with physical disabilities, I can tell you what your data can't.</p>
     </div>
-  </main>
+    <div>
+      <ul class="bio-list">
+        <li><span class="bio-dot"></span><span>14+ years clinical OT — neuro-rehab, SCI, acute care</span></li>
+        <li><span class="bio-dot"></span><span>ATP certified — assistive technology evaluation and prescription</span></li>
+        <li><span class="bio-dot"></span><span>M.A. Occupational Science & Occupational Therapy, USC (2012)</span></li>
+        <li><span class="bio-dot"></span><span>B.A. Neuroscience, USC (2010)</span></li>
+        <li><span class="bio-dot"></span><span>AT Certificate, CSUN (2019)</span></li>
+        <li><span class="bio-dot"></span><span>Adjunct Faculty & AT Specialist, Santa Monica College</span></li>
+        <li><span class="bio-dot"></span><span>Korean–English bilingual</span></li>
+        <li><span class="bio-dot"></span><span>Based in Los Angeles, CA</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<div class="adl-section" id="adl-lab">
+  <div class="adl-inner">
+    <div>
+      <div class="adl-tag">
+        <img src="Logo with White BG.png" alt="ADL Lab">
+        <span class="adl-tag-text">ADL Lab</span>
+      </div>
+      <h2 class="section-title" style="margin-bottom:1rem;">The problem is rarely effort.<br>It's <em style="font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent);">fit.</em></h2>
+      <p class="section-body">ADL Lab designs practical home and life systems for high-performing professionals — grounded in occupational science and assistive technology. Structure over willpower.</p>
+      <a href="https://adllab.substack.com" target="_blank" class="btn btn-primary" style="margin-top:0.5rem;">Read on Substack</a>
+    </div>
+    <div class="adl-cards">
+      <a href="https://adllab.substack.com" target="_blank" class="adl-card">
+        <span class="adl-card-num">01</span>
+        <div class="adl-card-content">
+          <h4>Weekly Substack</h4>
+          <p>Home systems, adulting structure, and life design — clinical precision, no hustle language.</p>
+        </div>
+      </a>
+      <a href="https://adllab.gumroad.com" target="_blank" class="adl-card">
+        <span class="adl-card-num">02</span>
+        <div class="adl-card-content">
+          <h4>Workbooks on Gumroad</h4>
+          <p>Self-directed tools for daily structure and functional independence.</p>
+        </div>
+      </a>
+      <a href="https://theadllab.github.io/assessment.html" target="_blank" class="adl-card">
+        <span class="adl-card-num">03</span>
+        <div class="adl-card-content">
+          <h4>ADL Functional Friction Index</h4>
+          <p>A clinical-grade self-assessment — identify where your energy is silently leaking.</p>
+        </div>
+      </a>
+    </div>
+  </div>
 </div>
 
-<!-- RESULTS -->
-<div id="results">
-  <main>
-    <div class="results-hero">
-      <div class="results-eyebrow">Your Friction Profile</div>
-      <h2 id="resultTitle"></h2>
-      <p id="resultSubtitle"></p>
+<div class="contact-section" id="contact">
+  <p class="section-label">Contact</p>
+  <h2 class="section-title">Let's talk.</h2>
+  <p class="section-body">If your team is building products or environments for users with physical disabilities, I'd like to hear what you're working on.</p>
+  <a href="mailto:AhraRohOT@gmail.com" class="btn btn-primary">AhraRohOT@gmail.com</a>
+  <div class="contact-links">
+    <div class="contact-link-item">
+      <span class="clabel">Phone</span>
+      <a href="tel:3103631252">310-363-1252</a>
     </div>
-
-    <div class="domain-results" id="domainCards"></div>
-
-    <div class="insight-block">
-      <div class="eyebrow">Primary Structural Signal</div>
-      <h3 id="insightTitle"></h3>
-      <p id="insightBody"></p>
+    <div class="contact-link-item">
+      <span class="clabel">LinkedIn</span>
+      <a href="https://www.linkedin.com/in/ahra-roh-65632a44/" target="_blank">Ahra Roh</a>
     </div>
-
-    <div class="rec-section">
-      <h4>Structural Recommendations</h4>
-      <div id="recCards"></div>
+    <div class="contact-link-item">
+      <span class="clabel">Substack</span>
+      <a href="https://adllab.substack.com" target="_blank">ADL Lab</a>
     </div>
-
-    <div class="disclaimer">
-      This index is a structural analysis tool designed for systemic lifestyle calibration. It is not intended as a medical or clinical diagnostic tool and does not constitute medical, psychological, or therapeutic advice.
-    </div>
-
-    <div class="restart-row">
-      <button class="btn" onclick="restartQuiz()">Retake Assessment</button>
-    </div>
-  </main>
+  </div>
 </div>
 
-<script>
-const domains = [
-  {
-    name: "Cognitive & Executive",
-    short: "Cognitive",
-    questions: [
-      "I find it hard to clear my head when switching from one task to another.",
-      "By mid-afternoon, making even small decisions feels overwhelming.",
-      "I spend too much time preparing to work before actually starting.",
-      "I read the same paragraph or email multiple times because my focus drifts.",
-      "My mind feels clouded or heavy, even when I haven't done physically demanding work."
-    ]
-  },
-  {
-    name: "Sensory & Environmental",
-    short: "Environmental",
-    questions: [
-      "I easily get irritated by bright lights, background noise, or a messy workspace.",
-      "I feel physically tense when I hear a notification sound or see a new message.",
-      "I don't have a clear physical boundary between my working space and my resting space.",
-      "Staring at screens all day leaves me feeling completely drained and ungrounded.",
-      "I feel like I'm constantly reacting to things around me rather than directing my day."
-    ]
-  },
-  {
-    name: "Somatic & Physical",
-    short: "Somatic",
-    questions: [
-      "I rely heavily on caffeine or sugar just to maintain my normal rhythm.",
-      "My body is exhausted, but my mind is too wired to fall asleep easily at night.",
-      "I catch myself holding my breath or clenching my jaw during working hours.",
-      "Waking up in the morning feels heavy, even after getting enough sleep.",
-      "I frequently skip meals, delay drinking water, or ignore rest until the task is done."
-    ]
-  },
-  {
-    name: "Interpersonal & Social",
-    short: "Social",
-    questions: [
-      "I feel completely depleted after meetings or social interactions, even if they went well.",
-      "It takes me a long time to turn off my professional mode after work is over.",
-      "I prefer to be completely alone on weekends because interacting with others feels like another task.",
-      "Maintaining a composed expression at work requires a lot of conscious effort.",
-      "I find myself thinking about work problems when spending time with family or friends."
-    ]
-  }
-];
+<footer>
+  <span class="footer-name">Ahra Roh, OTR/L, ATP</span>
+  <span class="footer-copy">© 2026 · Los Angeles, CA</span>
+</footer>
 
-const labels = ["Never", "Sometimes", "Often", "Always"];
-let scores = [[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null]];
-let currentDomain = 0;
-
-function buildQuestions() {
-  domains.forEach((domain, di) => {
-    const container = document.getElementById(`questions${di}`);
-    container.innerHTML = domain.questions.map((q, qi) => `
-      <div class="question">
-        <div class="question-text">${qi + 1}. ${q}</div>
-        <div class="options">
-          ${[0,1,2,3].map(score => `
-            <div class="option ${scores[di][qi] === score ? 'selected' : ''}" 
-                 onclick="selectScore(${di}, ${qi}, ${score}, this)">
-              <span class="option-score">${score}</span>
-              <span class="option-label">${labels[score]}</span>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-    `).join('');
-  });
-}
-
-function selectScore(di, qi, score, el) {
-  scores[di][qi] = score;
-  const options = el.parentElement.querySelectorAll('.option');
-  options.forEach(o => o.classList.remove('selected'));
-  el.classList.add('selected');
-}
-
-function getDomainScore(di) {
-  return scores[di].reduce((sum, v) => sum + (v || 0), 0);
-}
-
-function updateProgress(current) {
-  for (let i = 0; i < 4; i++) {
-    const seg = document.getElementById(`seg${i}`);
-    seg.className = 'progress-segment';
-    if (i < current) seg.classList.add('done');
-    else if (i === current) seg.classList.add('active');
-  }
-}
-
-function startQuiz() {
-  document.getElementById('quiz').style.display = 'none';
-  document.getElementById('assessment').style.display = 'block';
-  buildQuestions();
-  updateProgress(0);
-  window.scrollTo(0,0);
-}
-
-function nextDomain(current) {
-  const unanswered = scores[current].filter(v => v === null).length;
-  if (unanswered > 0) {
-    alert(`Please answer all ${unanswered} remaining question(s) before continuing.`);
-    return;
-  }
-  document.getElementById(`domain${current}`).classList.remove('active');
-  currentDomain = current + 1;
-  document.getElementById(`domain${currentDomain}`).classList.add('active');
-  updateProgress(currentDomain);
-  window.scrollTo(0, 0);
-}
-
-function prevDomain(current) {
-  document.getElementById(`domain${current}`).classList.remove('active');
-  currentDomain = current - 1;
-  document.getElementById(`domain${currentDomain}`).classList.add('active');
-  updateProgress(currentDomain);
-  window.scrollTo(0, 0);
-}
-
-function getLevel(score) {
-  if (score <= 5) return 'low';
-  if (score <= 10) return 'mid';
-  return 'high';
-}
-
-function getLevelLabel(level) {
-  if (level === 'low') return 'Stable';
-  if (level === 'mid') return 'Elevated';
-  return 'High Load';
-}
-
-function showResults() {
-  const unanswered = scores[3].filter(v => v === null).length;
-  if (unanswered > 0) {
-    alert(`Please answer all ${unanswered} remaining question(s).`);
-    return;
-  }
-
-  document.getElementById('assessment').style.display = 'none';
-  document.getElementById('results').style.display = 'block';
-  window.scrollTo(0, 0);
-
-  const domainScores = [0,1,2,3].map(di => getDomainScore(di));
-  const levels = domainScores.map(s => getLevel(s));
-  const total = domainScores.reduce((a,b) => a+b, 0);
-
-  // Find highest 1-2 domains
-  const ranked = [0,1,2,3]
-    .map(i => ({ i, score: domainScores[i], level: levels[i] }))
-    .sort((a,b) => b.score - a.score);
-
-  const primaryDomain = ranked[0];
-  const secondaryDomain = ranked[1];
-
-  // RESULT TITLE LOGIC
-  let resultTitle, resultSubtitle;
-  const allStable = levels.every(l => l === 'low');
-  const allHigh = levels.every(l => l === 'high');
-
-  if (allStable) {
-    resultTitle = "Sustainable Rhythm";
-    resultSubtitle = "Your current system is well-calibrated. This is a baseline worth protecting.";
-  } else if (allHigh) {
-    resultTitle = "Full System Overload";
-    resultSubtitle = "Every domain is under significant load. A structural reset — not incremental adjustments — is the priority.";
-  } else {
-    const domainNames = ["Cognitive", "Environmental", "Somatic", "Social"];
-    resultTitle = `${domainNames[primaryDomain.i]} Load — Primary Constraint`;
-    resultSubtitle = `Your highest friction is concentrated in the ${domains[primaryDomain.i].short} domain. This is where structural adjustment will have the most immediate effect.`;
-  }
-
-  document.getElementById('resultTitle').textContent = resultTitle;
-  document.getElementById('resultSubtitle').textContent = resultSubtitle;
-
-  // DOMAIN CARDS
-  const cardsHtml = [0,1,2,3].map(i => {
-    const pct = Math.round((domainScores[i] / 15) * 100);
-    return `
-      <div class="domain-card ${levels[i]}">
-        <div class="dc-label">Domain ${i+1}</div>
-        <div class="dc-name">${domains[i].name}</div>
-        <div class="dc-bar-wrap">
-          <div class="dc-bar" style="width: ${pct}%"></div>
-        </div>
-        <div class="dc-score-row">
-          <div>
-            <span class="dc-score">${domainScores[i]}</span>
-            <span class="dc-max"> / 15</span>
-          </div>
-          <div class="dc-status">${getLevelLabel(levels[i])}</div>
-        </div>
-      </div>
-    `;
-  }).join('');
-  document.getElementById('domainCards').innerHTML = cardsHtml;
-
-  // INSIGHT BLOCK
-  const insights = {
-    0: {
-      title: "Your cognitive system is carrying more than it should.",
-      body: "Task initiation, attention switching, and decision-making are drawing from a depleted reserve. This isn't a focus problem — it's a load problem. The structural priority is reducing the number of active decisions your system has to manage simultaneously."
-    },
-    1: {
-      title: "Your environment is generating more load than it's absorbing.",
-      body: "Sensory input, digital interruptions, and spatial ambiguity are silently increasing the cost of every task. When your environment isn't designed to support you, even simple work becomes expensive. The structural priority is boundary architecture — physical and digital."
-    },
-    2: {
-      title: "Your biological baseline is running below operational capacity.",
-      body: "Sleep quality, physical tension, and energy regulation are the foundation of everything else. When somatic capacity is depleted, cognitive and emotional resources compensate — and drain faster. The structural priority is stabilizing your biological rhythm before optimizing output."
-    },
-    3: {
-      title: "Relational and role demands are accumulating as invisible load.",
-      body: "Social depletion, role transition lag, and boundary erosion don't appear on a task list — but they consume capacity. When interpersonal demands exceed your recovery window, everything else costs more. The structural priority is decompression architecture between roles."
-    }
-  };
-
-  const insight = allStable
-    ? { title: "Your system is operating within a sustainable range.", body: "All four domains show stable structural load. The primary task is maintaining this calibration — not optimizing further. Incremental refinement is appropriate here; major restructuring is not." }
-    : insights[primaryDomain.i];
-
-  document.getElementById('insightTitle').textContent = insight.title;
-  document.getElementById('insightBody').textContent = insight.body;
-
-  // RECOMMENDATIONS
-  const recs = buildRecommendations(ranked, levels, allStable);
-  document.getElementById('recCards').innerHTML = recs.map((rec, idx) => `
-    <div class="rec-card ${idx === 0 ? 'primary-rec' : ''}">
-      <div class="rec-priority">${String(idx + 1).padStart(2, '0')}</div>
-      <div class="rec-content">
-        <h5>${rec.title}</h5>
-        <p>${rec.body}</p>
-        <a href="${rec.link}" class="rec-cta" target="_blank">${rec.cta}</a>
-      </div>
-    </div>
-  `).join('');
-}
-
-function buildRecommendations(ranked, levels, allStable) {
-  const recs = [];
-
-  const products = {
-    audit: {
-      link: "https://adllab.gumroad.com/l/adllab01",
-      cta: "Get the Structural Audit Protocol →"
-    },
-    calibration: {
-      link: "https://adllab.gumroad.com/l/adllab02",
-      cta: "Get the Structural Calibration Toolkit →"
-    },
-    bundle: {
-      link: "https://adllab.gumroad.com/l/adllab03",
-      cta: "Get the Full Structural Redesign Bundle →"
-    },
-    substack: {
-      link: "https://adllab.substack.com/subscribe",
-      cta: "Subscribe to ADL Lab →"
-    }
-  };
-
-  const domainRecs = [
-    {
-      title: "Reduce Cognitive Activation Cost",
-      body: "Define a fixed starting sequence for your three most common tasks. Remove the decision of how to begin — make it a protocol. Batch similar decisions into single time blocks to reduce switching load.",
-      link: products.calibration.link,
-      cta: products.calibration.cta
-    },
-    {
-      title: "Architect Environmental Boundaries",
-      body: "Designate one physical location exclusively for focused work — and one for rest. Even a chair change counts. Disable non-essential notifications during defined work windows. Digital boundary design reduces ambient nervous system activation.",
-      link: products.calibration.link,
-      cta: products.calibration.cta
-    },
-    {
-      title: "Stabilize Biological Baseline First",
-      body: "Before optimizing your workflow, stabilize your biological rhythm. Consistent sleep timing, regular fuel intake, and physical decompression breaks are structural inputs — not optional additions. Output quality is downstream of biological capacity.",
-      link: products.audit.link,
-      cta: products.audit.cta
-    },
-    {
-      title: "Design Recovery Between Role Transitions",
-      body: "Build a deliberate transition ritual between work and personal time — even 10 minutes. The nervous system requires a signal to shift modes. Without it, cognitive load from one domain bleeds into the next.",
-      link: products.calibration.link,
-      cta: products.calibration.cta
-    }
-  ];
-
-  const allHigh = levels.every(l => l === 'high');
-  if (allHigh) {
-    recs.push({
-      title: "Full Structural Reset — All Domains Critical",
-      body: "Every domain is under significant load simultaneously. Incremental adjustments will not be sufficient. A complete structural audit and recalibration across all four domains is the appropriate starting point.",
-      link: products.bundle.link,
-      cta: products.bundle.cta
-    });
-    recs.push(domainRecs[ranked[0].i]);
-    return recs;
-  }
-
-  if (allStable) {
-    recs.push({
-      title: "Maintain Structural Alignment",
-      body: "Your system is well-calibrated. The priority now is protection — not optimization. Weekly structural check-ins help you detect early friction before it compounds.",
-      link: products.substack.link,
-      cta: products.substack.cta
-    });
-    recs.push({
-      title: "Deepen Your Understanding of Structural Design",
-      body: "The ADL Lab Substack publishes weekly frameworks on sustainable performance, friction detection, and environmental design — grounded in occupational science.",
-      link: products.substack.link,
-      cta: products.substack.cta
-    });
-    return recs;
-  }
-
-  // Primary recommendation
-  recs.push(domainRecs[ranked[0].i]);
-
-  // Secondary if elevated or high
-  if (ranked[1].level !== 'low') {
-    recs.push(domainRecs[ranked[1].i]);
-  }
-
-  // Always add structural audit if they haven't done one
-  if (ranked[0].i !== 0) {
-    recs.push({
-      title: "Map Your Full Structural Constraint",
-      body: "The Structural Audit Protocol provides a complete diagnostic of where your effort stops converting into output — across all four capacity domains.",
-      link: products.audit.link,
-      cta: products.audit.cta
-    });
-  }
-
-  return recs;
-}
-
-function restartQuiz() {
-  scores = [[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null]];
-  currentDomain = 0;
-  document.getElementById('results').style.display = 'none';
-  document.getElementById('quiz').style.display = 'block';
-  window.scrollTo(0, 0);
-}
-</script>
 </body>
 </html>
