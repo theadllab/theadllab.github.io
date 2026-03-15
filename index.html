@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ahra Roh, OTR/L, ATP — Physical Disability & Accessibility Consultant</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -12,13 +12,11 @@
     --cream: #F7F5F0;
     --warm-white: #FDFCFA;
     --charcoal: #1C1C1A;
-    --mid: #5F5E5A;
-    --light: #B4B2A9;
+    --mid: #4A4A47;
+    --light: #9A9891;
     --accent: #0F6E56;
     --accent-light: #E1F5EE;
-    --border: rgba(28,28,26,0.1);
-    --navy: #1E2B4A;
-    --gold: #C9A84C;
+    --border: rgba(28,28,26,0.12);
   }
 
   html { scroll-behavior: smooth; }
@@ -27,19 +25,19 @@
     font-family: 'DM Sans', sans-serif;
     background: var(--warm-white);
     color: var(--charcoal);
-    font-size: 16px;
-    line-height: 1.7;
+    font-size: 18px;
+    line-height: 1.75;
   }
 
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    background: rgba(253,252,250,0.95);
+    background: rgba(253,252,250,0.96);
     backdrop-filter: blur(8px);
-    border-bottom: 0.5px solid var(--border);
+    border-bottom: 1px solid var(--border);
     padding: 0 2.5rem;
-    height: 58px;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -47,7 +45,7 @@
 
   .nav-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 400;
     letter-spacing: 0.02em;
     color: var(--charcoal);
@@ -61,11 +59,11 @@
   }
 
   .nav-links a {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     color: var(--mid);
     text-decoration: none;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     transition: color 0.2s;
   }
@@ -73,8 +71,8 @@
   .nav-links a:hover { color: var(--charcoal); }
 
   .hero {
-    padding-top: 130px;
-    padding-bottom: 80px;
+    padding-top: 140px;
+    padding-bottom: 88px;
     max-width: 1040px;
     margin: 0 auto;
     padding-left: 2.5rem;
@@ -86,29 +84,29 @@
   }
 
   .hero-label {
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 1.25rem;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
 
   .hero-label::before {
     content: '';
     display: inline-block;
-    width: 24px;
-    height: 1px;
+    width: 28px;
+    height: 1.5px;
     background: var(--accent);
   }
 
   .hero h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(40px, 4.5vw, 60px);
-    font-weight: 300;
+    font-size: clamp(44px, 5vw, 64px);
+    font-weight: 400;
     line-height: 1.1;
     letter-spacing: -0.01em;
     color: var(--charcoal);
@@ -121,21 +119,21 @@
   }
 
   .hero-sub {
-    font-size: 15px;
+    font-size: 17px;
     color: var(--mid);
     line-height: 1.85;
     margin-bottom: 2.5rem;
-    max-width: 420px;
+    max-width: 440px;
   }
 
   .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
 
   .btn {
     display: inline-block;
-    padding: 13px 30px;
-    font-size: 12px;
+    padding: 15px 32px;
+    font-size: 14px;
     font-weight: 500;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     text-decoration: none;
     border-radius: 2px;
@@ -155,110 +153,103 @@
   .btn-secondary {
     background: transparent;
     color: var(--charcoal);
-    border: 1px solid var(--border);
+    border: 1.5px solid var(--border);
   }
 
   .btn-secondary:hover { border-color: var(--charcoal); }
 
-  .hero-right {
-    position: relative;
-  }
-
-  .hero-photo-wrap {
-    position: relative;
-  }
+  .hero-photo-wrap { position: relative; }
 
   .hero-photo {
     width: 100%;
-    aspect-ratio: 3/4;
+    aspect-ratio: 4/5;
     object-fit: cover;
-    object-position: center top;
+    object-position: center 15%;
     border-radius: 4px;
     display: block;
-    filter: grayscale(8%);
   }
 
   .photo-caption {
     position: absolute;
-    bottom: -1.5rem;
+    bottom: -1.75rem;
     right: 0;
-    font-size: 11px;
-    letter-spacing: 0.08em;
+    font-size: 12px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--light);
   }
 
   .divider {
-    height: 0.5px;
+    height: 1px;
     background: var(--border);
     max-width: 1040px;
     margin: 0 auto;
   }
 
   section {
-    padding: 5rem 2.5rem;
+    padding: 5.5rem 2.5rem;
     max-width: 1040px;
     margin: 0 auto;
   }
 
   .section-label {
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 0.75rem;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
 
   .section-label::before {
     content: '';
     display: inline-block;
-    width: 24px;
-    height: 1px;
+    width: 28px;
+    height: 1.5px;
     background: var(--accent);
   }
 
   .section-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 3.5vw, 44px);
-    font-weight: 300;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
     line-height: 1.15;
     margin-bottom: 1.5rem;
     color: var(--charcoal);
   }
 
   .section-body {
-    font-size: 15px;
+    font-size: 17px;
     color: var(--mid);
     line-height: 1.85;
-    max-width: 580px;
+    max-width: 600px;
     margin-bottom: 1.5rem;
   }
 
   .services-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem 3rem;
+    gap: 2.5rem 4rem;
     margin-top: 3rem;
   }
 
   .service-item {
-    border-top: 1.5px solid var(--accent);
+    border-top: 2px solid var(--accent);
     padding-top: 1.25rem;
   }
 
   .service-item h3 {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 500;
     color: var(--charcoal);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
   }
 
   .service-item p {
-    font-size: 13px;
+    font-size: 15px;
     color: var(--mid);
     line-height: 1.75;
   }
@@ -272,12 +263,12 @@
 
   .about-quote {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
+    font-size: 24px;
     font-style: italic;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--charcoal);
     line-height: 1.5;
-    border-left: 1.5px solid var(--accent);
+    border-left: 2px solid var(--accent);
     padding-left: 1.5rem;
     margin-bottom: 2rem;
   }
@@ -286,30 +277,30 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.875rem;
+    gap: 1rem;
   }
 
   .bio-list li {
     display: flex;
     gap: 1rem;
     align-items: flex-start;
-    font-size: 14px;
+    font-size: 16px;
     color: var(--mid);
-    line-height: 1.6;
+    line-height: 1.65;
   }
 
   .bio-dot {
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background: var(--accent);
-    margin-top: 8px;
+    margin-top: 10px;
     flex-shrink: 0;
   }
 
   .adl-section {
     background: var(--cream);
-    padding: 5rem 2.5rem;
+    padding: 5.5rem 2.5rem;
   }
 
   .adl-inner {
@@ -329,12 +320,12 @@
   }
 
   .adl-tag img {
-    height: 28px;
+    height: 32px;
     width: auto;
   }
 
   .adl-tag-text {
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -348,13 +339,13 @@
   }
 
   .adl-card {
-    border: 0.5px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: 4px;
-    padding: 1.25rem 1.5rem;
+    padding: 1.4rem 1.6rem;
     background: white;
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 1.25rem;
     text-decoration: none;
     transition: border-color 0.2s;
   }
@@ -363,30 +354,31 @@
 
   .adl-card-num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 300;
+    font-size: 22px;
+    font-weight: 400;
     color: var(--light);
     line-height: 1;
     flex-shrink: 0;
-    padding-top: 2px;
+    padding-top: 3px;
   }
 
   .adl-card-content h4 {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     color: var(--charcoal);
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.25rem;
   }
 
   .adl-card-content p {
-    font-size: 13px;
+    font-size: 14px;
     color: var(--mid);
+    line-height: 1.7;
   }
 
   .contact-section {
     text-align: center;
-    padding: 5rem 2.5rem;
-    max-width: 640px;
+    padding: 5.5rem 2.5rem;
+    max-width: 680px;
     margin: 0 auto;
   }
 
@@ -396,39 +388,37 @@
 
   .contact-section .section-label::before { display: none; }
 
-  .contact-section .section-title { margin: 0 auto 1rem; }
-
   .contact-section .section-body {
     margin: 0 auto 2.5rem;
-    max-width: 440px;
+    max-width: 480px;
   }
 
   .contact-links {
     display: flex;
-    gap: 2.5rem;
+    gap: 3rem;
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 2rem;
     padding-top: 2rem;
-    border-top: 0.5px solid var(--border);
+    border-top: 1px solid var(--border);
   }
 
   .contact-link-item {
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0.35rem;
     align-items: center;
   }
 
   .contact-link-item .clabel {
-    font-size: 10px;
-    letter-spacing: 0.12em;
+    font-size: 12px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--light);
   }
 
   .contact-link-item a {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--charcoal);
     text-decoration: none;
     border-bottom: 1px solid transparent;
@@ -441,34 +431,34 @@
   }
 
   footer {
-    border-top: 0.5px solid var(--border);
-    padding: 1.75rem 2.5rem;
+    border-top: 1px solid var(--border);
+    padding: 2rem 2.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 100%;
   }
 
   .footer-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 14px;
+    font-size: 16px;
     color: var(--light);
     letter-spacing: 0.04em;
   }
 
   .footer-copy {
-    font-size: 11px;
+    font-size: 13px;
     color: var(--light);
     letter-spacing: 0.04em;
   }
 
   @media (max-width: 720px) {
+    body { font-size: 17px; }
     .hero { grid-template-columns: 1fr; gap: 3rem; padding-top: 100px; }
     .hero-right { order: -1; }
-    .hero-photo { aspect-ratio: 4/3; object-position: center 20%; }
+    .hero-photo { aspect-ratio: 3/2; object-position: center 20%; }
     .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .adl-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    .services-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; gap: 2rem; }
     .nav-links { display: none; }
     footer { flex-direction: column; gap: 0.5rem; text-align: center; }
   }
@@ -513,7 +503,6 @@
   <h2 class="section-title">Your product works.<br>But does it work <em style="font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent);">for them?</em></h2>
   <p class="section-body">With 14+ years of clinical OT experience specializing in spinal cord injury and complex physical needs, I evaluate whether your products, environments, and interfaces actually function for users with physical disabilities — not just in theory, but in daily life.</p>
   <p class="section-body">This is a perspective engineers and UX researchers can't replicate. It comes from years of watching real patients navigate real products in real homes.</p>
-
   <div class="services-grid">
     <div class="service-item">
       <h3>Product usability evaluation</h3>
@@ -565,7 +554,7 @@
   <div class="adl-inner">
     <div>
       <div class="adl-tag">
-        <img src="Logo with White BG.png" alt="ADL Lab">
+        <img src="Logo with White BG.png" alt="ADL Lab logo">
         <span class="adl-tag-text">ADL Lab</span>
       </div>
       <h2 class="section-title" style="margin-bottom:1rem;">The problem is rarely effort.<br>It's <em style="font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent);">fit.</em></h2>
