@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADL Friction Report — Isaac K.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1E2B4A;
+    --gold: #C9A84C;
+    --cream: #F7F4EF;
+    --warm-white: #FDFBF8;
+    --muted: #8A8A8A;
+    --light-border: #E8E2D9;
+    --low: #6B8F71;
+    --mid: #C9A84C;
+    --high: #B85C4A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .print-bar {
+    background: var(--navy);
+    padding: 12px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .print-bar span { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+  .print-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    background: transparent;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .print-btn:hover { background: var(--gold); color: var(--navy); }
+
+  .page { max-width: 860px; margin: 0 auto; padding: 48px 64px 72px; }
+
+  .report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--light-border);
+    margin-bottom: 32px;
+  }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--navy); }
+  .logo span { color: var(--gold); margin: 0 6px; }
+  .report-meta { text-align: right; }
+  .report-meta .label { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+  .report-meta .name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; }
+  .report-meta .sub { font-size: 11px; color: var(--muted); }
+
+  .part-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 36px 0 24px;
+  }
+  .part-label { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); white-space: nowrap; font-weight: 500; }
+  .part-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--navy); white-space: nowrap; }
+  .part-line { flex: 1; height: 1px; background: var(--light-border); }
+
+  .section-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+  .eyebrow { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+
+  .summary-block {
+    background: var(--navy);
+    color: white;
+    padding: 28px 32px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+  .summary-block .eyebrow { color: var(--gold); margin-bottom: 10px; }
+  .summary-block p { font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.85); }
+  .summary-block p strong { color: white; font-weight: 500; }
+  .summary-block .highlight {
+    display: block;
+    background: rgba(201,168,76,0.15);
+    border-left: 2px solid var(--gold);
+    padding: 10px 14px;
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.9);
+    border-radius: 0 3px 3px 0;
+  }
+
+  .disclaimer {
+    font-size: 10px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.6;
+    padding: 10px 0 20px;
+    border-bottom: 1px solid var(--light-border);
+    margin-bottom: 4px;
+  }
+
+  .overview-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+  .overview-card { border: 1px solid var(--light-border); border-radius: 4px; padding: 18px 20px; background: white; text-align: center; }
+  .overview-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; line-height: 1; margin-bottom: 4px; }
+  .overview-num.high { color: var(--high); }
+  .overview-num.mid { color: var(--mid); }
+  .overview-num.low { color: var(--low); }
+  .overview-label { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .overview-desc { font-size: 11px; color: var(--navy); line-height: 1.4; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .panel { border: 1px solid var(--light-border); border-radius: 4px; padding: 20px 22px; background: white; }
+
+  .domain-bars { display: flex; flex-direction: column; gap: 14px; }
+  .bar-row { display: flex; flex-direction: column; gap: 5px; }
+  .bar-meta { display: flex; justify-content: space-between; align-items: center; }
+  .bar-name { font-size: 12px; color: var(--navy); font-weight: 400; }
+  .bar-badge { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; }
+  .bar-badge.high { background: rgba(184,92,74,0.1); color: var(--high); }
+  .bar-badge.mid { background: rgba(201,168,76,0.1); color: var(--mid); }
+  .bar-badge.low { background: rgba(107,143,113,0.1); color: var(--low); }
+  .bar-track { height: 6px; background: var(--light-border); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; }
+  .bar-fill.high { background: var(--high); }
+  .bar-fill.mid { background: var(--mid); }
+  .bar-fill.low { background: var(--low); }
+
+  .sensory-pattern { display: inline-block; background: var(--cream); border-radius: 3px; padding: 5px 10px; font-size: 11px; font-weight: 500; color: var(--navy); margin-bottom: 12px; }
+  .sensory-rows { display: flex; flex-direction: column; gap: 6px; }
+  .sensory-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--light-border); }
+  .sensory-row:last-child { border-bottom: none; }
+  .sensory-badge { font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 7px; border-radius: 2px; flex-shrink: 0; min-width: 58px; text-align: center; }
+  .sensory-badge.often { background: rgba(184,92,74,0.1); color: var(--high); }
+  .sensory-badge.sometimes { background: rgba(201,168,76,0.1); color: var(--mid); }
+  .sensory-badge.always { background: rgba(30,43,74,0.1); color: var(--navy); }
+  .sensory-badge.rarely { background: rgba(107,143,113,0.1); color: var(--low); }
+  .sensory-text { font-size: 11px; color: var(--navy); line-height: 1.4; }
+
+  .cost-block { border: 1px solid var(--light-border); border-radius: 4px; padding: 20px 22px; background: white; margin-bottom: 24px; }
+  .cost-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 300; color: var(--navy); margin-bottom: 14px; }
+  .cost-rows { display: flex; flex-direction: column; }
+  .cost-row { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--light-border); }
+  .cost-row:last-child { border-bottom: none; }
+  .cost-situation { font-size: 12px; color: var(--navy); }
+  .cost-input { display: flex; align-items: center; gap: 6px; }
+  .cost-input input { width: 60px; border: 1px solid var(--light-border); border-radius: 2px; padding: 5px 8px; font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--navy); text-align: center; background: var(--warm-white); }
+  .cost-unit { font-size: 9px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .cost-note { font-size: 10px; color: var(--muted); margin-top: 10px; font-style: italic; line-height: 1.6; }
+
+  .constraint-block {
+    background: var(--navy);
+    color: white;
+    padding: 24px 28px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+  .constraint-block .eyebrow { color: var(--gold); margin-bottom: 8px; }
+  .constraint-block h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; margin-bottom: 8px; line-height: 1.3; }
+  .constraint-block p { font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.7; }
+
+  .bullet-section { margin-bottom: 20px; }
+  .bullet-card { border: 1px solid var(--light-border); border-radius: 4px; background: white; overflow: hidden; margin-bottom: 12px; }
+  .bullet-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--light-border);
+  }
+  .bullet-card-icon { font-size: 13px; }
+  .bullet-card-title { font-size: 12px; font-weight: 500; color: var(--navy); letter-spacing: 0.02em; }
+  .bullet-list { padding: 4px 0; }
+  .bullet-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 18px;
+    border-bottom: 1px solid var(--light-border);
+    font-size: 12px;
+    color: var(--navy);
+    line-height: 1.5;
+  }
+  .bullet-item:last-child { border-bottom: none; }
+  .bullet-marker { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 6px; }
+
+  .bullet-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+
+  .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+  .tool-card { border: 1px solid var(--light-border); border-radius: 4px; padding: 16px 18px; background: white; display: flex; flex-direction: column; gap: 5px; }
+  .tool-category { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+  .tool-name { font-size: 13px; font-weight: 500; color: var(--navy); }
+  .tool-why { font-size: 10px; color: var(--muted); line-height: 1.5; flex: 1; }
+  .tool-link { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 1px; align-self: flex-start; }
+
+  .impl-rows { display: flex; flex-direction: column; margin-bottom: 24px; }
+  .impl-row { display: grid; grid-template-columns: 88px 1fr; border-bottom: 1px solid var(--light-border); }
+  .impl-row:last-child { border-bottom: none; }
+  .impl-time { padding: 14px 16px 14px 0; display: flex; flex-direction: column; justify-content: flex-start; border-right: 2px solid var(--gold); margin-right: 20px; padding-top: 16px; }
+  .impl-time-label { font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 2px; }
+  .impl-time-val { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; color: var(--navy); line-height: 1; }
+  .impl-actions { padding: 14px 0; display: flex; flex-direction: column; gap: 7px; }
+  .impl-action { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--navy); line-height: 1.4; }
+  .impl-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 5px; }
+
+  .cta-block {
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    padding: 28px 32px;
+    background: white;
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+  }
+  .cta-text .eyebrow { margin-bottom: 6px; }
+  .cta-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--navy); margin-bottom: 6px; line-height: 1.3; }
+  .cta-text p { font-size: 11px; color: var(--muted); line-height: 1.6; max-width: 400px; }
+  .cta-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+  .cta-btn:hover { background: var(--gold); }
+
+  .report-footer { padding-top: 20px; border-top: 1px solid var(--light-border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-note { font-size: 10px; color: var(--muted); line-height: 1.6; max-width: 440px; }
+  .footer-brand { text-align: right; }
+  .footer-brand .logo { font-size: 11px; display: block; margin-bottom: 2px; }
+  .footer-brand .cred { font-size: 9px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  @media print {
+    .print-bar { display: none; }
+    .page { padding: 36px 48px; }
+    body { background: white; }
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 24px 20px; }
+    .two-col, .overview-grid, .tools-grid, .bullet-two-col { grid-template-columns: 1fr; }
+    .cta-block { flex-direction: column; }
+    .print-bar { padding: 12px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="print-bar">
+  <span>ADL Friction Report · Confidential</span>
+  <button class="print-btn" onclick="window.print()">Save as PDF →</button>
+</div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="report-header">
+    <div class="logo">ADL <span>·</span> Lab</div>
+    <div class="report-meta">
+      <div class="label">Friction Report · Personalized</div>
+      <div class="name">Isaac K.</div>
+      <div class="sub">Software Engineer · March 2026</div>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="summary-block">
+    <div class="eyebrow">Structural Summary</div>
+    <p>
+      You're running a hybrid work schedule — alternating between home weeks and office weeks with a 30–40 minute commute — while serving as a primary caregiver for a baby outside work hours. Your FFI scores are largely stable, which tells us your individual load tolerance is solid. But <strong>the friction isn't in the domains — it's in the transitions between them.</strong> Every shift from engineer to parent happens without a buffer, and night wake-ups are quietly compressing the recovery window that would otherwise protect your performance. The good news: you already know what works for you. Exercise first. Do hard things early. Automate what repeats. The goal now is to protect those instincts structurally so they hold even on the hard days.
+    </p>
+    <span class="highlight">→ Your morning energy window is your highest-value asset. Protecting it — and building a transition ritual that doesn't cost it — is the single highest-leverage change available to you right now.</span>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    This report reflects your self-reported responses at the time of intake. Results may shift as your environment or workload changes. This is a structural analysis tool — not a clinical assessment.
+  </div>
+
+  <!-- ─── PART 1: AWARENESS ─── -->
+  <div class="part-divider">
+    <span class="part-label">Part 01</span>
+    <span class="part-title">Awareness — Results & Interpretation</span>
+    <div class="part-line"></div>
+  </div>
+
+  <!-- OVERVIEW NUMBERS -->
+  <div class="overview-grid">
+    <div class="overview-card">
+      <div class="overview-num mid">1</div>
+      <div class="overview-label">Elevated domain</div>
+      <div class="overview-desc">Interpersonal & Social (6/15) — caregiver load, schedule variability</div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-num low">Morning</div>
+      <div class="overview-label">Peak energy window</div>
+      <div class="overview-desc">Mornings are your highest-output window — protect aggressively</div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-num mid">2</div>
+      <div class="overview-label">Active life contexts</div>
+      <div class="overview-desc">Hybrid engineer (home + office weeks) + infant caregiver, daily</div>
+    </div>
+  </div>
+
+  <!-- DOMAIN BARS + SENSORY -->
+  <div class="two-col">
+    <div class="panel">
+      <div class="section-label">Domain Load</div>
+      <div class="domain-bars">
+        <div class="bar-row">
+          <div class="bar-meta"><span class="bar-name">Cognitive & Executive</span><span class="bar-badge low">Stable</span></div>
+          <div class="bar-track"><div class="bar-fill low" style="width:33%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-meta"><span class="bar-name">Sensory & Environmental</span><span class="bar-badge low">Stable</span></div>
+          <div class="bar-track"><div class="bar-fill low" style="width:33%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-meta"><span class="bar-name">Somatic & Physical</span><span class="bar-badge low">Stable</span></div>
+          <div class="bar-track"><div class="bar-fill low" style="width:33%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-meta"><span class="bar-name">Interpersonal & Social</span><span class="bar-badge mid">Elevated</span></div>
+          <div class="bar-track"><div class="bar-fill mid" style="width:40%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="section-label">Sensory Profile</div>
+      <div class="sensory-pattern">Moderate Sensitivity · Context-Dependent</div>
+      <div class="sensory-rows">
+        <div class="sensory-row"><span class="sensory-badge sometimes">Sometimes</span><span class="sensory-text">Noise, clutter, or interruptions throw off focus</span></div>
+        <div class="sensory-row"><span class="sensory-badge sometimes">Sometimes</span><span class="sensory-text">Needs movement or variety to stay engaged</span></div>
+        <div class="sensory-row"><span class="sensory-badge sometimes">Sometimes</span><span class="sensory-text">Social interaction feels depleting, even when it went well</span></div>
+        <div class="sensory-row"><span class="sensory-badge often">Often</span><span class="sensory-text">Functions best with predictable environments and schedule</span></div>
+        <div class="sensory-row"><span class="sensory-badge sometimes">Sometimes</span><span class="sensory-text">Overrides hunger or fatigue signals without noticing</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COST -->
+  <div class="cost-block">
+    <div class="section-label">Estimated Weekly Leak</div>
+    <div class="cost-title">How many hours per week is each friction point consuming?</div>
+    <div class="cost-rows">
+      <div class="cost-row">
+        <div class="cost-situation">Re-entering deep work focus after unplanned baby care interruptions</div>
+        <div class="cost-input"><input type="number" placeholder="?"><span class="cost-unit">hrs/wk lost</span></div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-situation">Commute overhead on office weeks (prep time + transit + re-settling)</div>
+        <div class="cost-input"><input type="number" placeholder="?"><span class="cost-unit">hrs/wk lost</span></div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-situation">Morning performance loss from night wake-ups (fragmented sleep)</div>
+        <div class="cost-input"><input type="number" placeholder="?"><span class="cost-unit">hrs/wk lost</span></div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-situation">Avoided home task (cleaning) — mental overhead of avoidance + catch-up cost</div>
+        <div class="cost-input"><input type="number" placeholder="?"><span class="cost-unit">hrs/wk lost</span></div>
+      </div>
+    </div>
+    <div class="cost-note">Total hours × your hourly rate = structural cost per week. Night wake-up loss compounds: even partial sleep disruption reduces next-day cognitive output by 20–30%.</div>
+  </div>
+
+  <!-- ─── PART 2: ACCEPTANCE ─── -->
+  <div class="part-divider">
+    <span class="part-label">Part 02</span>
+    <span class="part-title">Acceptance — Why This Is Happening</span>
+    <div class="part-line"></div>
+  </div>
+
+  <div class="constraint-block">
+    <div class="eyebrow">Primary Structural Constraint</div>
+    <h3>Your peak morning window is unprotected — and the baby doesn't negotiate timing.</h3>
+    <p>You already know what works: exercise first, hard things early, automate what repeats. That's a sound strategy. The problem is that it was designed for a life with more schedule control than you currently have. Night wake-ups compress your recovery and erode the morning quality your whole system depends on. The work-to-parent switch happens reactively — whenever the baby needs it — without a buffer. Over time, unplanned transitions accumulate into a chronic low-grade drain. This isn't a motivation problem. It's a constraint problem. The solution isn't to work harder — it's to build defaults small enough that they survive the hard days: the days you woke up twice, have an office commute, and still need to produce.</p>
+  </div>
+
+  <!-- ─── PART 3: ADJUST ─── -->
+  <div class="part-divider">
+    <span class="part-label">Part 03</span>
+    <span class="part-title">Adjust — What You Can Do</span>
+    <div class="part-line"></div>
+  </div>
+
+  <!-- QUICK WINS -->
+  <div class="bullet-section">
+    <div class="section-label">Start Here — Quick Wins This Week</div>
+    <div class="bullet-two-col">
+      <div class="bullet-card">
+        <div class="bullet-card-header">
+          <span class="bullet-card-icon">✦</span>
+          <span class="bullet-card-title">Protect the Morning Window</span>
+        </div>
+        <div class="bullet-list">
+          <div class="bullet-item"><div class="bullet-marker"></div>Exercise before anything else — even 20 min. This is non-negotiable on low-sleep days especially.</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Block your first 90 min for your hardest engineering task — before Slack, before standup if possible</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Write tomorrow's first task tonight — so you don't decide it in the morning</div>
+        </div>
+      </div>
+      <div class="bullet-card">
+        <div class="bullet-card-header">
+          <span class="bullet-card-icon">✦</span>
+          <span class="bullet-card-title">Work-to-Parent Transition</span>
+        </div>
+        <div class="bullet-list">
+          <div class="bullet-item"><div class="bullet-marker"></div>Keep your existing break habit — it's working. Now formalize it: same cue, same length, every day</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Add a physical cue to the break (change clothes, wash hands) to signal the mode switch to your nervous system</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>No reopening work apps or Slack for 30 min after caregiver mode begins</div>
+        </div>
+      </div>
+      <div class="bullet-card">
+        <div class="bullet-card-header">
+          <span class="bullet-card-icon">✦</span>
+          <span class="bullet-card-title">Automate What Repeats</span>
+        </div>
+        <div class="bullet-list">
+          <div class="bullet-item"><div class="bullet-marker"></div>Set a recurring grocery order — remove one weekly decision entirely</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Assign cleaning tasks to fixed days on a recurring calendar — stops the avoidance loop</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Identify one more recurring task this week that can be automated or scheduled — add it to the system</div>
+        </div>
+      </div>
+      <div class="bullet-card">
+        <div class="bullet-card-header">
+          <span class="bullet-card-icon">✦</span>
+          <span class="bullet-card-title">Office Week Defaults</span>
+        </div>
+        <div class="bullet-list">
+          <div class="bullet-item"><div class="bullet-marker"></div>Batch all meetings and collaboration on office days — protect home weeks for deep work</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Pack your bag the night before — remove one morning decision on commute days</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Pre-decide dinner for office days — commute eats time; don't also spend energy deciding food</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SENSORY REGULATION -->
+  <div class="bullet-section">
+    <div class="section-label">Sensory Regulation Strategies</div>
+    <div class="bullet-two-col">
+      <div class="bullet-card">
+        <div class="bullet-card-header">
+          <span class="bullet-card-icon">◎</span>
+          <span class="bullet-card-title">Deep Work & Focus</span>
+        </div>
+        <div class="bullet-list">
+          <div class="bullet-item"><div class="bullet-marker"></div>Consistent audio anchor (brown noise or lofi) for every coding session — trains focus response over time</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Headphones on = do not disturb — both at home desk and in office</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Keep a physical notepad at desk for interruption capture — note it, return to task immediately</div>
+        </div>
+      </div>
+      <div class="bullet-card">
+        <div class="bullet-card-header">
+          <span class="bullet-card-icon">◎</span>
+          <span class="bullet-card-title">Sleep & Night Wake Recovery</span>
+        </div>
+        <div class="bullet-list">
+          <div class="bullet-item"><div class="bullet-marker"></div>After a disrupted night, protect the first 30 min of morning — quiet start, no reactive inputs</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>On low-sleep days, explicitly reduce scope — one key task done well beats three done poorly</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>A 20-min nap around midday (if baby allows) restores working memory more than caffeine</div>
+        </div>
+      </div>
+      <div class="bullet-card">
+        <div class="bullet-card-header">
+          <span class="bullet-card-icon">◎</span>
+          <span class="bullet-card-title">Physical Regulation</span>
+        </div>
+        <div class="bullet-list">
+          <div class="bullet-item"><div class="bullet-marker"></div>On days you can't do a full workout — 10-min walk still fires the cue and maintains the habit</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Slow neck rolls + extended exhale breathing (4 in, 6 out) between engineering work and parent mode</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Set a midday alarm — you tend to override hunger signals; don't wait until depletion to eat</div>
+        </div>
+      </div>
+      <div class="bullet-card">
+        <div class="bullet-card-header">
+          <span class="bullet-card-icon">◎</span>
+          <span class="bullet-card-title">Interpersonal Recovery</span>
+        </div>
+        <div class="bullet-list">
+          <div class="bullet-item"><div class="bullet-marker"></div>After high-interaction office days, build in a 15-min quiet buffer before engaging at home</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Communicate your low-bandwidth days to your partner — ask for reduced demands when you're depleted</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Protect one block of solo time weekly — even 30 min — for cognitive reset without task pressure</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENVIRONMENTAL MODIFICATIONS -->
+  <div class="bullet-section">
+    <div class="section-label">Environmental Modifications</div>
+    <div class="bullet-two-col">
+      <div class="bullet-card">
+        <div class="bullet-card-header">
+          <span class="bullet-card-icon">⊞</span>
+          <span class="bullet-card-title">Home Work Environment</span>
+        </div>
+        <div class="bullet-list">
+          <div class="bullet-item"><div class="bullet-marker"></div>Create a physical boundary for "work mode" at home — even a dedicated chair or desk corner</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Close work setup visually at end of day — visual closure reinforces the transition</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Keep baby supplies outside the work zone — reduce context bleed between roles</div>
+        </div>
+      </div>
+      <div class="bullet-card">
+        <div class="bullet-card-header">
+          <span class="bullet-card-icon">⊞</span>
+          <span class="bullet-card-title">Digital Environment</span>
+        </div>
+        <div class="bullet-list">
+          <div class="bullet-item"><div class="bullet-marker"></div>One task system only — pick it, commit to it, stop maintaining multiple lists</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Silence non-critical Slack and email during your first deep work block — protect the morning window</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Batch async replies into one or two windows per day — stop treating messages as interrupts</div>
+        </div>
+      </div>
+      <div class="bullet-card">
+        <div class="bullet-card-header">
+          <span class="bullet-card-icon">⊞</span>
+          <span class="bullet-card-title">Office Week Structure</span>
+        </div>
+        <div class="bullet-list">
+          <div class="bullet-item"><div class="bullet-marker"></div>Treat commute time as protected — podcast, thinking, or silence; not reactive Slack</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Pre-decide the office day schedule the night before — no morning decision overhead</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Batch collaboration and meetings on office days — don't replicate them on home weeks</div>
+        </div>
+      </div>
+      <div class="bullet-card">
+        <div class="bullet-card-header">
+          <span class="bullet-card-icon">⊞</span>
+          <span class="bullet-card-title">Household Structural Defaults</span>
+        </div>
+        <div class="bullet-list">
+          <div class="bullet-item"><div class="bullet-marker"></div>Cleaning: assign specific tasks to specific fixed days — no re-deciding, no avoidance spiral</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Weekly family logistics check-in: same day, 15 min, covers the week ahead with your partner</div>
+          <div class="bullet-item"><div class="bullet-marker"></div>Automate everything that repeats: groceries, bills, household supplies — decide once, run on autopilot</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOLS -->
+  <div class="section-label">Recommended Tools</div>
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-category">Task System</div>
+      <div class="tool-name">Linear</div>
+      <div class="tool-why">Engineer-native task tracking. Clean, fast, keeps work context contained and off your mind.</div>
+      <a href="https://linear.app" class="tool-link" target="_blank">linear.app →</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-category">Household</div>
+      <div class="tool-name">Tody</div>
+      <div class="tool-why">Assigns cleaning tasks to fixed schedules automatically. Eliminates the avoidance loop entirely.</div>
+      <a href="https://todyapp.com" class="tool-link" target="_blank">todyapp.com →</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-category">Focus Audio</div>
+      <div class="tool-name">Brain.fm</div>
+      <div class="tool-why">Functional audio engineered for sustained deep work. Same cue, home and office.</div>
+      <a href="https://www.brain.fm" class="tool-link" target="_blank">brain.fm →</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-category">Groceries</div>
+      <div class="tool-name">Instacart / Amazon Fresh</div>
+      <div class="tool-why">Recurring order automation. One weekly decision removed permanently from your plate.</div>
+      <a href="https://www.instacart.com" class="tool-link" target="_blank">instacart.com →</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-category">Body Signals</div>
+      <div class="tool-name">Alarmy</div>
+      <div class="tool-why">Persistent alarms for midday meal and movement check-ins — you tend to override; this overrides back.</div>
+      <a href="https://alar.my" class="tool-link" target="_blank">alar.my →</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-category">Daily Capture</div>
+      <div class="tool-name">Analog by Ugmonk</div>
+      <div class="tool-why">Physical card for daily priorities and brain dump. Closes open loops before bed.</div>
+      <a href="https://ugmonk.com/analog" class="tool-link" target="_blank">ugmonk.com →</a>
+    </div>
+  </div>
+
+  <!-- IMPLEMENTATION SEQUENCE -->
+  <div class="section-label">Implementation Sequence</div>
+  <div class="impl-rows">
+    <div class="impl-row">
+      <div class="impl-time">
+        <div class="impl-time-label">Today</div>
+        <div class="impl-time-val">Day 1</div>
+      </div>
+      <div class="impl-actions">
+        <div class="impl-action"><div class="impl-dot"></div>Write tomorrow's first engineering task before you close your laptop tonight</div>
+        <div class="impl-action"><div class="impl-dot"></div>Set a recurring midday meal alarm — override your tendency to push through</div>
+        <div class="impl-action"><div class="impl-dot"></div>Pick one recurring home task (groceries or cleaning) and automate or schedule it now</div>
+      </div>
+    </div>
+    <div class="impl-row">
+      <div class="impl-time">
+        <div class="impl-time-label">This week</div>
+        <div class="impl-time-val">Wk 1</div>
+      </div>
+      <div class="impl-actions">
+        <div class="impl-action"><div class="impl-dot"></div>Formalize your existing break ritual — same cue, same length, physical transition signal added</div>
+        <div class="impl-action"><div class="impl-dot"></div>Block your first 90 min every morning for deep work — no Slack, no meetings</div>
+        <div class="impl-action"><div class="impl-dot"></div>Assign all cleaning tasks to fixed days in your calendar or Tody — done once, runs itself</div>
+        <div class="impl-action"><div class="impl-dot"></div>Pre-plan office week schedule the Sunday before — batch meetings, protect morning windows</div>
+      </div>
+    </div>
+    <div class="impl-row">
+      <div class="impl-time">
+        <div class="impl-time-label">Next week</div>
+        <div class="impl-time-val">Wk 2</div>
+      </div>
+      <div class="impl-actions">
+        <div class="impl-action"><div class="impl-dot"></div>Add a consistent audio anchor to all deep work sessions — home and office, same cue</div>
+        <div class="impl-action"><div class="impl-dot"></div>Schedule a 15-min weekly family logistics review — same time each week, covers the week ahead</div>
+        <div class="impl-action"><div class="impl-dot"></div>Implement one more automation — recurring grocery order, bill pay, or household supply reorder</div>
+        <div class="impl-action"><div class="impl-dot"></div>Review: which defaults survived the low-sleep days? Those are your keepers. Drop what didn't hold.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <div class="cta-text">
+      <div class="eyebrow">Next Step</div>
+      <h3>Want to go deeper on your structure?</h3>
+      <p>The ADL Lab Substack publishes weekly frameworks on sustainable performance, friction reduction, and structural design — grounded in occupational science. Free to subscribe.</p>
+    </div>
+    <a href="https://adllab.substack.com/subscribe" class="cta-btn" target="_blank">Subscribe to ADL Lab →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    <div class="footer-note">
+      Informed by occupational science and neuroscience. Not a clinical service — does not replace medical or therapeutic care. ADL Lab · adllab.substack.com
+    </div>
+    <div class="footer-brand">
+      <span class="logo">ADL <span>·</span> Lab</span>
+      <span class="cred">Ahra Roh, OTR/L, ATP</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
