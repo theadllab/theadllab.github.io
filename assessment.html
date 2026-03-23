@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ADL Functional Friction Index — ADL Lab</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>ADL Sensory Friction Index — ADL Lab</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -11,11 +11,16 @@
     --gold: #C9A84C;
     --cream: #F7F4EF;
     --warm-white: #FDFBF8;
-    --muted: #8A8A8A;
+    --muted: #6A6A6A;
     --light-border: #E8E2D9;
-    --low: #6B8F71;
-    --mid: #C9A84C;
-    --high: #B85C4A;
+    --low: #4A7A52;
+    --mid: #B8922A;
+    --high: #A04030;
+    --focus-ring: #4A90E2;
+    --p1: #5B7FA6;
+    --p2: #7A9E7E;
+    --p3: #C9A84C;
+    --p4: #A07060;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,577 +29,459 @@
     background: var(--warm-white);
     color: var(--navy);
     font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
+    font-size: 16px;
     line-height: 1.7;
     min-height: 100vh;
+    -webkit-text-size-adjust: 100%;
   }
 
-  /* HEADER */
+  :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 2px; }
+
+  .skip-link {
+    position: absolute; top: -40px; left: 0;
+    background: var(--navy); color: white;
+    padding: 8px 16px; z-index: 100; font-size: 14px;
+    transition: top 0.2s; text-decoration: none;
+  }
+  .skip-link:focus { top: 0; }
+
   header {
-    padding: 40px 48px 32px;
+    padding: 20px 24px;
     border-bottom: 1px solid var(--light-border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 6px;
   }
 
   .logo {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--navy);
-    font-weight: 400;
+    font-size: 14px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--navy); font-weight: 400;
   }
+  .logo span { color: var(--gold); margin: 0 5px; }
 
-  .logo span {
-    color: var(--gold);
-    margin: 0 6px;
-  }
-
-  .credential {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
+  .credential { font-size: 12px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
 
   /* HERO */
-  .hero {
-    max-width: 720px;
-    margin: 72px auto 0;
-    padding: 0 48px;
+  .hero { max-width: 580px; margin: 48px auto 0; padding: 0 24px 60px; text-align: center; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 9vw, 52px); font-weight: 300; line-height: 1.15; color: var(--navy); margin-bottom: 20px; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero p { font-size: 16px; color: var(--muted); max-width: 400px; margin: 0 auto 14px; line-height: 1.75; }
+  .hero-note { font-size: 13px; color: var(--muted); margin-top: 6px; }
+  .divider { width: 36px; height: 1px; background: var(--gold); margin: 28px auto; opacity: 0.55; }
+
+  /* MAIN */
+  main { max-width: 640px; margin: 0 auto; padding: 32px 24px 100px; }
+
+  /* PROGRESS */
+  .progress-wrap { margin-bottom: 40px; }
+  .progress-bar { display: flex; gap: 4px; margin-bottom: 8px; }
+  .progress-segment { flex: 1; height: 3px; background: var(--light-border); transition: background 0.4s ease; border-radius: 2px; }
+  .progress-segment.active { background: var(--navy); }
+  .progress-segment.done { background: var(--gold); }
+  .progress-label { font-size: 12px; color: var(--muted); text-align: right; }
+
+  /* DOMAIN */
+  .domain { display: none; animation: fadeIn 0.35s ease; }
+  .domain.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .domain-header { margin-bottom: 32px; }
+  .domain-number { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .domain-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 7vw, 34px); font-weight: 300; color: var(--navy); margin-bottom: 10px; line-height: 1.2; }
+  .domain-desc { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
+  /* QUESTIONS */
+  .question { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--light-border); }
+  .question:last-of-type { border-bottom: none; }
+  .question-text { font-size: 16px; color: var(--navy); margin-bottom: 16px; line-height: 1.6; font-weight: 400; }
+
+  .options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  @media (min-width: 460px) { .options { grid-template-columns: repeat(4, 1fr); } }
+
+  .option {
+    cursor: pointer; border: 1.5px solid var(--light-border);
+    border-radius: 8px; padding: 16px 8px; text-align: center;
+    transition: all 0.18s ease; background: white;
+    min-height: 76px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    -webkit-tap-highlight-color: transparent; touch-action: manipulation; user-select: none;
+  }
+  .option:hover { border-color: var(--navy); background: var(--cream); }
+  .option:active { transform: scale(0.97); }
+  .option.selected { border-color: var(--navy); background: var(--navy); color: white; }
+  .option-score { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; display: block; margin-bottom: 4px; line-height: 1; }
+  .option-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); line-height: 1.3; }
+  .option.selected .option-label { color: rgba(255,255,255,0.65); }
+
+  /* NAV */
+  .nav { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--light-border); gap: 12px; }
+  .nav-hint { font-size: 12px; color: var(--muted); flex: 1; }
+
+  .btn {
+    font-family: 'DM Sans', sans-serif; font-size: 13px; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 16px 24px; border: 1.5px solid var(--navy);
+    cursor: pointer; transition: all 0.18s ease; border-radius: 4px;
+    background: transparent; color: var(--navy); min-height: 52px; min-width: 44px;
+    touch-action: manipulation; white-space: nowrap;
+  }
+  .btn:hover { background: var(--navy); color: white; }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary { background: var(--navy); color: white; }
+  .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+  .btn-ghost { border-color: transparent; color: var(--muted); padding-left: 0; }
+  .btn-ghost:hover { background: transparent; color: var(--navy); }
+
+  /* ═══════════════════════════════════════
+     RESULTS — MBTI-STYLE VISUAL
+  ═══════════════════════════════════════ */
+  #results { display: none; animation: fadeIn 0.5s ease; }
+
+  /* Top hero */
+  .results-hero {
     text-align: center;
+    padding: 40px 0 36px;
+    border-bottom: 1px solid var(--light-border);
+    margin-bottom: 36px;
   }
+  .results-eyebrow { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
 
-  .hero-eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 20px;
-  }
-
-  .hero h1 {
+  .pattern-headline {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 5vw, 54px);
-    font-weight: 300;
-    line-height: 1.15;
+    font-size: clamp(32px, 9vw, 52px);
+    font-weight: 400;
     color: var(--navy);
-    margin-bottom: 24px;
+    line-height: 1.1;
+    margin-bottom: 6px;
   }
 
-  .hero h1 em {
+  .pattern-headline em {
     font-style: italic;
     color: var(--gold);
   }
 
-  .hero p {
+  .pattern-tagline {
     font-size: 15px;
     color: var(--muted);
-    max-width: 480px;
-    margin: 0 auto 16px;
-    line-height: 1.8;
-  }
-
-  .hero-note {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    margin-top: 8px;
-  }
-
-  .divider {
-    width: 40px;
-    height: 1px;
-    background: var(--gold);
-    margin: 32px auto;
-    opacity: 0.6;
-  }
-
-  /* MAIN */
-  main {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 48px 48px 120px;
-  }
-
-  /* PROGRESS */
-  .progress-bar {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 56px;
-  }
-
-  .progress-segment {
-    flex: 1;
-    height: 2px;
-    background: var(--light-border);
-    transition: background 0.4s ease;
-    border-radius: 2px;
-  }
-
-  .progress-segment.active { background: var(--navy); }
-  .progress-segment.done { background: var(--gold); }
-
-  /* DOMAIN SECTIONS */
-  .domain {
-    display: none;
-    animation: fadeIn 0.4s ease;
-  }
-
-  .domain.active { display: block; }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .domain-header {
-    margin-bottom: 40px;
-  }
-
-  .domain-number {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 10px;
-  }
-
-  .domain-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
-    font-weight: 300;
-    color: var(--navy);
-    margin-bottom: 10px;
-  }
-
-  .domain-desc {
-    font-size: 13px;
-    color: var(--muted);
+    max-width: 420px;
+    margin: 12px auto 0;
     line-height: 1.7;
   }
 
-  /* QUESTIONS */
-  .question {
-    margin-bottom: 32px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid var(--light-border);
-  }
-
-  .question:last-of-type {
-    border-bottom: none;
-  }
-
-  .question-text {
-    font-size: 15px;
-    color: var(--navy);
-    margin-bottom: 16px;
-    line-height: 1.6;
-    font-weight: 400;
-  }
-
-  .options {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-  }
-
-  .option {
-    cursor: pointer;
-    border: 1px solid var(--light-border);
-    border-radius: 4px;
-    padding: 12px 8px;
-    text-align: center;
-    transition: all 0.2s ease;
-    background: white;
-  }
-
-  .option:hover {
-    border-color: var(--navy);
+  /* ANALOGY CARD */
+  .analogy-card {
     background: var(--cream);
-  }
-
-  .option.selected {
-    border-color: var(--navy);
-    background: var(--navy);
-    color: white;
-  }
-
-  .option-score {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 300;
-    display: block;
-    margin-bottom: 2px;
-  }
-
-  .option-label {
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .option.selected .option-label {
-    color: rgba(255,255,255,0.6);
-  }
-
-  /* NAV BUTTONS */
-  .nav {
+    border: 1px solid var(--light-border);
+    border-radius: 10px;
+    padding: 28px 24px;
+    margin-bottom: 32px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 48px;
-    padding-top: 32px;
-    border-top: 1px solid var(--light-border);
+    gap: 20px;
+    align-items: flex-start;
   }
 
-  .btn {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 14px 32px;
-    border: 1px solid var(--navy);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border-radius: 2px;
-    background: transparent;
-    color: var(--navy);
+  .analogy-icon {
+    font-size: 36px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
   }
 
-  .btn:hover {
-    background: var(--navy);
-    color: white;
-  }
-
-  .btn-primary {
-    background: var(--navy);
-    color: white;
-  }
-
-  .btn-primary:hover {
-    background: var(--gold);
-    border-color: var(--gold);
-  }
-
-  .btn-ghost {
-    border-color: transparent;
-    color: var(--muted);
-    padding-left: 0;
-  }
-
-  .btn-ghost:hover {
-    background: transparent;
-    color: var(--navy);
-  }
-
-  .nav-hint {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
-
-  /* RESULTS */
-  #results { display: none; animation: fadeIn 0.5s ease; }
-
-  .results-hero {
-    text-align: center;
-    padding: 48px 0 56px;
-    border-bottom: 1px solid var(--light-border);
-    margin-bottom: 56px;
-  }
-
-  .results-eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
-  }
-
-  .results-hero h2 {
+  .analogy-text h4 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 300;
+    font-size: 20px;
+    font-weight: 400;
     color: var(--navy);
-    margin-bottom: 12px;
-    line-height: 1.2;
+    margin-bottom: 6px;
   }
 
-  .results-hero p {
+  .analogy-text p {
     font-size: 14px;
     color: var(--muted);
-    max-width: 440px;
-    margin: 0 auto;
+    line-height: 1.75;
   }
 
-  /* DOMAIN RESULTS */
-  .domain-results {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 48px;
+  /* DUNN SPECTRUM BARS — MBTI STYLE */
+  .spectrum-section { margin-bottom: 36px; }
+
+  .section-label {
+    font-size: 11px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
   }
 
-  .domain-card {
-    border: 1px solid var(--light-border);
-    border-radius: 4px;
-    padding: 24px;
-    background: white;
+  .spectrum-row {
+    margin-bottom: 20px;
+  }
+
+  .spectrum-axis-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .spectrum-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .spectrum-pole {
+    font-size: 13px;
+    color: var(--navy);
+    font-weight: 500;
+    white-space: nowrap;
+    min-width: 0;
+    flex-shrink: 0;
+  }
+
+  .spectrum-pole.left { text-align: right; width: 110px; }
+  .spectrum-pole.right { text-align: left; width: 110px; }
+
+  @media (max-width: 400px) {
+    .spectrum-pole.left, .spectrum-pole.right { width: 72px; font-size: 11px; }
+  }
+
+  .spectrum-track {
+    flex: 1;
+    height: 28px;
+    background: #EDEBE6;
+    border-radius: 6px;
     position: relative;
     overflow: hidden;
   }
 
-  .domain-card::before {
-    content: '';
+  .spectrum-fill {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 3px;
-    height: 100%;
+    top: 0; bottom: 0;
+    border-radius: 6px;
+    transition: width 1s ease, left 1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .domain-card.low::before { background: var(--low); }
-  .domain-card.mid::before { background: var(--mid); }
-  .domain-card.high::before { background: var(--high); }
-
-  .dc-label {
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 6px;
+  .spectrum-pct {
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    padding: 0 8px;
   }
 
-  .dc-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    font-weight: 400;
+  /* ENV FRICTION BARS */
+  .env-section { margin-bottom: 36px; }
+
+  .env-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .env-label {
+    font-size: 13px;
     color: var(--navy);
-    margin-bottom: 16px;
-    line-height: 1.3;
+    width: 130px;
+    flex-shrink: 0;
   }
 
-  .dc-bar-wrap {
-    height: 4px;
-    background: var(--light-border);
-    border-radius: 2px;
-    margin-bottom: 10px;
+  @media (max-width: 400px) {
+    .env-label { width: 90px; font-size: 12px; }
+  }
+
+  .env-track {
+    flex: 1;
+    height: 10px;
+    background: #EDEBE6;
+    border-radius: 6px;
     overflow: hidden;
   }
 
-  .dc-bar {
+  .env-fill {
     height: 100%;
-    border-radius: 2px;
-    transition: width 1s ease;
+    border-radius: 6px;
+    transition: width 1.1s ease;
   }
 
-  .domain-card.low .dc-bar { background: var(--low); }
-  .domain-card.mid .dc-bar { background: var(--mid); }
-  .domain-card.high .dc-bar { background: var(--high); }
-
-  .dc-score-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-
-  .dc-score {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 300;
-    color: var(--navy);
-  }
-
-  .dc-max {
+  .env-status {
     font-size: 11px;
-    color: var(--muted);
-  }
-
-  .dc-status {
-    font-size: 10px;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+    font-weight: 500;
+    width: 80px;
+    text-align: right;
+    flex-shrink: 0;
   }
 
-  .domain-card.low .dc-status { color: var(--low); }
-  .domain-card.mid .dc-status { color: var(--mid); }
-  .domain-card.high .dc-status { color: var(--high); }
+  .env-fill.low { background: var(--low); }
+  .env-fill.mid { background: var(--mid); }
+  .env-fill.high { background: var(--high); }
+  .env-status.low { color: var(--low); }
+  .env-status.mid { color: var(--mid); }
+  .env-status.high { color: var(--high); }
 
-  /* PRIMARY INSIGHT */
-  .insight-block {
-    background: var(--navy);
-    color: white;
-    padding: 40px;
-    border-radius: 4px;
+  /* WORKS / COSTS */
+  .wc-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
     margin-bottom: 32px;
   }
 
-  .insight-block .eyebrow {
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
+  @media (max-width: 440px) {
+    .wc-section { grid-template-columns: 1fr; }
   }
 
-  .insight-block h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-weight: 300;
-    margin-bottom: 16px;
-    line-height: 1.3;
+  .wc-card {
+    border: 1px solid var(--light-border);
+    border-radius: 8px;
+    padding: 20px;
+    background: white;
   }
 
-  .insight-block p {
-    font-size: 14px;
-    color: rgba(255,255,255,0.72);
-    line-height: 1.8;
-  }
+  .wc-card.works { border-top: 3px solid var(--low); }
+  .wc-card.costs { border-top: 3px solid var(--mid); }
 
-  /* RECOMMENDATIONS */
-  .rec-section {
-    margin-bottom: 48px;
-  }
-
-  .rec-section h4 {
+  .wc-label {
     font-size: 10px;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 20px;
+    margin-bottom: 14px;
+    font-weight: 500;
   }
+
+  .wc-card.works .wc-label { color: var(--low); }
+  .wc-card.costs .wc-label { color: var(--mid); }
+
+  .wc-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .wc-list li {
+    font-size: 14px;
+    color: var(--navy);
+    line-height: 1.6;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--light-border);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .wc-list li:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .wc-list li::before {
+    flex-shrink: 0;
+    font-size: 12px;
+    margin-top: 3px;
+  }
+
+  .wc-card.works .wc-list li::before { content: "✓"; color: var(--low); }
+  .wc-card.costs .wc-list li::before { content: "·"; color: var(--mid); font-size: 18px; margin-top: 0; }
+
+  /* PATTERN DESC BLOCK */
+  .pattern-desc-block {
+    background: var(--navy);
+    color: white;
+    padding: 32px 24px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+  }
+  .pattern-desc-block .eyebrow { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .pattern-desc-block p { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 10px; }
+  .pattern-desc-block p:last-child { margin-bottom: 0; color: rgba(255,255,255,0.6); font-size: 14px; }
+
+  .pattern-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .pattern-tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(201,168,76,0.4); color: var(--gold); padding: 5px 11px; border-radius: 20px; }
+
+  /* RECS */
+  .rec-section { margin-bottom: 40px; }
 
   .rec-card {
-    border: 1px solid var(--light-border);
-    border-radius: 4px;
-    padding: 28px 32px;
-    margin-bottom: 12px;
-    background: white;
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
+    border: 1px solid var(--light-border); border-radius: 6px;
+    padding: 22px 20px; margin-bottom: 10px; background: white;
+    display: flex; align-items: flex-start; gap: 16px;
   }
 
-  .rec-priority {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
-    font-weight: 300;
-    color: var(--light-border);
-    line-height: 1;
-    flex-shrink: 0;
-    margin-top: -4px;
-  }
-
+  .rec-priority { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: var(--light-border); line-height: 1; flex-shrink: 0; margin-top: -2px; }
   .rec-card.primary-rec .rec-priority { color: var(--gold); }
+  .rec-content h5 { font-size: 15px; font-weight: 500; color: var(--navy); margin-bottom: 6px; line-height: 1.4; }
+  .rec-content p { font-size: 14px; color: var(--muted); line-height: 1.75; margin-bottom: 12px; }
 
-  .rec-content h5 {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 6px;
-  }
-
-  .rec-content p {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-    margin-bottom: 12px;
-  }
-
-  .rec-cta {
-    display: inline-block;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--navy);
-    text-decoration: none;
-    border-bottom: 1px solid var(--gold);
-    padding-bottom: 1px;
-    transition: color 0.2s;
-  }
-
+  .rec-cta { display: inline-block; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px; transition: color 0.18s; }
   .rec-cta:hover { color: var(--gold); }
 
-  /* DISCLAIMER */
-  .disclaimer {
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 1.7;
-    padding: 24px 0;
-    border-top: 1px solid var(--light-border);
-    margin-top: 48px;
-  }
+  .coming-soon-wrap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .coming-soon-text { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .coming-soon-badge { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; background: var(--cream); color: var(--muted); border: 1px solid var(--light-border); padding: 4px 10px; border-radius: 20px; }
 
-  .restart-row {
-    text-align: center;
-    margin-top: 32px;
-  }
-
-  /* MOBILE */
-  @media (max-width: 600px) {
-    header { padding: 24px 24px 20px; }
-    .hero, main { padding-left: 24px; padding-right: 24px; }
-    .hero { margin-top: 48px; }
-    .options { grid-template-columns: repeat(4, 1fr); gap: 6px; }
-    .domain-results { grid-template-columns: 1fr; }
-    .insight-block { padding: 28px 24px; }
-    .rec-card { flex-direction: column; gap: 8px; }
-  }
+  .disclaimer { font-size: 13px; color: var(--muted); line-height: 1.75; padding: 22px 0; border-top: 1px solid var(--light-border); margin-top: 40px; }
+  .restart-row { text-align: center; margin-top: 28px; }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">ADL <span>·</span> Lab</div>
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header role="banner">
+  <div class="logo" aria-label="ADL Lab">ADL <span aria-hidden="true">·</span> Lab</div>
   <div class="credential">Ahra Roh, OTR/L, ATP</div>
 </header>
 
-<!-- QUIZ -->
+<!-- LANDING -->
 <div id="quiz">
-  <div class="hero">
-    <div class="hero-eyebrow">Structural Self-Assessment</div>
-    <h1>The ADL Functional<br><em>Friction Index</em></h1>
-    <p>A clinical-grade analysis tool to identify where your energy is silently leaking — and what to do about it.</p>
-    <p class="hero-note">20 questions · 4 domains · Personalized result</p>
-    <div class="divider"></div>
+  <div class="hero" id="main-content">
+    <div class="hero-eyebrow" aria-hidden="true">Sensory Self-Assessment</div>
+    <h1>The ADL Sensory<br><em>Friction Index</em></h1>
+    <p>Find out which environments are costing your nervous system the most — and what your sensory pattern actually needs.</p>
+    <p class="hero-note">25 questions · 5 environments · Your sensory profile</p>
+    <div class="divider" aria-hidden="true"></div>
     <button class="btn btn-primary" onclick="startQuiz()">Begin Assessment</button>
   </div>
 </div>
 
-<!-- DOMAIN SCREENS -->
+<!-- ASSESSMENT -->
 <div id="assessment" style="display:none;">
-  <main>
-    <div class="progress-bar" id="progressBar">
-      <div class="progress-segment" id="seg0"></div>
-      <div class="progress-segment" id="seg1"></div>
-      <div class="progress-segment" id="seg2"></div>
-      <div class="progress-segment" id="seg3"></div>
+  <main id="assessment-main">
+    <div class="progress-wrap">
+      <div class="progress-bar" aria-hidden="true">
+        <div class="progress-segment" id="seg0"></div>
+        <div class="progress-segment" id="seg1"></div>
+        <div class="progress-segment" id="seg2"></div>
+        <div class="progress-segment" id="seg3"></div>
+        <div class="progress-segment" id="seg4"></div>
+      </div>
+      <div class="progress-label" id="progressLabel" aria-live="polite" aria-atomic="true"></div>
     </div>
 
-    <!-- DOMAIN 1 -->
     <div class="domain active" id="domain0">
       <div class="domain-header">
-        <div class="domain-number">Domain 01 of 04</div>
-        <div class="domain-title">Cognitive &<br>Executive Bandwidth</div>
-        <div class="domain-desc">How efficiently your mental system initiates, sustains, and switches between tasks.</div>
+        <div class="domain-number" aria-hidden="true">Environment 01 of 05</div>
+        <h2 class="domain-title">Physical<br>Environment</h2>
+        <p class="domain-desc">How your nervous system responds to the sensory conditions of the spaces you live and work in — light, sound, temperature, and texture.</p>
       </div>
       <div id="questions0"></div>
       <div class="nav">
-        <span class="nav-hint">Rate each item: 0 = Never · 3 = Always</span>
+        <span class="nav-hint" aria-hidden="true">0 = Never · 3 = Always</span>
         <button class="btn btn-primary" onclick="nextDomain(0)">Continue →</button>
       </div>
     </div>
 
-    <!-- DOMAIN 2 -->
     <div class="domain" id="domain1">
       <div class="domain-header">
-        <div class="domain-number">Domain 02 of 04</div>
-        <div class="domain-title">Sensory &<br>Environmental Load</div>
-        <div class="domain-desc">How much your surrounding conditions are taxing your nervous system's processing capacity.</div>
+        <div class="domain-number" aria-hidden="true">Environment 02 of 05</div>
+        <h2 class="domain-title">Digital<br>Environment</h2>
+        <p class="domain-desc">How notifications, screens, and information volume affect your nervous system's ability to stay regulated throughout the day.</p>
       </div>
       <div id="questions1"></div>
       <div class="nav">
@@ -603,12 +490,11 @@
       </div>
     </div>
 
-    <!-- DOMAIN 3 -->
     <div class="domain" id="domain2">
       <div class="domain-header">
-        <div class="domain-number">Domain 03 of 04</div>
-        <div class="domain-title">Somatic &<br>Physical Capacity</div>
-        <div class="domain-desc">The biological resource base your system is actually operating from — not what you assume it should be.</div>
+        <div class="domain-number" aria-hidden="true">Environment 03 of 05</div>
+        <h2 class="domain-title">Time &<br>Routine Structure</h2>
+        <p class="domain-desc">How transitions, unpredictability, and the rhythm of your day interact with your nervous system's need for structure or flexibility.</p>
       </div>
       <div id="questions2"></div>
       <div class="nav">
@@ -617,17 +503,29 @@
       </div>
     </div>
 
-    <!-- DOMAIN 4 -->
     <div class="domain" id="domain3">
       <div class="domain-header">
-        <div class="domain-number">Domain 04 of 04</div>
-        <div class="domain-title">Interpersonal &<br>Social Friction</div>
-        <div class="domain-desc">The relational and role-based demands that accumulate as invisible load across the day.</div>
+        <div class="domain-number" aria-hidden="true">Environment 04 of 05</div>
+        <h2 class="domain-title">Social<br>Environment</h2>
+        <p class="domain-desc">The sensory and regulatory cost of being around people — interactions, role demands, and the effort of social presence.</p>
       </div>
       <div id="questions3"></div>
       <div class="nav">
         <button class="btn btn-ghost" onclick="prevDomain(3)">← Back</button>
-        <button class="btn btn-primary" onclick="showResults()">View My Results →</button>
+        <button class="btn btn-primary" onclick="nextDomain(3)">Continue →</button>
+      </div>
+    </div>
+
+    <div class="domain" id="domain4">
+      <div class="domain-header">
+        <div class="domain-number" aria-hidden="true">Environment 05 of 05</div>
+        <h2 class="domain-title">Internal<br>Awareness</h2>
+        <p class="domain-desc">How clearly your nervous system reads its own signals — fatigue, hunger, stress accumulation, and when you're approaching your limit.</p>
+      </div>
+      <div id="questions4"></div>
+      <div class="nav">
+        <button class="btn btn-ghost" onclick="prevDomain(4)">← Back</button>
+        <button class="btn btn-primary" onclick="showResults()">View My Profile →</button>
       </div>
     </div>
   </main>
@@ -636,27 +534,55 @@
 <!-- RESULTS -->
 <div id="results">
   <main>
+
+    <!-- 1. HEADLINE -->
     <div class="results-hero">
-      <div class="results-eyebrow">Your Friction Profile</div>
-      <h2 id="resultTitle"></h2>
-      <p id="resultSubtitle"></p>
+      <div class="results-eyebrow">Your Sensory Profile</div>
+      <div class="pattern-headline" id="patternHeadline"></div>
+      <p class="pattern-tagline" id="patternTagline"></p>
     </div>
 
-    <div class="domain-results" id="domainCards"></div>
-
-    <div class="insight-block">
-      <div class="eyebrow">Primary Structural Signal</div>
-      <h3 id="insightTitle"></h3>
-      <p id="insightBody"></p>
+    <!-- 2. ANALOGY CARD -->
+    <div class="analogy-card" id="analogyCard">
+      <div class="analogy-icon" id="analogyIcon"></div>
+      <div class="analogy-text">
+        <h4 id="analogyTitle"></h4>
+        <p id="analogyBody"></p>
+      </div>
     </div>
 
+    <!-- 3. DUNN SPECTRUM BARS -->
+    <div class="spectrum-section">
+      <div class="section-label">Your Sensory Processing Spectrum</div>
+      <div id="spectrumBars"></div>
+    </div>
+
+    <!-- 4. ENV FRICTION BARS -->
+    <div class="env-section">
+      <div class="section-label">Friction by Environment</div>
+      <div id="envBars"></div>
+    </div>
+
+    <!-- 5. WORKS / COSTS -->
+    <div class="section-label" style="margin-bottom:14px;">What Works For You · What Costs You</div>
+    <div class="wc-section" id="wcSection"></div>
+
+    <!-- 6. PATTERN DESCRIPTION -->
+    <div class="pattern-desc-block" id="patternDescBlock">
+      <div class="eyebrow">What This Means For You</div>
+      <p id="patternDesc"></p>
+      <p id="patternEnv"></p>
+      <div class="pattern-tags" id="patternTags"></div>
+    </div>
+
+    <!-- 6. RECS -->
     <div class="rec-section">
-      <h4>Structural Recommendations</h4>
+      <div class="section-label">Environment Adjustments</div>
       <div id="recCards"></div>
     </div>
 
     <div class="disclaimer">
-      This index is a structural analysis tool designed for systemic lifestyle calibration. It is not intended as a medical or clinical diagnostic tool and does not constitute medical, psychological, or therapeutic advice.
+      This index is a sensory self-assessment tool designed to help you identify environmental friction patterns. It is not a clinical diagnostic and does not constitute medical or psychological advice. Results are based on self-reported patterns and are intended for personal reflection and environmental design only.
     </div>
 
     <div class="restart-row">
@@ -668,93 +594,193 @@
 <script>
 const domains = [
   {
-    name: "Cognitive & Executive",
-    short: "Cognitive",
+    name: "Physical",
+    fullName: "Physical Environment",
     questions: [
-      "I find it hard to clear my head when switching from one task to another.",
-      "By mid-afternoon, making even small decisions feels overwhelming.",
-      "I spend too much time preparing to work before actually starting.",
-      "I read the same paragraph or email multiple times because my focus drifts.",
-      "My mind feels clouded or heavy, even when I haven't done physically demanding work."
+      { text: "Background noise — conversation, traffic, music — makes it hard for me to focus, even at low volume.", dunn: [0,0,3,1] },
+      { text: "I feel more alert and engaged in bright, busy environments than in quiet ones.", dunn: [3,1,0,0] },
+      { text: "I seek out stimulation in my environment when I need to concentrate — music, movement, texture.", dunn: [1,3,0,0] },
+      { text: "I avoid spaces that feel unpredictable — crowded, loud, or visually busy.", dunn: [0,0,1,3] },
+      { text: "Physical discomfort (temperature, clothing, chair, lighting) pulls my attention away from what I'm doing.", dunn: [0,0,3,1] }
     ]
   },
   {
-    name: "Sensory & Environmental",
-    short: "Environmental",
+    name: "Digital",
+    fullName: "Digital Environment",
     questions: [
-      "I easily get irritated by bright lights, background noise, or a messy workspace.",
-      "I feel physically tense when I hear a notification sound or see a new message.",
-      "I don't have a clear physical boundary between my working space and my resting space.",
-      "Staring at screens all day leaves me feeling completely drained and ungrounded.",
-      "I feel like I'm constantly reacting to things around me rather than directing my day."
+      { text: "Notification sounds or visual alerts interrupt my focus even when I'm not actively waiting for a message.", dunn: [0,0,3,1] },
+      { text: "I check my phone or messages frequently — not because I need to, but because the quiet feels uncomfortable.", dunn: [1,3,0,0] },
+      { text: "Screens feel draining by end of day — my eyes, head, or body feel physically affected.", dunn: [0,0,2,2] },
+      { text: "I feel overwhelmed when I have too many tabs, apps, or tasks open at the same time.", dunn: [0,0,2,3] },
+      { text: "I scroll or switch between apps when I feel understimulated, even if I don't find anything useful.", dunn: [2,3,0,0] }
     ]
   },
   {
-    name: "Somatic & Physical",
-    short: "Somatic",
+    name: "Routine",
+    fullName: "Time & Routine",
     questions: [
-      "I rely heavily on caffeine or sugar just to maintain my normal rhythm.",
-      "My body is exhausted, but my mind is too wired to fall asleep easily at night.",
-      "I catch myself holding my breath or clenching my jaw during working hours.",
-      "Waking up in the morning feels heavy, even after getting enough sleep.",
-      "I frequently skip meals, delay drinking water, or ignore rest until the task is done."
+      { text: "Transitions between tasks or activities feel costly — it takes time to settle into the next thing.", dunn: [0,0,2,3] },
+      { text: "I work better when I can move between different types of tasks rather than staying on one thing.", dunn: [1,3,0,0] },
+      { text: "Unexpected changes to my schedule significantly affect my ability to function that day.", dunn: [0,0,1,3] },
+      { text: "I need external structure — deadlines, appointments, other people — to initiate or stay on task.", dunn: [3,1,0,0] },
+      { text: "I do my best work in short, intense bursts rather than long sustained periods.", dunn: [1,3,0,0] }
     ]
   },
   {
-    name: "Interpersonal & Social",
-    short: "Social",
+    name: "Social",
+    fullName: "Social Environment",
     questions: [
-      "I feel completely depleted after meetings or social interactions, even if they went well.",
-      "It takes me a long time to turn off my professional mode after work is over.",
-      "I prefer to be completely alone on weekends because interacting with others feels like another task.",
-      "Maintaining a composed expression at work requires a lot of conscious effort.",
-      "I find myself thinking about work problems when spending time with family or friends."
+      { text: "Being around people — even people I like — leaves me physically tired.", dunn: [0,0,2,3] },
+      { text: "I feel more regulated and energized when there are people around.", dunn: [2,3,0,0] },
+      { text: "I find it hard to turn off social awareness — I stay alert to other people's moods or reactions.", dunn: [0,0,3,1] },
+      { text: "I prefer predictable social situations — the same people, familiar settings, clear expectations.", dunn: [0,0,1,3] },
+      { text: "I don't always notice social cues — tone, body language — until they're quite pronounced.", dunn: [3,0,0,0] }
+    ]
+  },
+  {
+    name: "Internal",
+    fullName: "Internal Awareness",
+    questions: [
+      { text: "I often don't notice I'm hungry, thirsty, or tired until it becomes urgent.", dunn: [3,0,0,0] },
+      { text: "I can usually sense when my energy is dropping before it affects my mood or performance.", dunn: [0,0,2,1] },
+      { text: "Burnout or exhaustion tends to arrive suddenly — I'm fine, and then I'm not.", dunn: [3,1,0,0] },
+      { text: "Physical sensations — tension, fatigue, discomfort — tend to pull my attention strongly.", dunn: [0,0,3,1] },
+      { text: "I tend to push through physical signals (tiredness, hunger, tension) to finish what I'm doing.", dunn: [2,1,0,0] }
     ]
   }
 ];
 
 const labels = ["Never", "Sometimes", "Often", "Always"];
-let scores = [[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null]];
+let scores = Array(5).fill(null).map(() => Array(5).fill(null));
 let currentDomain = 0;
 
+// ─── DUNN PATTERN DATA ──────────────────────────────────────────
+const dunnPatterns = {
+  lowReg: {
+    headline: "The <em>Low Signal</em> Processor",
+    tagline: "Your nervous system needs more input before things fully land — not less stimulation, more signal.",
+    analogy: {
+      icon: "📻",
+      title: "Like a radio that needs a stronger signal",
+      body: "Your nervous system is tuned to receive, but the signal needs to be strong enough to cut through. In a quiet room or a monotonous day, you're not getting enough signal — the broadcast is there, but it's not landing clearly. This isn't a focus problem. It's a reception problem."
+    },
+    desc: "Your nervous system has a higher threshold for registering sensory input — meaning things need to be more present, more intense, or more novel before they fully land. In low-stimulation environments, focus can feel foggy or flat.",
+    envNote: "Quiet rooms, routine tasks, and steady low-input days tend to feel underwhelming rather than calming. You're not doing it wrong — your system needs more signal.",
+    tags: ["Needs more signal", "Fog in low-stimulation", "Novelty-dependent", "High threshold"],
+    works: ["Stimulating environments with ambient noise or activity", "Novel tasks and varied workload", "Working alongside others even if not collaborating", "Bright, energizing spaces over dim quiet ones", "Background input like music or podcasts while working"],
+    costs: ["Long stretches of monotonous or repetitive work", "Quiet, under-stimulating environments", "Waiting without enough input to stay engaged", "Low-novelty routines that don't change much day to day"],
+    spectrumSide: "low",
+    color: "#5B7FA6"
+  },
+  sensSeek: {
+    headline: "The <em>Stimulation Seeker</em>",
+    tagline: "Your nervous system actively searches for input to stay regulated — movement, variety, novelty aren't distractions. They're fuel.",
+    analogy: {
+      icon: "🔋",
+      title: "Like a battery that charges through movement",
+      body: "Some batteries charge through stillness. Yours charges through stimulation — variety, novelty, change of scene, physical movement. Sitting still in a quiet room doesn't rest your system. It drains it. The restlessness you feel isn't a character flaw. It's your nervous system looking for the charger."
+    },
+    desc: "Your nervous system regulates itself by seeking input — movement, variety, novelty, social contact. This looks like task-switching, restlessness, or difficulty staying with one thing. It's not a discipline problem. It's your system doing what it needs to stay regulated.",
+    envNote: "Highly structured or monotonous environments feel draining. Variety and movement are regulatory requirements, not distractions.",
+    tags: ["Stimulation-seeking", "Variety regulates", "Movement-dependent", "Novelty-driven"],
+    works: ["Varied tasks and frequent context changes", "Movement built into the workday", "Collaborative, social, or energetic environments", "Short intense sprints over long sustained sessions", "New projects, problems, and people"],
+    costs: ["Repetitive tasks with no variation", "Long sit-still focus sessions without movement breaks", "Quiet, isolated, low-energy environments", "Overly rigid schedules that leave no room to shift"],
+    spectrumSide: "seek",
+    color: "#7A9E7E"
+  },
+  sensSens: {
+    headline: "The <em>High Sensitivity</em> Processor",
+    tagline: "Your nervous system registers input more intensely than average — everything lands, and it all adds up.",
+    analogy: {
+      icon: "🎙️",
+      title: "Like a microphone set to maximum gain",
+      body: "A high-gain microphone picks up everything in the room — the conversation in the corner, the hum of the ventilation, the sound of someone shifting in their chair. It's not broken. It's sensitive. Your nervous system works the same way. The cost is that by the end of a day, the recording has a lot more on it than most people's."
+    },
+    desc: "Sensory input lands at a lower threshold for you — meaning you detect and respond to things others filter out entirely. Background noise, lighting shifts, social tension, digital overload. Each input registers. Each one costs something.",
+    envNote: "High-stimulation environments — open offices, crowded spaces, heavy notification loads — accumulate cost faster than they appear to. By afternoon, the tab is often larger than you realize.",
+    tags: ["High sensitivity", "Input lands harder", "Fast depletion", "Low threshold"],
+    works: ["Quiet, controlled environments with minimal unpredictable input", "Predictable schedules and low transition frequency", "Deep focus work with long uninterrupted blocks", "Small, familiar groups over large unpredictable gatherings", "Being able to manage your own sensory environment"],
+    costs: ["Open offices, crowded or loud spaces", "Unpredictable or back-to-back social demands", "Notification-heavy digital environments", "Days with too many transitions and no recovery time", "Having little control over your sensory surroundings"],
+    spectrumSide: "sensitive",
+    color: "#C9A84C"
+  },
+  sensAvoid: {
+    headline: "The <em>Threshold Protector</em>",
+    tagline: "Your nervous system anticipates overload and moves away from it — this isn't avoidance. It's preemptive load management.",
+    analogy: {
+      icon: "🌡️",
+      title: "Like a thermostat set to a precise range",
+      body: "A thermostat doesn't wait for the room to get unbearably hot — it responds before the threshold is crossed. Your nervous system does the same. When an environment reads as potentially high-cost, it starts managing load before you're even aware of it. The avoidance isn't irrational. It's your system trying to keep you below the line."
+    },
+    desc: "Your nervous system reads high-input environments as costly — often before anything has actually gone wrong. New environments, unpredictable schedules, unexpected demands — your system is trying to stay below the threshold.",
+    envNote: "Predictability and environmental control are not preferences. For your nervous system, they are functional requirements — not rigidity.",
+    tags: ["Preemptive avoidance", "Predictability-dependent", "Threshold protection", "Environmental control"],
+    works: ["Familiar environments with a predictable layout", "Knowing what's coming — advance notice and clear structure", "Consistent daily rhythms and routines", "Low transition frequency with buffer time between demands", "Being able to opt out of high-input situations when needed"],
+    costs: ["Unexpected changes to plans or environment", "New or unfamiliar spaces without time to adjust", "High social density with unpredictable demands", "Back-to-back commitments without a reset in between", "Environments where you can't control input levels"],
+    spectrumSide: "avoid",
+    color: "#A07060"
+  }
+};
+
+// Spectrum axes — two poles per dimension, shown MBTI-style
+const spectrumAxes = [
+  {
+    label: "Input Registration",
+    left: "Needs more signal",
+    right: "Registers intensely",
+    leftKey: "lowReg",
+    rightKey: "sensSens"
+  },
+  {
+    label: "Behavioral Response",
+    left: "Seeks stimulation",
+    right: "Avoids overload",
+    leftKey: "sensSeek",
+    rightKey: "sensAvoid"
+  }
+];
+
+// ─── BUILD QUESTIONS ─────────────────────────────────────────────
 function buildQuestions() {
   domains.forEach((domain, di) => {
     const container = document.getElementById(`questions${di}`);
     container.innerHTML = domain.questions.map((q, qi) => `
       <div class="question">
-        <div class="question-text">${qi + 1}. ${q}</div>
-        <div class="options">
+        <div class="question-text" id="ql-${di}-${qi}">${qi + 1}. ${q.text}</div>
+        <div class="options" role="group" aria-labelledby="ql-${di}-${qi}">
           ${[0,1,2,3].map(score => `
-            <div class="option ${scores[di][qi] === score ? 'selected' : ''}" 
-                 onclick="selectScore(${di}, ${qi}, ${score}, this)">
-              <span class="option-score">${score}</span>
+            <div class="option ${scores[di][qi] === score ? 'selected' : ''}"
+                 role="button" tabindex="0"
+                 aria-label="${labels[score]} (${score})"
+                 aria-pressed="${scores[di][qi] === score}"
+                 onclick="selectScore(${di},${qi},${score},this)"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectScore(${di},${qi},${score},this)}">
+              <span class="option-score" aria-hidden="true">${score}</span>
               <span class="option-label">${labels[score]}</span>
-            </div>
-          `).join('')}
+            </div>`).join('')}
         </div>
-      </div>
-    `).join('');
+      </div>`).join('');
   });
 }
 
 function selectScore(di, qi, score, el) {
   scores[di][qi] = score;
-  const options = el.parentElement.querySelectorAll('.option');
-  options.forEach(o => o.classList.remove('selected'));
+  el.closest('.options').querySelectorAll('.option').forEach(o => {
+    o.classList.remove('selected');
+    o.setAttribute('aria-pressed', 'false');
+  });
   el.classList.add('selected');
-}
-
-function getDomainScore(di) {
-  return scores[di].reduce((sum, v) => sum + (v || 0), 0);
+  el.setAttribute('aria-pressed', 'true');
 }
 
 function updateProgress(current) {
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 5; i++) {
     const seg = document.getElementById(`seg${i}`);
     seg.className = 'progress-segment';
     if (i < current) seg.classList.add('done');
     else if (i === current) seg.classList.add('active');
   }
+  document.getElementById('progressLabel').textContent = `${current + 1} of 5`;
 }
 
 function startQuiz() {
@@ -762,15 +788,12 @@ function startQuiz() {
   document.getElementById('assessment').style.display = 'block';
   buildQuestions();
   updateProgress(0);
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 }
 
 function nextDomain(current) {
   const unanswered = scores[current].filter(v => v === null).length;
-  if (unanswered > 0) {
-    alert(`Please answer all ${unanswered} remaining question(s) before continuing.`);
-    return;
-  }
+  if (unanswered > 0) { alert(`Please answer all ${unanswered} remaining question(s) before continuing.`); return; }
   document.getElementById(`domain${current}`).classList.remove('active');
   currentDomain = current + 1;
   document.getElementById(`domain${currentDomain}`).classList.add('active');
@@ -786,224 +809,176 @@ function prevDomain(current) {
   window.scrollTo(0, 0);
 }
 
-function getLevel(score) {
-  if (score <= 5) return 'low';
-  if (score <= 10) return 'mid';
-  return 'high';
+// ─── SCORING ─────────────────────────────────────────────────────
+function getDomainScore(di) { return scores[di].reduce((sum, v) => sum + (v || 0), 0); }
+function getLevel(score) { if (score <= 5) return 'low'; if (score <= 10) return 'mid'; return 'high'; }
+function getLevelLabel(l) { return l === 'low' ? 'Low' : l === 'mid' ? 'Moderate' : 'High'; }
+
+function computeDunnScores() {
+  const dunn = { lowReg: 0, sensSeek: 0, sensSens: 0, sensAvoid: 0 };
+  const keys = ['lowReg', 'sensSeek', 'sensSens', 'sensAvoid'];
+  domains.forEach((domain, di) => {
+    domain.questions.forEach((q, qi) => {
+      const s = scores[di][qi] || 0;
+      keys.forEach((key, ki) => { dunn[key] += s * q.dunn[ki]; });
+    });
+  });
+  return dunn;
 }
 
-function getLevelLabel(level) {
-  if (level === 'low') return 'Stable';
-  if (level === 'mid') return 'Elevated';
-  return 'High Load';
-}
+function getPrimaryPattern(d) { return Object.entries(d).sort((a,b) => b[1]-a[1])[0][0]; }
 
+// ─── RESULTS ─────────────────────────────────────────────────────
 function showResults() {
-  const unanswered = scores[3].filter(v => v === null).length;
-  if (unanswered > 0) {
-    alert(`Please answer all ${unanswered} remaining question(s).`);
-    return;
-  }
+  const unanswered = scores[4].filter(v => v === null).length;
+  if (unanswered > 0) { alert(`Please answer all ${unanswered} remaining question(s).`); return; }
 
   document.getElementById('assessment').style.display = 'none';
   document.getElementById('results').style.display = 'block';
   window.scrollTo(0, 0);
 
-  const domainScores = [0,1,2,3].map(di => getDomainScore(di));
+  const domainScores = [0,1,2,3,4].map(di => getDomainScore(di));
   const levels = domainScores.map(s => getLevel(s));
-  const total = domainScores.reduce((a,b) => a+b, 0);
+  const dunnScores = computeDunnScores();
+  const primaryPattern = getPrimaryPattern(dunnScores);
+  const pattern = dunnPatterns[primaryPattern];
 
-  // Find highest 1-2 domains
-  const ranked = [0,1,2,3]
-    .map(i => ({ i, score: domainScores[i], level: levels[i] }))
-    .sort((a,b) => b.score - a.score);
-
-  const primaryDomain = ranked[0];
-  const secondaryDomain = ranked[1];
-
-  // RESULT TITLE LOGIC
-  let resultTitle, resultSubtitle;
+  const ranked = [0,1,2,3,4].map(i => ({ i, score: domainScores[i], level: levels[i] })).sort((a,b) => b.score-a.score);
   const allStable = levels.every(l => l === 'low');
-  const allHigh = levels.every(l => l === 'high');
 
-  if (allStable) {
-    resultTitle = "Sustainable Rhythm";
-    resultSubtitle = "Your current system is well-calibrated. This is a baseline worth protecting.";
-  } else if (allHigh) {
-    resultTitle = "Full System Overload";
-    resultSubtitle = "Every domain is under significant load. A structural reset — not incremental adjustments — is the priority.";
-  } else {
-    const domainNames = ["Cognitive", "Environmental", "Somatic", "Social"];
-    resultTitle = `${domainNames[primaryDomain.i]} Load — Primary Constraint`;
-    resultSubtitle = `Your highest friction is concentrated in the ${domains[primaryDomain.i].short} domain. This is where structural adjustment will have the most immediate effect.`;
-  }
+  // 1. Headline
+  document.getElementById('patternHeadline').innerHTML = pattern.headline;
+  document.getElementById('patternTagline').textContent = pattern.tagline;
 
-  document.getElementById('resultTitle').textContent = resultTitle;
-  document.getElementById('resultSubtitle').textContent = resultSubtitle;
+  // 2. Analogy
+  document.getElementById('analogyIcon').textContent = pattern.analogy.icon;
+  document.getElementById('analogyTitle').textContent = pattern.analogy.title;
+  document.getElementById('analogyBody').textContent = pattern.analogy.body;
 
-  // DOMAIN CARDS
-  const cardsHtml = [0,1,2,3].map(i => {
-    const pct = Math.round((domainScores[i] / 15) * 100);
+  // 3. Dunn Spectrum Bars — compute % position on each axis
+  const maxDunn = Math.max(...Object.values(dunnScores)) || 1;
+
+  const specHtml = spectrumAxes.map(axis => {
+    const lScore = dunnScores[axis.leftKey];
+    const rScore = dunnScores[axis.rightKey];
+    const total = lScore + rScore || 1;
+    // position: 0% = far left, 100% = far right
+    // left score pulls left, right score pulls right
+    const pct = Math.round((rScore / total) * 100);
+    const dominant = pct < 50 ? axis.left : axis.right;
+    const dominantPct = pct < 50 ? (100 - pct) : pct;
+    const fillColor = pct < 50 ? dunnPatterns[axis.leftKey].color : dunnPatterns[axis.rightKey].color;
+
+    // Fill: position bar from center toward dominant side
+    const fillWidth = Math.abs(pct - 50) * 2;
+    const fillLeft = pct < 50 ? `${pct}%` : '50%';
+
     return `
-      <div class="domain-card ${levels[i]}">
-        <div class="dc-label">Domain ${i+1}</div>
-        <div class="dc-name">${domains[i].name}</div>
-        <div class="dc-bar-wrap">
-          <div class="dc-bar" style="width: ${pct}%"></div>
-        </div>
-        <div class="dc-score-row">
-          <div>
-            <span class="dc-score">${domainScores[i]}</span>
-            <span class="dc-max"> / 15</span>
+      <div class="spectrum-row">
+        <div class="spectrum-axis-label">— ${axis.label} —</div>
+        <div class="spectrum-bar-wrap">
+          <span class="spectrum-pole left">${axis.left}</span>
+          <div class="spectrum-track">
+            <div class="spectrum-fill" style="left:${fillLeft};width:${fillWidth}%;background:${fillColor};">
+              <span class="spectrum-pct">${dominantPct}%</span>
+            </div>
           </div>
-          <div class="dc-status">${getLevelLabel(levels[i])}</div>
+          <span class="spectrum-pole right">${axis.right}</span>
         </div>
-      </div>
-    `;
+      </div>`;
   }).join('');
-  document.getElementById('domainCards').innerHTML = cardsHtml;
+  document.getElementById('spectrumBars').innerHTML = specHtml;
 
-  // INSIGHT BLOCK
-  const insights = {
-    0: {
-      title: "Your cognitive system is carrying more than it should.",
-      body: "Task initiation, attention switching, and decision-making are drawing from a depleted reserve. This isn't a focus problem — it's a load problem. The structural priority is reducing the number of active decisions your system has to manage simultaneously."
-    },
-    1: {
-      title: "Your environment is generating more load than it's absorbing.",
-      body: "Sensory input, digital interruptions, and spatial ambiguity are silently increasing the cost of every task. When your environment isn't designed to support you, even simple work becomes expensive. The structural priority is boundary architecture — physical and digital."
-    },
-    2: {
-      title: "Your biological baseline is running below operational capacity.",
-      body: "Sleep quality, physical tension, and energy regulation are the foundation of everything else. When somatic capacity is depleted, cognitive and emotional resources compensate — and drain faster. The structural priority is stabilizing your biological rhythm before optimizing output."
-    },
-    3: {
-      title: "Relational and role demands are accumulating as invisible load.",
-      body: "Social depletion, role transition lag, and boundary erosion don't appear on a task list — but they consume capacity. When interpersonal demands exceed your recovery window, everything else costs more. The structural priority is decompression architecture between roles."
-    }
-  };
+  // 4. Env friction bars — sorted by score descending
+  const envOrder = [0,1,2,3,4].sort((a,b) => domainScores[b]-domainScores[a]);
+  const envHtml = envOrder.map(i => {
+    const pct = Math.round((domainScores[i] / 15) * 100);
+    const lvl = levels[i];
+    return `
+      <div class="env-row">
+        <span class="env-label">${domains[i].name}</span>
+        <div class="env-track">
+          <div class="env-fill ${lvl}" style="width:${pct}%"></div>
+        </div>
+        <span class="env-status ${lvl}">${getLevelLabel(lvl)}</span>
+      </div>`;
+  }).join('');
+  document.getElementById('envBars').innerHTML = envHtml;
 
-  const insight = allStable
-    ? { title: "Your system is operating within a sustainable range.", body: "All four domains show stable structural load. The primary task is maintaining this calibration — not optimizing further. Incremental refinement is appropriate here; major restructuring is not." }
-    : insights[primaryDomain.i];
-
-  document.getElementById('insightTitle').textContent = insight.title;
-  document.getElementById('insightBody').textContent = insight.body;
-
-  // RECOMMENDATIONS
-  const recs = buildRecommendations(ranked, levels, allStable);
-  document.getElementById('recCards').innerHTML = recs.map((rec, idx) => `
-    <div class="rec-card ${idx === 0 ? 'primary-rec' : ''}">
-      <div class="rec-priority">${String(idx + 1).padStart(2, '0')}</div>
-      <div class="rec-content">
-        <h5>${rec.title}</h5>
-        <p>${rec.body}</p>
-        <a href="${rec.link}" class="rec-cta" target="_blank">${rec.cta}</a>
-      </div>
+  // 5. Works / Costs
+  document.getElementById('wcSection').innerHTML = `
+    <div class="wc-card works">
+      <div class="wc-label">What works for you</div>
+      <ul class="wc-list">
+        ${pattern.works.map(w => `<li><span>${w}</span></li>`).join('')}
+      </ul>
     </div>
-  `).join('');
+    <div class="wc-card costs">
+      <div class="wc-label">What costs you</div>
+      <ul class="wc-list">
+        ${pattern.costs.map(c => `<li><span>${c}</span></li>`).join('')}
+      </ul>
+    </div>`;
+
+  // 6. Pattern description
+  document.getElementById('patternDesc').textContent = pattern.desc;
+  document.getElementById('patternEnv').textContent = pattern.envNote;
+  document.getElementById('patternTags').innerHTML = pattern.tags.map(t => `<span class="pattern-tag">${t}</span>`).join('');
+
+  // 6. Recs
+  document.getElementById('recCards').innerHTML = buildRecs(ranked, levels, primaryPattern, allStable)
+    .map((rec, idx) => `
+      <div class="rec-card ${idx === 0 ? 'primary-rec' : ''}">
+        <div class="rec-priority" aria-hidden="true">${String(idx+1).padStart(2,'0')}</div>
+        <div class="rec-content">
+          <h5>${rec.title}</h5>
+          <p>${rec.body}</p>
+          ${rec.comingSoon
+            ? `<div class="coming-soon-wrap"><span class="coming-soon-text">Sensory Audit Protocol</span><span class="coming-soon-badge">Coming Soon</span></div>`
+            : `<a href="${rec.link}" class="rec-cta" target="_blank" rel="noopener noreferrer">${rec.cta}</a>`}
+        </div>
+      </div>`).join('');
 }
 
-function buildRecommendations(ranked, levels, allStable) {
-  const recs = [];
+// ─── RECS ─────────────────────────────────────────────────────────
+function buildRecs(ranked, levels, primaryPattern, allStable) {
+  const links = { toolkit: "https://adllab.gumroad.com/l/adllab02", sub: "https://adllab.substack.com/subscribe" };
 
-  const products = {
-    audit: {
-      link: "https://adllab.gumroad.com/l/adllab01",
-      cta: "Get the Structural Audit Protocol →"
-    },
-    calibration: {
-      link: "https://adllab.gumroad.com/l/adllab02",
-      cta: "Get the Structural Calibration Toolkit →"
-    },
-    bundle: {
-      link: "https://adllab.gumroad.com/l/adllab03",
-      cta: "Get the Full Structural Redesign Bundle →"
-    },
-    substack: {
-      link: "https://adllab.substack.com/subscribe",
-      cta: "Subscribe to ADL Lab →"
-    }
+  const patternRecs = {
+    lowReg: { title: "Increase Environmental Signal", body: "Your nervous system needs more input to feel regulated — not less. Add controlled stimulation to your work environment: ambient sound, varied lighting, tactile objects, movement breaks. The goal is raising signal to your threshold, not eliminating distraction.", link: links.toolkit, cta: "Get the Sensory Calibration Toolkit →", comingSoon: false },
+    sensSeek: { title: "Design for Stimulation, Not Against It", body: "Stop fighting your need for variety and movement. Build it in deliberately — task rotation every 25–45 minutes, standing or walking for low-stakes work, environment changes between sessions. A system that works with your nervous system will always outlast one that doesn't.", link: links.toolkit, cta: "Get the Sensory Calibration Toolkit →", comingSoon: false },
+    sensSens: { title: "Reduce Unpredictable Input First", body: "Before adding any new system or habit, lower the ambient sensory load. Notifications off during focus windows. One environment for focused work, one for rest. Lighting and sound under your control. Small reductions in unpredictable input create disproportionate gains for sensitive nervous systems.", link: null, cta: null, comingSoon: true },
+    sensAvoid: { title: "Increase Environmental Predictability", body: "Your nervous system doesn't resist new things — it resists unpredictable cost. Reduce transition frequency, standardize your daily sequence, and give yourself a preview of what's coming before it arrives. Predictability isn't rigidity. It's regulatory support.", link: null, cta: null, comingSoon: true }
   };
 
   const domainRecs = [
-    {
-      title: "Reduce Cognitive Activation Cost",
-      body: "Define a fixed starting sequence for your three most common tasks. Remove the decision of how to begin — make it a protocol. Batch similar decisions into single time blocks to reduce switching load.",
-      link: products.calibration.link,
-      cta: products.calibration.cta
-    },
-    {
-      title: "Architect Environmental Boundaries",
-      body: "Designate one physical location exclusively for focused work — and one for rest. Even a chair change counts. Disable non-essential notifications during defined work windows. Digital boundary design reduces ambient nervous system activation.",
-      link: products.calibration.link,
-      cta: products.calibration.cta
-    },
-    {
-      title: "Stabilize Biological Baseline First",
-      body: "Before optimizing your workflow, stabilize your biological rhythm. Consistent sleep timing, regular fuel intake, and physical decompression breaks are structural inputs — not optional additions. Output quality is downstream of biological capacity.",
-      link: products.audit.link,
-      cta: products.audit.cta
-    },
-    {
-      title: "Design Recovery Between Role Transitions",
-      body: "Build a deliberate transition ritual between work and personal time — even 10 minutes. The nervous system requires a signal to shift modes. Without it, cognitive load from one domain bleeds into the next.",
-      link: products.calibration.link,
-      cta: products.calibration.cta
-    }
+    { title: "Audit Your Physical Space", body: "Map the sensory inputs in your primary work environment — lighting, ambient noise, temperature, textures. Identify which inputs you control and which you don't. Start with the one that costs you the most.", link: null, cta: null, comingSoon: true },
+    { title: "Design a Digital Boundary", body: "Define one uninterrupted work window per day — notifications off, one application active. Even 90 minutes of low-digital-load work reduces cumulative sensory debt significantly.", link: links.toolkit, cta: "Get the Sensory Calibration Toolkit →", comingSoon: false },
+    { title: "Build a Transition Protocol", body: "Add a brief, consistent ritual between major context switches. Even 5 minutes of a fixed sequence signals to your nervous system that a mode change is coming. Transitions without signals bleed load between contexts.", link: links.toolkit, cta: "Get the Sensory Calibration Toolkit →", comingSoon: false },
+    { title: "Create a Social Recovery Window", body: "Social environments have a sensory cost — even enjoyable ones. Build a low-input window after high-social periods before attempting focused work. This isn't introversion. It's nervous system recovery.", link: links.toolkit, cta: "Get the Sensory Calibration Toolkit →", comingSoon: false },
+    { title: "Start Reading Your Own Signals", body: "Use a physical cue — an object on your desk, a specific time — to pause once per work session and ask: Am I tired? Am I at capacity? The goal is learning to catch your threshold before you cross it, not after.", link: links.sub, cta: "Subscribe to ADL Lab →", comingSoon: false }
   ];
 
-  const allHigh = levels.every(l => l === 'high');
-  if (allHigh) {
-    recs.push({
-      title: "Full Structural Reset — All Domains Critical",
-      body: "Every domain is under significant load simultaneously. Incremental adjustments will not be sufficient. A complete structural audit and recalibration across all four domains is the appropriate starting point.",
-      link: products.bundle.link,
-      cta: products.bundle.cta
-    });
-    recs.push(domainRecs[ranked[0].i]);
-    return recs;
-  }
+  const recs = [];
 
   if (allStable) {
-    recs.push({
-      title: "Maintain Structural Alignment",
-      body: "Your system is well-calibrated. The priority now is protection — not optimization. Weekly structural check-ins help you detect early friction before it compounds.",
-      link: products.substack.link,
-      cta: products.substack.cta
-    });
-    recs.push({
-      title: "Deepen Your Understanding of Structural Design",
-      body: "The ADL Lab Substack publishes weekly frameworks on sustainable performance, friction detection, and environmental design — grounded in occupational science.",
-      link: products.substack.link,
-      cta: products.substack.cta
-    });
+    recs.push({ title: "Maintain Environmental Fit", body: "Your environments are well-matched right now. The work is protection, not optimization — weekly check-ins to catch early friction before it compounds.", link: links.sub, cta: "Subscribe to ADL Lab →", comingSoon: false });
     return recs;
   }
 
-  // Primary recommendation
-  recs.push(domainRecs[ranked[0].i]);
+  recs.push(patternRecs[primaryPattern]);
+  if (ranked[0].level !== 'low') recs.push(domainRecs[ranked[0].i]);
+  if (ranked[1] && ranked[1].level === 'high') recs.push(domainRecs[ranked[1].i]);
 
-  // Secondary if elevated or high
-  if (ranked[1].level !== 'low') {
-    recs.push(domainRecs[ranked[1].i]);
-  }
-
-  // Always add structural audit if they haven't done one
-  if (ranked[0].i !== 0) {
-    recs.push({
-      title: "Map Your Full Structural Constraint",
-      body: "The Structural Audit Protocol provides a complete diagnostic of where your effort stops converting into output — across all four capacity domains.",
-      link: products.audit.link,
-      cta: products.audit.cta
-    });
+  if (!recs.some(r => r.link === links.sub)) {
+    recs.push({ title: "Go Deeper Into Your Sensory Profile", body: "ADL Lab publishes weekly frameworks on sensory environment design, nervous system patterns, and structural adjustments — grounded in occupational therapy and neuroscience.", link: links.sub, cta: "Subscribe to ADL Lab →", comingSoon: false });
   }
 
   return recs;
 }
 
 function restartQuiz() {
-  scores = [[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null]];
+  scores = Array(5).fill(null).map(() => Array(5).fill(null));
   currentDomain = 0;
   document.getElementById('results').style.display = 'none';
   document.getElementById('quiz').style.display = 'block';
