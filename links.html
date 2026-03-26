@@ -17,7 +17,7 @@
   --muted:      #78746E;
   --faint:      #AEA9A2;
   --accent:     #29534230;
-  --ink:        #3A4A5C;
+  --ink:        #2B5446;
   --ink-h:      #1C3A2E;
   --ink-lo:     #E5EEEA;
   --ink-br:     #B2CCC4;
@@ -49,23 +49,22 @@ body {
 }
 
 .avatar {
-  width: 78px; height: 78px;
+  width: 88px; height: 88px;
   border-radius: 50%;
-  background: var(--ink);
+  background: #FFFFFF;
   margin: 0 auto 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 3px solid var(--surface);
-  outline: 1px solid var(--ink-br);
+  outline: 1px solid var(--border);
   overflow: hidden;
 }
 
 .avatar img {
-  width: 85%;
-  height: 85%;
+  width: 78%;
+  height: 78%;
   object-fit: contain;
-  border-radius: 0;
 }
 
 .handle {
@@ -202,10 +201,14 @@ body {
   font-size: 18px;
   flex-shrink: 0;
 }
-.ico-green  { background: var(--ink-lo); }
+.ico-green  { background: #E2EFE8; }
 .ico-warm   { background: #F5EDE0; }
-.ico-ink    { background: #ECEEF4; }
-.ico-amber  { background: #FAF0E0; }
+.ico-ink    { background: #E4E8F4; }
+.ico-amber  { background: #F5F0E0; }
+
+.lcard.subscribe { border-left: 3px solid #A8C8B8; }
+.lcard.read      { border-left: 3px solid #A8B4D0; }
+.lcard.soon      { border-left: 3px solid var(--border); }
 
 .lcard-body { flex: 1; min-width: 0; }
 
@@ -357,7 +360,7 @@ body {
   border-radius: 50%;
   flex-shrink: 0;
 }
-.d1 { background: #3A4A5C; }
+.d1 { background: #2B5446; }
 .d2 { background: #A86C2A; }
 .d3 { background: #6352A0; }
 .d4 { background: #A83838; }
@@ -523,7 +526,7 @@ body {
       <span class="lcard-arrow">→</span>
     </a>
 
-    <a href="https://adllab.substack.com/subscribe" class="lcard">
+    <a href="https://adllab.substack.com/subscribe" class="lcard subscribe">
       <div class="ico ico-green">✉️</div>
       <div class="lcard-body">
         <span class="lcard-title">Subscribe to ADL Lab</span>
@@ -532,7 +535,7 @@ body {
       <span class="lcard-arrow">→</span>
     </a>
 
-    <a href="https://adllab.substack.com/" class="lcard">
+    <a href="https://adllab.substack.com/" class="lcard read">
       <div class="ico ico-ink">📖</div>
       <div class="lcard-body">
         <span class="lcard-title">Read the newsletter</span>
