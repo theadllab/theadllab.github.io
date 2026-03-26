@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADL Lab — Sensory Lab for Adults</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:         #F4F1EB;
+  --surface:    #FFFFFF;
+  --text:       #1A1917;
+  --muted:      #78746E;
+  --faint:      #AEA9A2;
+  --accent:     #29534230;
+  --ink:        #2B5446;
+  --ink-h:      #1C3A2E;
+  --ink-lo:     #E5EEEA;
+  --ink-br:     #B2CCC4;
+  --border:     #E0DAD2;
+  --serif:      'Cormorant Garamond', Georgia, serif;
+  --sans:       'Jost', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+.wrap {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 48px 22px 96px;
+}
+
+/* ── HEADER ────────────────────────────────── */
+.top {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.avatar {
+  width: 78px; height: 78px;
+  border-radius: 50%;
+  background: var(--ink);
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--surface);
+  outline: 1px solid var(--ink-br);
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.handle {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+  margin-bottom: 10px;
+}
+
+.top h1 {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.top h1 em {
+  font-style: italic;
+  color: var(--ink);
+}
+
+.top .bio {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.cred-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.cred-pill {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  background: var(--ink-lo);
+  border: 1px solid var(--ink-br);
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+/* ── DIVIDER ────────────────────────────────── */
+.rule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 28px 0;
+}
+.rule::before, .rule::after {
+  content: ''; flex: 1;
+  height: 1px; background: var(--border);
+}
+.rule-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--faint);
+}
+
+/* ── SECTION LABEL ──────────────────────────── */
+.sec {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 12px;
+}
+
+/* ── LINK CARDS ─────────────────────────────── */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 40px;
+}
+
+.lcard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 16px 18px;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.15s, transform 0.12s, box-shadow 0.15s;
+}
+
+.lcard:hover {
+  border-color: var(--ink-br);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(43,84,70,0.08);
+}
+.lcard:active { transform: translateY(0); box-shadow: none; }
+
+.lcard.featured {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.lcard.featured:hover {
+  background: var(--ink-h);
+  border-color: var(--ink-h);
+  box-shadow: 0 6px 24px rgba(43,84,70,0.25);
+}
+.lcard.featured .lcard-title { color: #fff; }
+.lcard.featured .lcard-sub   { color: rgba(255,255,255,0.6); }
+.lcard.featured .lcard-arrow { color: rgba(255,255,255,0.45); }
+.lcard.featured .ico          { background: rgba(255,255,255,0.1); }
+
+.lcard.soon {
+  opacity: 0.55;
+  cursor: default;
+  pointer-events: none;
+}
+
+.ico {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.ico-green  { background: var(--ink-lo); }
+.ico-warm   { background: #F5EDE0; }
+.ico-ink    { background: #ECEEF4; }
+.ico-amber  { background: #FAF0E0; }
+
+.lcard-body { flex: 1; min-width: 0; }
+
+.lcard-title {
+  font-size: 15.5px;
+  font-weight: 500;
+  color: var(--text);
+  display: block;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lcard-sub {
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--muted);
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge-soon {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--faint);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.lcard-arrow {
+  font-size: 16px;
+  color: var(--border);
+  flex-shrink: 0;
+  transition: color 0.15s, transform 0.15s;
+}
+.lcard:not(.soon):hover .lcard-arrow {
+  color: var(--ink);
+  transform: translateX(3px);
+}
+
+/* ── NOTE SECTION ───────────────────────────── */
+.note {
+  background: var(--ink-lo);
+  border: 1px solid var(--ink-br);
+  border-radius: 18px;
+  padding: 28px 26px 24px;
+  margin-bottom: 28px;
+}
+
+.note-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.note h2 {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.note p {
+  font-size: 15px;
+  font-weight: 300;
+  color: #3B4B46;
+  line-height: 1.85;
+  margin-bottom: 12px;
+}
+.note p:last-of-type { margin-bottom: 0; }
+.note strong { font-weight: 500; color: var(--ink); }
+
+.note-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 18px;
+}
+
+.note-pill {
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--ink);
+  background: rgba(255,255,255,0.55);
+  border: 1px solid var(--ink-br);
+  padding: 4px 13px;
+  border-radius: 100px;
+}
+
+/* ── SENSORY TYPES ──────────────────────────── */
+.types {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 26px 24px 22px;
+  margin-bottom: 28px;
+}
+
+.types h3 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 18px;
+  line-height: 1.3;
+}
+.types h3 em { font-style: italic; color: var(--ink); }
+
+.tgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.tcell {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  padding: 14px 14px 12px;
+}
+
+.tname {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 5px;
+}
+
+.tdot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.d1 { background: #2B5446; }
+.d2 { background: #A86C2A; }
+.d3 { background: #6352A0; }
+.d4 { background: #A83838; }
+
+.tdesc {
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.types-note {
+  font-size: 11px;
+  color: var(--faint);
+  margin-top: 14px;
+  letter-spacing: 0.03em;
+}
+
+/* ── PULL QUOTE ─────────────────────────────── */
+.pull {
+  text-align: center;
+  padding: 32px 8px 28px;
+}
+
+.pull blockquote {
+  font-family: var(--serif);
+  font-size: 27px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.pull cite {
+  font-size: 10.5px;
+  font-style: normal;
+  font-weight: 500;
+  color: var(--faint);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ── SUBSCRIBE ──────────────────────────────── */
+.sub-block {
+  background: var(--ink);
+  border-radius: 20px;
+  padding: 34px 26px 30px;
+  text-align: center;
+  margin-bottom: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sub-block::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.03);
+  pointer-events: none;
+}
+
+.sub-block h2 {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  font-style: italic;
+  color: #fff;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.sub-block p {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.75;
+  margin-bottom: 22px;
+  max-width: 310px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sub-block a {
+  display: inline-block;
+  background: #fff;
+  color: var(--ink);
+  text-decoration: none;
+  border-radius: 11px;
+  padding: 13px 30px;
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: opacity 0.15s, transform 0.12s;
+}
+.sub-block a:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* ── FOOTER ─────────────────────────────────── */
+.foot {
+  text-align: center;
+  font-size: 11.5px;
+  font-weight: 300;
+  color: var(--faint);
+  line-height: 2;
+}
+
+.foot-links {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 6px;
+}
+
+.foot a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1px;
+  transition: color 0.15s;
+}
+.foot a:hover { color: var(--ink); }
+
+/* ── RESPONSIVE ─────────────────────────────── */
+@media (max-width: 400px) {
+  .wrap { padding: 36px 16px 80px; }
+  .top h1 { font-size: 30px; }
+  .tgrid { grid-template-columns: 1fr; }
+  .note { padding: 22px 18px; }
+  .sub-block { padding: 28px 18px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header class="top">
+    <div class="avatar"><img src="https://theadllab.github.io/ADL%20Lab%20Watermark.png" alt="ADL Lab" /></div>
+    <p class="handle">@theadllab</p>
+    <h1>The problem is rarely effort.<br><em>It's fit.</em></h1>
+    <p class="bio">Sensory processing — to understand yourself.<br>And the people around you.</p>
+    <div class="cred-row">
+      <span class="cred-pill">OTR/L, ATP</span>
+      <span class="cred-pill">14+ yrs clinical OT</span>
+      <span class="cred-pill">Sensory Lab for Adults</span>
+    </div>
+  </header>
+
+  <div class="rule"><span class="rule-dot"></span></div>
+
+  <!-- LINKS — action first -->
+  <div class="sec">Start here</div>
+  <div class="links">
+
+    <a href="https://theadllab.github.io/assessment.html" class="lcard featured">
+      <div class="ico">🧪</div>
+      <div class="lcard-body">
+        <span class="lcard-title">ADL Sensory Friction Index</span>
+        <span class="lcard-sub">Free · Find your sensory pattern · 5 min</span>
+      </div>
+      <span class="lcard-arrow">→</span>
+    </a>
+
+    <a href="https://adllab.substack.com/subscribe" class="lcard">
+      <div class="ico ico-green">✉️</div>
+      <div class="lcard-body">
+        <span class="lcard-title">Subscribe to ADL Lab</span>
+        <span class="lcard-sub">Free weekly newsletter on Substack</span>
+      </div>
+      <span class="lcard-arrow">→</span>
+    </a>
+
+    <a href="https://adllab.substack.com/" class="lcard">
+      <div class="ico ico-ink">📖</div>
+      <div class="lcard-body">
+        <span class="lcard-title">Read the newsletter</span>
+        <span class="lcard-sub">Why do I / Why can't I series</span>
+      </div>
+      <span class="lcard-arrow">→</span>
+    </a>
+
+    <div class="lcard soon">
+      <div class="ico ico-amber">🛒</div>
+      <div class="lcard-body">
+        <span class="lcard-title">Sensory Tool Store</span>
+        <span class="lcard-sub">Amazon-curated tools for your pattern</span>
+      </div>
+      <span class="badge-soon">Coming soon</span>
+    </div>
+
+  </div>
+
+  <!-- NOTE — what this space is -->
+  <div class="rule"><span class="rule-dot"></span></div>
+
+  <div class="note">
+    <span class="note-eyebrow">About this space</span>
+    <h2>Sensory processing isn't just for children.</h2>
+    <p>Every human nervous system takes in, filters, and responds to sensory information — from birth until the end of life. You're doing it right now. Most people just don't have a language for it.</p>
+    <p>ADL Lab exists for adults who have always felt a quiet mismatch — with environments, routines, relationships, or work — but never had a framework to name it. <strong>No diagnosis required. No labels needed.</strong></p>
+    <p>This isn't clinical OT. It's occupational science and neuroscience — applied to the texture of everyday adult life. The goal isn't to fix you. It's to understand the fit between you and the world around you.</p>
+    <div class="note-pills">
+      <span class="note-pill">Neuroscience-based</span>
+      <span class="note-pill">Occupational science</span>
+      <span class="note-pill">No diagnosis needed</span>
+      <span class="note-pill">For all adults</span>
+      <span class="note-pill">Disability-inclusive</span>
+    </div>
+  </div>
+
+  <!-- SENSORY TYPES -->
+  <div class="types">
+    <h3><em>Which pattern</em> are you?</h3>
+    <div class="tgrid">
+      <div class="tcell">
+        <div class="tname"><span class="tdot d1"></span>Low Registration</div>
+        <p class="tdesc">Needs more input to notice. Appears calm or disengaged.</p>
+      </div>
+      <div class="tcell">
+        <div class="tname"><span class="tdot d2"></span>Sensation Seeking</div>
+        <p class="tdesc">Craves stimulation. Adds movement, noise, novelty.</p>
+      </div>
+      <div class="tcell">
+        <div class="tname"><span class="tdot d3"></span>Sensory Sensitive</div>
+        <p class="tdesc">Notices everything. Easily distracted by the environment.</p>
+      </div>
+      <div class="tcell">
+        <div class="tname"><span class="tdot d4"></span>Sensation Avoiding</div>
+        <p class="tdesc">Actively limits input. Needs control of the environment.</p>
+      </div>
+    </div>
+    <p class="types-note">Based on Dunn's Sensory Processing Model</p>
+  </div>
+
+  <!-- PULL QUOTE -->
+  <div class="pull">
+    <blockquote>"Adjust the structure.<br>Don't force the person."</blockquote>
+    <cite>ADL Lab · Occupational Science</cite>
+  </div>
+
+  <!-- SUBSCRIBE -->
+  <div class="sub-block">
+    <h2>Get the weekly dispatch</h2>
+    <p>Sensory processing applied to real adult life. No diagnosis required. Free on Substack.</p>
+    <a href="https://adllab.substack.com/subscribe">Subscribe free →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="foot-links">
+      <a href="https://adllab.substack.com/">Substack</a>
+      <a href="https://www.instagram.com/adl.lab">Instagram</a>
+    </div>
+    <p>ADL Lab is educational content — not clinical OT services, not coaching.</p>
+    <p style="margin-top: 4px;">© ADL Lab · Ahra Roh, OTR/L, ATP</p>
+  </footer>
+
+</div>
+</body>
+</html>
