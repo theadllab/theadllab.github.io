@@ -10,16 +10,17 @@
   :root {
     --navy: #1A2640;
     --gold: #C4973A;
-    --cream: #F5F1EA;
+    --cream: #EEE9DF;
     --warm-white: #FDFCF9;
     --muted: #7A7A7A;
-    --border: #E2DDD5;
+    --border: #DDD8CE;
+    --bg: #F0EDE6;
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--warm-white);
+    background: var(--bg);
     color: var(--navy);
     font-family: 'Instrument Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -109,9 +110,10 @@
     text-decoration: none;
     border: 1px solid var(--border);
     border-radius: 16px;
-    background: white;
+    background: var(--warm-white);
     overflow: hidden;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 2px 10px rgba(26,38,64,0.06);
   }
 
   .card:hover {
