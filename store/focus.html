@@ -4,303 +4,84 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Focus & Stimulation — ADL Lab</title>
-<meta name="description" content="Focus and stimulation tools for ADHD and sensory-sensitive brains.">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #1A2640;
-    --gold: #C4973A;
-    --cream: #EEE9DF;
-    --bg: #F0EDE6;
-    --warm-white: #FDFCF9;
-    --muted: #7A7A7A;
-    --border: #DDD8CE;
-  }
-
+  :root { --navy: #1A2640; --gold: #C4973A; --bg: #F0EDE6; --warm-white: #FDFCF9; --muted: #7A7A7A; --border: #DDD8CE; }
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--navy); font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
 
-  body {
-    background: var(--bg);
-    color: var(--navy);
-    font-family: 'Instrument Sans', sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  header {
-    padding: 16px 24px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    background: var(--warm-white);
-    z-index: 100;
-  }
-
-  .logo {
-    font-family: 'Syne', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--navy);
-    text-decoration: none;
-  }
+  header { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: var(--warm-white); z-index: 100; }
+  .logo { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); text-decoration: none; }
   .logo .dot { color: var(--gold); margin: 0 3px; }
-
-  .back {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.15s;
-  }
+  .back { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
   .back:hover { color: var(--navy); }
 
-  .page-hero {
-    height: 200px;
-    position: relative;
-    overflow: hidden;
-    background:
-      radial-gradient(ellipse 70% 60% at 15% 85%, rgba(101,120,80,0.35) 0%, transparent 55%),
-      radial-gradient(ellipse 60% 50% at 85% 15%, rgba(196,151,58,0.2) 0%, transparent 55%),
-      linear-gradient(155deg, #2C3220 0%, #3A3E28 30%, #4A3C28 60%, #3C3020 100%);
-  }
-
-  .pebble {
-    position: absolute;
-    border-radius: 50%;
-  }
-  .pebble:nth-child(1) {
-    width: 90px; height: 70px;
-    background: radial-gradient(circle at 35% 35%, #D4B870, #8A7040);
-    top: 30px; left: 30px;
-    border-radius: 60% 40% 55% 45% / 50% 60% 40% 55%;
-    opacity: 0.22;
-  }
-  .pebble:nth-child(2) {
-    width: 110px; height: 80px;
-    background: radial-gradient(circle at 30% 40%, #B89850, #6A5028);
-    bottom: 20px; right: 30px;
-    border-radius: 55% 45% 60% 40% / 45% 55% 40% 60%;
-    opacity: 0.2;
-  }
-
-  .plant {
-    position: absolute;
-    bottom: 0; right: 90px;
-    width: 2px; height: 60px;
-    background: linear-gradient(to top, rgba(100,130,70,0.65), transparent);
-  }
-  .plant::before {
-    content: '';
-    position: absolute;
-    top: 10px; left: -14px;
-    width: 22px; height: 14px;
-    background: rgba(100,130,70,0.42);
-    border-radius: 50% 80% 50% 20%;
-    transform: rotate(-30deg);
-  }
-  .plant::after {
-    content: '';
-    position: absolute;
-    top: 26px; left: 2px;
-    width: 20px; height: 12px;
-    background: rgba(100,130,70,0.36);
-    border-radius: 80% 20% 80% 20%;
-    transform: rotate(25deg);
-  }
-
-  .focus-lines {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    overflow: hidden;
-  }
-  .focus-lines svg { width: 100%; height: 100%; opacity: 0.1; }
-
-  .hero-waves {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 60px;
-  }
+  .page-hero { height: 190px; position: relative; overflow: hidden; background: radial-gradient(ellipse 70% 60% at 15% 85%, rgba(101,120,80,0.35) 0%, transparent 55%), radial-gradient(ellipse 60% 50% at 85% 15%, rgba(196,151,58,0.2) 0%, transparent 55%), linear-gradient(155deg, #2C3220 0%, #3A3E28 30%, #4A3C28 60%, #3C3020 100%); }
+  .pebble { position: absolute; border-radius: 50%; }
+  .pebble:nth-child(1) { width: 80px; height: 62px; background: radial-gradient(circle at 35% 35%, #D4B870, #8A7040); top: 28px; left: 28px; border-radius: 60% 40% 55% 45% / 50% 60% 40% 55%; opacity: 0.22; }
+  .pebble:nth-child(2) { width: 100px; height: 75px; background: radial-gradient(circle at 30% 40%, #B89850, #6A5028); bottom: 18px; right: 28px; border-radius: 55% 45% 60% 40% / 45% 55% 40% 60%; opacity: 0.2; }
+  .plant { position: absolute; bottom: 0; right: 85px; width: 2px; height: 55px; background: linear-gradient(to top, rgba(100,130,70,0.65), transparent); }
+  .plant::before { content: ''; position: absolute; top: 8px; left: -13px; width: 20px; height: 13px; background: rgba(100,130,70,0.4); border-radius: 50% 80% 50% 20%; transform: rotate(-30deg); }
+  .plant::after { content: ''; position: absolute; top: 22px; left: 2px; width: 18px; height: 11px; background: rgba(100,130,70,0.35); border-radius: 80% 20% 80% 20%; transform: rotate(25deg); }
+  .hero-waves { position: absolute; bottom: 0; left: 0; right: 0; height: 50px; }
   .hero-waves svg { width: 100%; height: 100%; }
+  .hero-text { position: absolute; bottom: 24px; left: 28px; }
+  .hero-eyebrow { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(232,201,122,0.55); margin-bottom: 5px; }
+  .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(22px, 5vw, 32px); font-weight: 700; color: white; line-height: 1.1; }
 
-  .hero-text {
-    position: absolute;
-    bottom: 28px; left: 28px;
-  }
-  .hero-eyebrow {
-    font-family: 'Syne', sans-serif;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(232,201,122,0.55);
-    margin-bottom: 6px;
-  }
-  .hero-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(24px, 5vw, 34px);
-    font-weight: 700;
-    color: white;
-    line-height: 1.1;
-  }
-
-  .jump-nav {
-    max-width: 1040px;
-    margin: 0 auto;
-    padding: 24px 20px 8px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .jump-nav a {
-    font-family: 'Syne', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--navy);
-    background: var(--cream);
-    border: 1px solid var(--border);
-    padding: 10px 16px;
-    border-radius: 100px;
-    text-decoration: none;
-    transition: all 0.18s ease;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-  }
+  .jump-nav { max-width: 900px; margin: 0 auto; padding: 20px 20px 4px; display: flex; flex-wrap: wrap; gap: 7px; }
+  .jump-nav a { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); background: var(--warm-white); border: 1px solid var(--border); padding: 9px 14px; border-radius: 100px; text-decoration: none; transition: all 0.16s ease; min-height: 40px; display: flex; align-items: center; white-space: nowrap; box-shadow: 0 1px 4px rgba(26,38,64,0.05); }
   .jump-nav a:hover { background: var(--navy); color: white; border-color: var(--navy); }
 
-  .store { max-width: 1040px; margin: 0 auto; padding: 16px 20px 72px; background: var(--bg); }
-  .section { margin-bottom: 4px; padding: 28px 0; }
-  .section:nth-child(odd) { background: var(--warm-white); margin: 0 -20px; padding: 28px 20px; border-radius: 0; }
+  .store { max-width: 900px; margin: 0 auto; padding: 8px 20px 72px; }
+  .section { margin-bottom: 36px; }
+  .section-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; padding-top: 20px; display: block; }
 
-  .section-label {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 14px;
-    padding-top: 24px;
-    display: block;
-  }
+  .item { background: var(--warm-white); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 8px; box-shadow: 0 2px 6px rgba(26,38,64,0.06); overflow: hidden; transition: box-shadow 0.18s ease; }
+  .item:hover { box-shadow: 0 4px 16px rgba(26,38,64,0.09); }
+  .item-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; cursor: pointer; user-select: none; gap: 12px; }
+  .item-header-left { display: flex; align-items: center; gap: 10px; flex: 1; }
+  .item-name { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); }
+  .ot { font-family: 'Syne', sans-serif; font-size: 8px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); background: rgba(196,151,58,0.08); border: 1px solid rgba(196,151,58,0.22); padding: 2px 7px; border-radius: 100px; white-space: nowrap; }
+  .item-chevron { font-size: 12px; color: var(--muted); transition: transform 0.22s ease; flex-shrink: 0; }
+  .item.open .item-chevron { transform: rotate(180deg); }
+  .item-body { max-height: 0; overflow: hidden; transition: max-height 0.28s ease; }
+  .item.open .item-body { max-height: 400px; }
+  .item-inner { padding: 0 18px 16px; display: flex; flex-direction: column; gap: 12px; }
 
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .bullets { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .bullets li { font-size: 12px; color: var(--muted); display: flex; gap: 8px; align-items: flex-start; line-height: 1.4; }
+  .bullets li::before { content: '●'; color: var(--gold); font-size: 6px; margin-top: 5px; flex-shrink: 0; }
 
-  .item {
-    background: white;
-    box-shadow: 0 2px 8px rgba(26,38,64,0.06);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px 20px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    transition: all 0.18s ease;
-    position: relative;
-  }
-  .item:hover { border-color: var(--navy); box-shadow: 0 6px 24px rgba(26,38,64,0.07); transform: translateY(-2px); }
+  .options { display: flex; flex-direction: column; gap: 6px; padding-top: 10px; border-top: 1px solid var(--border); }
+  .opt { display: flex; align-items: center; justify-content: space-between; text-decoration: none; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; transition: all 0.15s ease; }
+  .opt:hover { background: var(--navy); border-color: var(--navy); }
+  .opt:hover .opt-name, .opt:hover .opt-arrow { color: white; }
+  .opt:hover .opt-tag { color: rgba(255,255,255,0.6); }
+  .opt-name { font-size: 13px; font-weight: 500; color: var(--navy); }
+  .opt-tag { font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .opt-arrow { font-size: 14px; color: var(--gold); flex-shrink: 0; margin-left: 10px; }
 
-  .ot {
-    position: absolute;
-    top: 14px; right: 14px;
-    font-family: 'Syne', sans-serif;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    background: rgba(196,151,58,0.08);
-    border: 1px solid rgba(196,151,58,0.22);
-    padding: 3px 8px;
-    border-radius: 100px;
-  }
-
-  .item-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy); line-height: 1.2; padding-right: 48px; }
-  .item-why { font-size: 13px; color: var(--muted); line-height: 1.65; }
-
-  .item-link {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--navy);
-    text-decoration: none;
-    border-bottom: 2px solid var(--gold);
-    padding-bottom: 1px;
-    width: fit-content;
-    margin-top: 4px;
-    transition: opacity 0.15s;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .item-link:hover { opacity: 0.7; }
-
-  .banner { max-width: 1040px; margin: 0 auto 56px; padding: 0 20px; }
-
-  .banner-inner {
-    background: var(--navy);
-    border-radius: 14px;
-    padding: 28px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .banner-inner strong { display: block; font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 4px; }
-  .banner-inner p { font-size: 13px; color: rgba(255,255,255,0.6); max-width: 360px; line-height: 1.65; }
-
-  .banner-btn {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 13px 20px;
-    border: 1.5px solid var(--gold);
-    color: var(--gold);
-    background: transparent;
-    border-radius: 8px;
-    text-decoration: none;
-    flex-shrink: 0;
-    transition: all 0.18s ease;
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-  }
+  .banner { max-width: 900px; margin: 0 auto 56px; padding: 0 20px; }
+  .banner-inner { background: var(--navy); border-radius: 14px; padding: 26px 30px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .banner-inner strong { display: block; font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: white; margin-bottom: 3px; }
+  .banner-inner p { font-size: 13px; color: rgba(255,255,255,0.6); max-width: 340px; line-height: 1.6; }
+  .banner-btn { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 20px; border: 1.5px solid var(--gold); color: var(--gold); background: transparent; border-radius: 8px; text-decoration: none; flex-shrink: 0; transition: all 0.16s ease; min-height: 46px; display: flex; align-items: center; white-space: nowrap; }
   .banner-btn:hover { background: var(--gold); color: var(--navy); }
 
-  footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 11px; color: var(--muted); line-height: 2; }
+  footer { border-top: 1px solid var(--border); padding: 22px; text-align: center; font-size: 11px; color: var(--muted); line-height: 2; }
   footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); }
   .footer-links { margin-top: 8px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
 
   @media (max-width: 640px) {
     header { padding: 14px 18px; }
-    .page-hero { height: 170px; }
-    .hero-text { left: 20px; bottom: 22px; }
-    .jump-nav { padding: 20px 16px 6px; gap: 7px; }
-    .jump-nav a { font-size: 11px; padding: 9px 13px; min-height: 40px; }
-    .store { padding: 12px 16px 56px; }
-    .grid { grid-template-columns: 1fr; gap: 10px; }
-    .banner { padding: 0 16px; margin-bottom: 44px; }
-    .banner-inner { padding: 22px 20px; flex-direction: column; align-items: flex-start; }
+    .page-hero { height: 165px; }
+    .hero-text { left: 20px; bottom: 20px; }
+    .jump-nav { padding: 16px 16px 4px; }
+    .store { padding: 8px 16px 56px; }
+    .banner { padding: 0 16px; }
+    .banner-inner { padding: 20px 18px; flex-direction: column; align-items: flex-start; }
     .banner-btn { width: 100%; justify-content: center; }
-    footer { padding: 20px 18px; }
   }
 </style>
 </head>
@@ -315,16 +96,9 @@
   <div class="pebble"></div>
   <div class="pebble"></div>
   <div class="plant"></div>
-  <div class="focus-lines">
-    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,100 Q360,65 720,100 T1440,100" stroke="rgba(196,151,58,0.8)" stroke-width="1" fill="none"/>
-      <path d="M0,125 Q360,90 720,125 T1440,125" stroke="rgba(196,151,58,0.5)" stroke-width="1" fill="none"/>
-    </svg>
-  </div>
   <div class="hero-waves">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,30 C360,8 720,55 1080,30 C1260,18 1380,42 1440,30 L1440,60 L0,60 Z" fill="#FDFCF9" opacity="0.06"/>
-      <path d="M0,45 C300,25 660,62 1000,44 C1200,32 1360,54 1440,44 L1440,60 L0,60 Z" fill="#FDFCF9" opacity="1"/>
+    <svg viewBox="0 0 1440 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C300,20 700,50 1100,35 C1280,26 1380,42 1440,38 L1440,50 L0,50 Z" fill="#F0EDE6"/>
     </svg>
   </div>
   <div class="hero-text">
@@ -344,93 +118,221 @@
 
   <div class="section" id="tactile">
     <span class="section-label">✋ Tactile</span>
-    <div class="grid">
 
-      <div class="item">
-        <span class="ot">OT Pick</span>
-        <div class="item-name">Textured Fidget Ring</div>
-        <div class="item-why">Keeps hands busy so the brain can actually focus. Discreet enough for meetings.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">Fidget Tool</span>
+          <span class="ot">OT Pick</span>
+        </div>
+        <span class="item-chevron">▾</span>
       </div>
-
-      <div class="item">
-        <div class="item-name">Weighted Lap Pad</div>
-        <div class="item-why">Deep pressure while sitting. Reduces restlessness without needing to move.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item-body">
+        <div class="item-inner">
+          <ul class="bullets">
+            <li>Tactile input quiets the default mode network — reduces mind-wandering</li>
+            <li>Fills background sensory need so the brain can actually settle</li>
+            <li>Discreet enough for meetings and calls</li>
+          </ul>
+          <div class="options">
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Textured Fidget Ring</div><div class="opt-tag">On finger · completely invisible</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Magnetic Fidget Toy</div><div class="opt-tag">Silent · desktop or pocket</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
-
     </div>
+
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">Weighted Lap Pad</span>
+        </div>
+        <span class="item-chevron">▾</span>
+      </div>
+      <div class="item-body">
+        <div class="item-inner">
+          <ul class="bullets">
+            <li>Deep pressure activates proprioceptors → regulates arousal</li>
+            <li>Localized lap weight = same effect as full weighted blanket</li>
+            <li>Passive — no interruption to what you're doing</li>
+          </ul>
+          <div class="options">
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Weighted Lap Pad</div><div class="opt-tag">1–2 lbs · desk use</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Heated Lap Pad</div><div class="opt-tag">Pressure + warmth</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="section" id="movement">
     <span class="section-label">🌀 Movement</span>
-    <div class="grid">
 
-      <div class="item">
-        <span class="ot">OT Pick</span>
-        <div class="item-name">Balance Disk / Wobble Cushion</div>
-        <div class="item-why">Micro-movement while seated. Just enough input to keep attention online without leaving your desk.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">Seated Movement</span>
+          <span class="ot">OT Pick</span>
+        </div>
+        <span class="item-chevron">▾</span>
       </div>
-
-      <div class="item">
-        <div class="item-name">Under-Desk Elliptical</div>
-        <div class="item-why">Active movement without getting up. For high-energy brains that need more than a cushion.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item-body">
+        <div class="item-inner">
+          <ul class="bullets">
+            <li>Movement raises dopamine + norepinephrine — what ADHD brains need</li>
+            <li>Unstable surface = constant postural adjustment = ongoing vestibular input</li>
+            <li>Stay at your desk — no need to get up</li>
+          </ul>
+          <div class="options">
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Balance Disk / Wobble Cushion</div><div class="opt-tag">On chair · affordable</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Under-Desk Elliptical</div><div class="opt-tag">Active pedaling · higher input</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
-
-      <div class="item">
-        <div class="item-name">Standing Desk Converter</div>
-        <div class="item-why">Posture change resets attention. Lower barrier than taking a full break.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
-      </div>
-
-      <div class="item">
-        <div class="item-name">Resistance Band (Chair)</div>
-        <div class="item-why">Loop around chair legs. Push and pull with your feet — quiet input, no one notices.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
-      </div>
-
     </div>
+
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">Posture & Resistance</span>
+        </div>
+        <span class="item-chevron">▾</span>
+      </div>
+      <div class="item-body">
+        <div class="item-inner">
+          <ul class="bullets">
+            <li>Sit → stand shift resets attention faster than a break</li>
+            <li>Resistance band on chair legs = quiet leg input, no one notices</li>
+            <li>Channels the movement impulse instead of suppressing it</li>
+          </ul>
+          <div class="options">
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Standing Desk Converter</div><div class="opt-tag">Sit / stand · easy setup</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Resistance Band (chair)</div><div class="opt-tag">Leg resistance · invisible</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="section" id="auditory">
     <span class="section-label">🎧 Auditory</span>
-    <div class="grid">
 
-      <div class="item">
-        <div class="item-name">Bone Conduction Headphones</div>
-        <div class="item-why">Sound through your cheekbones, ears stay open. Good if in-ear headphones feel too isolating.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">Focus Audio Layer</span>
+        </div>
+        <span class="item-chevron">▾</span>
       </div>
-
-      <div class="item">
-        <div class="item-name">Open-Back Headphones</div>
-        <div class="item-why">Immersive audio without the sealed-in feeling. Lets some ambient sound through.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item-body">
+        <div class="item-inner">
+          <ul class="bullets">
+            <li>Complete silence = brain searches for stimulation → finds distractions</li>
+            <li>Steady auditory layer = brain stops scanning and settles into work</li>
+            <li>Open-back or bone conduction if in-ear feels claustrophobic</li>
+          </ul>
+          <div class="options">
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Bone Conduction Headphones</div><div class="opt-tag">Ears open · stay aware</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Open-Back Headphones</div><div class="opt-tag">Immersive · less sealed</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
-
     </div>
+
   </div>
 
   <div class="section" id="oral">
     <span class="section-label">🌿 Oral & Scent</span>
-    <div class="grid">
 
-      <div class="item">
-        <span class="ot">OT Pick</span>
-        <div class="item-name">Chewing Gum / Chewy Snacks</div>
-        <div class="item-why">Jaw movement activates the brain's arousal system. Standard OT practice — not a hack.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">Oral Motor Input</span>
+          <span class="ot">OT Pick</span>
+        </div>
+        <span class="item-chevron">▾</span>
       </div>
-
-      <div class="item">
-        <div class="item-name">Peppermint or Citrus Oil</div>
-        <div class="item-why">Quick inhale before a task. Sharp scents increase alertness fast. Simple and cheap.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item-body">
+        <div class="item-inner">
+          <ul class="bullets">
+            <li>Chewing activates RAS — the brain's arousal regulation center</li>
+            <li>Rhythmic jaw movement reduces anxiety while increasing alertness</li>
+            <li>Standard OT clinical practice — not a wellness hack</li>
+          </ul>
+          <div class="options">
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Xylitol Chewing Gum</div><div class="opt-tag">Tooth-safe · long chew time</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Chewy Snack (jerky, dried squid)</div><div class="opt-tag">More resistance · immediate alerting</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
-
     </div>
+
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">Alerting Scent</span>
+        </div>
+        <span class="item-chevron">▾</span>
+      </div>
+      <div class="item-body">
+        <div class="item-inner">
+          <ul class="bullets">
+            <li>Peppermint + citrus activate sympathetic NS — fastest arousal shift available</li>
+            <li>Bypasses cortex → limbic system directly — near-instant effect</li>
+            <li>Use only during work → becomes automatic focus cue</li>
+          </ul>
+          <div class="options">
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Peppermint Essential Oil</div><div class="opt-tag">Inhale before starting · most studied</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Citrus Roll-On</div><div class="opt-tag">Apply to wrist · portable</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </div>
@@ -439,7 +341,7 @@
   <div class="banner-inner">
     <div>
       <strong>Not sure where to start?</strong>
-      <p>Take the free Sensory Friction Index — tells you which domain is costing your nervous system the most.</p>
+      <p>Take the free Sensory Friction Index — tells you which domain costs your nervous system the most.</p>
     </div>
     <a href="https://theadllab.github.io" class="banner-btn">Take the assessment →</a>
   </div>
@@ -453,6 +355,15 @@
     <a href="https://instagram.com/adllab" target="_blank" rel="noopener">Instagram</a>
   </div>
 </footer>
+
+<script>
+  function toggle(header) {
+    const item = header.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
 
 </body>
 </html>
