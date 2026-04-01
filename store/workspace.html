@@ -1,36 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" style="scroll-behavior: smooth;">
+<html lang="en" style="scroll-behavior:smooth;">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Workspace Control — ADL Lab Store</title>
-<meta name="description" content="Sensory tools for focus and workspace design. Curated through an OT lens for ADHD and sensory-sensitive brains.">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Workspace Control — ADL Lab</title>
+<meta name="description" content="Workspace tools for ADHD and sensory-sensitive brains.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy: #1A2640;
     --gold: #C4973A;
-    --gold-light: #E8C97A;
-    --cream: #F5F1EA;
+    --cream: #EEE9DF;
+    --bg: #F0EDE6;
     --warm-white: #FDFCF9;
-    --muted: #6B6B6B;
-    --border: #E2DDD5;
-    --card-bg: #FFFFFF;
+    --muted: #7A7A7A;
+    --border: #DDD8CE;
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--warm-white);
+    background: var(--bg);
     color: var(--navy);
     font-family: 'Instrument Sans', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
   header {
-    padding: 18px 24px;
+    padding: 16px 24px;
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
@@ -43,327 +40,86 @@
 
   .logo {
     font-family: 'Syne', sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--navy);
     text-decoration: none;
   }
-  .logo .dot { color: var(--gold); margin: 0 4px; }
+  .logo .dot { color: var(--gold); margin: 0 3px; }
 
-  .back-link {
+  .back {
     font-family: 'Syne', sans-serif;
     font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--muted);
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 6px;
     transition: color 0.15s;
   }
-  .back-link:hover { color: var(--navy); }
+  .back:hover { color: var(--navy); }
 
-  /* ── HERO ── */
   .page-hero {
-    width: 100%;
-    height: 240px;
+    height: 200px;
     position: relative;
     overflow: hidden;
     background:
       radial-gradient(ellipse 70% 60% at 30% 65%, rgba(255,240,200,0.4) 0%, transparent 65%),
-      radial-gradient(ellipse 50% 40% at 80% 20%, rgba(196,151,58,0.1) 0%, transparent 55%),
       linear-gradient(135deg, #F7F3EC 0%, #EDE5D4 45%, #E0D4BF 100%);
   }
-
   .page-hero::before {
     content: '';
     position: absolute;
-    bottom: 0; right: 100px;
-    width: 3px; height: 130px;
+    bottom: 0; right: 90px;
+    width: 3px; height: 120px;
     background: linear-gradient(to top, #A89070, #C4973A);
     border-radius: 2px;
   }
-
   .page-hero::after {
     content: '';
     position: absolute;
-    bottom: 127px; right: 74px;
-    width: 60px; height: 30px;
+    bottom: 118px; right: 66px;
+    width: 54px; height: 28px;
     background: linear-gradient(135deg, #C4973A, #E8C97A);
-    border-radius: 30px 30px 4px 4px;
+    border-radius: 28px 28px 4px 4px;
     transform: rotate(-18deg);
-    box-shadow: 0 16px 40px rgba(196,151,58,0.28);
+    box-shadow: 0 14px 32px rgba(196,151,58,0.25);
   }
-
-  .workspace-deco {
-    position: absolute;
-    top: 36px; left: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .workspace-deco span {
-    display: block;
-    height: 2px;
-    background: rgba(26,38,64,0.1);
-    border-radius: 2px;
-  }
-
-  .workspace-deco span:nth-child(1) { width: 80px; }
-  .workspace-deco span:nth-child(2) { width: 56px; }
-  .workspace-deco span:nth-child(3) { width: 70px; }
-  .workspace-deco span:nth-child(4) { width: 44px; }
 
   .hero-waves {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 70px;
+    height: 60px;
   }
   .hero-waves svg { width: 100%; height: 100%; }
 
-  .hero-content {
+  .hero-text {
     position: absolute;
-    bottom: 32px; left: 40px;
+    bottom: 28px; left: 28px;
   }
-
   .hero-eyebrow {
-    font-family: 'Syne', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(26,38,64,0.45);
-    margin-bottom: 8px;
-  }
-
-  .hero-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(26px, 5vw, 38px);
-    font-weight: 700;
-    color: var(--navy);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-  }
-
-  /* reuse from recovery */
-  .intro {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 40px 24px 32px;
-  }
-
-  .intro p {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.8;
-    margin-bottom: 12px;
-  }
-
-  .intro-note {
-    font-size: 12px;
-    color: var(--muted);
-    padding: 12px 16px;
-    background: var(--cream);
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    line-height: 1.75;
-    margin-top: 20px;
-  }
-
-  .store-body {
-    max-width: 1040px;
-    margin: 0 auto;
-    padding: 0 20px 80px;
-  }
-
-  .section { margin-bottom: 56px; }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-    margin-bottom: 20px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--navy);
-    letter-spacing: -0.01em;
-  }
-
-  .section-subtitle { font-size: 13px; color: var(--muted); }
-
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 14px;
-  }
-
-  .product-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 22px 22px 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    transition: all 0.2s ease;
-    position: relative;
-  }
-
-  .product-card:hover {
-    border-color: var(--navy);
-    box-shadow: 0 8px 32px rgba(26,38,64,0.08);
-    transform: translateY(-2px);
-  }
-
-  .ot-pick {
-    position: absolute;
-    top: 14px; right: 14px;
     font-family: 'Syne', sans-serif;
     font-size: 9px;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--gold);
-    background: rgba(196,151,58,0.08);
-    border: 1px solid rgba(196,151,58,0.25);
-    padding: 3px 8px;
-    border-radius: 100px;
-  }
-
-  .product-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--navy);
-    line-height: 1.25;
-    padding-right: 52px;
-  }
-
-  .product-why {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  .product-why strong { color: var(--navy); font-weight: 500; }
-
-  .product-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin-top: 2px;
-  }
-
-  .product-tag {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    color: var(--navy);
-    background: var(--cream);
-    border: 1px solid var(--border);
-    padding: 3px 9px;
-    border-radius: 100px;
-  }
-
-  .product-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--navy);
-    text-decoration: none;
-    border-bottom: 1.5px solid var(--gold);
-    padding-bottom: 1px;
-    width: fit-content;
-    margin-top: 4px;
-    transition: gap 0.18s ease;
-  }
-
-  .product-link:hover { gap: 10px; }
-
-  .sfi-banner {
-    max-width: 1040px;
-    margin: 0 auto 64px;
-    padding: 0 20px;
-  }
-
-  .sfi-inner {
-    background: var(--navy);
-    border-radius: 16px;
-    padding: 32px 36px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
-  .sfi-inner h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: white;
+    color: rgba(26,38,64,0.4);
     margin-bottom: 6px;
   }
-
-  .sfi-inner p { font-size: 13px; color: rgba(255,255,255,0.6); max-width: 400px; line-height: 1.7; }
-
-  .sfi-btn {
+  .hero-title {
     font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 14px 22px;
-    border: 1.5px solid var(--gold);
-    color: var(--gold);
-    background: transparent;
-    border-radius: 8px;
-    text-decoration: none;
-    white-space: nowrap;
-    flex-shrink: 0;
-    transition: all 0.18s ease;
-    display: flex;
-    align-items: center;
-    min-height: 48px;
+    font-size: clamp(24px, 5vw, 34px);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.1;
   }
 
-  .sfi-btn:hover { background: var(--gold); color: var(--navy); }
-
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 28px 24px;
-    text-align: center;
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 2;
-  }
-
-  footer strong { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--navy); letter-spacing: 0.08em; }
-  footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 1px; }
-
-  .footer-links { margin-top: 10px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-
-  /* ── JUMP NAV ── */
   .jump-nav {
     max-width: 1040px;
     margin: 0 auto;
-    padding: 0 20px 32px;
+    padding: 24px 20px 8px;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
@@ -372,8 +128,8 @@
   .jump-nav a {
     font-family: 'Syne', sans-serif;
     font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-weight: 700;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--navy);
     background: var(--cream);
@@ -382,83 +138,138 @@
     border-radius: 100px;
     text-decoration: none;
     transition: all 0.18s ease;
-    white-space: nowrap;
-    min-height: 40px;
+    min-height: 44px;
     display: flex;
     align-items: center;
+    white-space: nowrap;
   }
 
-  .jump-nav a:hover {
-    background: var(--navy);
-    color: white;
-    border-color: var(--navy);
-  }
+  .jump-nav a:hover { background: var(--navy); color: white; border-color: var(--navy); }
 
-  @media (max-width: 640px) {
-    .jump-nav { padding: 0 16px 28px; gap: 7px; }
-    .jump-nav a { font-size: 11px; padding: 9px 14px; }
-  }
+  .store { max-width: 1040px; margin: 0 auto; padding: 16px 20px 72px; background: var(--bg); }
+  .section { margin-bottom: 4px; padding: 28px 0; }
+  .section:nth-child(odd) { background: var(--warm-white); margin: 0 -20px; padding: 28px 20px; border-radius: 0; }
 
-  /* ── JUMP NAV ── */
-  .jump-nav {
-    max-width: 1040px;
-    margin: 0 auto;
-    padding: 0 20px 36px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .jump-btn {
+  .section-label {
     font-family: 'Syne', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    color: var(--navy);
-    background: var(--cream);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    padding-top: 24px;
+    display: block;
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+
+  .item {
+    background: white;
+    box-shadow: 0 2px 8px rgba(26,38,64,0.06);
     border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 9px 18px;
-    text-decoration: none;
+    border-radius: 14px;
+    padding: 20px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     transition: all 0.18s ease;
-    white-space: nowrap;
-    min-height: 40px;
+    position: relative;
+  }
+
+  .item:hover { border-color: var(--navy); box-shadow: 0 6px 24px rgba(26,38,64,0.07); transform: translateY(-2px); }
+
+  .ot {
+    position: absolute;
+    top: 14px; right: 14px;
+    font-family: 'Syne', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(196,151,58,0.08);
+    border: 1px solid rgba(196,151,58,0.22);
+    padding: 3px 8px;
+    border-radius: 100px;
+  }
+
+  .item-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy); line-height: 1.2; padding-right: 48px; }
+  .item-why { font-size: 13px; color: var(--muted); line-height: 1.65; }
+  .item-why strong { color: var(--navy); font-weight: 500; }
+
+  .item-link {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--navy);
+    text-decoration: none;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 1px;
+    width: fit-content;
+    margin-top: 4px;
+    transition: opacity 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .item-link:hover { opacity: 0.7; }
+
+  .banner { max-width: 1040px; margin: 0 auto 56px; padding: 0 20px; }
+
+  .banner-inner {
+    background: var(--navy);
+    border-radius: 14px;
+    padding: 28px 32px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
   }
 
-  .jump-btn:hover {
-    background: var(--navy);
-    color: white;
-    border-color: var(--navy);
+  .banner-inner strong { display: block; font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 4px; }
+  .banner-inner p { font-size: 13px; color: rgba(255,255,255,0.6); max-width: 360px; line-height: 1.65; }
+
+  .banner-btn {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 13px 20px;
+    border: 1.5px solid var(--gold);
+    color: var(--gold);
+    background: transparent;
+    border-radius: 8px;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: all 0.18s ease;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
   }
+  .banner-btn:hover { background: var(--gold); color: var(--navy); }
 
-  html { scroll-behavior: smooth; }
-  .section { scroll-margin-top: 72px; }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .intro { animation: fadeUp 0.45s ease both; }
-  .section:nth-child(1) { animation: fadeUp 0.45s 0.08s ease both; }
-  .section:nth-child(2) { animation: fadeUp 0.45s 0.14s ease both; }
-  .section:nth-child(3) { animation: fadeUp 0.45s 0.20s ease both; }
-  .section:nth-child(4) { animation: fadeUp 0.45s 0.26s ease both; }
+  footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 11px; color: var(--muted); line-height: 2; }
+  footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+  .footer-links { margin-top: 8px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
 
   @media (max-width: 640px) {
-    header { padding: 16px 20px; }
-    .page-hero { height: 200px; }
-    .hero-content { left: 24px; bottom: 24px; }
-    .intro { padding: 32px 20px 24px; }
-    .store-body { padding: 0 16px 64px; }
-    .product-grid { grid-template-columns: 1fr; gap: 12px; }
-    .sfi-banner { padding: 0 16px; margin-bottom: 48px; }
-    .sfi-inner { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
-    .sfi-btn { width: 100%; justify-content: center; }
-    footer { padding: 24px 20px; }
+    header { padding: 14px 18px; }
+    .page-hero { height: 170px; }
+    .hero-text { left: 20px; bottom: 22px; }
+    .jump-nav { padding: 20px 16px 6px; gap: 7px; }
+    .jump-nav a { font-size: 11px; padding: 9px 13px; min-height: 40px; }
+    .store { padding: 12px 16px 56px; }
+    .grid { grid-template-columns: 1fr; gap: 10px; }
+    .banner { padding: 0 16px; margin-bottom: 44px; }
+    .banner-inner { padding: 22px 20px; flex-direction: column; align-items: flex-start; }
+    .banner-btn { width: 100%; justify-content: center; }
+    footer { padding: 20px 18px; }
   }
 </style>
 </head>
@@ -466,219 +277,135 @@
 
 <header>
   <a href="index.html" class="logo">ADL <span class="dot">·</span> Lab</a>
-  <a href="index.html" class="back-link">← All categories</a>
+  <a href="index.html" class="back">← Back</a>
 </header>
 
 <div class="page-hero">
-  <div class="workspace-deco">
-    <span></span><span></span><span></span><span></span>
-  </div>
   <div class="hero-waves">
-    <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,35 C240,10 480,60 720,35 C960,10 1200,55 1440,35 L1440,70 L0,70 Z" fill="#FDFCF9" opacity="0.3"/>
-      <path d="M0,50 C200,28 450,65 720,48 C990,28 1220,60 1440,48 L1440,70 L0,70 Z" fill="#FDFCF9" opacity="0.5"/>
-      <path d="M0,62 C300,48 600,70 900,58 C1100,48 1280,66 1440,60 L1440,70 L0,70 Z" fill="#FDFCF9" opacity="1"/>
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,30 C360,8 720,55 1080,30 C1260,18 1380,42 1440,30 L1440,60 L0,60 Z" fill="#FDFCF9" opacity="0.4"/>
+      <path d="M0,45 C300,25 660,62 1000,44 C1200,32 1360,54 1440,44 L1440,60 L0,60 Z" fill="#FDFCF9" opacity="1"/>
     </svg>
   </div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Category 02 — Already Done For You</div>
-    <div class="hero-title">Workspace<br>Control</div>
+  <div class="hero-text">
+    <div class="hero-eyebrow">Workspace Control</div>
+    <div class="hero-title">Your environment<br>is working against you.</div>
   </div>
 </div>
 
-<div class="intro">
-  <p>A disorganized, noisy, or visually cluttered workspace isn't just inconvenient — for a sensory-sensitive brain, it's actively consuming processing capacity before you've done a single thing.</p>
-  <p>These tools reduce the unpredictable input that drains your system, so you have more left for the actual work.</p>
-  <div class="intro-note">
-    Products are curated through an occupational therapy lens — not paid placement. As an Amazon Associate, ADL Lab earns from qualifying purchases. This is educational content, not clinical advice.
-  </div>
-</div>
-
-<!-- JUMP NAV -->
 <div class="jump-nav">
   <a href="#sound">🔇 Sound</a>
-  <a href="#visual">👁 Visual Field</a>
+  <a href="#visual">👁 Visual</a>
   <a href="#light">💡 Light & Scent</a>
   <a href="#body">🦶 Body & Timing</a>
 </div>
 
-<div class="store-body">
+<div class="store">
 
-  <!-- Sound -->
   <div class="section" id="sound">
-    <div class="section-header">
-      <div class="section-title">Sound Management</div>
-      <div class="section-subtitle">Control your auditory environment</div>
-    </div>
-    <div class="product-grid">
+    <span class="section-label">🔇 Sound</span>
+    <div class="grid">
 
-      <div class="product-card">
-        <span class="ot-pick">OT Pick</span>
-        <div class="product-name">Active Noise Cancelling Headphones</div>
-        <div class="product-why"><strong>Creates an auditory boundary</strong> in open or unpredictable environments. ANC doesn't require music — silence itself becomes usable. High-impact for sensitivity types.</div>
-        <div class="product-tags">
-          <span class="product-tag">ANC</span>
-          <span class="product-tag">Open office</span>
-          <span class="product-tag">High impact</span>
-        </div>
-        <a href="YOUR-AMAZON-LINK-HERE" class="product-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item">
+        <span class="ot">OT Pick</span>
+        <div class="item-name">Active Noise Cancelling Headphones</div>
+        <div class="item-why">Creates a sound boundary. ANC works without music — silence itself becomes usable.</div>
+        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
       </div>
 
-      <div class="product-card">
-        <span class="ot-pick">OT Pick</span>
-        <div class="product-name">Loop Quiet Earplugs</div>
-        <div class="product-why"><strong>Volume down, not full block.</strong> Reduces ambient noise by ~18dB without total isolation. Good for those who feel anxious with complete silence, or need to stay partially available.</div>
-        <div class="product-tags">
-          <span class="product-tag">Partial filter</span>
-          <span class="product-tag">Discreet</span>
-        </div>
-        <a href="YOUR-AMAZON-LINK-HERE" class="product-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item">
+        <span class="ot">OT Pick</span>
+        <div class="item-name">Loop Quiet Earplugs</div>
+        <div class="item-why">Volume down, not full block. Good if total silence feels worse than the noise.</div>
+        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
       </div>
 
     </div>
   </div>
 
-  <!-- Visual Field -->
   <div class="section" id="visual">
-    <div class="section-header">
-      <div class="section-title">Visual Field</div>
-      <div class="section-subtitle">Reduce visual noise and distraction</div>
-    </div>
-    <div class="product-grid">
+    <span class="section-label">👁 Visual Field</span>
+    <div class="grid">
 
-      <div class="product-card">
-        <div class="product-name">Desk Privacy Panel</div>
-        <div class="product-why"><strong>Creates a visual boundary</strong> that reduces peripheral movement. Motion in the visual field is a significant sensory trigger — removing it frees cognitive resources.</div>
-        <div class="product-tags">
-          <span class="product-tag">Visual boundary</span>
-          <span class="product-tag">Open office</span>
-        </div>
-        <a href="YOUR-AMAZON-LINK-HERE" class="product-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item">
+        <div class="item-name">Desk Privacy Panel</div>
+        <div class="item-why">Blocks peripheral movement. Motion in your visual field is active input — removing it frees capacity.</div>
+        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
       </div>
 
-      <div class="product-card">
-        <div class="product-name">Desk Organizer / Tray</div>
-        <div class="product-why"><strong>Visual clutter is sensory load.</strong> A cluttered desk isn't just messy — for sensitivity types, it's active input the brain is processing. One tray changes the whole field.</div>
-        <div class="product-tags">
-          <span class="product-tag">Visual clarity</span>
-          <span class="product-tag">Passive</span>
-        </div>
-        <a href="YOUR-AMAZON-LINK-HERE" class="product-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item">
+        <div class="item-name">Desk Organizer / Tray</div>
+        <div class="item-why">Visual clutter is sensory load. One tray changes the whole desk experience.</div>
+        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
       </div>
 
-      <div class="product-card">
-        <div class="product-name">Cable Management</div>
-        <div class="product-why"><strong>Same reason as the tray.</strong> Tangled cables are low-grade visual chaos. Removing them reduces the ambient sensory noise of your workspace without changing how you work.</div>
-        <div class="product-tags">
-          <span class="product-tag">Visual clarity</span>
-          <span class="product-tag">Setup once</span>
-        </div>
-        <a href="YOUR-AMAZON-LINK-HERE" class="product-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item">
+        <div class="item-name">Cable Management</div>
+        <div class="item-why">Same reason as the tray. Tangled cables are low-grade visual chaos. Set it up once.</div>
+        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
       </div>
 
-      <div class="product-card">
-        <div class="product-name">Note Stand + Color Notes</div>
-        <div class="product-why"><strong>External visual cues</strong> that do the remembering. A visible note in your line of sight functions as a task prompt — removes the cognitive load of holding it in working memory.</div>
-        <div class="product-tags">
-          <span class="product-tag">External memory</span>
-          <span class="product-tag">Visual cue</span>
-        </div>
-        <a href="YOUR-AMAZON-LINK-HERE" class="product-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item">
+        <div class="item-name">Note Stand + Color Notes</div>
+        <div class="item-why">A visible note in your line of sight does the remembering for you. Out of sight = out of mind.</div>
+        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
       </div>
 
-      <div class="product-card">
-        <div class="product-name">Whiteboard / Visual Reminder Board</div>
-        <div class="product-why"><strong>Keeps the day visible.</strong> For ADHD brains, out of sight is out of mind — literally. A board in your field of vision means tasks exist without requiring working memory to hold them.</div>
-        <div class="product-tags">
-          <span class="product-tag">External memory</span>
-          <span class="product-tag">Task visibility</span>
-        </div>
-        <a href="YOUR-AMAZON-LINK-HERE" class="product-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item">
+        <div class="item-name">Whiteboard</div>
+        <div class="item-why">Keeps your day visible without using working memory. Tasks exist on the board, not in your head.</div>
+        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
       </div>
 
     </div>
   </div>
 
-  <!-- Light & Scent -->
   <div class="section" id="light">
-    <div class="section-header">
-      <div class="section-title">Light & Scent</div>
-      <div class="section-subtitle">Alerting or calming — depending on what you need</div>
-    </div>
-    <div class="product-grid">
+    <span class="section-label">💡 Light & Scent</span>
+    <div class="grid">
 
-      <div class="product-card">
-        <div class="product-name">Full-Spectrum Desk Light</div>
-        <div class="product-why"><strong>Increases cortical arousal</strong> through light input. For low-registration brains that need more activation to get started, bright full-spectrum light is one of the most effective environmental levers.</div>
-        <div class="product-tags">
-          <span class="product-tag">Alerting</span>
-          <span class="product-tag">Morning</span>
-        </div>
-        <a href="YOUR-AMAZON-LINK-HERE" class="product-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item">
+        <div class="item-name">Full-Spectrum Desk Light</div>
+        <div class="item-why">Increases alertness through light. Useful if you're low-energy and need a push to get started.</div>
+        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
       </div>
 
-      <div class="product-card">
-        <div class="product-name">Small Diffuser (Single Scent)</div>
-        <div class="product-why"><strong>Olfactory environment control.</strong> A consistent scent can signal "this is work space" to your nervous system. Peppermint and citrus for alerting; unscented if you're sensitivity type.</div>
-        <div class="product-tags">
-          <span class="product-tag">Olfactory</span>
-          <span class="product-tag">Space anchor</span>
-        </div>
-        <a href="YOUR-AMAZON-LINK-HERE" class="product-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item">
+        <div class="item-name">Small Diffuser</div>
+        <div class="item-why">One consistent scent = this is work space. Peppermint for alerting. Unscented if you're sensitive.</div>
+        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
       </div>
 
     </div>
   </div>
 
-  <!-- Body & Timing -->
   <div class="section" id="body">
-    <div class="section-header">
-      <div class="section-title">Body & Timing</div>
-      <div class="section-subtitle">Physical comfort and time awareness</div>
-    </div>
-    <div class="product-grid">
+    <span class="section-label">🦶 Body & Timing</span>
+    <div class="grid">
 
-      <div class="product-card">
-        <div class="product-name">Lap Blanket</div>
-        <div class="product-why"><strong>Temperature regulation + light pressure.</strong> A lap blanket addresses both tactile input and thermal comfort simultaneously. Cold extremities activate sympathetic arousal — keeping warm helps.</div>
-        <div class="product-tags">
-          <span class="product-tag">Temperature</span>
-          <span class="product-tag">Light pressure</span>
-        </div>
-        <a href="YOUR-AMAZON-LINK-HERE" class="product-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item">
+        <div class="item-name">Lap Blanket</div>
+        <div class="item-why">Temperature + light pressure. Cold legs activate the nervous system. Warmth helps you stay settled.</div>
+        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
       </div>
 
-      <div class="product-card">
-        <div class="product-name">Foot Rest / Support</div>
-        <div class="product-why"><strong>Proprioceptive grounding.</strong> Feet dangling without support reduce the sense of physical security. A foot rest provides grounding input — subtle but real effect on sustained focus.</div>
-        <div class="product-tags">
-          <span class="product-tag">Proprioception</span>
-          <span class="product-tag">Posture</span>
-        </div>
-        <a href="YOUR-AMAZON-LINK-HERE" class="product-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item">
+        <div class="item-name">Foot Rest</div>
+        <div class="item-why">Feet dangling = less sense of physical security. A foot rest provides grounding you don't have to think about.</div>
+        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
       </div>
 
-      <div class="product-card">
-        <span class="ot-pick">OT Pick</span>
-        <div class="product-name">Countdown Timer (Visual)</div>
-        <div class="product-why"><strong>Externalizes time.</strong> Addresses time blindness by making duration visible. Works for both getting started (time-boxing) and stopping (hyperfocus interruption). One of the highest-value tools on this list.</div>
-        <div class="product-tags">
-          <span class="product-tag">Time blindness</span>
-          <span class="product-tag">Hyperfocus</span>
-          <span class="product-tag">High impact</span>
-        </div>
-        <a href="YOUR-AMAZON-LINK-HERE" class="product-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item">
+        <span class="ot">OT Pick</span>
+        <div class="item-name">Visual Countdown Timer</div>
+        <div class="item-why">Makes time visible. Helps with starting, stopping hyperfocus, and knowing how long things actually take.</div>
+        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
       </div>
 
-      <div class="product-card">
-        <div class="product-name">Compression Socks</div>
-        <div class="product-why"><strong>Consistent tactile input</strong> along the lower leg. For sensory-seeking types, the steady proprioceptive feedback from compression reduces restlessness without requiring movement.</div>
-        <div class="product-tags">
-          <span class="product-tag">Tactile</span>
-          <span class="product-tag">Proprioception</span>
-          <span class="product-tag">Discreet</span>
-        </div>
-        <a href="YOUR-AMAZON-LINK-HERE" class="product-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item">
+        <div class="item-name">Compression Socks</div>
+        <div class="item-why">Steady input along the leg. Reduces restlessness without requiring movement.</div>
+        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
       </div>
 
     </div>
@@ -686,20 +413,18 @@
 
 </div>
 
-<div class="sfi-banner">
-  <div class="sfi-inner">
+<div class="banner">
+  <div class="banner-inner">
     <div>
-      <h3>Not sure what your pattern is?</h3>
-      <p>Take the ADL Sensory Friction Index — a free self-assessment that tells you which domains are costing your nervous system the most.</p>
+      <strong>Not sure where to start?</strong>
+      <p>Take the free Sensory Friction Index — tells you which domain is costing your nervous system the most.</p>
     </div>
-    <a href="https://theadllab.github.io" class="sfi-btn">Take the free assessment →</a>
+    <a href="https://theadllab.github.io" class="banner-btn">Take the assessment →</a>
   </div>
 </div>
 
 <footer>
-  <p><strong>ADL LAB</strong> — Already Done For You Store</p>
-  <p style="margin-top:4px;">Content is educational only — not clinical advice or diagnosis.<br>
-  As an Amazon Associate, ADL Lab earns from qualifying purchases.</p>
+  <p>Curated through an OT lens — not paid placement. Amazon affiliate links inside.<br>Educational content only — not clinical advice.</p>
   <div class="footer-links">
     <a href="https://adllab.substack.com" target="_blank" rel="noopener">Substack</a>
     <a href="https://pinterest.com/adllab" target="_blank" rel="noopener">Pinterest</a>
