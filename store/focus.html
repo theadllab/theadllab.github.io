@@ -10,16 +10,17 @@
   :root {
     --navy: #1A2640;
     --gold: #C4973A;
-    --cream: #F5F1EA;
+    --cream: #EEE9DF;
+    --bg: #F0EDE6;
     --warm-white: #FDFCF9;
     --muted: #7A7A7A;
-    --border: #E2DDD5;
+    --border: #DDD8CE;
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--warm-white);
+    background: var(--bg);
     color: var(--navy);
     font-family: 'Instrument Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -178,8 +179,9 @@
   }
   .jump-nav a:hover { background: var(--navy); color: white; border-color: var(--navy); }
 
-  .store { max-width: 1040px; margin: 0 auto; padding: 16px 20px 72px; }
-  .section { margin-bottom: 48px; }
+  .store { max-width: 1040px; margin: 0 auto; padding: 16px 20px 72px; background: var(--bg); }
+  .section { margin-bottom: 4px; padding: 28px 0; }
+  .section:nth-child(odd) { background: var(--warm-white); margin: 0 -20px; padding: 28px 20px; border-radius: 0; }
 
   .section-label {
     font-family: 'Syne', sans-serif;
@@ -197,6 +199,7 @@
 
   .item {
     background: white;
+    box-shadow: 0 2px 8px rgba(26,38,64,0.06);
     border: 1px solid var(--border);
     border-radius: 14px;
     padding: 20px 20px 16px;
