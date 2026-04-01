@@ -4,323 +4,105 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Recovery & Rest — ADL Lab</title>
-<meta name="description" content="Sleep and wind-down tools for ADHD and sensory-sensitive brains.">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1A2640;
-    --gold: #C4973A;
-    --cream: #EEE9DF;
-    --bg: #F0EDE6;
-    --warm-white: #FDFCF9;
-    --muted: #7A7A7A;
-    --border: #DDD8CE;
+    --navy: #1A2640; --gold: #C4973A; --bg: #F0EDE6;
+    --warm-white: #FDFCF9; --muted: #7A7A7A; --border: #DDD8CE;
   }
-
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--navy); font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
 
-  body {
-    background: var(--bg);
-    color: var(--navy);
-    font-family: 'Instrument Sans', sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* HEADER */
-  header {
-    padding: 16px 24px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    background: var(--warm-white);
-    z-index: 100;
-  }
-
-  .logo {
-    font-family: 'Syne', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--navy);
-    text-decoration: none;
-  }
+  header { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: var(--warm-white); z-index: 100; }
+  .logo { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); text-decoration: none; }
   .logo .dot { color: var(--gold); margin: 0 3px; }
-
-  .back {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.15s;
-  }
+  .back { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
   .back:hover { color: var(--navy); }
 
   /* HERO */
-  .page-hero {
-    height: 200px;
-    position: relative;
-    overflow: hidden;
-    background:
-      radial-gradient(ellipse 60% 55% at 75% 30%, rgba(196,151,58,0.18) 0%, transparent 65%),
-      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(100,80,160,0.25) 0%, transparent 60%),
-      linear-gradient(160deg, #1A2035 0%, #232B4A 40%, #2A2050 70%, #1C1830 100%);
-  }
-  .page-hero::before {
-    content: '';
-    position: absolute;
-    top: 28px; right: 60px;
-    width: 60px; height: 60px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 40% 40%, #F0D98A, #C4973A);
-    box-shadow: 0 0 36px 12px rgba(196,151,58,0.2);
-  }
-  .hero-waves {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 60px;
-  }
+  .page-hero { height: 190px; position: relative; overflow: hidden; background: radial-gradient(ellipse 60% 55% at 75% 30%, rgba(196,151,58,0.18) 0%, transparent 65%), radial-gradient(ellipse 80% 60% at 20% 80%, rgba(100,80,160,0.25) 0%, transparent 60%), linear-gradient(160deg, #1A2035 0%, #232B4A 40%, #2A2050 70%, #1C1830 100%); }
+  .page-hero::before { content: ''; position: absolute; top: 28px; right: 60px; width: 56px; height: 56px; border-radius: 50%; background: radial-gradient(circle at 40% 40%, #F0D98A, #C4973A); box-shadow: 0 0 32px 12px rgba(196,151,58,0.2); }
+  .hero-waves { position: absolute; bottom: 0; left: 0; right: 0; height: 50px; }
   .hero-waves svg { width: 100%; height: 100%; }
-
-  .hero-text {
-    position: absolute;
-    bottom: 28px; left: 28px;
-  }
-  .hero-eyebrow {
-    font-family: 'Syne', sans-serif;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(232,201,122,0.6);
-    margin-bottom: 6px;
-  }
-  .hero-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(24px, 5vw, 34px);
-    font-weight: 700;
-    color: white;
-    line-height: 1.1;
-  }
+  .hero-text { position: absolute; bottom: 24px; left: 28px; }
+  .hero-eyebrow { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(232,201,122,0.6); margin-bottom: 5px; }
+  .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(22px, 5vw, 32px); font-weight: 700; color: white; line-height: 1.1; }
 
   /* JUMP NAV */
-  .jump-nav {
-    max-width: 1040px;
-    margin: 0 auto;
-    padding: 24px 20px 8px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
+  .jump-nav { max-width: 900px; margin: 0 auto; padding: 20px 20px 4px; display: flex; flex-wrap: wrap; gap: 7px; }
+  .jump-nav a { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); background: var(--warm-white); border: 1px solid var(--border); padding: 9px 14px; border-radius: 100px; text-decoration: none; transition: all 0.16s ease; min-height: 40px; display: flex; align-items: center; white-space: nowrap; box-shadow: 0 1px 4px rgba(26,38,64,0.05); }
+  .jump-nav a:hover { background: var(--navy); color: white; border-color: var(--navy); }
 
-  .jump-nav a {
-    font-family: 'Syne', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--navy);
-    background: var(--cream);
-    border: 1px solid var(--border);
-    padding: 10px 16px;
-    border-radius: 100px;
-    text-decoration: none;
-    transition: all 0.18s ease;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-  }
+  /* STORE */
+  .store { max-width: 900px; margin: 0 auto; padding: 8px 20px 72px; }
+  .section { margin-bottom: 36px; }
+  .section-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; padding-top: 20px; display: block; }
 
-  .jump-nav a:hover {
-    background: var(--navy);
-    color: white;
-    border-color: var(--navy);
-  }
+  /* ACCORDION ITEMS */
+  .item { background: var(--warm-white); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 8px; box-shadow: 0 2px 6px rgba(26,38,64,0.06); overflow: hidden; transition: box-shadow 0.18s ease; }
+  .item:hover { box-shadow: 0 4px 16px rgba(26,38,64,0.09); }
 
-  /* SECTIONS */
-  .store {
-    max-width: 1040px;
-    margin: 0 auto;
-    padding: 16px 20px 72px;
-  }
-
-  .section { margin-bottom: 4px; padding: 28px 0; }
-  .section:nth-child(odd) { background: var(--warm-white); margin: 0 -20px; padding: 28px 20px; border-radius: 0; }
-
-  .section-label {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 14px;
-    padding-top: 24px;
-    display: block;
-  }
-
-  /* PRODUCT GRID */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  .item-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 18px; cursor: pointer; user-select: none;
     gap: 12px;
   }
 
-  .item {
-    background: white;
-    box-shadow: 0 2px 8px rgba(26,38,64,0.06);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px 20px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    transition: all 0.18s ease;
-    position: relative;
+  .item-header-left { display: flex; align-items: center; gap: 10px; flex: 1; }
+
+  .item-name { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); }
+
+  .ot { font-family: 'Syne', sans-serif; font-size: 8px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); background: rgba(196,151,58,0.08); border: 1px solid rgba(196,151,58,0.22); padding: 2px 7px; border-radius: 100px; white-space: nowrap; }
+
+  .item-chevron { font-size: 12px; color: var(--muted); transition: transform 0.22s ease; flex-shrink: 0; }
+  .item.open .item-chevron { transform: rotate(180deg); }
+
+  /* ACCORDION BODY */
+  .item-body { max-height: 0; overflow: hidden; transition: max-height 0.28s ease; }
+  .item.open .item-body { max-height: 400px; }
+
+  .item-inner { padding: 0 18px 16px; display: flex; flex-direction: column; gap: 12px; }
+
+  /* bullets */
+  .bullets { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .bullets li { font-size: 12px; color: var(--muted); display: flex; gap: 8px; align-items: flex-start; line-height: 1.4; }
+  .bullets li::before { content: '●'; color: var(--gold); font-size: 6px; margin-top: 5px; flex-shrink: 0; }
+
+  /* options */
+  .options { display: flex; flex-direction: column; gap: 6px; padding-top: 10px; border-top: 1px solid var(--border); }
+  .opt {
+    display: flex; align-items: center; justify-content: space-between;
+    text-decoration: none; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 14px; transition: all 0.15s ease;
   }
-
-  .item:hover {
-    border-color: var(--navy);
-    box-shadow: 0 6px 24px rgba(26,38,64,0.07);
-    transform: translateY(-2px);
-  }
-
-  .ot {
-    position: absolute;
-    top: 14px; right: 14px;
-    font-family: 'Syne', sans-serif;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    background: rgba(196,151,58,0.08);
-    border: 1px solid rgba(196,151,58,0.22);
-    padding: 3px 8px;
-    border-radius: 100px;
-  }
-
-  .item-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--navy);
-    line-height: 1.2;
-    padding-right: 48px;
-  }
-
-  .item-why {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.65;
-  }
-
-  .item-why strong { color: var(--navy); font-weight: 500; }
-
-  .item-link {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--navy);
-    text-decoration: none;
-    border-bottom: 2px solid var(--gold);
-    padding-bottom: 1px;
-    width: fit-content;
-    margin-top: 4px;
-    transition: opacity 0.15s;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .item-link:hover { opacity: 0.7; }
+  .opt:hover { background: var(--navy); border-color: var(--navy); }
+  .opt:hover .opt-name, .opt:hover .opt-arrow { color: white; }
+  .opt:hover .opt-tag { color: rgba(255,255,255,0.6); }
+  .opt-name { font-size: 13px; font-weight: 500; color: var(--navy); }
+  .opt-tag { font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .opt-arrow { font-size: 14px; color: var(--gold); flex-shrink: 0; margin-left: 10px; }
 
   /* BANNER */
-  .banner {
-    max-width: 1040px;
-    margin: 0 auto 56px;
-    padding: 0 20px;
-  }
-
-  .banner-inner {
-    background: var(--navy);
-    border-radius: 14px;
-    padding: 28px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .banner-inner strong {
-    display: block;
-    font-family: 'Syne', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 4px;
-  }
-
-  .banner-inner p { font-size: 13px; color: rgba(255,255,255,0.6); max-width: 360px; line-height: 1.65; }
-
-  .banner-btn {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 13px 20px;
-    border: 1.5px solid var(--gold);
-    color: var(--gold);
-    background: transparent;
-    border-radius: 8px;
-    text-decoration: none;
-    flex-shrink: 0;
-    transition: all 0.18s ease;
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-  }
-
+  .banner { max-width: 900px; margin: 0 auto 56px; padding: 0 20px; }
+  .banner-inner { background: var(--navy); border-radius: 14px; padding: 26px 30px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .banner-inner strong { display: block; font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: white; margin-bottom: 3px; }
+  .banner-inner p { font-size: 13px; color: rgba(255,255,255,0.6); max-width: 340px; line-height: 1.6; }
+  .banner-btn { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 20px; border: 1.5px solid var(--gold); color: var(--gold); background: transparent; border-radius: 8px; text-decoration: none; flex-shrink: 0; transition: all 0.16s ease; min-height: 46px; display: flex; align-items: center; white-space: nowrap; }
   .banner-btn:hover { background: var(--gold); color: var(--navy); }
 
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 24px;
-    text-align: center;
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 2;
-  }
-
+  footer { border-top: 1px solid var(--border); padding: 22px; text-align: center; font-size: 11px; color: var(--muted); line-height: 2; }
   footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); }
   .footer-links { margin-top: 8px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
 
-  /* MOBILE */
   @media (max-width: 640px) {
     header { padding: 14px 18px; }
-    .page-hero { height: 170px; }
-    .hero-text { left: 20px; bottom: 22px; }
-    .jump-nav { padding: 20px 16px 6px; gap: 7px; }
-    .jump-nav a { font-size: 11px; padding: 9px 13px; min-height: 40px; }
-    .store { padding: 12px 16px 56px; }
-    .grid { grid-template-columns: 1fr; gap: 10px; }
-    .banner { padding: 0 16px; margin-bottom: 44px; }
-    .banner-inner { padding: 22px 20px; flex-direction: column; align-items: flex-start; }
+    .page-hero { height: 165px; }
+    .hero-text { left: 20px; bottom: 20px; }
+    .jump-nav { padding: 16px 16px 4px; }
+    .store { padding: 8px 16px 56px; }
+    .banner { padding: 0 16px; }
+    .banner-inner { padding: 20px 18px; flex-direction: column; align-items: flex-start; }
     .banner-btn { width: 100%; justify-content: center; }
-    footer { padding: 20px 18px; }
   }
 </style>
 </head>
@@ -333,9 +115,8 @@
 
 <div class="page-hero">
   <div class="hero-waves">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,30 C360,8 720,55 1080,30 C1260,18 1380,42 1440,30 L1440,60 L0,60 Z" fill="#FDFCF9" opacity="0.07"/>
-      <path d="M0,45 C300,25 660,62 1000,44 C1200,32 1360,54 1440,44 L1440,60 L0,60 Z" fill="#FDFCF9" opacity="1"/>
+    <svg viewBox="0 0 1440 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C300,20 700,50 1100,35 C1280,26 1380,42 1440,38 L1440,50 L0,50 Z" fill="#F0EDE6"/>
     </svg>
   </div>
   <div class="hero-text">
@@ -344,7 +125,6 @@
   </div>
 </div>
 
-<!-- JUMP NAV -->
 <div class="jump-nav">
   <a href="#light">💡 Light</a>
   <a href="#sound">🔇 Sound</a>
@@ -356,94 +136,249 @@
 
   <div class="section" id="light">
     <span class="section-label">💡 Light</span>
-    <div class="grid">
 
-      <div class="item">
-        <span class="ot">OT Pick</span>
-        <div class="item-name">Contoured Sleep Mask</div>
-        <div class="item-why">Blocks light without pressing on your eyes. Good if any contact on your face wakes you up.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">Sleep Mask</span>
+          <span class="ot">OT Pick</span>
+        </div>
+        <span class="item-chevron">▾</span>
       </div>
-
-      <div class="item">
-        <span class="ot">OT Pick</span>
-        <div class="item-name">Warm Eye Mask (Heated)</div>
-        <div class="item-why">Gentle heat + light pressure around the eyes. Signals the nervous system it's safe to slow down.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item-body">
+        <div class="item-inner">
+          <ul class="bullets">
+            <li>Even dim light suppresses melatonin</li>
+            <li>Contoured = no eye pressure for tactile-sensitive brains</li>
+            <li>Heated option activates parasympathetic system</li>
+          </ul>
+          <div class="options">
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Contoured Sleep Mask</div><div class="opt-tag">No eye contact · full blackout</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Heated Eye Mask</div><div class="opt-tag">Warmth + gentle pressure</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
-
-      <div class="item">
-        <div class="item-name">Blue Light Blocking Glasses</div>
-        <div class="item-why">Wear 1–2 hours before bed. Reduces the screen signal that tells your brain it's still daytime.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
-      </div>
-
-      <div class="item">
-        <div class="item-name">Warm Dimmable Lamp</div>
-        <div class="item-why">Switch from overhead light to a warm, low lamp at night. Overhead light keeps your system activated.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
-      </div>
-
-      <div class="item">
-        <div class="item-name">Blackout Curtains</div>
-        <div class="item-why">Works all night without touching your face. Different layer from a sleep mask — both can help.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
-      </div>
-
     </div>
+
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">Blue Light Control</span>
+        </div>
+        <span class="item-chevron">▾</span>
+      </div>
+      <div class="item-body">
+        <div class="item-inner">
+          <ul class="bullets">
+            <li>Blue light tells your brain it's daytime — regardless of the clock</li>
+            <li>Cortisol up, melatonin down — delays sleep onset</li>
+            <li>Glasses = habit-based · curtains = always-on</li>
+          </ul>
+          <div class="options">
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Blue Light Blocking Glasses</div><div class="opt-tag">Wear 1–2 hrs before bed</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Blackout Curtains</div><div class="opt-tag">Works all night · passive</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">Warm Dimmable Lamp</span>
+        </div>
+        <span class="item-chevron">▾</span>
+      </div>
+      <div class="item-body">
+        <div class="item-inner">
+          <ul class="bullets">
+            <li>Bright overhead light = "daytime" signal to your nervous system</li>
+            <li>Warm low light naturally raises melatonin</li>
+            <li>Turning it on becomes a wind-down ritual cue</li>
+          </ul>
+          <div class="options">
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Warm Dimmable Desk Lamp</div><div class="opt-tag">Simple · many cute options</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Sunrise / Sunset Alarm Lamp</div><div class="opt-tag">Auto dimming · wake + sleep</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="section" id="sound">
     <span class="section-label">🔇 Sound</span>
-    <div class="grid">
 
-      <div class="item">
-        <span class="ot">OT Pick</span>
-        <div class="item-name">White Noise Machine</div>
-        <div class="item-why">Covers unpredictable sounds with one steady layer. Your brain stops scanning for threats. Also good for tinnitus.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">White Noise Machine</span>
+          <span class="ot">OT Pick</span>
+        </div>
+        <span class="item-chevron">▾</span>
       </div>
-
+      <div class="item-body">
+        <div class="item-inner">
+          <ul class="bullets">
+            <li>Unpredictable sounds keep your brain in threat-scanning mode</li>
+            <li>Steady auditory layer = brain stops scanning and settles</li>
+            <li>Especially effective for tinnitus — masks the ringing</li>
+          </ul>
+          <div class="options">
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">White Noise Machine (Simple)</div><div class="opt-tag">One button · bedroom use</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">White Noise Machine (Multi-sound)</div><div class="opt-tag">Multiple sounds · timer</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
+
   </div>
 
   <div class="section" id="pressure">
     <span class="section-label">🫧 Pressure & Touch</span>
-    <div class="grid">
 
-      <div class="item">
-        <div class="item-name">Weighted Pillow or Cushion</div>
-        <div class="item-why">Small weight on the chest or lap. You don't need a full blanket — localized pressure works.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">Weighted Pressure</span>
+        </div>
+        <span class="item-chevron">▾</span>
       </div>
-
-      <div class="item">
-        <div class="item-name">Cozy Sleep Socks</div>
-        <div class="item-why">Warm feet = one of the body's earliest sleep signals. Simple and underrated.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item-body">
+        <div class="item-inner">
+          <ul class="bullets">
+            <li>Deep pressure activates proprioceptors → nervous system downregulates</li>
+            <li>Localized weight on chest or lap = same effect as full blanket</li>
+            <li>One of the most reliable calming inputs used in OT</li>
+          </ul>
+          <div class="options">
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Weighted Blanket</div><div class="opt-tag">Full body · ~10% of body weight</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Weighted Pillow / Cushion</div><div class="opt-tag">Localized · lighter commitment</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
-
     </div>
+
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">Sleep Socks</span>
+        </div>
+        <span class="item-chevron">▾</span>
+      </div>
+      <div class="item-body">
+        <div class="item-inner">
+          <ul class="bullets">
+            <li>Warm feet trigger vasodilation — one of the body's first sleep-onset signals</li>
+            <li>Foot warmth → core body temp drops → sleep condition met</li>
+            <li>Simple, passive, evidence-backed</li>
+          </ul>
+          <div class="options">
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Fluffy Sleep Socks</div><div class="opt-tag">Soft · no compression</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Compression Sleep Socks</div><div class="opt-tag">Warmth + circulation</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="section" id="scent">
     <span class="section-label">🌿 Scent & Supplements</span>
-    <div class="grid">
 
-      <div class="item">
-        <div class="item-name">Pillow Spray (Organic)</div>
-        <div class="item-why">Use one scent only at bedtime. Over time it becomes a sleep cue. Lavender and cedar work well.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">Pillow Spray</span>
+        </div>
+        <span class="item-chevron">▾</span>
       </div>
-
-      <div class="item">
-        <span class="ot">OT Pick</span>
-        <div class="item-name">Magnesium Supplement</div>
-        <div class="item-why">Supports nervous system downregulation. Magnesium glycinate or topical. I actually use this one.</div>
-        <a href="YOUR-AMAZON-LINK" class="item-link" target="_blank" rel="noopener">View on Amazon →</a>
+      <div class="item-body">
+        <div class="item-inner">
+          <ul class="bullets">
+            <li>Smell → amygdala directly — fastest arousal regulation route</li>
+            <li>Same scent at bedtime only = conditioned sleep cue over time</li>
+            <li>Lavender and cedarwood are most research-backed</li>
+          </ul>
+          <div class="options">
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Lavender Pillow Spray</div><div class="opt-tag">Classic · most studied</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Cedarwood Pillow Spray</div><div class="opt-tag">Woody · if you dislike floral</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
-
     </div>
+
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">Magnesium Supplement</span>
+          <span class="ot">OT Pick</span>
+        </div>
+        <span class="item-chevron">▾</span>
+      </div>
+      <div class="item-body">
+        <div class="item-inner">
+          <ul class="bullets">
+            <li>Supports GABA — brain's primary calming neurotransmitter</li>
+            <li>Magnesium deficiency is common in ADHD — directly linked to poor sleep</li>
+            <li>I take this myself. Within OT recommendation range.</li>
+          </ul>
+          <div class="options">
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Magnesium Glycinate (capsule)</div><div class="opt-tag">High absorption · gentle on stomach</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
+              <div><div class="opt-name">Magnesium Spray (topical)</div><div class="opt-tag">Apply to skin · skip the pills</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </div>
@@ -452,7 +387,7 @@
   <div class="banner-inner">
     <div>
       <strong>Not sure where to start?</strong>
-      <p>Take the free Sensory Friction Index — tells you which domain is costing your nervous system the most.</p>
+      <p>Take the free Sensory Friction Index — tells you which domain costs your nervous system the most.</p>
     </div>
     <a href="https://theadllab.github.io" class="banner-btn">Take the assessment →</a>
   </div>
@@ -466,6 +401,17 @@
     <a href="https://instagram.com/adllab" target="_blank" rel="noopener">Instagram</a>
   </div>
 </footer>
+
+<script>
+  function toggle(header) {
+    const item = header.parentElement;
+    const isOpen = item.classList.contains('open');
+    // close all
+    document.querySelectorAll('.item.open').forEach(i => i.classList.remove('open'));
+    // open clicked if it was closed
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
 
 </body>
 </html>
