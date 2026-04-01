@@ -1,1 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Already Done For You — ADL Lab Store</title>
+<meta name="description" content="Curated sensory tools for ADHD brains. The research is done. Just choose.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1A2640;
+    --gold: #C4973A;
+    --gold-light: #E8C97A;
+    --cream: #F5F1EA;
+    --warm-white: #FDFCF9;
+    --muted: #6B6B6B;
+    --border: #E2DDD5;
+    --card-bg: #FFFFFF;
+  }
 
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--navy);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: var(--warm-white);
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--navy);
+    text-decoration: none;
+  }
+  .logo .dot { color: var(--gold); margin: 0 4px; }
+
+  .credential {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 52px 24px 48px;
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 7vw, 44px);
+    font-weight: 700;
+    line-height: 1.12;
+    color: var(--navy);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero h1 .accent { color: var(--gold); font-weight: 400; }
+
+  .hero-tagline {
+    font-size: 16px;
+    color: var(--navy);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 420px;
+    margin: 0 auto 10px;
+  }
+
+  .divider {
+    width: 32px;
+    height: 2px;
+    background: var(--gold);
+    margin: 28px auto;
+    opacity: 0.5;
+    border-radius: 2px;
+  }
+
+  .disclaimer {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 14px 16px;
+    background: var(--cream);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  /* ── CATEGORY GRID ── */
+  .categories {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 20px 72px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .cat-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--card-bg);
+    transition: all 0.22s ease;
+    overflow: hidden;
+  }
+
+  .cat-card:hover {
+    border-color: var(--navy);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(26,38,64,0.1);
+  }
+
+  .cat-card:active { transform: translateY(-2px); }
+
+  /* ── CARD VISUAL ── */
+  .cat-visual {
+    width: 100%;
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  /* Recovery & Rest — night, moon, soft waves */
+  .cat-visual.rest {
+    background:
+      radial-gradient(ellipse 60% 55% at 75% 30%, rgba(196,151,58,0.18) 0%, transparent 65%),
+      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(100,80,160,0.25) 0%, transparent 60%),
+      linear-gradient(160deg, #1A2035 0%, #232B4A 40%, #2A2050 70%, #1C1830 100%);
+  }
+
+  .cat-visual.rest::before {
+    content: '';
+    position: absolute;
+    top: 22px; right: 36px;
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, #F0D98A, #C4973A);
+    box-shadow: 0 0 32px 10px rgba(196,151,58,0.22), 0 0 80px 20px rgba(196,151,58,0.08);
+  }
+
+  .cat-visual.rest::after {
+    content: '· · ·  ·  · ·   · · ·';
+    position: absolute;
+    top: 18px; left: 20px;
+    font-size: 10px;
+    letter-spacing: 6px;
+    color: rgba(255,255,255,0.3);
+    line-height: 2.4;
+    word-spacing: 10px;
+  }
+
+  .rest-waves {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 56px;
+  }
+
+  .rest-waves svg { width: 100%; height: 100%; }
+
+  .rest-label {
+    position: absolute;
+    bottom: 20px; left: 22px;
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* Workspace Control — warm desk light, clean lines */
+  .cat-visual.workspace {
+    background:
+      radial-gradient(ellipse 70% 60% at 30% 65%, rgba(255,240,200,0.4) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 80% 20%, rgba(196,151,58,0.1) 0%, transparent 55%),
+      linear-gradient(135deg, #F7F3EC 0%, #EDE5D4 45%, #E0D4BF 100%);
+  }
+
+  /* lamp stem */
+  .cat-visual.workspace::before {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 52px;
+    width: 3px; height: 90px;
+    background: linear-gradient(to top, #A89070, #C4973A);
+    border-radius: 2px;
+  }
+
+  /* lamp head */
+  .cat-visual.workspace::after {
+    content: '';
+    position: absolute;
+    bottom: 88px; right: 30px;
+    width: 48px; height: 24px;
+    background: linear-gradient(135deg, #C4973A, #E8C97A);
+    border-radius: 24px 24px 4px 4px;
+    transform: rotate(-18deg);
+    box-shadow: 0 14px 36px rgba(196,151,58,0.28);
+  }
+
+  .workspace-lines {
+    position: absolute;
+    top: 28px; left: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .workspace-lines span {
+    display: block;
+    height: 2px;
+    background: rgba(26,38,64,0.12);
+    border-radius: 2px;
+  }
+
+  .workspace-lines span:nth-child(1) { width: 64px; }
+  .workspace-lines span:nth-child(2) { width: 46px; }
+  .workspace-lines span:nth-child(3) { width: 56px; }
+  .workspace-lines span:nth-child(4) { width: 36px; }
+
+  .workspace-label {
+    position: absolute;
+    bottom: 20px; left: 22px;
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(26,38,64,0.3);
+  }
+
+  /* Focus & Stimulation — natural, earthy, textured */
+  .cat-visual.focus {
+    background:
+      radial-gradient(ellipse 70% 60% at 15% 85%, rgba(101,120,80,0.35) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 50% at 85% 15%, rgba(196,151,58,0.2) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 45% at 55% 55%, rgba(140,100,60,0.2) 0%, transparent 50%),
+      linear-gradient(155deg, #2C3220 0%, #3A3E28 30%, #4A3C28 60%, #3C3020 100%);
+  }
+
+  /* pebble shapes */
+  .focus-pebble {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.22;
+  }
+
+  .focus-pebble:nth-child(1) {
+    width: 90px; height: 70px;
+    background: radial-gradient(circle at 35% 35%, #D4B870, #8A7040);
+    top: 30px; left: 30px;
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 55%;
+    opacity: 0.28;
+  }
+
+  .focus-pebble:nth-child(2) {
+    width: 60px; height: 50px;
+    background: radial-gradient(circle at 40% 35%, #C8A860, #7A6030);
+    top: 55px; left: 95px;
+    border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%;
+    opacity: 0.2;
+  }
+
+  .focus-pebble:nth-child(3) {
+    width: 110px; height: 80px;
+    background: radial-gradient(circle at 30% 40%, #B89850, #6A5028);
+    bottom: 20px; right: 30px;
+    border-radius: 55% 45% 60% 40% / 45% 55% 40% 60%;
+    opacity: 0.25;
+  }
+
+  /* moss / leaf lines */
+  .focus-lines {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    overflow: hidden;
+  }
+
+  .focus-lines svg {
+    width: 100%; height: 100%;
+    opacity: 0.12;
+  }
+
+  /* small plant stem */
+  .focus-plant {
+    position: absolute;
+    bottom: 0; right: 70px;
+    width: 2px; height: 55px;
+    background: linear-gradient(to top, rgba(100,130,70,0.6), rgba(100,130,70,0));
+    border-radius: 2px;
+  }
+
+  .focus-plant::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: -14px;
+    width: 22px; height: 14px;
+    background: rgba(100,130,70,0.4);
+    border-radius: 50% 80% 50% 20%;
+    transform: rotate(-30deg);
+  }
+
+  .focus-plant::after {
+    content: '';
+    position: absolute;
+    top: 22px; left: 2px;
+    width: 20px; height: 12px;
+    background: rgba(100,130,70,0.35);
+    border-radius: 80% 20% 80% 20%;
+    transform: rotate(25deg);
+  }
+
+  /* water ripple */
+  .focus-ripple {
+    position: absolute;
+    bottom: 10px; left: 30px;
+    width: 70px; height: 20px;
+  }
+
+  .focus-ripple span {
+    display: block;
+    height: 1px;
+    background: rgba(196,151,58,0.25);
+    border-radius: 50%;
+    margin-bottom: 5px;
+  }
+
+  .focus-ripple span:nth-child(1) { width: 70px; }
+  .focus-ripple span:nth-child(2) { width: 50px; margin-left: 8px; opacity: 0.7; }
+  .focus-ripple span:nth-child(3) { width: 32px; margin-left: 18px; opacity: 0.45; }
+
+  .focus-label {
+    position: absolute;
+    bottom: 20px; right: 22px;
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ── CARD BODY ── */
+  .cat-body {
+    padding: 26px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .cat-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .cat-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .cat-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+
+  .cat-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 22px;
+  }
+
+  .cat-tag {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--navy);
+    background: var(--cream);
+    border: 1px solid var(--border);
+    padding: 5px 11px;
+    border-radius: 100px;
+  }
+
+  .cat-cta {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--navy);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding-bottom: 2px;
+    border-bottom: 1.5px solid var(--gold);
+    width: fit-content;
+    transition: gap 0.2s ease;
+  }
+
+  .cat-card:hover .cat-cta { gap: 10px; }
+
+  /* ── SFI BANNER ── */
+  .sfi-banner {
+    max-width: 1040px;
+    margin: 0 auto 64px;
+    padding: 0 20px;
+  }
+
+  .sfi-inner {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .sfi-text h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 8px;
+  }
+
+  .sfi-text p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    max-width: 400px;
+    line-height: 1.7;
+  }
+
+  .sfi-btn {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 15px 26px;
+    border: 1.5px solid var(--gold);
+    color: var(--gold);
+    background: transparent;
+    border-radius: 8px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: all 0.18s ease;
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+  }
+
+  .sfi-btn:hover { background: var(--gold); color: var(--navy); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 2;
+  }
+
+  footer strong {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.08em;
+  }
+
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition: color 0.15s;
+  }
+
+  footer a:hover { color: var(--navy); }
+
+  .footer-links {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero { animation: fadeUp 0.5s ease both; }
+  .cat-card:nth-child(1) { animation: fadeUp 0.5s 0.1s ease both; }
+  .cat-card:nth-child(2) { animation: fadeUp 0.5s 0.18s ease both; }
+  .cat-card:nth-child(3) { animation: fadeUp 0.5s 0.26s ease both; }
+  .sfi-banner { animation: fadeUp 0.5s 0.32s ease both; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 640px) {
+    header { padding: 16px 20px; }
+    .credential { display: none; }
+
+    .hero { padding: 40px 20px 40px; text-align: left; }
+    .eyebrow { text-align: left; }
+    .hero-sub { margin: 0 0 10px; max-width: 100%; }
+    .divider { margin: 24px 0; }
+    .disclaimer { text-align: left; }
+
+    .categories { padding: 0 16px 56px; grid-template-columns: 1fr; gap: 14px; }
+    .cat-visual { height: 155px; }
+    .cat-body { padding: 22px 22px 20px; }
+    .cat-title { font-size: 22px; }
+
+    .sfi-banner { padding: 0 16px; margin-bottom: 48px; }
+    .sfi-inner { padding: 28px 24px; flex-direction: column; align-items: flex-start; gap: 20px; }
+    .sfi-btn { width: 100%; justify-content: center; min-height: 52px; }
+
+    footer { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">ADL <span class="dot">·</span> Lab</a>
+  <div class="credential">Ahra Roh, OTR/L, ATP</div>
+</header>
+
+<section class="hero">
+  <span class="eyebrow">Already Done For You</span>
+  <h1>Tools that work<br>for your <span class="accent">nervous system.</span></h1>
+  <p class="hero-tagline">Not every tool works for every brain.</p>
+  <p class="hero-sub">These picks are organized by what's actually hard — because the problem is rarely effort. It's how your nervous system processes the world.</p>
+  <div class="divider"></div>
+  <p class="disclaimer">Curated through an occupational therapy lens — not paid placement or sponsorship.<br>As an Amazon Associate, ADL Lab earns from qualifying purchases.</p>
+</section>
+
+<div class="categories">
+
+  <a href="recovery.html" class="cat-card">
+    <div class="cat-visual rest">
+      <div class="rest-waves">
+        <svg viewBox="0 0 400 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,28 C80,8 160,48 240,28 C320,8 360,38 400,28 L400,56 L0,56 Z" fill="white" opacity="0.08"/>
+          <path d="M0,38 C60,18 140,52 220,36 C300,18 355,46 400,36 L400,56 L0,56 Z" fill="white" opacity="0.06"/>
+        </svg>
+      </div>
+      <div class="rest-label">Wind down</div>
+    </div>
+    <div class="cat-body">
+      <div class="cat-number">Category 01</div>
+      <div class="cat-title">Recovery<br>& Rest</div>
+      <p class="cat-desc">For when your nervous system has taken in more than it can process. Tools that support the wind-down — not force it.</p>
+      <div class="cat-tags">
+        <span class="cat-tag">Sleep</span>
+        <span class="cat-tag">Decompression</span>
+        <span class="cat-tag">Light & sound</span>
+        <span class="cat-tag">Pressure</span>
+      </div>
+      <span class="cat-cta">Browse tools →</span>
+    </div>
+  </a>
+
+  <a href="workspace.html" class="cat-card">
+    <div class="cat-visual workspace">
+      <div class="workspace-lines">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <div class="workspace-label">Your space, your rules</div>
+    </div>
+    <div class="cat-body">
+      <div class="cat-number">Category 02</div>
+      <div class="cat-title">Workspace<br>Control</div>
+      <p class="cat-desc">For when your environment is working against you. Tools that reduce unpredictable input and give your nervous system something to hold onto.</p>
+      <div class="cat-tags">
+        <span class="cat-tag">Noise</span>
+        <span class="cat-tag">Visual field</span>
+        <span class="cat-tag">Structure</span>
+        <span class="cat-tag">Temperature</span>
+      </div>
+      <span class="cat-cta">Browse tools →</span>
+    </div>
+  </a>
+
+  <a href="focus.html" class="cat-card">
+    <div class="cat-visual focus">
+      <div class="focus-pebble"></div>
+      <div class="focus-pebble"></div>
+      <div class="focus-pebble"></div>
+      <div class="focus-lines">
+        <svg viewBox="0 0 400 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,90 Q100,60 200,90 T400,90" stroke="rgba(196,151,58,0.6)" stroke-width="1" fill="none"/>
+          <path d="M0,110 Q100,80 200,110 T400,110" stroke="rgba(196,151,58,0.4)" stroke-width="1" fill="none"/>
+          <path d="M0,70 Q100,45 200,70 T400,70" stroke="rgba(196,151,58,0.3)" stroke-width="0.8" fill="none"/>
+        </svg>
+      </div>
+      <div class="focus-plant"></div>
+      <div class="focus-ripple">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="focus-label">In your element</div>
+    </div>
+    <div class="cat-body">
+      <div class="cat-number">Category 03</div>
+      <div class="cat-title">Focus &<br>Stimulation</div>
+      <p class="cat-desc">For when stillness makes it worse. Tools that add the right kind of input — movement, texture, sound — so your nervous system can settle into work.</p>
+      <div class="cat-tags">
+        <span class="cat-tag">Movement</span>
+        <span class="cat-tag">Tactile</span>
+        <span class="cat-tag">Auditory</span>
+        <span class="cat-tag">Oral motor</span>
+      </div>
+      <span class="cat-cta">Browse tools →</span>
+    </div>
+  </a>
+
+</div>
+
+<div class="sfi-banner">
+  <div class="sfi-inner">
+    <div class="sfi-text">
+      <h3>Not sure where to start?</h3>
+      <p>Take the ADL Sensory Friction Index — a free self-assessment that identifies which environments are costing your nervous system the most.</p>
+    </div>
+    <a href="https://theadllab.github.io" class="sfi-btn">Take the free assessment →</a>
+  </div>
+</div>
+
+<footer>
+  <p><strong>ADL LAB</strong> — Already Done For You Store</p>
+  <p style="margin-top:4px;">Content is educational only — not clinical advice or diagnosis.<br>
+  As an Amazon Associate, ADL Lab earns from qualifying purchases.</p>
+  <div class="footer-links">
+    <a href="https://adllab.substack.com" target="_blank" rel="noopener">Substack</a>
+    <a href="https://pinterest.com/adllab" target="_blank" rel="noopener">Pinterest</a>
+    <a href="https://instagram.com/adllab" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</footer>
+
+</body>
+</html>
