@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -125,6 +125,47 @@
     background: var(--cream);
     border-radius: 8px;
     border: 1px solid var(--border);
+  }
+
+  /* ── JUMP NAV ── */
+  .jump-nav {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 20px 36px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .jump-nav a {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--cream);
+    border: 1px solid var(--border);
+    padding: 10px 18px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  .jump-nav a:hover {
+    background: var(--navy);
+    color: white;
+    border-color: var(--navy);
+  }
+
+  @media (max-width: 640px) {
+    .jump-nav { justify-content: flex-start; padding: 0 16px 28px; gap: 7px; }
+    .jump-nav a { font-size: 11px; padding: 9px 14px; }
   }
 
   /* ── CATEGORY GRID ── */
@@ -599,9 +640,16 @@
   <p class="disclaimer">Curated through an occupational therapy lens — not paid placement or sponsorship.<br>As an Amazon Associate, ADL Lab earns from qualifying purchases.</p>
 </section>
 
+<!-- JUMP NAV -->
+<div class="jump-nav">
+  <a href="#recovery">🌙 Recovery & Rest</a>
+  <a href="#workspace">💡 Workspace Control</a>
+  <a href="#focus">🌿 Focus & Stimulation</a>
+</div>
+
 <div class="categories">
 
-  <a href="recovery.html" class="cat-card">
+  <a href="recovery.html" class="cat-card" id="recovery">
     <div class="cat-visual rest">
       <div class="rest-waves">
         <svg viewBox="0 0 400 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -625,7 +673,7 @@
     </div>
   </a>
 
-  <a href="workspace.html" class="cat-card">
+  <a href="workspace.html" class="cat-card" id="workspace">
     <div class="cat-visual workspace">
       <div class="workspace-lines">
         <span></span><span></span><span></span><span></span>
@@ -646,7 +694,7 @@
     </div>
   </a>
 
-  <a href="focus.html" class="cat-card">
+  <a href="focus.html" class="cat-card" id="focus">
     <div class="cat-visual focus">
       <div class="focus-pebble"></div>
       <div class="focus-pebble"></div>
