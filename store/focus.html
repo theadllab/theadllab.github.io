@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Focus & Stimulation — ADL Lab</title>
+<meta name="description" content="OT-curated tools for focus and movement. Tactile input, seated movement, auditory layers, and oral motor for ADHD and sensation-seeking nervous systems.">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root { --navy: #1A2640; --gold: #C4973A; --bg: #F0EDE6; --warm-white: #FDFCF9; --muted: #7A7A7A; --border: #DDD8CE; }
@@ -45,22 +46,26 @@
   .ot { font-family: 'Syne', sans-serif; font-size: 8px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); background: rgba(196,151,58,0.08); border: 1px solid rgba(196,151,58,0.22); padding: 2px 7px; border-radius: 100px; white-space: nowrap; }
   .item-chevron { font-size: 12px; color: var(--muted); transition: transform 0.22s ease; flex-shrink: 0; }
   .item.open .item-chevron { transform: rotate(180deg); }
-  .item-body { max-height: 0; overflow: hidden; transition: max-height 0.28s ease; }
-  .item.open .item-body { max-height: 400px; }
-  .item-inner { padding: 0 18px 16px; display: flex; flex-direction: column; gap: 12px; }
+  .item-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .item.open .item-body { max-height: 600px; }
+  .item-inner { padding: 0 18px 18px; display: flex; flex-direction: column; gap: 12px; }
+
+  .why-block { background: rgba(196,151,58,0.05); border-left: 2px solid var(--gold); padding: 10px 14px; border-radius: 0 6px 6px 0; }
+  .why-block p { font-size: 13px; color: var(--navy); line-height: 1.6; }
 
   .bullets { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-  .bullets li { font-size: 12px; color: var(--muted); display: flex; gap: 8px; align-items: flex-start; line-height: 1.4; }
+  .bullets li { font-size: 12px; color: var(--muted); display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; }
   .bullets li::before { content: '●'; color: var(--gold); font-size: 6px; margin-top: 5px; flex-shrink: 0; }
 
   .options { display: flex; flex-direction: column; gap: 6px; padding-top: 10px; border-top: 1px solid var(--border); }
-  .opt { display: flex; align-items: center; justify-content: space-between; text-decoration: none; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; transition: all 0.15s ease; }
+  .opt { display: flex; align-items: center; justify-content: space-between; text-decoration: none; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 11px 14px; transition: all 0.15s ease; }
   .opt:hover { background: var(--navy); border-color: var(--navy); }
   .opt:hover .opt-name, .opt:hover .opt-arrow { color: white; }
   .opt:hover .opt-tag { color: rgba(255,255,255,0.6); }
-  .opt-name { font-size: 13px; font-weight: 500; color: var(--navy); }
-  .opt-tag { font-size: 10px; color: var(--muted); margin-top: 2px; }
-  .opt-arrow { font-size: 14px; color: var(--gold); flex-shrink: 0; margin-left: 10px; }
+  .opt-left { flex: 1; }
+  .opt-name { font-size: 13px; font-weight: 500; color: var(--navy); line-height: 1.3; }
+  .opt-tag { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .opt-arrow { font-size: 14px; color: var(--gold); flex-shrink: 0; margin-left: 12px; }
 
   .banner { max-width: 900px; margin: 0 auto 56px; padding: 0 20px; }
   .banner-inner { background: var(--navy); border-radius: 14px; padding: 26px 30px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
@@ -89,7 +94,7 @@
 
 <header>
   <a href="index.html" class="logo">ADL <span class="dot">·</span> Lab</a>
-  <a href="index.html" class="back">← Back</a>
+  <a href="index.html" class="back">← All categories</a>
 </header>
 
 <div class="page-hero">
@@ -129,18 +134,23 @@
       </div>
       <div class="item-body">
         <div class="item-inner">
+          <div class="why-block"><p>Tactile hand input quiets the default mode network — the part of the brain responsible for mind-wandering. It fills a background sensory need so the rest of the brain can settle into the task. A fidget ring is almost completely invisible, which matters in professional settings.</p></div>
           <ul class="bullets">
-            <li>Tactile input quiets the default mode network — reduces mind-wandering</li>
-            <li>Fills background sensory need so the brain can actually settle</li>
-            <li>Discreet enough for meetings and calls</li>
+            <li>Standard clinical OT practice — this isn't a wellness trend</li>
+            <li>Works best for Sensation Seeking and Low Registration types who need continuous input to stay regulated</li>
+            <li>I recommend the ring most — it's on your finger, so it's always there without requiring a decision</li>
           </ul>
           <div class="options">
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Textured Fidget Ring</div><div class="opt-tag">On finger · completely invisible</div></div>
+            <a href="https://amzn.to/4t1wTO7" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Textured Fidget Ring</div><div class="opt-tag">On finger · invisible · I recommend this most</div></div>
               <span class="opt-arrow">→</span>
             </a>
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Magnetic Fidget Toy</div><div class="opt-tag">Silent · desktop or pocket</div></div>
+            <a href="https://amzn.to/3PGE5R8" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Fidget Ring (alt 1)</div><div class="opt-tag">Different texture / style</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="https://amzn.to/4sgsR3j" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Fidget Ring (alt 2)</div><div class="opt-tag">Different texture / style</div></div>
               <span class="opt-arrow">→</span>
             </a>
           </div>
@@ -152,23 +162,25 @@
       <div class="item-header" onclick="toggle(this)">
         <div class="item-header-left">
           <span class="item-name">Weighted Lap Pad</span>
+          <span class="ot">OT Pick</span>
         </div>
         <span class="item-chevron">▾</span>
       </div>
       <div class="item-body">
         <div class="item-inner">
+          <div class="why-block"><p>Deep touch pressure during seated work activates proprioceptors and helps regulate arousal. A lap pad gives localized grounding input — same neurological effect as a full weighted blanket but smaller, cooler, and usable at a desk. Passive input, no interruption to what you're doing.</p></div>
           <ul class="bullets">
-            <li>Deep pressure activates proprioceptors → regulates arousal</li>
-            <li>Localized lap weight = same effect as full weighted blanket</li>
-            <li>Passive — no interruption to what you're doing</li>
+            <li>Most effective for people who feel better with something in their lap — this is your system asking for proprioceptive input</li>
+            <li>Harkla is OT-designed and I recommend it specifically — adult sizing, appropriate weight</li>
+            <li>Fun and Function is the clinical version I've used in therapy settings — wipe-clean surface</li>
           </ul>
           <div class="options">
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Weighted Lap Pad</div><div class="opt-tag">1–2 lbs · desk use</div></div>
+            <a href="https://amzn.to/4soSGyk" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Harkla Weighted Lap Pad (5lb)</div><div class="opt-tag">OT brand · adult sizing · my top recommendation</div></div>
               <span class="opt-arrow">→</span>
             </a>
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Heated Lap Pad</div><div class="opt-tag">Pressure + warmth</div></div>
+            <a href="https://amzn.to/4mctPvV" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Fun and Function Wipe-Clean Lap Pad</div><div class="opt-tag">Clinical grade · easy to clean · therapy use</div></div>
               <span class="opt-arrow">→</span>
             </a>
           </div>
@@ -191,18 +203,27 @@
       </div>
       <div class="item-body">
         <div class="item-inner">
+          <div class="why-block"><p>Movement raises dopamine and norepinephrine — the neurotransmitters ADHD brains are often running low on. An unstable surface creates constant postural adjustment, which gives your vestibular and proprioceptive systems continuous input without requiring you to get up. Stay at your desk, get the regulatory benefit.</p></div>
           <ul class="bullets">
-            <li>Movement raises dopamine + norepinephrine — what ADHD brains need</li>
-            <li>Unstable surface = constant postural adjustment = ongoing vestibular input</li>
-            <li>Stay at your desk — no need to get up</li>
+            <li>Balance disk is the entry point — affordable, portable, immediate effect</li>
+            <li>Under-desk elliptical is for people who need more input — active pedaling while working</li>
+            <li>I recommend these frequently to clients in desk jobs who say they can't focus sitting still</li>
           </ul>
           <div class="options">
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Balance Disk / Wobble Cushion</div><div class="opt-tag">On chair · affordable</div></div>
+            <a href="https://amzn.to/4sUXxIy" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Balance Disk / Wobble Cushion</div><div class="opt-tag">On chair · affordable · frequently recommended</div></div>
               <span class="opt-arrow">→</span>
             </a>
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Under-Desk Elliptical</div><div class="opt-tag">Active pedaling · higher input</div></div>
+            <a href="https://amzn.to/4tqeJp1" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Balance Disk (alt)</div><div class="opt-tag">Different size / firmness</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="https://amzn.to/4vaWk1d" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Under-Desk Elliptical</div><div class="opt-tag">Active pedaling · higher input · frequently recommended</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="https://amzn.to/4tvKf5d" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Under-Desk Elliptical (alt)</div><div class="opt-tag">Different model</div></div>
               <span class="opt-arrow">→</span>
             </a>
           </div>
@@ -214,23 +235,33 @@
       <div class="item-header" onclick="toggle(this)">
         <div class="item-header-left">
           <span class="item-name">Posture & Resistance</span>
+          <span class="ot">OT Pick</span>
         </div>
         <span class="item-chevron">▾</span>
       </div>
       <div class="item-body">
         <div class="item-inner">
+          <div class="why-block"><p>A sit-to-stand shift resets attention faster than a break — the postural change triggers a state change without requiring you to leave your task. A resistance band on chair legs channels the movement impulse into resistance instead of suppressing it, which is neurologically more sustainable.</p></div>
           <ul class="bullets">
-            <li>Sit → stand shift resets attention faster than a break</li>
-            <li>Resistance band on chair legs = quiet leg input, no one notices</li>
-            <li>Channels the movement impulse instead of suppressing it</li>
+            <li>Standing desk converter: the ability to shift posture mid-task is often enough to break through a stuck state</li>
+            <li>Resistance band: quiet, invisible, and gives the leg-bouncing energy somewhere to go</li>
+            <li>I use a standing desk converter myself — I recommend it to almost every client who works from home</li>
           </ul>
           <div class="options">
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Standing Desk Converter</div><div class="opt-tag">Sit / stand · easy setup</div></div>
+            <a href="https://amzn.to/4s9vHqF" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Standing Desk Converter</div><div class="opt-tag">Sit / stand · I use this · frequently recommended</div></div>
               <span class="opt-arrow">→</span>
             </a>
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Resistance Band (chair)</div><div class="opt-tag">Leg resistance · invisible</div></div>
+            <a href="https://amzn.to/4e1dQi7" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Standing Desk Converter (alt)</div><div class="opt-tag">Different size / style</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="https://amzn.to/4c3qtGX" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Resistance Band (Chair)</div><div class="opt-tag">Leg resistance · invisible · frequently recommended</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="https://amzn.to/41QX2TG" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Resistance Band (alt)</div><div class="opt-tag">KICK BANDS · desk leg attachment</div></div>
               <span class="opt-arrow">→</span>
             </a>
           </div>
@@ -247,23 +278,33 @@
       <div class="item-header" onclick="toggle(this)">
         <div class="item-header-left">
           <span class="item-name">Focus Audio Layer</span>
+          <span class="ot">OT Pick</span>
         </div>
         <span class="item-chevron">▾</span>
       </div>
       <div class="item-body">
         <div class="item-inner">
+          <div class="why-block"><p>Complete silence is often counterproductive for Sensation Seeking and Low Registration brains — the absence of input causes the brain to go searching for stimulation, which is where distractions come from. A steady auditory layer gives the brain something to rest on, so it stops scanning. Bone conduction keeps your ears open; open-back gives full audio without sealing your ear canal.</p></div>
           <ul class="bullets">
-            <li>Complete silence = brain searches for stimulation → finds distractions</li>
-            <li>Steady auditory layer = brain stops scanning and settles into work</li>
-            <li>Open-back or bone conduction if in-ear feels claustrophobic</li>
+            <li>Bone conduction: you can hear your environment, talk to people, stay physically aware — while still having an audio layer</li>
+            <li>Open-back headphones: more immersive sound, less sealed feeling than closed-back — better for long sessions</li>
+            <li>The key is what you play, not just the hardware — steady, non-vocal sound works best for focus</li>
           </ul>
           <div class="options">
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Bone Conduction Headphones</div><div class="opt-tag">Ears open · stay aware</div></div>
+            <a href="https://amzn.to/47KxMlI" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Bone Conduction Headphones</div><div class="opt-tag">Ears open · stay aware · frequently recommended</div></div>
               <span class="opt-arrow">→</span>
             </a>
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Open-Back Headphones</div><div class="opt-tag">Immersive · less sealed</div></div>
+            <a href="https://amzn.to/3PNPUoA" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Bone Conduction (alt)</div><div class="opt-tag">Different model</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="https://amzn.to/3PLLqik" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Open-Back Headphones (Philips SHP9600)</div><div class="opt-tag">Immersive audio · not sealed · home use</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="https://amzn.to/3O5ckRI" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Open-Back Headphones (Sennheiser HD 560S)</div><div class="opt-tag">Higher fidelity · audiophile option</div></div>
               <span class="opt-arrow">→</span>
             </a>
           </div>
@@ -286,18 +327,15 @@
       </div>
       <div class="item-body">
         <div class="item-inner">
+          <div class="why-block"><p>Chewing activates the reticular activating system — the brain's arousal regulation center. Rhythmic jaw movement simultaneously reduces anxiety and increases alertness. This is standard clinical OT practice, used routinely in sensory diets and attention regulation programs. It's not a wellness hack.</p></div>
           <ul class="bullets">
-            <li>Chewing activates RAS — the brain's arousal regulation center</li>
-            <li>Rhythmic jaw movement reduces anxiety while increasing alertness</li>
-            <li>Standard OT clinical practice — not a wellness hack</li>
+            <li>The resistance matters — chewing gum is lower input; something chewier like dried squid or jerky is higher input</li>
+            <li>Match the input to your need: mild restlessness → gum; can't get started or staying focused feels hard → chewier option</li>
+            <li>Xylitol gum is tooth-safe for extended chewing sessions</li>
           </ul>
           <div class="options">
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Xylitol Chewing Gum</div><div class="opt-tag">Tooth-safe · long chew time</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Chewy Snack (jerky, dried squid)</div><div class="opt-tag">More resistance · immediate alerting</div></div>
+            <a href="https://amzn.to/4sb5WX5" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Xylitol Chewing Gum</div><div class="opt-tag">Tooth-safe · lower resistance · longer chew time</div></div>
               <span class="opt-arrow">→</span>
             </a>
           </div>
@@ -314,18 +352,19 @@
       </div>
       <div class="item-body">
         <div class="item-inner">
+          <div class="why-block"><p>Peppermint and citrus activate the sympathetic nervous system almost immediately — smell bypasses the cortex and hits the limbic system directly. It's the fastest arousal shift available without medication. Use it only during focused work and it becomes a conditioned cue over time — your brain starts shifting into focus mode as soon as you smell it.</p></div>
           <ul class="bullets">
-            <li>Peppermint + citrus activate sympathetic NS — fastest arousal shift available</li>
-            <li>Bypasses cortex → limbic system directly — near-instant effect</li>
-            <li>Use only during work → becomes automatic focus cue</li>
+            <li>Inhale before starting a task, not during — let the arousal shift happen first</li>
+            <li>Consistency builds the cue — same scent, same context, same response over time</li>
+            <li>Essential oil spray is the most versatile; herbal pen is discreet for shared spaces</li>
           </ul>
           <div class="options">
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Peppermint Essential Oil</div><div class="opt-tag">Inhale before starting · most studied</div></div>
+            <a href="https://amzn.to/4sb5WX5" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Essential Oil Spray (Peppermint/Citrus)</div><div class="opt-tag">Most studied for alerting · inhale before starting</div></div>
               <span class="opt-arrow">→</span>
             </a>
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Citrus Roll-On</div><div class="opt-tag">Apply to wrist · portable</div></div>
+            <a href="https://amzn.to/4scvSBq" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Herbal Diffuser Pen</div><div class="opt-tag">Portable · discreet · shared office use</div></div>
               <span class="opt-arrow">→</span>
             </a>
           </div>
@@ -341,14 +380,14 @@
   <div class="banner-inner">
     <div>
       <strong>Not sure where to start?</strong>
-      <p>Take the free Sensory Friction Index — tells you which domain costs your nervous system the most.</p>
+      <p>Find Your Sensory Pattern — 5 minutes, tells you which domain costs your nervous system the most and which tools match your pattern.</p>
     </div>
-    <a href="https://theadllab.github.io" class="banner-btn">Take the assessment →</a>
+    <a href="sensory-index.html" class="banner-btn">Find Your Pattern →</a>
   </div>
 </div>
 
 <footer>
-  <p>Curated through an OT lens — not paid placement. Amazon affiliate links inside.<br>Educational content only — not clinical advice.</p>
+  <p>Curated through an OT lens — not paid placement. Amazon affiliate links inside.<br>Educational content only — not clinical advice. © ADL Lab · Ahra Roh, OTR/L, ATP</p>
   <div class="footer-links">
     <a href="https://adllab.substack.com" target="_blank" rel="noopener">Substack</a>
     <a href="https://pinterest.com/adllab" target="_blank" rel="noopener">Pinterest</a>
