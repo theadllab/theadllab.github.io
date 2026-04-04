@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>ADL Sensory Friction Index — ADL Lab</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy: #1E2B4A;
@@ -30,10 +30,12 @@
     color: var(--navy);
     font-family: 'DM Sans', sans-serif;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 1.7;
+    font-size: clamp(16px, 4vw, 18px);
+    line-height: 1.75;
     min-height: 100vh;
     -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 2px; }
@@ -54,27 +56,24 @@
   }
 
   .logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 14px; letter-spacing: 0.25em;
-    text-transform: uppercase; color: var(--navy); font-weight: 400;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--navy); font-weight: 600;
   }
   .logo span { color: var(--gold); margin: 0 5px; }
 
-  .credential { font-size: 12px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+  .credential { font-size: 12px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; font-weight: 400; }
 
-  /* HERO */
   .hero { max-width: 580px; margin: 48px auto 0; padding: 0 24px 60px; text-align: center; }
-  .hero-eyebrow { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 9vw, 52px); font-weight: 300; line-height: 1.15; color: var(--navy); margin-bottom: 20px; }
-  .hero h1 em { font-style: italic; color: var(--gold); }
-  .hero p { font-size: 16px; color: var(--muted); max-width: 400px; margin: 0 auto 14px; line-height: 1.75; }
-  .hero-note { font-size: 13px; color: var(--muted); margin-top: 6px; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+  .hero h1 { font-family: 'Instrument Serif', serif; font-size: clamp(36px, 9vw, 54px); font-weight: 400; line-height: 1.12; color: var(--navy); margin-bottom: 20px; letter-spacing: -0.01em; }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero p { font-size: clamp(16px, 4vw, 18px); color: var(--muted); max-width: 400px; margin: 0 auto 14px; line-height: 1.75; }
+  .hero-note { font-size: 14px; color: var(--muted); margin-top: 6px; }
   .divider { width: 36px; height: 1px; background: var(--gold); margin: 28px auto; opacity: 0.55; }
 
-  /* MAIN */
   main { max-width: 640px; margin: 0 auto; padding: 32px 24px 100px; }
 
-  /* PROGRESS */
   .progress-wrap { margin-bottom: 40px; }
   .progress-bar { display: flex; gap: 4px; margin-bottom: 8px; }
   .progress-segment { flex: 1; height: 3px; background: var(--light-border); transition: background 0.4s ease; border-radius: 2px; }
@@ -82,7 +81,6 @@
   .progress-segment.done { background: var(--gold); }
   .progress-label { font-size: 12px; color: var(--muted); text-align: right; }
 
-  /* DOMAIN */
   .domain { display: none; animation: fadeIn 0.35s ease; }
   .domain.active { display: block; }
 
@@ -92,43 +90,41 @@
   }
 
   .domain-header { margin-bottom: 32px; }
-  .domain-number { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
-  .domain-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 7vw, 34px); font-weight: 300; color: var(--navy); margin-bottom: 10px; line-height: 1.2; }
-  .domain-desc { font-size: 15px; color: var(--muted); line-height: 1.7; }
+  .domain-number { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; font-weight: 500; }
+  .domain-title { font-family: 'Instrument Serif', serif; font-size: clamp(28px, 7vw, 36px); font-weight: 400; color: var(--navy); margin-bottom: 10px; line-height: 1.15; letter-spacing: -0.01em; }
+  .domain-desc { font-size: clamp(15px, 3.5vw, 17px); color: var(--muted); line-height: 1.75; }
 
-  /* QUESTIONS */
   .question { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--light-border); }
   .question:last-of-type { border-bottom: none; }
-  .question-text { font-size: 16px; color: var(--navy); margin-bottom: 16px; line-height: 1.6; font-weight: 400; }
+  .question-text { font-size: clamp(15px, 3.8vw, 17px); color: var(--navy); margin-bottom: 16px; line-height: 1.65; font-weight: 400; }
 
   .options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
   @media (min-width: 460px) { .options { grid-template-columns: repeat(4, 1fr); } }
 
   .option {
     cursor: pointer; border: 1.5px solid var(--light-border);
-    border-radius: 8px; padding: 16px 8px; text-align: center;
+    border-radius: 10px; padding: 18px 8px; text-align: center;
     transition: all 0.18s ease; background: white;
-    min-height: 76px; display: flex; flex-direction: column;
+    min-height: 80px; display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     -webkit-tap-highlight-color: transparent; touch-action: manipulation; user-select: none;
   }
   .option:hover { border-color: var(--navy); background: var(--cream); }
   .option:active { transform: scale(0.97); }
   .option.selected { border-color: var(--navy); background: var(--navy); color: white; }
-  .option-score { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; display: block; margin-bottom: 4px; line-height: 1; }
-  .option-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); line-height: 1.3; }
-  .option.selected .option-label { color: rgba(255,255,255,0.65); }
+  .option-score { font-family: 'Instrument Serif', serif; font-size: 28px; font-weight: 400; display: block; margin-bottom: 5px; line-height: 1; }
+  .option-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); line-height: 1.3; font-weight: 500; }
+  .option.selected .option-label { color: rgba(255,255,255,0.7); }
 
-  /* NAV */
   .nav { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--light-border); gap: 12px; }
   .nav-hint { font-size: 12px; color: var(--muted); flex: 1; }
 
   .btn {
     font-family: 'DM Sans', sans-serif; font-size: 13px; letter-spacing: 0.12em;
-    text-transform: uppercase; padding: 16px 24px; border: 1.5px solid var(--navy);
-    cursor: pointer; transition: all 0.18s ease; border-radius: 4px;
+    text-transform: uppercase; padding: 16px 28px; border: 1.5px solid var(--navy);
+    cursor: pointer; transition: all 0.18s ease; border-radius: 6px;
     background: transparent; color: var(--navy); min-height: 52px; min-width: 44px;
-    touch-action: manipulation; white-space: nowrap;
+    touch-action: manipulation; white-space: nowrap; font-weight: 500;
   }
   .btn:hover { background: var(--navy); color: white; }
   .btn:active { transform: scale(0.98); }
@@ -137,43 +133,37 @@
   .btn-ghost { border-color: transparent; color: var(--muted); padding-left: 0; }
   .btn-ghost:hover { background: transparent; color: var(--navy); }
 
-  /* ═══════════════════════════════════════
-     RESULTS — MBTI-STYLE VISUAL
-  ═══════════════════════════════════════ */
+  /* RESULTS */
   #results { display: none; animation: fadeIn 0.5s ease; }
 
-  /* Top hero */
   .results-hero {
     text-align: center;
     padding: 40px 0 36px;
     border-bottom: 1px solid var(--light-border);
     margin-bottom: 36px;
   }
-  .results-eyebrow { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .results-eyebrow { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
 
   .pattern-headline {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Instrument Serif', serif;
     font-size: clamp(32px, 9vw, 52px);
     font-weight: 400;
     color: var(--navy);
     line-height: 1.1;
     margin-bottom: 6px;
+    letter-spacing: -0.01em;
   }
 
-  .pattern-headline em {
-    font-style: italic;
-    color: var(--gold);
-  }
+  .pattern-headline em { font-style: normal; color: var(--gold); }
 
   .pattern-tagline {
-    font-size: 15px;
+    font-size: clamp(15px, 3.8vw, 17px);
     color: var(--muted);
     max-width: 420px;
     margin: 12px auto 0;
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
-  /* ANALOGY CARD */
   .analogy-card {
     background: var(--cream);
     border: 1px solid var(--light-border);
@@ -185,63 +175,34 @@
     align-items: flex-start;
   }
 
-  .analogy-icon {
-    font-size: 36px;
-    flex-shrink: 0;
-    line-height: 1;
-    margin-top: 2px;
-  }
+  .analogy-icon { font-size: 34px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
 
   .analogy-text h4 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--navy);
-    margin-bottom: 6px;
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(18px, 4.5vw, 21px); font-weight: 400; color: var(--navy); margin-bottom: 8px; letter-spacing: -0.01em;
   }
+  .analogy-text p { font-size: clamp(14px, 3.5vw, 15px); color: var(--muted); line-height: 1.75; }
 
-  .analogy-text p {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.75;
-  }
-
-  /* DUNN SPECTRUM BARS — MBTI STYLE */
   .spectrum-section { margin-bottom: 36px; }
 
   .section-label {
     font-size: 11px; letter-spacing: 0.25em;
-    text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 16px; font-weight: 600;
   }
 
-  .spectrum-row {
-    margin-bottom: 20px;
-  }
+  .spectrum-row { margin-bottom: 22px; }
 
   .spectrum-axis-label {
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    text-align: center;
-    margin-bottom: 8px;
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold); text-align: center; margin-bottom: 8px; font-weight: 500;
   }
 
-  .spectrum-bar-wrap {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  .spectrum-bar-wrap { display: flex; align-items: center; gap: 10px; }
 
   .spectrum-pole {
-    font-size: 13px;
-    color: var(--navy);
-    font-weight: 500;
-    white-space: nowrap;
-    min-width: 0;
-    flex-shrink: 0;
+    font-size: clamp(12px, 3vw, 13px); color: var(--navy); font-weight: 500;
+    white-space: nowrap; min-width: 0; flex-shrink: 0;
   }
-
   .spectrum-pole.left { text-align: right; width: 110px; }
   .spectrum-pole.right { text-align: left; width: 110px; }
 
@@ -250,76 +211,36 @@
   }
 
   .spectrum-track {
-    flex: 1;
-    height: 28px;
-    background: #EDEBE6;
-    border-radius: 6px;
-    position: relative;
-    overflow: hidden;
+    flex: 1; height: 30px; background: #EDEBE6;
+    border-radius: 6px; position: relative; overflow: hidden;
   }
 
   .spectrum-fill {
-    position: absolute;
-    top: 0; bottom: 0;
-    border-radius: 6px;
+    position: absolute; top: 0; bottom: 0; border-radius: 6px;
     transition: width 1s ease, left 1s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
   }
 
   .spectrum-pct {
-    font-size: 12px;
-    font-weight: 500;
-    color: white;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-    padding: 0 8px;
+    font-size: 12px; font-weight: 600; color: white;
+    letter-spacing: 0.04em; white-space: nowrap; padding: 0 8px;
   }
 
-  /* ENV FRICTION BARS */
   .env-section { margin-bottom: 36px; }
 
-  .env-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
-  }
+  .env-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 
-  .env-label {
-    font-size: 13px;
-    color: var(--navy);
-    width: 130px;
-    flex-shrink: 0;
-  }
+  .env-label { font-size: clamp(13px, 3.5vw, 14px); color: var(--navy); width: 130px; flex-shrink: 0; font-weight: 500; }
 
-  @media (max-width: 400px) {
-    .env-label { width: 90px; font-size: 12px; }
-  }
+  @media (max-width: 400px) { .env-label { width: 90px; font-size: 12px; } }
 
-  .env-track {
-    flex: 1;
-    height: 10px;
-    background: #EDEBE6;
-    border-radius: 6px;
-    overflow: hidden;
-  }
+  .env-track { flex: 1; height: 11px; background: #EDEBE6; border-radius: 6px; overflow: hidden; }
 
-  .env-fill {
-    height: 100%;
-    border-radius: 6px;
-    transition: width 1.1s ease;
-  }
+  .env-fill { height: 100%; border-radius: 6px; transition: width 1.1s ease; }
 
   .env-status {
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: 500;
-    width: 80px;
-    text-align: right;
-    flex-shrink: 0;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600; width: 80px; text-align: right; flex-shrink: 0;
   }
 
   .env-fill.low { background: var(--low); }
@@ -329,82 +250,46 @@
   .env-status.mid { color: var(--mid); }
   .env-status.high { color: var(--high); }
 
-  /* WORKS / COSTS */
   .wc-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin-bottom: 32px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px; margin-bottom: 32px;
   }
 
-  @media (max-width: 440px) {
-    .wc-section { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 440px) { .wc-section { grid-template-columns: 1fr; } }
 
-  .wc-card {
-    border: 1px solid var(--light-border);
-    border-radius: 8px;
-    padding: 20px;
-    background: white;
-  }
-
+  .wc-card { border: 1px solid var(--light-border); border-radius: 8px; padding: 20px; background: white; }
   .wc-card.works { border-top: 3px solid var(--low); }
   .wc-card.costs { border-top: 3px solid var(--mid); }
 
   .wc-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-    font-weight: 500;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 14px; font-weight: 600;
   }
-
   .wc-card.works .wc-label { color: var(--low); }
   .wc-card.costs .wc-label { color: var(--mid); }
 
-  .wc-list {
-    list-style: none;
-    padding: 0;
-  }
-
+  .wc-list { list-style: none; padding: 0; }
   .wc-list li {
-    font-size: 14px;
-    color: var(--navy);
-    line-height: 1.6;
-    padding: 6px 0;
-    border-bottom: 1px solid var(--light-border);
-    display: flex;
-    gap: 8px;
-    align-items: flex-start;
+    font-size: clamp(13px, 3.5vw, 14px); color: var(--navy); line-height: 1.65;
+    padding: 7px 0; border-bottom: 1px solid var(--light-border);
+    display: flex; gap: 8px; align-items: flex-start;
   }
-
   .wc-list li:last-child { border-bottom: none; padding-bottom: 0; }
-
-  .wc-list li::before {
-    flex-shrink: 0;
-    font-size: 12px;
-    margin-top: 3px;
-  }
-
+  .wc-list li::before { flex-shrink: 0; font-size: 12px; margin-top: 3px; }
   .wc-card.works .wc-list li::before { content: "✓"; color: var(--low); }
   .wc-card.costs .wc-list li::before { content: "·"; color: var(--mid); font-size: 18px; margin-top: 0; }
 
-  /* PATTERN DESC BLOCK */
   .pattern-desc-block {
-    background: var(--navy);
-    color: white;
-    padding: 32px 24px;
-    border-radius: 10px;
-    margin-bottom: 32px;
+    background: var(--navy); color: white;
+    padding: 32px 24px; border-radius: 12px; margin-bottom: 32px;
   }
-  .pattern-desc-block .eyebrow { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
-  .pattern-desc-block p { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 10px; }
-  .pattern-desc-block p:last-child { margin-bottom: 0; color: rgba(255,255,255,0.6); font-size: 14px; }
+  .pattern-desc-block .eyebrow { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; font-weight: 600; }
+  .pattern-desc-block p { font-size: clamp(14px, 3.8vw, 16px); color: rgba(255,255,255,0.82); line-height: 1.8; margin-bottom: 12px; }
+  .pattern-desc-block p:last-child { margin-bottom: 0; color: rgba(255,255,255,0.6); font-size: clamp(13px, 3.5vw, 15px); }
 
-  .pattern-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-  .pattern-tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(201,168,76,0.4); color: var(--gold); padding: 5px 11px; border-radius: 20px; }
+  .pattern-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .pattern-tag { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(201,168,76,0.4); color: var(--gold); padding: 6px 12px; border-radius: 20px; font-weight: 500; }
 
-  /* RECS */
   .rec-section { margin-bottom: 40px; }
 
   .rec-card {
@@ -413,20 +298,201 @@
     display: flex; align-items: flex-start; gap: 16px;
   }
 
-  .rec-priority { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: var(--light-border); line-height: 1; flex-shrink: 0; margin-top: -2px; }
+  .rec-priority { font-family: 'Instrument Serif', serif; font-size: 28px; font-weight: 400; color: var(--light-border); line-height: 1; flex-shrink: 0; margin-top: -2px; }
   .rec-card.primary-rec .rec-priority { color: var(--gold); }
-  .rec-content h5 { font-size: 15px; font-weight: 500; color: var(--navy); margin-bottom: 6px; line-height: 1.4; }
-  .rec-content p { font-size: 14px; color: var(--muted); line-height: 1.75; margin-bottom: 12px; }
+  .rec-content h5 { font-size: clamp(15px, 4vw, 16px); font-weight: 600; color: var(--navy); margin-bottom: 8px; line-height: 1.4; }
+  .rec-content p { font-size: clamp(13px, 3.5vw, 15px); color: var(--muted); line-height: 1.75; margin-bottom: 14px; }
 
-  .rec-cta { display: inline-block; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px; transition: color 0.18s; }
+  .rec-cta { display: inline-block; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px; transition: color 0.18s; font-weight: 500; }
   .rec-cta:hover { color: var(--gold); }
 
   .coming-soon-wrap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .coming-soon-text { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
   .coming-soon-badge { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; background: var(--cream); color: var(--muted); border: 1px solid var(--light-border); padding: 4px 10px; border-radius: 20px; }
 
-  .disclaimer { font-size: 13px; color: var(--muted); line-height: 1.75; padding: 22px 0; border-top: 1px solid var(--light-border); margin-top: 40px; }
+  /* ═══════════════════════════════════════
+     TOOL STORE — AFFILIATE PRODUCT SECTION
+  ═══════════════════════════════════════ */
+  .tool-store-section {
+    margin-bottom: 48px;
+    padding-top: 8px;
+  }
+
+  .tool-store-header {
+    margin-bottom: 20px;
+  }
+
+  .tool-store-intro {
+    font-size: clamp(14px, 3.5vw, 15px);
+    color: var(--muted);
+    line-height: 1.75;
+    margin-top: 8px;
+    max-width: 520px;
+  }
+
+  .tool-domain-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .tool-tab {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 9px 16px;
+    border: 1.5px solid var(--light-border);
+    border-radius: 20px;
+    background: white;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.18s ease;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+
+  .tool-tab:hover { border-color: var(--navy); color: var(--navy); }
+  .tool-tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+
+  .tool-domain-panel { display: none; }
+  .tool-domain-panel.active { display: block; animation: fadeIn 0.25s ease; }
+
+  .tool-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  @media (max-width: 440px) {
+    .tool-grid { grid-template-columns: 1fr; }
+  }
+
+  .tool-card {
+    border: 1px solid var(--light-border);
+    border-radius: 10px;
+    padding: 18px;
+    background: white;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    position: relative;
+  }
+
+  .tool-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 2px 12px rgba(201,168,76,0.08);
+  }
+
+  .tool-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .tool-name {
+    font-size: clamp(13px, 3.5vw, 14px);
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .tool-badge {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--cream);
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 4px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+
+  .tool-why {
+    font-size: clamp(12px, 3.2vw, 13px);
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+
+  .tool-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+    text-decoration: none;
+    border-bottom: 1px solid var(--light-border);
+    padding-bottom: 2px;
+    transition: color 0.18s ease, border-color 0.18s ease;
+    font-weight: 500;
+  }
+
+  .tool-link:hover { color: var(--gold); border-color: var(--gold); }
+  .tool-link-arrow { font-size: 10px; }
+
+  .tool-alt-links {
+    margin-top: 10px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .tool-alt-link {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--light-border);
+    padding-bottom: 1px;
+    transition: color 0.18s;
+    font-weight: 400;
+  }
+
+  .tool-alt-link:hover { color: var(--navy); }
+
+  .affiliate-note {
+    font-size: clamp(12px, 3vw, 13px);
+    color: var(--muted);
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--light-border);
+    line-height: 1.75;
+  }
+
+  .disclaimer {
+    font-size: clamp(13px, 3.5vw, 14px);
+    color: var(--muted);
+    line-height: 1.8;
+    padding: 24px 0;
+    border-top: 1px solid var(--light-border);
+    margin-top: 40px;
+  }
   .restart-row { text-align: center; margin-top: 28px; }
+
+  /* ═══════════════════════════════
+     MOBILE-SPECIFIC OVERRIDES
+  ═══════════════════════════════ */
+  @media (max-width: 480px) {
+    header { padding: 16px 20px; }
+    main { padding: 28px 20px 80px; }
+    .hero { padding: 0 20px 48px; margin-top: 36px; }
+    .analogy-card { flex-direction: column; gap: 14px; padding: 22px 18px; }
+    .analogy-icon { font-size: 30px; }
+    .wc-section { gap: 10px; }
+    .wc-card { padding: 16px; }
+    .rec-card { padding: 18px 16px; gap: 12px; }
+    .pattern-desc-block { padding: 26px 18px; }
+    .tool-card { padding: 16px; }
+    .nav { gap: 8px; }
+  }
 </style>
 </head>
 <body>
@@ -575,10 +641,38 @@
       <div class="pattern-tags" id="patternTags"></div>
     </div>
 
-    <!-- 6. RECS -->
+    <!-- 7. RECS -->
     <div class="rec-section">
       <div class="section-label">Environment Adjustments</div>
       <div id="recCards"></div>
+    </div>
+
+    <!-- 8. SENSORY TOOL STORE -->
+    <div class="tool-store-section">
+      <div class="tool-store-header">
+        <div class="section-label">Sensory Tool Store</div>
+        <p class="tool-store-intro">OT-curated tools matched to your sensory pattern. Each recommendation is selected based on Dunn's Model of Sensory Processing — not sponsored placement.</p>
+      </div>
+
+      <div class="tool-domain-tabs" role="tablist" aria-label="Tool categories">
+        <button class="tool-tab active" role="tab" aria-selected="true" onclick="switchToolTab('rest', this)">Recovery & Rest</button>
+        <button class="tool-tab" role="tab" aria-selected="false" onclick="switchToolTab('workspace', this)">Workspace</button>
+        <button class="tool-tab" role="tab" aria-selected="false" onclick="switchToolTab('focus', this)">Focus & Stimulation</button>
+      </div>
+
+      <div class="tool-domain-panel active" id="tool-rest">
+        <div class="tool-grid" id="tool-grid-rest"></div>
+      </div>
+      <div class="tool-domain-panel" id="tool-workspace">
+        <div class="tool-grid" id="tool-grid-workspace"></div>
+      </div>
+      <div class="tool-domain-panel" id="tool-focus">
+        <div class="tool-grid" id="tool-grid-focus"></div>
+      </div>
+
+      <p class="affiliate-note">
+        This page contains Amazon affiliate links. As an Amazon Associate, ADL Lab earns a small commission at no extra cost to you. All products are selected based on clinical experience and OT-informed sensory criteria — never paid placement.
+      </p>
     </div>
 
     <div class="disclaimer">
@@ -594,8 +688,7 @@
 <script>
 const domains = [
   {
-    name: "Physical",
-    fullName: "Physical Environment",
+    name: "Physical", fullName: "Physical Environment",
     questions: [
       { text: "Background noise — conversation, traffic, music — makes it hard for me to focus, even at low volume.", dunn: [0,0,3,1] },
       { text: "I feel more alert and engaged in bright, busy environments than in quiet ones.", dunn: [3,1,0,0] },
@@ -605,8 +698,7 @@ const domains = [
     ]
   },
   {
-    name: "Digital",
-    fullName: "Digital Environment",
+    name: "Digital", fullName: "Digital Environment",
     questions: [
       { text: "Notification sounds or visual alerts interrupt my focus even when I'm not actively waiting for a message.", dunn: [0,0,3,1] },
       { text: "I check my phone or messages frequently — not because I need to, but because the quiet feels uncomfortable.", dunn: [1,3,0,0] },
@@ -616,8 +708,7 @@ const domains = [
     ]
   },
   {
-    name: "Routine",
-    fullName: "Time & Routine",
+    name: "Routine", fullName: "Time & Routine",
     questions: [
       { text: "Transitions between tasks or activities feel costly — it takes time to settle into the next thing.", dunn: [0,0,2,3] },
       { text: "I work better when I can move between different types of tasks rather than staying on one thing.", dunn: [1,3,0,0] },
@@ -627,8 +718,7 @@ const domains = [
     ]
   },
   {
-    name: "Social",
-    fullName: "Social Environment",
+    name: "Social", fullName: "Social Environment",
     questions: [
       { text: "Being around people — even people I like — leaves me physically tired.", dunn: [0,0,2,3] },
       { text: "I feel more regulated and energized when there are people around.", dunn: [2,3,0,0] },
@@ -638,8 +728,7 @@ const domains = [
     ]
   },
   {
-    name: "Internal",
-    fullName: "Internal Awareness",
+    name: "Internal", fullName: "Internal Awareness",
     questions: [
       { text: "I often don't notice I'm hungry, thirsty, or tired until it becomes urgent.", dunn: [3,0,0,0] },
       { text: "I can usually sense when my energy is dropping before it affects my mood or performance.", dunn: [0,0,2,1] },
@@ -653,8 +742,9 @@ const domains = [
 const labels = ["Never", "Sometimes", "Often", "Always"];
 let scores = Array(5).fill(null).map(() => Array(5).fill(null));
 let currentDomain = 0;
+let currentPrimaryPattern = null;
 
-// ─── DUNN PATTERN DATA ──────────────────────────────────────────
+// ─── DUNN PATTERN DATA ───────────────────────────────────────────
 const dunnPatterns = {
   lowReg: {
     headline: "The <em>Low Signal</em> Processor",
@@ -722,23 +812,293 @@ const dunnPatterns = {
   }
 };
 
-// Spectrum axes — two poles per dimension, shown MBTI-style
 const spectrumAxes = [
-  {
-    label: "Input Registration",
-    left: "Needs more signal",
-    right: "Registers intensely",
-    leftKey: "lowReg",
-    rightKey: "sensSens"
-  },
-  {
-    label: "Behavioral Response",
-    left: "Seeks stimulation",
-    right: "Avoids overload",
-    leftKey: "sensSeek",
-    rightKey: "sensAvoid"
-  }
+  { label: "Input Registration", left: "Needs more signal", right: "Registers intensely", leftKey: "lowReg", rightKey: "sensSens" },
+  { label: "Behavioral Response", left: "Seeks stimulation", right: "Avoids overload", leftKey: "sensSeek", rightKey: "sensAvoid" }
 ];
+
+// ─── TOOL STORE DATA ─────────────────────────────────────────────
+// Each tool: { name, why, patterns: ['lowReg','sensSeek','sensSens','sensAvoid'], primary link, altLinks[], badge }
+const toolStore = {
+  rest: [
+    {
+      name: "Contoured Sleep Mask",
+      why: "Blocks visual input without eye pressure — supports complete visual shutdown for recovery.",
+      patterns: ["sensSens", "sensAvoid"],
+      link: "https://amzn.to/4bZC4a9",
+      badge: "OT Picks",
+      alts: []
+    },
+    {
+      name: "Warm Eye Mask",
+      why: "Gentle heat + darkness — activates parasympathetic response for wind-down.",
+      patterns: ["sensSens", "sensAvoid", "lowReg"],
+      link: "https://amzn.to/4sfnDop",
+      badge: "OT Picks",
+      alts: []
+    },
+    {
+      name: "Essential Oil Spray",
+      why: "Consistent olfactory cue to signal environment shift — organic, varied scent options.",
+      patterns: ["sensSeek", "lowReg"],
+      link: "https://amzn.to/4sb5WX5",
+      badge: null,
+      alts: []
+    },
+    {
+      name: "Blue Light Blocking Film (iPhone)",
+      why: "Reduces screen-based visual load — critical for high-sensitivity processors before sleep.",
+      patterns: ["sensSens", "sensAvoid"],
+      link: "https://amzn.to/4sJ5ccH",
+      badge: null,
+      alts: []
+    },
+    {
+      name: "Weighted Blanket",
+      why: "Deep touch pressure activates parasympathetic system — proprioceptive input for regulation.",
+      patterns: ["lowReg", "sensAvoid", "sensSeek"],
+      link: "https://amzn.to/48kXX2o",
+      badge: "OT Picks",
+      alts: []
+    },
+    {
+      name: "Warm Dimmable Desk Lamp",
+      why: "Low-stimulation lighting for wind-down — reduces visual arousal before sleep.",
+      patterns: ["sensSens", "sensAvoid"],
+      link: "https://amzn.to/4c73ACI",
+      badge: null,
+      alts: [{ label: "Bedroom Mood Light", url: "https://amzn.to/4mctg5m" }]
+    },
+    {
+      name: "Sleep Socks",
+      why: "Consistent tactile input — temperature regulation supports sleep initiation.",
+      patterns: ["sensSens", "sensAvoid", "lowReg"],
+      link: "https://amzn.to/4tkpGIF",
+      badge: "OT Picks",
+      alts: []
+    },
+    {
+      name: "White Noise Machine",
+      why: "Consistent auditory layer masks unpredictable input — especially effective for sensitivity and tinnitus.",
+      patterns: ["sensSens", "sensAvoid"],
+      link: "https://amzn.to/4tlxKJd",
+      badge: null,
+      alts: []
+    },
+    {
+      name: "Magnesium Supplement",
+      why: "Supports nervous system downregulation — OT-safe recommendation with evidence base.",
+      patterns: ["lowReg", "sensSeek", "sensSens", "sensAvoid"],
+      link: "https://amzn.to/4ckejL9",
+      badge: "OT Picks",
+      alts: [{ label: "Alt option", url: "https://amzn.to/4bKpL2y" }]
+    },
+    {
+      name: "Blackout Curtains",
+      why: "Full light elimination — separate layer from sleep mask for complete environmental control.",
+      patterns: ["sensSens", "sensAvoid"],
+      link: "https://amzn.to/4mctJV5",
+      badge: null,
+      alts: [{ label: "NICETOWN option", url: "https://amzn.to/4vbI2NG" }]
+    }
+  ],
+  workspace: [
+    {
+      name: "ANC Headphones",
+      why: "Active noise cancellation — eliminates unpredictable auditory input in shared spaces.",
+      patterns: ["sensSens", "sensAvoid"],
+      link: "https://amzn.to/4tt9uVP",
+      badge: null,
+      alts: []
+    },
+    {
+      name: "Loop Quiet Earplugs",
+      why: "Volume reduction without full isolation — lowers sensory load while maintaining awareness.",
+      patterns: ["sensSens", "sensAvoid"],
+      link: "https://amzn.to/3NDQ5lN",
+      badge: null,
+      alts: []
+    },
+    {
+      name: "Desk Privacy Panel",
+      why: "Visual boundary — reduces ambient social stimulation in open environments.",
+      patterns: ["sensAvoid", "sensSens"],
+      link: "https://amzn.to/3POlBy0",
+      badge: null,
+      alts: []
+    },
+    {
+      name: "Countdown Timer",
+      why: "External time structure — supports task initiation and prevents over-focus for all patterns.",
+      patterns: ["lowReg", "sensSeek", "sensSens", "sensAvoid"],
+      link: "https://amzn.to/4doHttM",
+      badge: "OT Picks",
+      alts: [{ label: "Regular option", url: "https://amzn.to/4sIwqA9" }, { label: "Alt", url: "https://amzn.to/41dvlEC" }]
+    },
+    {
+      name: "Seamless Compression Socks",
+      why: "Proprioceptive input without tactile irritation — helps high-sensitivity types stay grounded.",
+      patterns: ["sensSens"],
+      link: "https://amzn.to/3PUUPnB",
+      badge: null,
+      alts: []
+    },
+    {
+      name: "Lap Blanket",
+      why: "Temperature regulation + gentle pressure — grounding input for avoiding and sensitivity types.",
+      patterns: ["sensAvoid", "sensSens"],
+      link: "https://amzn.to/4bRfxfm",
+      badge: "OT Picks",
+      alts: []
+    },
+    {
+      name: "Full-Spectrum Desk Light",
+      why: "Alertness-supporting lighting — especially useful for low registration and seeking types.",
+      patterns: ["lowReg", "sensSeek"],
+      link: "https://amzn.to/4tkpGIF",
+      badge: "OT Picks",
+      alts: [{ label: "Alt option", url: "https://amzn.to/47Eer5D" }]
+    },
+    {
+      name: "Monitor Backlight",
+      why: "Reduces eye strain from screen contrast — lowers visual sensory load during long sessions.",
+      patterns: ["sensSens", "sensAvoid"],
+      link: "https://amzn.to/41MqnyI",
+      badge: "OT Picks",
+      alts: []
+    },
+    {
+      name: "Note Stand",
+      why: "Visual cue support — reduces working memory load, especially useful for low registration.",
+      patterns: ["lowReg", "sensSeek"],
+      link: "https://amzn.to/4tiaY4T",
+      badge: "OT Picks",
+      alts: []
+    },
+    {
+      name: "Color Index Cards",
+      why: "Color-coded visual cues — adds salience for low registration, supports task sequencing.",
+      patterns: ["lowReg", "sensSeek"],
+      link: "https://amzn.to/3PJl40k",
+      badge: null,
+      alts: []
+    },
+    {
+      name: "Visual Reminder Board",
+      why: "Persistent visual structure — externalized cues reduce cognitive and sensory load.",
+      patterns: ["lowReg", "sensSens", "sensAvoid"],
+      link: "https://amzn.to/4bLl0Wq",
+      badge: "OT Picks",
+      alts: []
+    },
+    {
+      name: "Rocking Feet Support",
+      why: "Vestibular + proprioceptive input while seated — regulatory movement without disrupting work.",
+      patterns: ["lowReg", "sensSeek"],
+      link: "https://amzn.to/4c2ZRpA",
+      badge: "OT Picks",
+      alts: [{ label: "Alt option", url: "https://amzn.to/4bLkhob" }]
+    },
+    {
+      name: "Desk Organizer",
+      why: "Visual noise reduction — clutter is real sensory load for sensitivity and avoiding types.",
+      patterns: ["sensSens", "sensAvoid"],
+      link: "https://amzn.to/3NK4InH",
+      badge: "OT Picks",
+      alts: [{ label: "Alt option", url: "https://amzn.to/4dMe2SD" }]
+    },
+    {
+      name: "Cable Management",
+      why: "Same principle as desk organizer — eliminates background visual friction.",
+      patterns: ["sensSens", "sensAvoid"],
+      link: "https://amzn.to/4trMuWW",
+      badge: null,
+      alts: [{ label: "Cable box", url: "https://amzn.to/47IQPgd" }]
+    },
+    {
+      name: "Small Desk Diffuser",
+      why: "Consistent olfactory cue anchors the workspace — helps signal 'focus mode' to the nervous system.",
+      patterns: ["sensSeek", "sensAvoid", "sensSens"],
+      link: "https://amzn.to/419ZMLR",
+      badge: null,
+      alts: [{ label: "Herbal diffuser pen", url: "https://amzn.to/4scvSBq" }]
+    },
+    {
+      name: "Tactile Keyboard",
+      why: "Auditory + tactile feedback on keypresses — additional sensory input for low registration and seeking.",
+      patterns: ["lowReg", "sensSeek"],
+      link: "https://amzn.to/4mcqxZG",
+      badge: "OT Picks",
+      alts: [{ label: "Alt option", url: "https://amzn.to/3O58rfA" }]
+    }
+  ],
+  focus: [
+    {
+      name: "Weighted Lap Pad",
+      why: "Proprioceptive deep touch pressure during seated work — grounding input without distraction.",
+      patterns: ["lowReg", "sensAvoid", "sensSens"],
+      link: "https://amzn.to/4soSGyk",
+      badge: "OT Picks",
+      alts: [{ label: "Clinical grade", url: "https://amzn.to/4mctPvV" }]
+    },
+    {
+      name: "Bone Conduction Headphones",
+      why: "Auditory layer without ear occlusion — keeps spatial awareness while adding focus input.",
+      patterns: ["sensSeek", "lowReg"],
+      link: "https://amzn.to/47KxMlI",
+      badge: "OT Picks",
+      alts: [{ label: "Alt option", url: "https://amzn.to/3PNPUoA" }]
+    },
+    {
+      name: "Open-Back Headphones",
+      why: "Immersive audio with natural soundstage — supports deep focus for seeking and low registration types.",
+      patterns: ["sensSeek", "lowReg"],
+      link: "https://amzn.to/3PLLqik",
+      badge: null,
+      alts: [{ label: "Audiophile option", url: "https://amzn.to/3O5ckRI" }]
+    },
+    {
+      name: "Balance Disk Chair Cushion",
+      why: "Continuous subtle vestibular input — supports regulation through movement while seated.",
+      patterns: ["sensSeek", "lowReg"],
+      link: "https://amzn.to/4sUXxIy",
+      badge: "OT Picks",
+      alts: [{ label: "Alt option", url: "https://amzn.to/4tqeJp1" }]
+    },
+    {
+      name: "Under-Desk Elliptical",
+      why: "Rhythmic movement input during work — meets high need for movement without breaking focus.",
+      patterns: ["sensSeek", "lowReg"],
+      link: "https://amzn.to/4vaWk1d",
+      badge: "OT Picks",
+      alts: [{ label: "Alt option", url: "https://amzn.to/4tvKf5d" }]
+    },
+    {
+      name: "Textured Fidget Ring",
+      why: "Quiet tactile hand input — keeps oral/manual seeking contained without disrupting others.",
+      patterns: ["sensSeek", "lowReg"],
+      link: "https://amzn.to/4t1wTO7",
+      badge: "OT Picks",
+      alts: [{ label: "Option 2", url: "https://amzn.to/3PGE5R8" }, { label: "Option 3", url: "https://amzn.to/4sgsR3j" }]
+    },
+    {
+      name: "Standing Desk Converter",
+      why: "Postural change supports regulation — alternating sit/stand breaks sensory monotony.",
+      patterns: ["sensSeek", "lowReg"],
+      link: "https://amzn.to/4s9vHqF",
+      badge: "OT Picks",
+      alts: [{ label: "Alt option", url: "https://amzn.to/4e1dQi7" }]
+    },
+    {
+      name: "Chair Resistance Band",
+      why: "Leg/foot resistance input while seated — quiet proprioceptive feedback for restless movers.",
+      patterns: ["sensSeek", "lowReg"],
+      link: "https://amzn.to/4c3qtGX",
+      badge: "OT Picks",
+      alts: [{ label: "KICK BANDS", url: "https://amzn.to/41QX2TG" }]
+    }
+  ]
+};
 
 // ─── BUILD QUESTIONS ─────────────────────────────────────────────
 function buildQuestions() {
@@ -828,6 +1188,54 @@ function computeDunnScores() {
 
 function getPrimaryPattern(d) { return Object.entries(d).sort((a,b) => b[1]-a[1])[0][0]; }
 
+// ─── TOOL STORE RENDERING ────────────────────────────────────────
+function buildToolStore(primaryPattern) {
+  ['rest', 'workspace', 'focus'].forEach(domain => {
+    const grid = document.getElementById(`tool-grid-${domain}`);
+    const tools = toolStore[domain];
+
+    // Sort: pattern-matched first, then others
+    const matched = tools.filter(t => t.patterns.includes(primaryPattern));
+    const others = tools.filter(t => !t.patterns.includes(primaryPattern));
+    const sorted = [...matched, ...others];
+
+    grid.innerHTML = sorted.map(tool => {
+      const isMatch = tool.patterns.includes(primaryPattern);
+      const badgeHtml = tool.badge
+        ? `<span class="tool-badge">${tool.badge}</span>`
+        : '';
+      const altHtml = tool.alts.length > 0
+        ? `<div class="tool-alt-links">${tool.alts.map(a => `<a href="${a.url}" class="tool-alt-link" target="_blank" rel="noopener noreferrer">${a.label} →</a>`).join('')}</div>`
+        : '';
+
+      return `
+        <div class="tool-card" style="${isMatch ? 'border-top: 2px solid var(--gold);' : ''}">
+          <div class="tool-card-top">
+            <div class="tool-name">${tool.name}</div>
+            ${badgeHtml}
+          </div>
+          <p class="tool-why">${tool.why}</p>
+          <a href="${tool.link}" class="tool-link" target="_blank" rel="noopener noreferrer">
+            View on Amazon <span class="tool-link-arrow">→</span>
+          </a>
+          ${altHtml}
+        </div>`;
+    }).join('');
+  });
+}
+
+function switchToolTab(domain, btn) {
+  document.querySelectorAll('.tool-tab').forEach(t => {
+    t.classList.remove('active');
+    t.setAttribute('aria-selected', 'false');
+  });
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
+
+  document.querySelectorAll('.tool-domain-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(`tool-${domain}`).classList.add('active');
+}
+
 // ─── RESULTS ─────────────────────────────────────────────────────
 function showResults() {
   const unanswered = scores[4].filter(v => v === null).length;
@@ -841,6 +1249,7 @@ function showResults() {
   const levels = domainScores.map(s => getLevel(s));
   const dunnScores = computeDunnScores();
   const primaryPattern = getPrimaryPattern(dunnScores);
+  currentPrimaryPattern = primaryPattern;
   const pattern = dunnPatterns[primaryPattern];
 
   const ranked = [0,1,2,3,4].map(i => ({ i, score: domainScores[i], level: levels[i] })).sort((a,b) => b.score-a.score);
@@ -855,21 +1264,15 @@ function showResults() {
   document.getElementById('analogyTitle').textContent = pattern.analogy.title;
   document.getElementById('analogyBody').textContent = pattern.analogy.body;
 
-  // 3. Dunn Spectrum Bars — compute % position on each axis
-  const maxDunn = Math.max(...Object.values(dunnScores)) || 1;
-
+  // 3. Dunn Spectrum Bars
   const specHtml = spectrumAxes.map(axis => {
     const lScore = dunnScores[axis.leftKey];
     const rScore = dunnScores[axis.rightKey];
     const total = lScore + rScore || 1;
-    // position: 0% = far left, 100% = far right
-    // left score pulls left, right score pulls right
     const pct = Math.round((rScore / total) * 100);
     const dominant = pct < 50 ? axis.left : axis.right;
     const dominantPct = pct < 50 ? (100 - pct) : pct;
     const fillColor = pct < 50 ? dunnPatterns[axis.leftKey].color : dunnPatterns[axis.rightKey].color;
-
-    // Fill: position bar from center toward dominant side
     const fillWidth = Math.abs(pct - 50) * 2;
     const fillLeft = pct < 50 ? `${pct}%` : '50%';
 
@@ -889,7 +1292,7 @@ function showResults() {
   }).join('');
   document.getElementById('spectrumBars').innerHTML = specHtml;
 
-  // 4. Env friction bars — sorted by score descending
+  // 4. Env friction bars
   const envOrder = [0,1,2,3,4].sort((a,b) => domainScores[b]-domainScores[a]);
   const envHtml = envOrder.map(i => {
     const pct = Math.round((domainScores[i] / 15) * 100);
@@ -925,7 +1328,7 @@ function showResults() {
   document.getElementById('patternEnv').textContent = pattern.envNote;
   document.getElementById('patternTags').innerHTML = pattern.tags.map(t => `<span class="pattern-tag">${t}</span>`).join('');
 
-  // 6. Recs
+  // 7. Recs
   document.getElementById('recCards').innerHTML = buildRecs(ranked, levels, primaryPattern, allStable)
     .map((rec, idx) => `
       <div class="rec-card ${idx === 0 ? 'primary-rec' : ''}">
@@ -938,6 +1341,9 @@ function showResults() {
             : `<a href="${rec.link}" class="rec-cta" target="_blank" rel="noopener noreferrer">${rec.cta}</a>`}
         </div>
       </div>`).join('');
+
+  // 8. Tool Store — pattern-filtered
+  buildToolStore(primaryPattern);
 }
 
 // ─── RECS ─────────────────────────────────────────────────────────
@@ -980,6 +1386,7 @@ function buildRecs(ranked, levels, primaryPattern, allStable) {
 function restartQuiz() {
   scores = Array(5).fill(null).map(() => Array(5).fill(null));
   currentDomain = 0;
+  currentPrimaryPattern = null;
   document.getElementById('results').style.display = 'none';
   document.getElementById('quiz').style.display = 'block';
   window.scrollTo(0, 0);
