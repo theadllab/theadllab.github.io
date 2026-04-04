@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Workspace Control — ADL Lab</title>
+<meta name="description" content="OT-curated workspace tools. Noise control, visual boundaries, external memory, and timing for sensitive nervous systems.">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root { --navy: #1A2640; --gold: #C4973A; --bg: #F0EDE6; --warm-white: #FDFCF9; --muted: #7A7A7A; --border: #DDD8CE; }
@@ -35,30 +36,32 @@
 
   .item { background: var(--warm-white); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 8px; box-shadow: 0 2px 6px rgba(26,38,64,0.06); overflow: hidden; transition: box-shadow 0.18s ease; }
   .item:hover { box-shadow: 0 4px 16px rgba(26,38,64,0.09); }
-
   .item-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; cursor: pointer; user-select: none; gap: 12px; }
   .item-header-left { display: flex; align-items: center; gap: 10px; flex: 1; }
   .item-name { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); }
   .ot { font-family: 'Syne', sans-serif; font-size: 8px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); background: rgba(196,151,58,0.08); border: 1px solid rgba(196,151,58,0.22); padding: 2px 7px; border-radius: 100px; white-space: nowrap; }
   .item-chevron { font-size: 12px; color: var(--muted); transition: transform 0.22s ease; flex-shrink: 0; }
   .item.open .item-chevron { transform: rotate(180deg); }
+  .item-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .item.open .item-body { max-height: 600px; }
+  .item-inner { padding: 0 18px 18px; display: flex; flex-direction: column; gap: 12px; }
 
-  .item-body { max-height: 0; overflow: hidden; transition: max-height 0.28s ease; }
-  .item.open .item-body { max-height: 400px; }
-  .item-inner { padding: 0 18px 16px; display: flex; flex-direction: column; gap: 12px; }
+  .why-block { background: rgba(196,151,58,0.05); border-left: 2px solid var(--gold); padding: 10px 14px; border-radius: 0 6px 6px 0; }
+  .why-block p { font-size: 13px; color: var(--navy); line-height: 1.6; }
 
   .bullets { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-  .bullets li { font-size: 12px; color: var(--muted); display: flex; gap: 8px; align-items: flex-start; line-height: 1.4; }
+  .bullets li { font-size: 12px; color: var(--muted); display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; }
   .bullets li::before { content: '●'; color: var(--gold); font-size: 6px; margin-top: 5px; flex-shrink: 0; }
 
   .options { display: flex; flex-direction: column; gap: 6px; padding-top: 10px; border-top: 1px solid var(--border); }
-  .opt { display: flex; align-items: center; justify-content: space-between; text-decoration: none; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; transition: all 0.15s ease; }
+  .opt { display: flex; align-items: center; justify-content: space-between; text-decoration: none; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 11px 14px; transition: all 0.15s ease; }
   .opt:hover { background: var(--navy); border-color: var(--navy); }
   .opt:hover .opt-name, .opt:hover .opt-arrow { color: white; }
   .opt:hover .opt-tag { color: rgba(255,255,255,0.6); }
-  .opt-name { font-size: 13px; font-weight: 500; color: var(--navy); }
-  .opt-tag { font-size: 10px; color: var(--muted); margin-top: 2px; }
-  .opt-arrow { font-size: 14px; color: var(--gold); flex-shrink: 0; margin-left: 10px; }
+  .opt-left { flex: 1; }
+  .opt-name { font-size: 13px; font-weight: 500; color: var(--navy); line-height: 1.3; }
+  .opt-tag { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .opt-arrow { font-size: 14px; color: var(--gold); flex-shrink: 0; margin-left: 12px; }
 
   .banner { max-width: 900px; margin: 0 auto 56px; padding: 0 20px; }
   .banner-inner { background: var(--navy); border-radius: 14px; padding: 26px 30px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
@@ -87,7 +90,7 @@
 
 <header>
   <a href="index.html" class="logo">ADL <span class="dot">·</span> Lab</a>
-  <a href="index.html" class="back">← Back</a>
+  <a href="index.html" class="back">← All categories</a>
 </header>
 
 <div class="page-hero">
@@ -124,18 +127,18 @@
       </div>
       <div class="item-body">
         <div class="item-inner">
+          <div class="why-block"><p>Background noise isn't just annoying — it's being processed involuntarily, using up cognitive resources before you've even started. ANC creates a sound boundary so silence becomes usable. Loop reduces volume without cutting you off entirely, which is better for meetings or shared spaces.</p></div>
           <ul class="bullets">
-            <li>Background noise = involuntary processing — uses cognitive load before you start</li>
-            <li>ANC creates a sound boundary — silence itself becomes usable</li>
-            <li>Loop reduces volume without cutting you off entirely</li>
+            <li>ANC headphones for deep focus; Loop when you need to stay somewhat aware of your surroundings</li>
+            <li>Sensitivity types: even low-volume noise at a consistent level can be draining — ANC is worth it</li>
           </ul>
           <div class="options">
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">ANC Headphones</div><div class="opt-tag">Full block · deep focus</div></div>
+            <a href="https://amzn.to/4tt9uVP" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">ANC Headphones</div><div class="opt-tag">Full noise block · deep focus</div></div>
               <span class="opt-arrow">→</span>
             </a>
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Loop Quiet Earplugs</div><div class="opt-tag">Volume down · stay aware</div></div>
+            <a href="https://amzn.to/3NDQ5lN" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Loop Quiet Earplugs</div><div class="opt-tag">Volume down · stay socially aware</div></div>
               <span class="opt-arrow">→</span>
             </a>
           </div>
@@ -157,18 +160,14 @@
       </div>
       <div class="item-body">
         <div class="item-inner">
+          <div class="why-block"><p>Peripheral movement is processed automatically — you don't choose to notice it. Blocking your side view reduces involuntary processing and frees up cognitive capacity. Most useful in open offices or any shared environment where other people are moving around you.</p></div>
           <ul class="bullets">
-            <li>Peripheral movement is processed automatically — you don't choose to notice it</li>
-            <li>Blocking side view reduces involuntary processing, frees capacity</li>
-            <li>Especially effective in open offices or shared spaces</li>
+            <li>Desk panel: physical boundary that signals "my workspace" — especially effective for Sensation Avoiding types</li>
+            <li>Even a stack of books on either side of your monitor achieves the same effect</li>
           </ul>
           <div class="options">
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Desk Privacy Panel</div><div class="opt-tag">Physical boundary · office use</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Monitor Privacy Filter</div><div class="opt-tag">Screen side-blocking · slim</div></div>
+            <a href="https://amzn.to/3POlBy0" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Desk Privacy Panel</div><div class="opt-tag">Physical side boundary · open office use</div></div>
               <span class="opt-arrow">→</span>
             </a>
           </div>
@@ -180,23 +179,33 @@
       <div class="item-header" onclick="toggle(this)">
         <div class="item-header-left">
           <span class="item-name">Clutter Control</span>
+          <span class="ot">OT Pick</span>
         </div>
         <span class="item-chevron">▾</span>
       </div>
       <div class="item-body">
         <div class="item-inner">
+          <div class="why-block"><p>A cluttered desk is real sensory load — your brain processes every object in your visual field. Visual noise raises the cognitive cost of starting work and maintaining attention. Setup once, benefit continuously.</p></div>
           <ul class="bullets">
-            <li>Cluttered desk = sensory load — brain processes every object in view</li>
-            <li>Visual noise raises the cognitive cost of getting started</li>
-            <li>Setup once, benefit continuously</li>
+            <li>Cables on the floor are a common overlooked source of visual noise — cable management pays for itself in cognitive load reduction</li>
+            <li>A desk organizer also reduces decision fatigue: things have a place, which means they get put back</li>
+            <li>I recommend both — organizer for surface, cable management for below</li>
           </ul>
           <div class="options">
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Desk Organizer Tray</div><div class="opt-tag">Setup once · easy to maintain</div></div>
+            <a href="https://amzn.to/3NK4InH" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Desk Organizer Tray</div><div class="opt-tag">Surface clutter · setup once · frequently recommended</div></div>
               <span class="opt-arrow">→</span>
             </a>
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Cable Management Kit</div><div class="opt-tag">Removes visual chaos · passive</div></div>
+            <a href="https://amzn.to/4dMe2SD" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Desk Organizer (alt)</div><div class="opt-tag">Different style / size</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="https://amzn.to/4trMuWW" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Cable Management (J-Channel)</div><div class="opt-tag">No drill · adhesive · bestseller</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="https://amzn.to/47IQPgd" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Cable Management Box</div><div class="opt-tag">Hides power strip + cords · floor use</div></div>
               <span class="opt-arrow">→</span>
             </a>
           </div>
@@ -208,23 +217,53 @@
       <div class="item-header" onclick="toggle(this)">
         <div class="item-header-left">
           <span class="item-name">External Memory</span>
+          <span class="ot">OT Pick</span>
         </div>
         <span class="item-chevron">▾</span>
       </div>
       <div class="item-body">
         <div class="item-inner">
+          <div class="why-block"><p>"Out of sight, out of mind" is neurologically accurate for many brains. Keeping tasks and reminders visible reduces working memory load and prevents the cognitive effort of trying to hold things in your head. The board or stand does the holding so you don't have to.</p></div>
           <ul class="bullets">
-            <li>Out of sight = out of mind is neurologically real for ADHD</li>
-            <li>Visible reminders do the holding — no mental effort required</li>
-            <li>Acts as your brain's external storage system</li>
+            <li>Note stand on your desk = task list always in peripheral view, not buried in an app</li>
+            <li>Color-coded index cards add salience — color grabs attention in a way plain text doesn't</li>
+            <li>I use both a note stand and a whiteboard board in my workspace</li>
           </ul>
           <div class="options">
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Desktop Whiteboard</div><div class="opt-tag">Always visible · easy to update</div></div>
+            <a href="https://amzn.to/4bLl0Wq" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Desktop Whiteboard / Visual Board</div><div class="opt-tag">Always visible · easy to update</div></div>
               <span class="opt-arrow">→</span>
             </a>
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Note Stand + Color Notes</div><div class="opt-tag">Small · color-coded priority</div></div>
+            <a href="https://amzn.to/4tiaY4T" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Note Stand</div><div class="opt-tag">Eye-level reminders · I use this daily</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="https://amzn.to/3PJl40k" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Color Index Cards</div><div class="opt-tag">Color-coded priority · tactile + visual</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">Monitor Comfort</span>
+        </div>
+        <span class="item-chevron">▾</span>
+      </div>
+      <div class="item-body">
+        <div class="item-inner">
+          <div class="why-block"><p>High contrast between a bright screen and a dark room forces your eyes to constantly adjust — this is a real sensory load that adds up over a long session. A monitor backlight reduces that contrast and eye strain without dimming your screen.</p></div>
+          <ul class="bullets">
+            <li>I use a monitor backlight — underrated for long screen sessions</li>
+            <li>Especially effective for sensitivity types who notice eye fatigue earlier in the day</li>
+          </ul>
+          <div class="options">
+            <a href="https://amzn.to/41MqnyI" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Monitor Backlight</div><div class="opt-tag">Reduces eye strain · I use this · USB powered</div></div>
               <span class="opt-arrow">→</span>
             </a>
           </div>
@@ -241,23 +280,24 @@
       <div class="item-header" onclick="toggle(this)">
         <div class="item-header-left">
           <span class="item-name">Alerting Light</span>
+          <span class="ot">OT Pick</span>
         </div>
         <span class="item-chevron">▾</span>
       </div>
       <div class="item-body">
         <div class="item-inner">
+          <div class="why-block"><p>Full-spectrum light triggers cortisol and serotonin production — raising arousal naturally. Most useful for low-energy mornings, post-lunch slumps, or when you can't get started. Especially effective for Low Registration types who need more signal to get going.</p></div>
           <ul class="bullets">
-            <li>Full-spectrum light triggers cortisol + serotonin — raises arousal naturally</li>
-            <li>Best for low-energy mornings or when you can't get started</li>
-            <li>30 min before work is often enough to shift the state</li>
+            <li>30 minutes of exposure before work is often enough to meaningfully shift arousal state</li>
+            <li>Different function from a warm dimmable lamp — this one is alerting, that one is calming</li>
           </ul>
           <div class="options">
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Full-Spectrum Desk Lamp</div><div class="opt-tag">Bright, crisp light · alerting</div></div>
+            <a href="https://amzn.to/4tkpGIF" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Full-Spectrum Desk Light</div><div class="opt-tag">Bright alerting light · frequently recommended</div></div>
               <span class="opt-arrow">→</span>
             </a>
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Light Therapy Lamp</div><div class="opt-tag">SAD + focus · timer option</div></div>
+            <a href="https://amzn.to/47Eer5D" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Full-Spectrum Light (alt)</div><div class="opt-tag">Different form factor</div></div>
               <span class="opt-arrow">→</span>
             </a>
           </div>
@@ -274,18 +314,18 @@
       </div>
       <div class="item-body">
         <div class="item-inner">
+          <div class="why-block"><p>Smell is the fastest route to arousal change — it bypasses the cortex and hits the limbic system directly. Peppermint and citrus activate the sympathetic nervous system almost immediately. Use the same scent only during focused work and it becomes an automatic "focus mode" cue over time.</p></div>
           <ul class="bullets">
-            <li>Smell = fastest route to arousal change — direct limbic access</li>
-            <li>Peppermint + citrus activate sympathetic NS — immediate alerting</li>
-            <li>Use only during work → becomes automatic "focus mode" cue</li>
+            <li>Consistency is the mechanism — same scent, same context, same result</li>
+            <li>Herbal diffuser pen is discreet for shared offices</li>
           </ul>
           <div class="options">
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Peppermint / Citrus Essential Oil</div><div class="opt-tag">Inhale before starting</div></div>
+            <a href="https://amzn.to/419ZMLR" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Drift Home Scent Diffuser Kit</div><div class="opt-tag">Desk diffuser · consistent ambient scent</div></div>
               <span class="opt-arrow">→</span>
             </a>
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Small Desk Diffuser</div><div class="opt-tag">Continuous · fills the space</div></div>
+            <a href="https://amzn.to/4scvSBq" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Herbal Diffuser Pen</div><div class="opt-tag">Portable · discreet · no heat needed</div></div>
               <span class="opt-arrow">→</span>
             </a>
           </div>
@@ -308,18 +348,23 @@
       </div>
       <div class="item-body">
         <div class="item-inner">
+          <div class="why-block"><p>Time blindness is neurological — not a character flaw. When time is abstract, starting feels harder and stopping is nearly impossible. When time is visible, both become easier. A visual timer also interrupts hyperfocus in a way an alarm can't — you see the time running out, not just hear a sound.</p></div>
           <ul class="bullets">
-            <li>Time blindness is neurological — not laziness</li>
-            <li>When time is visible, starting and stopping both become easier</li>
-            <li>Better than an alarm for interrupting hyperfocus</li>
+            <li>I recommend this to almost every client with attention regulation challenges</li>
+            <li>Cute timer if design matters to you — it's always on your desk, it should feel good to look at</li>
+            <li>Works for both under-focus (helps initiate) and over-focus (helps stop)</li>
           </ul>
           <div class="options">
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Time Timer (Original)</div><div class="opt-tag">Red disk · most intuitive</div></div>
+            <a href="https://amzn.to/4doHttM" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Countdown Timer (Cute)</div><div class="opt-tag">Design-forward · I recommend this most</div></div>
               <span class="opt-arrow">→</span>
             </a>
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Digital Visual Timer</div><div class="opt-tag">Numbers + color · more affordable</div></div>
+            <a href="https://amzn.to/4sIwqA9" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Countdown Timer (Regular)</div><div class="opt-tag">Simple · functional · affordable</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="https://amzn.to/41dvlEC" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Countdown Timer (Alt)</div><div class="opt-tag">Different format</div></div>
               <span class="opt-arrow">→</span>
             </a>
           </div>
@@ -331,23 +376,61 @@
       <div class="item-header" onclick="toggle(this)">
         <div class="item-header-left">
           <span class="item-name">Body Grounding</span>
+          <span class="ot">OT Pick</span>
         </div>
         <span class="item-chevron">▾</span>
       </div>
       <div class="item-body">
         <div class="item-inner">
+          <div class="why-block"><p>Dangling feet, cold legs, and temperature discomfort create low-level sympathetic activation that drains focus before you notice it. Addressing your physical setup is often the fastest, most overlooked intervention. A foot rest, lap blanket, and compression socks each target a different sensory channel simultaneously.</p></div>
           <ul class="bullets">
-            <li>Dangling feet + cold legs = low-level sympathetic activation — drains focus</li>
-            <li>Foot rest + lap blanket address both simultaneously</li>
-            <li>Compression socks = continuous proprioceptive input, passively</li>
+            <li>Rocking foot rest = vestibular input while seated, which is regulatory for movement-seeking types</li>
+            <li>Lap blanket addresses both temperature and light proprioceptive pressure</li>
+            <li>Compression socks give continuous tactile input without any effort — I use these regularly</li>
           </ul>
           <div class="options">
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Foot Rest + Lap Blanket</div><div class="opt-tag">Warmth + support · setup once</div></div>
+            <a href="https://amzn.to/4c2ZRpA" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Rocking Feet Support</div><div class="opt-tag">Vestibular input · I recommend this often</div></div>
               <span class="opt-arrow">→</span>
             </a>
-            <a href="YOUR-AMAZON-LINK" class="opt" target="_blank" rel="noopener">
-              <div><div class="opt-name">Compression Socks</div><div class="opt-tag">Ongoing tactile input · invisible</div></div>
+            <a href="https://amzn.to/4bLkhob" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Foot Rest (alt)</div><div class="opt-tag">Non-rocking option</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="https://amzn.to/4bRfxfm" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Lap Blanket</div><div class="opt-tag">Temperature + light pressure · I use this</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="https://amzn.to/3PUUPnB" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Seamless Compression Socks</div><div class="opt-tag">Continuous tactile input · invisible</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-header" onclick="toggle(this)">
+        <div class="item-header-left">
+          <span class="item-name">Tactile Keyboard</span>
+        </div>
+        <span class="item-chevron">▾</span>
+      </div>
+      <div class="item-body">
+        <div class="item-inner">
+          <div class="why-block"><p>A keyboard with tactile and auditory feedback provides additional sensory input with every keystroke. For Low Registration and Sensation Seeking types, this adds signal to an otherwise flat sensory environment — which helps the nervous system stay engaged without seeking distraction elsewhere.</p></div>
+          <ul class="bullets">
+            <li>Most effective for people who notice they type harder on a standard keyboard without realizing it</li>
+            <li>The auditory click is also a form of rhythmic input — regulating for some brains</li>
+          </ul>
+          <div class="options">
+            <a href="https://amzn.to/4mcqxZG" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Tactile Keyboard</div><div class="opt-tag">Click feedback · frequently recommended</div></div>
+              <span class="opt-arrow">→</span>
+            </a>
+            <a href="https://amzn.to/3O58rfA" class="opt" target="_blank" rel="noopener">
+              <div class="opt-left"><div class="opt-name">Keyboard (alt)</div><div class="opt-tag">Different style / feel</div></div>
               <span class="opt-arrow">→</span>
             </a>
           </div>
@@ -363,14 +446,14 @@
   <div class="banner-inner">
     <div>
       <strong>Not sure where to start?</strong>
-      <p>Take the free Sensory Friction Index — tells you which domain costs your nervous system the most.</p>
+      <p>Find Your Sensory Pattern — 5 minutes, tells you which domain costs your nervous system the most and which tools match your pattern.</p>
     </div>
-    <a href="https://theadllab.github.io" class="banner-btn">Take the assessment →</a>
+    <a href="sensory-index.html" class="banner-btn">Find Your Pattern →</a>
   </div>
 </div>
 
 <footer>
-  <p>Curated through an OT lens — not paid placement. Amazon affiliate links inside.<br>Educational content only — not clinical advice.</p>
+  <p>Curated through an OT lens — not paid placement. Amazon affiliate links inside.<br>Educational content only — not clinical advice. © ADL Lab · Ahra Roh, OTR/L, ATP</p>
   <div class="footer-links">
     <a href="https://adllab.substack.com" target="_blank" rel="noopener">Substack</a>
     <a href="https://pinterest.com/adllab" target="_blank" rel="noopener">Pinterest</a>
