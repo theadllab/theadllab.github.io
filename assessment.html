@@ -791,7 +791,7 @@
     </div>
 
     <div class="disclaimer">
-      This index is a sensory self-assessment tool designed to help you identify environmental friction patterns. It is not a clinical diagnostic and does not constitute medical or psychological advice. Results are based on self-reported patterns and are intended for personal reflection and environmental design only.
+      This assessment is an educational self-reflection tool based on Dunn's Sensory Processing Model. It is not a clinical diagnostic and does not constitute medical, psychological, or occupational therapy advice. Results are based on self-reported patterns and are intended for personal awareness and environmental design only. Product recommendations in the Sensory Tool Store are general informational references — not clinical prescriptions. Individual results may vary. Supplement suggestions are not medical advice; consult a qualified healthcare provider before starting any supplement. ADL Lab and Ahra Roh, OTR/L, ATP are not liable for decisions made based on this assessment or any linked products.
     </div>
 
     <div class="restart-row">
@@ -1002,10 +1002,10 @@ const toolStore = {
     },
     {
       name: "Magnesium Supplement",
-      why: "Supports nervous system downregulation — OT-safe recommendation with evidence base.",
+      why: "Magnesium supports GABA, the brain's primary calming neurotransmitter — commonly low in adults under chronic stress. General informational reference only; not a clinical recommendation. Consult your physician before starting any supplement.",
       patterns: ["lowReg", "sensSeek", "sensSens", "sensAvoid"],
       link: "https://amzn.to/4ckejL9",
-      badge: "OT Picks",
+      badge: null,
       alts: [{ label: "Alt option", url: "https://amzn.to/4bKpL2y" }]
     },
     {
@@ -1527,24 +1527,29 @@ function showLoading(show) {
 // PDF — print-to-PDF via browser
 function downloadPDF() {
   showLoading(true);
-
-  // Temporarily hide elements we don't want in PDF
   const hideEls = document.querySelectorAll('.save-section, .restart-row, .tool-store-section, .affiliate-note');
+  hideEls.forEach(el => el.dataset.prevDisplay = el.style.display || '');
   hideEls.forEach(el => el.style.display = 'none');
-
-  const patternLabel = getPatternLabel();
   const origTitle = document.title;
-  document.title = `ADL Sensory Profile — ${patternLabel}`;
+  document.title = 'ADL Sensory Pattern — ' + getPatternLabel();
 
-  setTimeout(() => {
-    window.print();
-    // Restore after print dialog closes
-    setTimeout(() => {
-      hideEls.forEach(el => el.style.display = '');
-      document.title = origTitle;
-      showLoading(false);
-    }, 1000);
-  }, 300);
+  function restore() {
+    hideEls.forEach(el => el.style.display = el.dataset.prevDisplay);
+    document.title = origTitle;
+    showLoading(false);
+  }
+
+  // Listen for afterprint — works in all modern browsers
+  window.addEventListener('afterprint', function onAfterPrint() {
+    window.removeEventListener('afterprint', onAfterPrint);
+    restore();
+  });
+
+  // Fallback: restore after 8s in case afterprint doesn't fire
+  const fallback = setTimeout(restore, 8000);
+  window.addEventListener('afterprint', () => clearTimeout(fallback), { once: true });
+
+  setTimeout(() => window.print(), 300);
 }
 
 // Image — html2canvas capture of results summary card
@@ -1572,16 +1577,11 @@ function captureImage() {
   const domainScores = [0,1,2,3,4].map(di => getDomainScore(di));
   const levels = domainScores.map(s => getLevel(s));
 
+  const offscreen = document.createElement('div');
+  offscreen.style.cssText = 'position:absolute;left:-9999px;top:0;width:600px;overflow:hidden;';
+  document.body.appendChild(offscreen);
   const card = document.createElement('div');
-  card.style.cssText = `
-    width: 600px;
-    background: #FDFBF8;
-    font-family: 'DM Sans', sans-serif;
-    padding: 48px 40px;
-    position: fixed;
-    left: -9999px;
-    top: 0;
-  `;
+  card.style.cssText = 'width:600px;background:#FDFBF8;font-family:DM Sans,sans-serif;padding:48px 40px;';
 
   const envRows = [0,1,2,3,4]
     .sort((a,b) => domainScores[b] - domainScores[a])
@@ -1633,7 +1633,7 @@ function captureImage() {
     </div>
   `;
 
-  document.body.appendChild(card);
+  offscreen.appendChild(card);
 
   html2canvas(card, {
     scale: 2,
@@ -1642,14 +1642,14 @@ function captureImage() {
     width: 600,
     windowWidth: 600
   }).then(canvas => {
-    document.body.removeChild(card);
+    document.body.removeChild(offscreen);
     const link = document.createElement('a');
     link.download = `ADL-Sensory-Pattern-${getPatternLabel().replace(/\s+/g, '-')}.png`;
     link.href = canvas.toDataURL('image/png');
     link.click();
     showLoading(false);
   }).catch(() => {
-    document.body.removeChild(card);
+    document.body.removeChild(offscreen);
     showLoading(false);
     alert('Image generation failed. Please try the PDF option.');
   });
