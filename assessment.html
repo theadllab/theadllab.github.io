@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<title>ADL Sensory Friction Index — ADL Lab</title>
+<title>Find Your Sensory Pattern — ADL Lab</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -493,6 +493,99 @@
     .tool-card { padding: 16px; }
     .nav { gap: 8px; }
   }
+
+  /* ═══════════════════════════════
+     DOWNLOAD / SAVE SECTION
+  ═══════════════════════════════ */
+  .save-section {
+    margin: 40px 0 32px;
+    padding: 28px 24px;
+    background: var(--cream);
+    border: 1px solid var(--light-border);
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .save-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  .save-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(20px, 5vw, 24px);
+    color: var(--navy);
+    margin-bottom: 6px;
+    font-weight: 400;
+  }
+
+  .save-desc {
+    font-size: clamp(13px, 3.5vw, 14px);
+    color: var(--muted);
+    margin-bottom: 22px;
+    line-height: 1.7;
+  }
+
+  .save-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-save {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 14px 22px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    border: 1.5px solid var(--navy);
+    background: var(--navy);
+    color: white;
+    min-height: 48px;
+    touch-action: manipulation;
+  }
+
+  .btn-save:hover { background: var(--gold); border-color: var(--gold); }
+  .btn-save:active { transform: scale(0.97); }
+
+  .btn-save.secondary {
+    background: white;
+    color: var(--navy);
+  }
+  .btn-save.secondary:hover { background: var(--navy); color: white; }
+
+  .btn-save svg { flex-shrink: 0; }
+
+  .save-loading {
+    display: none;
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  /* PDF print styles */
+  @media print {
+    header, .save-section, .restart-row, .tool-store-section,
+    .affiliate-note, nav, .nav { display: none !important; }
+    body { background: white; }
+    #results { display: block !important; }
+    main { padding: 20px; max-width: 100%; }
+    .pattern-desc-block { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .env-fill, .spectrum-fill { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
 </style>
 </head>
 <body>
@@ -507,10 +600,10 @@
 <!-- LANDING -->
 <div id="quiz">
   <div class="hero" id="main-content">
-    <div class="hero-eyebrow" aria-hidden="true">Sensory Self-Assessment</div>
-    <h1>The ADL Sensory<br><em>Friction Index</em></h1>
+    <div class="hero-eyebrow" aria-hidden="true">A Self-Assessment for Adults</div>
+    <h1>Find Your<br><em>Sensory Pattern</em></h1>
     <p>Find out which environments are costing your nervous system the most — and what your sensory pattern actually needs.</p>
-    <p class="hero-note">25 questions · 5 environments · Your sensory profile</p>
+    <p class="hero-note">25 questions · 5 environments · Your sensory pattern</p>
     <div class="divider" aria-hidden="true"></div>
     <button class="btn btn-primary" onclick="startQuiz()">Begin Assessment</button>
   </div>
@@ -673,6 +766,28 @@
       <p class="affiliate-note">
         This page contains Amazon affiliate links. As an Amazon Associate, ADL Lab earns a small commission at no extra cost to you. All products are selected based on clinical experience and OT-informed sensory criteria — never paid placement.
       </p>
+    </div>
+
+    <!-- SAVE / DOWNLOAD -->
+    <div class="save-section" id="saveSection">
+      <div class="save-eyebrow">Keep Your Results</div>
+      <div class="save-title">Save Your Sensory Profile</div>
+      <p class="save-desc">Download a PDF to keep or share — or save as an image for quick reference.</p>
+      <div class="save-btns">
+        <button class="btn-save" onclick="downloadPDF()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download PDF
+        </button>
+        <button class="btn-save secondary" onclick="downloadImage()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+          </svg>
+          Save as Image
+        </button>
+      </div>
+      <div class="save-loading" id="saveLoading">Generating your file…</div>
     </div>
 
     <div class="disclaimer">
@@ -1390,6 +1505,154 @@ function restartQuiz() {
   document.getElementById('results').style.display = 'none';
   document.getElementById('quiz').style.display = 'block';
   window.scrollTo(0, 0);
+}
+
+// ─── DOWNLOAD FUNCTIONS ──────────────────────────────────────────
+
+function getPatternLabel() {
+  if (!currentPrimaryPattern) return 'Sensory Profile';
+  const labels = {
+    lowReg: 'Low Signal Processor',
+    sensSeek: 'Stimulation Seeker',
+    sensSens: 'High Sensitivity Processor',
+    sensAvoid: 'Threshold Protector'
+  };
+  return labels[currentPrimaryPattern] || 'Sensory Profile';
+}
+
+function showLoading(show) {
+  document.getElementById('saveLoading').style.display = show ? 'block' : 'none';
+}
+
+// PDF — print-to-PDF via browser
+function downloadPDF() {
+  showLoading(true);
+
+  // Temporarily hide elements we don't want in PDF
+  const hideEls = document.querySelectorAll('.save-section, .restart-row, .tool-store-section, .affiliate-note');
+  hideEls.forEach(el => el.style.display = 'none');
+
+  const patternLabel = getPatternLabel();
+  const origTitle = document.title;
+  document.title = `ADL Sensory Profile — ${patternLabel}`;
+
+  setTimeout(() => {
+    window.print();
+    // Restore after print dialog closes
+    setTimeout(() => {
+      hideEls.forEach(el => el.style.display = '');
+      document.title = origTitle;
+      showLoading(false);
+    }, 1000);
+  }, 300);
+}
+
+// Image — html2canvas capture of results summary card
+function downloadImage() {
+  showLoading(true);
+
+  // Load html2canvas if not already loaded
+  if (typeof html2canvas === 'undefined') {
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+    script.onload = () => captureImage();
+    script.onerror = () => {
+      showLoading(false);
+      alert('Could not load image library. Please try the PDF option.');
+    };
+    document.head.appendChild(script);
+  } else {
+    captureImage();
+  }
+}
+
+function captureImage() {
+  // Build a clean summary card for capture
+  const pattern = dunnPatterns[currentPrimaryPattern];
+  const domainScores = [0,1,2,3,4].map(di => getDomainScore(di));
+  const levels = domainScores.map(s => getLevel(s));
+
+  const card = document.createElement('div');
+  card.style.cssText = `
+    width: 600px;
+    background: #FDFBF8;
+    font-family: 'DM Sans', sans-serif;
+    padding: 48px 40px;
+    position: fixed;
+    left: -9999px;
+    top: 0;
+  `;
+
+  const envRows = [0,1,2,3,4]
+    .sort((a,b) => domainScores[b] - domainScores[a])
+    .map(i => {
+      const pct = Math.round((domainScores[i] / 15) * 100);
+      const colors = { low: '#4A7A52', mid: '#B8922A', high: '#A04030' };
+      const lvl = levels[i];
+      return `
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+          <span style="font-size:13px;color:#1E2B4A;width:110px;font-weight:500;">${domains[i].name}</span>
+          <div style="flex:1;height:10px;background:#EDEBE6;border-radius:6px;overflow:hidden;">
+            <div style="width:${pct}%;height:100%;background:${colors[lvl]};border-radius:6px;"></div>
+          </div>
+          <span style="font-size:11px;color:${colors[lvl]};text-transform:uppercase;font-weight:600;width:70px;text-align:right;">${getLevelLabel(lvl)}</span>
+        </div>`;
+    }).join('');
+
+  const tags = pattern.tags.map(t =>
+    `<span style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(201,168,76,0.5);color:#C9A84C;padding:5px 11px;border-radius:20px;font-weight:500;">${t}</span>`
+  ).join('');
+
+  card.innerHTML = `
+    <!-- Header -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid #E8E2D9;">
+      <div style="font-size:13px;letter-spacing:0.22em;text-transform:uppercase;color:#1E2B4A;font-weight:600;">ADL · Lab</div>
+      <div style="font-size:11px;color:#6A6A6A;letter-spacing:0.1em;text-transform:uppercase;">Ahra Roh, OTR/L, ATP</div>
+    </div>
+
+    <!-- Pattern -->
+    <div style="margin-bottom:28px;">
+      <div style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#C9A84C;margin-bottom:8px;font-weight:500;">Your Sensory Profile</div>
+      <div style="font-size:36px;font-weight:400;color:#1E2B4A;line-height:1.1;margin-bottom:10px;font-family:'DM Sans',sans-serif;">${getPatternLabel()}</div>
+      <div style="font-size:15px;color:#6A6A6A;line-height:1.7;">${pattern.tagline}</div>
+    </div>
+
+    <!-- Friction bars -->
+    <div style="margin-bottom:28px;">
+      <div style="font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:#6A6A6A;margin-bottom:14px;font-weight:600;">Friction by Environment</div>
+      ${envRows}
+    </div>
+
+    <!-- Tags -->
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;">${tags}</div>
+
+    <!-- Footer -->
+    <div style="padding-top:20px;border-top:1px solid #E8E2D9;display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:12px;color:#6A6A6A;">theadllab.github.io</div>
+      <div style="font-size:11px;color:#6A6A6A;letter-spacing:0.1em;text-transform:uppercase;">Find Your Sensory Pattern</div>
+    </div>
+  `;
+
+  document.body.appendChild(card);
+
+  html2canvas(card, {
+    scale: 2,
+    useCORS: true,
+    backgroundColor: '#FDFBF8',
+    width: 600,
+    windowWidth: 600
+  }).then(canvas => {
+    document.body.removeChild(card);
+    const link = document.createElement('a');
+    link.download = `ADL-Sensory-Pattern-${getPatternLabel().replace(/\s+/g, '-')}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    showLoading(false);
+  }).catch(() => {
+    document.body.removeChild(card);
+    showLoading(false);
+    alert('Image generation failed. Please try the PDF option.');
+  });
 }
 </script>
 </body>
