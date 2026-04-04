@@ -26,7 +26,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* HEADER */
   header {
     padding: 16px 24px;
     border-bottom: 1px solid var(--border);
@@ -57,9 +56,8 @@
     text-transform: uppercase;
   }
 
-  /* HERO — stripped down */
   .hero {
-    padding: 48px 24px 20px;
+    padding: 52px 24px 24px;
     text-align: center;
   }
 
@@ -76,29 +74,36 @@
 
   .hero h1 {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(26px, 6vw, 40px);
+    font-size: clamp(26px, 6vw, 42px);
     font-weight: 700;
-    line-height: 1.15;
+    line-height: 1.12;
     color: var(--navy);
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     letter-spacing: -0.01em;
   }
 
-  .hero h1 em { color: var(--gold); font-style: normal; font-weight: 600; }
+  .hero h1 em { color: var(--gold); font-style: normal; }
 
   .hero-sub {
     font-size: 15px;
     color: var(--muted);
-    max-width: 340px;
-    margin: 0 auto 36px;
-    line-height: 1.65;
+    max-width: 360px;
+    margin: 0 auto 12px;
+    line-height: 1.7;
+  }
+
+  .hero-note {
+    font-size: 12px;
+    color: var(--muted);
+    opacity: 0.7;
+    margin-bottom: 36px;
   }
 
   /* CARDS */
   .cards {
     max-width: 1040px;
     margin: 0 auto;
-    padding: 0 20px 56px;
+    padding: 0 20px 48px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     gap: 14px;
@@ -124,7 +129,6 @@
 
   .card:active { transform: translateY(-1px); }
 
-  /* card visuals */
   .card-visual {
     height: 160px;
     position: relative;
@@ -231,13 +235,22 @@
     transform: rotate(25deg);
   }
 
-  /* card body — minimal */
   .card-body {
-    padding: 22px 24px 20px;
+    padding: 22px 24px 24px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     flex: 1;
+  }
+
+  .card-tag {
+    font-family: 'Syne', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2px;
   }
 
   .card-title {
@@ -251,11 +264,29 @@
   .card-desc {
     font-size: 13px;
     color: var(--muted);
-    line-height: 1.65;
+    line-height: 1.7;
+    margin-top: 2px;
+  }
+
+  .card-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 8px;
+  }
+
+  .pill {
+    font-size: 10px;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
   }
 
   .card-btn {
-    margin-top: 12px;
+    margin-top: 14px;
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -273,7 +304,57 @@
 
   .card:hover .card-btn { gap: 10px; }
 
-  /* ASSESSMENT BANNER */
+  /* PATTERN PROMPT */
+  .pattern-prompt {
+    max-width: 1040px;
+    margin: 0 auto 20px;
+    padding: 0 20px;
+  }
+
+  .pattern-prompt-inner {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .pattern-prompt-text {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .pattern-prompt-text strong {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+
+  .prompt-link {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--gold);
+    padding-bottom: 1px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: opacity 0.16s;
+  }
+  .prompt-link:hover { opacity: 0.7; }
+
+  /* BANNER */
   .banner {
     max-width: 1040px;
     margin: 0 auto 60px;
@@ -293,9 +374,9 @@
 
   .banner-inner p {
     font-size: 14px;
-    color: rgba(255,255,255,0.7);
-    max-width: 380px;
-    line-height: 1.65;
+    color: rgba(255,255,255,0.65);
+    max-width: 400px;
+    line-height: 1.7;
   }
 
   .banner-inner strong {
@@ -329,7 +410,6 @@
 
   .banner-btn:hover { background: var(--gold); color: var(--navy); }
 
-  /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
     padding: 24px;
@@ -342,7 +422,6 @@
   footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); }
   .footer-links { margin-top: 8px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
 
-  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(14px); }
     to { opacity: 1; transform: translateY(0); }
@@ -352,14 +431,15 @@
   .card:nth-child(2) { animation: fadeUp 0.4s 0.15s ease both; }
   .card:nth-child(3) { animation: fadeUp 0.4s 0.22s ease both; }
 
-  /* MOBILE */
   @media (max-width: 640px) {
     header { padding: 14px 18px; }
     .cred { display: none; }
     .hero { padding: 36px 18px 16px; text-align: left; }
-    .hero-sub { margin: 0 0 32px; max-width: 100%; }
-    .cards { padding: 0 16px 48px; grid-template-columns: 1fr; gap: 12px; }
+    .hero-sub { margin: 0 0 10px; max-width: 100%; }
+    .hero-note { margin-bottom: 28px; }
+    .cards { padding: 0 16px 40px; grid-template-columns: 1fr; gap: 12px; }
     .card-visual { height: 140px; }
+    .pattern-prompt { padding: 0 16px; }
     .banner { padding: 0 16px; margin-bottom: 44px; }
     .banner-inner { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
     .banner-btn { width: 100%; justify-content: center; }
@@ -375,18 +455,36 @@
 </header>
 
 <section class="hero">
-  <span class="hero-label">Already Done For You</span>
-  <h1>Pick what's hard.<br><em>We found the tools.</em></h1>
-  <p class="hero-sub">Curated by an occupational therapist. No research spiral. Just choose.</p>
+  <span class="hero-label">OT-Curated Tool Store</span>
+  <h1>The research is done.<br><em>Just choose.</em></h1>
+  <p class="hero-sub">Every tool here is selected through a clinical OT lens — based on Dunn's Sensory Processing Model, not trends.</p>
+  <p class="hero-note">No paid placement. Amazon affiliate links inside.</p>
 </section>
+
+<div class="pattern-prompt">
+  <div class="pattern-prompt-inner">
+    <div class="pattern-prompt-text">
+      <strong>Not sure which category is yours?</strong>
+      Find your sensory pattern first — takes 5 minutes, tells you exactly where to start.
+    </div>
+    <a href="sensory-index.html" class="prompt-link">Find Your Sensory Pattern →</a>
+  </div>
+</div>
 
 <div class="cards">
 
   <a href="recovery.html" class="card">
     <div class="card-visual rest"></div>
     <div class="card-body">
+      <div class="card-tag">Sleep · Wind-Down · Recovery</div>
       <div class="card-title">🌙 Recovery & Rest</div>
-      <p class="card-desc">Can't wind down. Can't sleep. Tools that help your nervous system actually stop.</p>
+      <p class="card-desc">Can't wind down. Can't sleep. Tools that help your nervous system actually stop — not just slow down.</p>
+      <div class="card-pills">
+        <span class="pill">Light control</span>
+        <span class="pill">Sound masking</span>
+        <span class="pill">Deep pressure</span>
+        <span class="pill">Scent cues</span>
+      </div>
       <span class="card-btn">See tools →</span>
     </div>
   </a>
@@ -394,8 +492,15 @@
   <a href="workspace.html" class="card">
     <div class="card-visual workspace"></div>
     <div class="card-body">
+      <div class="card-tag">Focus · Noise · Clutter · Structure</div>
       <div class="card-title">💡 Workspace Control</div>
-      <p class="card-desc">Too noisy. Too cluttered. Too much. Tools that take the edge off your environment.</p>
+      <p class="card-desc">Too noisy. Too cluttered. Too much. Tools that take the sensory edge off your environment so your brain can actually work.</p>
+      <div class="card-pills">
+        <span class="pill">Noise reduction</span>
+        <span class="pill">Visual boundary</span>
+        <span class="pill">External memory</span>
+        <span class="pill">Timing</span>
+      </div>
       <span class="card-btn">See tools →</span>
     </div>
   </a>
@@ -407,8 +512,15 @@
       <div class="plant"></div>
     </div>
     <div class="card-body">
+      <div class="card-tag">Movement · Input · Stimulation</div>
       <div class="card-title">🌿 Focus & Stimulation</div>
-      <p class="card-desc">Can't sit still. Can't start. Tools that give your brain the input it's looking for.</p>
+      <p class="card-desc">Can't sit still. Can't start. Your brain is looking for input — these tools give it what it needs without breaking your flow.</p>
+      <div class="card-pills">
+        <span class="pill">Tactile input</span>
+        <span class="pill">Movement</span>
+        <span class="pill">Auditory layer</span>
+        <span class="pill">Oral motor</span>
+      </div>
       <span class="card-btn">See tools →</span>
     </div>
   </a>
@@ -418,15 +530,15 @@
 <div class="banner">
   <div class="banner-inner">
     <div>
-      <strong>Not sure which category is yours?</strong>
-      <p>Take the free Sensory Friction Index — 5 minutes, tells you exactly where your nervous system is spending the most energy.</p>
+      <strong>Find Your Sensory Pattern — Free</strong>
+      <p>25 questions. 5 environments. Your nervous system's actual friction points — mapped, explained, and matched to tools.</p>
     </div>
-    <a href="https://theadllab.github.io" class="banner-btn">Take the assessment →</a>
+    <a href="sensory-index.html" class="banner-btn">Take the assessment →</a>
   </div>
 </div>
 
 <footer>
-  <p>Curated through an OT lens — not paid placement. Amazon affiliate links inside.<br>Educational content only — not clinical advice.</p>
+  <p>Curated through an OT lens — not paid placement. Amazon affiliate links inside.<br>Educational content only — not clinical advice. © ADL Lab · Ahra Roh, OTR/L, ATP</p>
   <div class="footer-links">
     <a href="https://adllab.substack.com" target="_blank" rel="noopener">Substack</a>
     <a href="https://pinterest.com/adllab" target="_blank" rel="noopener">Pinterest</a>
