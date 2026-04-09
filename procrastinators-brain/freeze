@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior:smooth;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freeze Toolkit — ADL Lab</title>
+<meta name="description" content="OT-vetted tools for when you can't figure out where to start.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1A2640; --gold: #C4973A; --warm-white: #FDFCF9;
+    --muted: #7A7A7A; --border: #DDD8CE; --bg: #F0EDE6;
+    --accent: #2A5FF6; --accent-lt: #E8EFFE;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--navy); font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+  header { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: var(--warm-white); z-index: 100; }
+  .logo { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); text-decoration: none; }
+  .logo .dot { color: var(--gold); margin: 0 3px; }
+  .back { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.18s; }
+  .back:hover { color: var(--accent); }
+
+  .hero { background: var(--navy); padding: 52px 24px 44px; position: relative; overflow: hidden; }
+  .hero::before { content: 'FREEZE'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); font-family: 'Syne', sans-serif; font-size: clamp(80px, 18vw, 160px); font-weight: 800; color: rgba(42,95,246,0.1); line-height: 1; letter-spacing: -0.04em; pointer-events: none; user-select: none; }
+  .hero-inner { max-width: 680px; position: relative; }
+  .hero-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: block; }
+  .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(36px, 8vw, 60px); font-weight: 800; color: white; letter-spacing: -0.02em; line-height: 1; margin-bottom: 18px; }
+  .hero-sub { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.75; max-width: 480px; margin-bottom: 24px; }
+  .hero-quote { display: inline-flex; background: rgba(42,95,246,0.15); border: 1px solid rgba(42,95,246,0.3); border-radius: 100px; padding: 8px 16px; font-size: 13px; color: rgba(255,255,255,0.8); font-style: italic; }
+
+  .ot-note { max-width: 960px; margin: 0 auto; padding: 20px 24px 0; }
+  .ot-note-inner { background: var(--warm-white); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 14px 18px; font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .ot-note-inner strong { color: var(--navy); font-weight: 600; }
+
+  .products { max-width: 960px; margin: 0 auto; padding: 20px 24px 48px; display: flex; flex-direction: column; gap: 14px; }
+
+  .product-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: grid; grid-template-columns: 180px 1fr; transition: box-shadow 0.2s, transform 0.2s; box-shadow: 0 2px 12px rgba(26,38,64,0.05); }
+  .product-card:hover { box-shadow: 0 8px 32px rgba(26,38,64,0.1); transform: translateY(-2px); }
+
+  /* Product image area */
+  .product-img { min-height: 170px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+
+  /* 1. Post-it 6x4 — yellow bg, fanned notes */
+  .img-postit { background: #FFD600; }
+  .img-postit .s1 { position:absolute; width:88px; height:60px; background:#64C8FF; border-radius:2px; transform:rotate(-14deg) translate(-12px,10px); box-shadow:2px 2px 8px rgba(0,0,0,.15); }
+  .img-postit .s2 { position:absolute; width:88px; height:60px; background:#98E090; border-radius:2px; transform:rotate(-6deg) translate(-4px,5px); box-shadow:2px 2px 8px rgba(0,0,0,.15); }
+  .img-postit .s3 { position:absolute; width:88px; height:60px; background:#FFB3CC; border-radius:2px; transform:rotate(2deg) translate(4px,0); box-shadow:2px 2px 8px rgba(0,0,0,.15); }
+  .img-postit .s4 { position:absolute; width:88px; height:60px; background:#FF8C42; border-radius:2px; transform:rotate(10deg) translate(12px,-5px); box-shadow:2px 2px 8px rgba(0,0,0,.15); display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-size:14px; font-weight:800; color:white; }
+
+  /* 2. Multicolor 8x6 — white bg, large stacked pads */
+  .img-multicolor { background: #f0f0f0; }
+  .img-multicolor .s1 { position:absolute; width:100px; height:72px; background:#9B59B6; border-radius:2px; transform:rotate(-6deg) translate(-8px,14px); }
+  .img-multicolor .s2 { position:absolute; width:100px; height:72px; background:#2ECC71; border-radius:2px; transform:rotate(-1deg) translate(-2px,7px); }
+  .img-multicolor .s3 { position:absolute; width:100px; height:72px; background:#FF6B35; border-radius:2px; transform:rotate(4deg) translate(6px,0); }
+
+  /* 3. Glass whiteboard — gray/white desk unit */
+  .img-whiteboard { background: #E8E8E8; }
+  .img-whiteboard .base { position:absolute; width:120px; height:18px; background:#5A5A5A; border-radius:4px; bottom:36px; }
+  .img-whiteboard .board { position:absolute; width:120px; height:62px; background:white; border:2px solid #ccc; border-radius:3px; bottom:52px; box-shadow:0 4px 14px rgba(0,0,0,.12); }
+  .img-whiteboard .line1 { position:absolute; width:90px; height:1.5px; background:#e0e0e0; bottom:82px; }
+  .img-whiteboard .line2 { position:absolute; width:90px; height:1.5px; background:#e0e0e0; bottom:94px; }
+  .img-whiteboard .marker { position:absolute; width:5px; height:28px; background:#333; border-radius:2px; bottom:54px; right:26px; }
+
+  /* 4. Oxford index cards — pastel fan */
+  .img-cards { background: #3A9ED4; }
+  .img-cards .c1 { position:absolute; width:100px; height:66px; background:#FFD93D; border-radius:3px; border-top:5px solid #E6C200; transform:translate(0,20px); box-shadow:0 3px 8px rgba(0,0,0,.15); }
+  .img-cards .c2 { position:absolute; width:100px; height:66px; background:#B4D4FF; border-radius:3px; border-top:5px solid #7EB5FF; transform:translate(0,8px); box-shadow:0 3px 8px rgba(0,0,0,.12); }
+  .img-cards .c3 { position:absolute; width:100px; height:66px; background:#FFB3C6; border-radius:3px; border-top:5px solid #FF80A0; transform:translate(0,-4px); box-shadow:0 3px 8px rgba(0,0,0,.1); }
+  .img-cards .c4 { position:absolute; width:100px; height:66px; background:#B8F0C8; border-radius:3px; border-top:5px solid #7DE0A0; transform:translate(0,-16px); box-shadow:0 3px 8px rgba(0,0,0,.08); }
+
+  /* 5. Clear desk organizer */
+  .img-organizer { background: #F5F1EB; }
+  .img-organizer .tray1 { position:absolute; width:110px; height:16px; background:rgba(180,200,220,.35); border:1.5px solid rgba(140,170,200,.5); border-radius:3px; bottom:44px; }
+  .img-organizer .tray2 { position:absolute; width:110px; height:16px; background:rgba(180,200,220,.3); border:1.5px solid rgba(140,170,200,.45); border-radius:3px; bottom:60px; }
+  .img-organizer .tray3 { position:absolute; width:110px; height:16px; background:rgba(180,200,220,.25); border:1.5px solid rgba(140,170,200,.4); border-radius:3px; bottom:76px; }
+  .img-organizer .holder { position:absolute; width:36px; height:56px; background:rgba(180,200,220,.3); border:1.5px solid rgba(140,170,200,.45); border-radius:3px; bottom:44px; right:24px; }
+  .img-organizer .pen { position:absolute; width:3px; height:44px; background:#E65100; border-radius:1px; bottom:56px; right:38px; }
+
+  /* Product body */
+  .product-body { padding: 24px 28px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; border-left: 3px solid var(--accent); }
+  .product-meta { display: flex; flex-direction: column; gap: 8px; }
+  .product-num { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .product-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--navy); line-height: 1.35; }
+
+  .shop-btn { align-self: flex-start; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 18px; background: var(--accent); color: white; border-radius: 8px; text-decoration: none; transition: opacity 0.18s; display: inline-flex; align-items: center; gap: 6px; }
+  .shop-btn:hover { opacity: 0.85; }
+
+  .pattern-nav { max-width: 960px; margin: 0 auto 64px; padding: 0 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .nav-card { flex: 1; min-width: 200px; background: var(--warm-white); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; text-decoration: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; transition: border-color 0.18s, transform 0.18s; }
+  .nav-card:hover { transform: translateY(-2px); }
+  .nav-card.scatter:hover { border-color: #E65100; }
+  .nav-card.wait:hover { border-color: #2E7D32; }
+  .nav-card-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .nav-card-name { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; }
+  .nav-card.scatter .nav-card-name { color: #E65100; }
+  .nav-card.wait .nav-card-name { color: #2E7D32; }
+  .nav-arrow { font-size: 18px; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 11px; color: var(--muted); line-height: 2; }
+
+
+  .product-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 5px; }
+  .product-bullets li { font-size: 13px; color: var(--muted); line-height: 1.45; display: flex; align-items: flex-start; gap: 7px; }
+  .product-bullets li::before { content: "—"; color: var(--accent); flex-shrink: 0; font-weight: 700; margin-top: 0; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .product-card:nth-child(1) { animation: fadeUp 0.35s 0.05s ease both; }
+  .product-card:nth-child(2) { animation: fadeUp 0.35s 0.10s ease both; }
+  .product-card:nth-child(3) { animation: fadeUp 0.35s 0.15s ease both; }
+  .product-card:nth-child(4) { animation: fadeUp 0.35s 0.20s ease both; }
+  .product-card:nth-child(5) { animation: fadeUp 0.35s 0.25s ease both; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 36px 18px 32px; }
+    .product-card { grid-template-columns: 1fr; }
+    .product-img { min-height: 130px; }
+    .product-body { border-left: none; border-top: 3px solid var(--accent); padding: 20px; }
+    .products, .ot-note, .pattern-nav { padding-left: 16px; padding-right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://theadllab.github.io" class="logo">ADL <span class="dot">·</span> Lab</a>
+  <a href="index.html" class="back">← All Patterns</a>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-label">Pattern 01 of 03</span>
+    <h1>FREEZE</h1>
+    <p class="hero-sub">Tools to make your tasks visible — so your brain knows exactly where to start.</p>
+    <div class="hero-quote">"I don't know where to begin. So I'll figure it out later. Later never comes."</div>
+  </div>
+</section>
+
+<div class="ot-note">
+  <div class="ot-note-inner">
+    <strong>Why these tools?</strong> When a task has no clear starting point, your brain can't form an action sequence. It enters a holding pattern — not laziness, but a genuine processing gap. These tools externalize the planning so your working memory doesn't have to hold it. Selected by Ahra Roh, OTR/L, ATP — not sponsored.
+  </div>
+</div>
+
+<div class="products">
+
+  <div class="product-card">
+    <div class="product-img img-postit">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="40" width="76" height="54" rx="2" fill="#64C8FF" transform="rotate(-10,46,67)"/>
+        <rect x="16" y="38" width="76" height="54" rx="2" fill="#98E090" transform="rotate(-4,54,65)"/>
+        <rect x="24" y="36" width="76" height="54" rx="2" fill="#FFB3CC" transform="rotate(2,62,63)"/>
+        <rect x="32" y="34" width="76" height="54" rx="2" fill="#FF8C42" transform="rotate(8,70,61)"/>
+        <text x="70" y="68" font-family="Arial" font-size="11" font-weight="bold" fill="white" text-anchor="middle">6×4</text>
+        </svg>
+    </div>
+    <div class="product-body">
+      <div class="product-meta">
+        <div class="product-num">Tool 01</div>
+        <div class="product-name">Post-it Super Sticky Notes 6×4</div>
+        <ul class="product-bullets">
+          <li>Larger format — one task per note, no cramming</li>
+          <li>2× sticking power on walls, monitors, vertical surfaces</li>
+          <li>Writing > typing for task encoding</li>
+        </ul>
+      </div>
+      <a href="https://amzn.to/3NT1aj3" target="_blank" rel="noopener" class="shop-btn">Shop on Amazon →</a>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img img-multicolor">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="30" width="90" height="65" rx="2" fill="#9B59B6" transform="rotate(-6,55,62)"/>
+        <rect x="10" y="30" width="90" height="65" rx="2" fill="#2ECC71" transform="rotate(-1,55,62)"/>
+        <rect x="10" y="30" width="90" height="65" rx="2" fill="#FF6B35" transform="rotate(4,55,62)"/>
+        <text x="55" y="68" font-family="Arial" font-size="10" font-weight="bold" fill="white" text-anchor="middle">8×6</text>
+        </svg>
+    </div>
+    <div class="product-body">
+      <div class="product-meta">
+        <div class="product-num">Tool 02</div>
+        <div class="product-name">Sticky Notes 8×6 Multicolor Pack</div>
+        <ul class="product-bullets">
+          <li>Color-code by pattern: Blue=Freeze · Orange=Scatter · Yellow=Wait</li>
+          <li>Bigger surface = more room to write clearly</li>
+          <li>6 bright colors per pack</li>
+        </ul>
+      </div>
+      <a href="https://amzn.to/4mlsinl" target="_blank" rel="noopener" class="shop-btn">Shop on Amazon →</a>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img img-whiteboard">
+      <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="55" width="120" height="12" rx="4" fill="#606060"/>
+        <rect x="14" y="20" width="112" height="38" rx="3" fill="white" stroke="#ccc" stroke-width="1.5"/>
+        <line x1="22" y1="32" x2="118" y2="32" stroke="#eee" stroke-width="1"/>
+        <line x1="22" y1="42" x2="118" y2="42" stroke="#eee" stroke-width="1"/>
+        <line x1="22" y1="52" x2="80" y2="52" stroke="#eee" stroke-width="1"/>
+        <rect x="10" y="65" width="120" height="22" rx="3" fill="#707070"/>
+        <rect x="18" y="69" width="28" height="14" rx="2" fill="#555"/>
+        <rect x="52" y="69" width="28" height="14" rx="2" fill="#555"/>
+        <rect x="86" y="69" width="12" height="30" rx="2" fill="#404040"/>
+        <circle cx="93" cy="95" r="3" fill="#888"/>
+        </svg>
+    </div>
+    <div class="product-body">
+      <div class="product-meta">
+        <div class="product-num">Tool 03</div>
+        <div class="product-name">Glass Desk Whiteboard with Storage</div>
+        <ul class="product-bullets">
+          <li>See all tasks at once — brain stops holding the list</li>
+          <li>Glass wipes clean, no ghosting, reusable daily</li>
+          <li>Built-in storage tray keeps markers visible</li>
+        </ul>
+      </div>
+      <a href="https://amzn.to/4slsJiM" target="_blank" rel="noopener" class="shop-btn">Shop on Amazon →</a>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img img-cards">
+      <svg viewBox="0 0 130 120" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="55" width="100" height="55" rx="3" fill="#FFD93D" stroke="#E6C200" stroke-width="4"/>
+        <rect x="15" y="40" width="100" height="55" rx="3" fill="#B4D4FF" stroke="#7EB5FF" stroke-width="4"/>
+        <rect x="15" y="25" width="100" height="55" rx="3" fill="#FFB3C6" stroke="#FF80A0" stroke-width="4"/>
+        <rect x="15" y="10" width="100" height="55" rx="3" fill="#B8F0C8" stroke="#7DE0A0" stroke-width="4"/>
+        <line x1="23" y1="24" x2="107" y2="24" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+        <line x1="23" y1="32" x2="107" y2="32" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+        <line x1="23" y1="40" x2="107" y2="40" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+        </svg>
+    </div>
+    <div class="product-body">
+      <div class="product-meta">
+        <div class="product-num">Tool 04</div>
+        <div class="product-name">Oxford Color Index Cards 4×6</div>
+        <ul class="product-bullets">
+          <li>Physical cards you can sequence, stack, move</li>
+          <li>Externalizes planning — frees working memory</li>
+          <li>5 colors: Blue · Red · Green · Purple · Yellow</li>
+        </ul>
+      </div>
+      <a href="https://amzn.to/4cvEXki" target="_blank" rel="noopener" class="shop-btn">Shop on Amazon →</a>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img img-organizer">
+      <svg viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="80" width="120" height="8" rx="2" fill="rgba(160,185,210,0.5)" stroke="rgba(120,160,200,0.6)" stroke-width="1"/>
+        <rect x="10" y="65" width="120" height="8" rx="2" fill="rgba(160,185,210,0.45)" stroke="rgba(120,160,200,0.55)" stroke-width="1"/>
+        <rect x="10" y="50" width="120" height="8" rx="2" fill="rgba(160,185,210,0.4)" stroke="rgba(120,160,200,0.5)" stroke-width="1"/>
+        <rect x="10" y="35" width="120" height="8" rx="2" fill="rgba(160,185,210,0.35)" stroke="rgba(120,160,200,0.45)" stroke-width="1"/>
+        <rect x="95" y="20" width="35" height="68" rx="3" fill="rgba(160,185,210,0.3)" stroke="rgba(120,160,200,0.45)" stroke-width="1"/>
+        <line x1="63" y1="22" x2="63" y2="82" stroke="rgba(120,160,200,0.3)" stroke-width="1"/>
+        <rect x="68" y="28" width="3" height="52" rx="1" fill="#E65100" opacity="0.7"/>
+        <rect x="75" y="22" width="3" height="58" rx="1" fill="#2A5FF6" opacity="0.7"/>
+        <rect x="82" y="32" width="3" height="48" rx="1" fill="#2E7D32" opacity="0.7"/>
+        </svg>
+    </div>
+    <div class="product-body">
+      <div class="product-meta">
+        <div class="product-num">Tool 05</div>
+        <div class="product-name">Clear Desk Organizer with File Holder</div>
+        <ul class="product-bullets">
+          <li>Keeps cards and notes upright, visible, in sequence</li>
+          <li>Reduces desk clutter that triggers Scatter mode</li>
+          <li>Clear acrylic — doesn't add visual noise</li>
+        </ul>
+      </div>
+      <a href="https://amzn.to/4tydK6d" target="_blank" rel="noopener" class="shop-btn">Shop on Amazon →</a>
+    </div>
+  </div>
+</div>
+
+<div class="pattern-nav">
+  <a href="scatter.html" class="nav-card scatter">
+    <div><div class="nav-card-label">Next pattern</div><div class="nav-card-name">SCATTER</div></div>
+    <div class="nav-arrow">→</div>
+  </a>
+  <a href="wait.html" class="nav-card wait">
+    <div><div class="nav-card-label">Also explore</div><div class="nav-card-name">WAIT</div></div>
+    <div class="nav-arrow">→</div>
+  </a>
+</div>
+
+<footer>
+  <p>OT-curated tools — not paid placement. Amazon affiliate links: ADL Lab earns a small commission at no extra cost to you.<br>Educational content only — not clinical advice. © ADL Lab · Ahra Roh, OTR/L, ATP</p>
+</footer>
+
+</body>
+</html>
