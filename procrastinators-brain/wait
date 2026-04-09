@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior:smooth;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wait Toolkit — ADL Lab</title>
+<meta name="description" content="OT-vetted tools for lowering the cost of starting. 5 picks, clinical reasons, Amazon links.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1A2640; --gold: #C4973A; --warm-white: #FDFCF9;
+    --muted: #7A7A7A; --border: #DDD8CE; --bg: #F0EDE6;
+    --accent: #2E7D32;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--navy); font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+  header { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: var(--warm-white); z-index: 100; }
+  .logo { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); text-decoration: none; }
+  .logo .dot { color: var(--gold); margin: 0 3px; }
+  .back { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.18s; }
+  .back:hover { color: var(--accent); }
+
+  .hero { background: var(--navy); padding: 52px 24px 44px; position: relative; overflow: hidden; }
+  .hero::before { content: 'WAIT'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); font-family: 'Syne', sans-serif; font-size: clamp(90px, 22vw, 200px); font-weight: 800; color: rgba(46,125,50,0.1); line-height: 1; letter-spacing: -0.04em; pointer-events: none; user-select: none; }
+  .hero-inner { max-width: 680px; position: relative; }
+  .hero-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: block; }
+  .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(36px, 8vw, 60px); font-weight: 800; color: white; letter-spacing: -0.02em; line-height: 1; margin-bottom: 18px; }
+  .hero-sub { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.75; max-width: 480px; margin-bottom: 24px; }
+  .hero-quote { display: inline-flex; background: rgba(46,125,50,0.15); border: 1px solid rgba(46,125,50,0.3); border-radius: 100px; padding: 8px 16px; font-size: 13px; color: rgba(255,255,255,0.8); font-style: italic; }
+
+  .ot-note { max-width: 960px; margin: 0 auto; padding: 20px 24px 0; }
+  .ot-note-inner { background: var(--warm-white); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 14px 18px; font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .ot-note-inner strong { color: var(--navy); font-weight: 600; }
+
+  .products { max-width: 960px; margin: 0 auto; padding: 20px 24px 48px; display: flex; flex-direction: column; gap: 14px; }
+
+  .product-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: grid; grid-template-columns: 180px 1fr; transition: box-shadow 0.2s, transform 0.2s; box-shadow: 0 2px 12px rgba(26,38,64,0.05); }
+  .product-card:hover { box-shadow: 0 8px 32px rgba(26,38,64,0.1); transform: translateY(-2px); }
+
+  .product-img { min-height: 170px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+
+  /* 1. Time Timer MOD — charcoal square, red pie disk */
+  .img-timer { background: #3A3A3A; }
+  .img-timer .body { position:absolute; width:100px; height:100px; background:#2C2C2C; border-radius:12px; }
+  .img-timer .face { position:absolute; width:82px; height:82px; background:white; border-radius:50%; }
+  .img-timer .pie { position:absolute; width:82px; height:82px; border-radius:50%; background:conic-gradient(#E53935 0deg, #E53935 200deg, transparent 200deg); }
+  .img-timer .knob { position:absolute; width:12px; height:12px; background:white; border-radius:50%; z-index:2; }
+
+  /* 2. Leuchtturm1917 — black hardcover, elastic band */
+  .img-leucht { background: #F0EDE6; }
+  .img-leucht .cover { position:absolute; width:72px; height:96px; background:#1A1A1A; border-radius:3px; box-shadow:3px 3px 10px rgba(0,0,0,.25); }
+  .img-leucht .label { position:absolute; width:48px; height:28px; background:#F5F5F0; border-radius:2px; top:50%; left:50%; transform:translate(-54%, -50%); }
+  .img-leucht .band { position:absolute; width:4px; height:96px; background:#1A1A1A; right:36px; }
+  .img-leucht .bookmark { position:absolute; width:3px; height:20px; background:#C4973A; bottom:10px; right:44px; }
+
+  /* 3. Anker Soundcore 2 — black rectangle with mesh */
+  .img-anker { background: #1E1E1E; }
+  .img-anker .body { position:absolute; width:110px; height:46px; background:#2A2A2A; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,.3); }
+  .img-anker .mesh { position:absolute; width:78px; height:34px; background:repeating-linear-gradient(90deg,#333 0px,#333 2px,#2A2A2A 2px,#2A2A2A 5px); border-radius:4px; }
+  .img-anker .btn1 { position:absolute; width:8px; height:8px; background:#444; border-radius:50%; top:calc(50% - 20px); right:28px; }
+  .img-anker .btn2 { position:absolute; width:8px; height:8px; background:#444; border-radius:50%; top:calc(50% - 20px); right:40px; }
+  .img-anker .logo-text { position:absolute; font-family:'Syne',sans-serif; font-size:9px; font-weight:700; color:#555; letter-spacing:0.1em; }
+
+  /* 4. Full Focus Planner — navy hardcover, open spread */
+  .img-fullfocus { background: #F5F0E8; }
+  .img-fullfocus .left { position:absolute; width:56px; height:80px; background:#1A2640; border-radius:3px 0 0 3px; left:20px; box-shadow:2px 2px 8px rgba(0,0,0,.2); }
+  .img-fullfocus .right { position:absolute; width:56px; height:80px; background:#F8F5EF; border-radius:0 3px 3px 0; left:76px; border:1px solid #E0D8C8; }
+  .img-fullfocus .line1 { position:absolute; width:38px; height:1.5px; background:#DDD; left:84px; top:calc(50% - 20px); }
+  .img-fullfocus .line2 { position:absolute; width:38px; height:1.5px; background:#DDD; left:84px; top:calc(50% - 10px); }
+  .img-fullfocus .line3 { position:absolute; width:38px; height:1.5px; background:#DDD; left:84px; top:50%; }
+  .img-fullfocus .line4 { position:absolute; width:38px; height:1.5px; background:#DDD; left:84px; top:calc(50% + 10px); }
+  .img-fullfocus .spine { position:absolute; width:5px; height:80px; background:#141E33; left:71px; }
+
+  /* 5. Zen & Flow — dark green spiral-bound planner */
+  .img-zenflow { background: #EAF0EA; }
+  .img-zenflow .cover { position:absolute; width:80px; height:90px; background:#2D5A3D; border-radius:3px; left:20px; box-shadow:2px 2px 8px rgba(0,0,0,.2); }
+  .img-zenflow .page { position:absolute; width:70px; height:82px; background:#FAFAF8; border-radius:0 3px 3px 0; left:60px; border:1px solid #E0E0D8; }
+  .img-zenflow .spiral { position:absolute; width:8px; height:90px; left:16px; display:flex; flex-direction:column; justify-content:space-around; align-items:center; }
+  .img-zenflow .coil { width:8px; height:6px; border:2px solid #C0C0B8; border-radius:50%; }
+  .img-zenflow .gridline1 { position:absolute; width:50px; height:1px; background:#E8E8E0; left:66px; top:calc(50% - 15px); }
+  .img-zenflow .gridline2 { position:absolute; width:50px; height:1px; background:#E8E8E0; left:66px; top:50%; }
+  .img-zenflow .gridline3 { position:absolute; width:50px; height:1px; background:#E8E8E0; left:66px; top:calc(50% + 15px); }
+
+  .product-body { padding: 24px 28px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; border-left: 3px solid var(--accent); }
+  .product-meta { display: flex; flex-direction: column; gap: 8px; }
+  .product-num { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .product-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--navy); line-height: 1.35; }
+
+  .shop-btn { align-self: flex-start; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 18px; background: var(--accent); color: white; border-radius: 8px; text-decoration: none; transition: opacity 0.18s; display: inline-flex; align-items: center; gap: 6px; }
+  .shop-btn:hover { opacity: 0.85; }
+
+  .pattern-nav { max-width: 960px; margin: 0 auto 64px; padding: 0 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .nav-card { flex: 1; min-width: 200px; background: var(--warm-white); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; text-decoration: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; transition: border-color 0.18s, transform 0.18s; }
+  .nav-card:hover { transform: translateY(-2px); }
+  .nav-card.freeze:hover { border-color: #2A5FF6; }
+  .nav-card.scatter:hover { border-color: #E65100; }
+  .nav-card-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .nav-card-name { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; }
+  .nav-card.freeze .nav-card-name { color: #2A5FF6; }
+  .nav-card.scatter .nav-card-name { color: #E65100; }
+  .nav-arrow { font-size: 18px; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 11px; color: var(--muted); line-height: 2; }
+
+
+  .product-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 5px; }
+  .product-bullets li { font-size: 13px; color: var(--muted); line-height: 1.45; display: flex; align-items: flex-start; gap: 7px; }
+  .product-bullets li::before { content: "—"; color: var(--accent); flex-shrink: 0; font-weight: 700; margin-top: 0; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .product-card:nth-child(1) { animation: fadeUp 0.35s 0.05s ease both; }
+  .product-card:nth-child(2) { animation: fadeUp 0.35s 0.10s ease both; }
+  .product-card:nth-child(3) { animation: fadeUp 0.35s 0.15s ease both; }
+  .product-card:nth-child(4) { animation: fadeUp 0.35s 0.20s ease both; }
+  .product-card:nth-child(5) { animation: fadeUp 0.35s 0.25s ease both; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 36px 18px 32px; }
+    .product-card { grid-template-columns: 1fr; }
+    .product-img { min-height: 130px; }
+    .product-body { border-left: none; border-top: 3px solid var(--accent); padding: 20px; }
+    .products, .ot-note, .pattern-nav { padding-left: 16px; padding-right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://theadllab.github.io" class="logo">ADL <span class="dot">·</span> Lab</a>
+  <a href="index.html" class="back">← All Patterns</a>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-label">Pattern 03 of 03</span>
+    <h1>WAIT</h1>
+    <p class="hero-sub">Tools to lower the cost of starting — so perfect conditions stop being the prerequisite.</p>
+    <div class="hero-quote">"I'll start once it's quieter. Once I feel ready. The right moment never arrives."</div>
+  </div>
+</section>
+
+<div class="ot-note">
+  <div class="ot-note-inner">
+    <strong>Why these tools?</strong> This pattern is rooted in perfectionism and nervous system threat response. Starting feels risky — what if you do it wrong? The brain avoids the discomfort of imperfection by waiting for ideal conditions. These tools lower the activation cost of beginning — making "just starting" structurally possible instead of emotionally heroic. Selected by Ahra Roh, OTR/L, ATP — not sponsored.
+  </div>
+</div>
+
+<div class="products">
+
+  <div class="product-card">
+    <div class="product-img img-timer">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="8" width="104" height="104" rx="12" fill="#2C2C2C"/>
+        <circle cx="60" cy="60" r="42" fill="white"/>
+        <path d="M60 60 L60 18 A42 42 0 1 1 24 81 Z" fill="#E53935"/>
+        <circle cx="60" cy="60" r="6" fill="#DDD"/>
+        <line x1="60" y1="20" x2="60" y2="30" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+        <line x1="60" y1="90" x2="60" y2="100" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+        <line x1="20" y1="60" x2="30" y2="60" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+        <line x1="90" y1="60" x2="100" y2="60" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+        <text x="60" y="112" font-family="Arial" font-size="6" fill="#888" text-anchor="middle" letter-spacing="1">TIME TIMER</text>
+        </svg>
+    </div>
+    <div class="product-body">
+      <div class="product-meta">
+        <div class="product-num">Tool 01</div>
+        <div class="product-name">Time Timer MOD 60-Minute</div>
+        <ul class="product-bullets">
+          <li>Red disk disappears as time passes — makes time visible</li>
+          <li>Reframes goal: 'run the clock' not 'finish the task'</li>
+          <li>Silent operation, no ticking</li>
+        </ul>
+      </div>
+      <a href="https://amzn.to/4bYCzm1" target="_blank" rel="noopener" class="shop-btn">Shop on Amazon →</a>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img img-leucht">
+      <svg viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg">
+        <rect x="18" y="8" width="84" height="112" rx="3" fill="#1A1A1A" filter="drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+        <rect x="22" y="36" width="52" height="34" rx="2" fill="#F5F5F0"/>
+        <line x1="26" y1="44" x2="70" y2="44" stroke="#CCC" stroke-width="1"/>
+        <line x1="26" y1="51" x2="70" y2="51" stroke="#CCC" stroke-width="1"/>
+        <line x1="26" y1="58" x2="60" y2="58" stroke="#CCC" stroke-width="1"/>
+        <rect x="22" y="42" width="4" height="6" rx="1" fill="#E53935" opacity="0.8"/>
+        <line x1="96" y1="8" x2="96" y2="120" stroke="#1A1A1A" stroke-width="4"/>
+        <line x1="94" y1="8" x2="102" y2="8" stroke="#333" stroke-width="3"/>
+        <line x1="94" y1="120" x2="102" y2="120" stroke="#333" stroke-width="3"/>
+        <rect x="88" y="90" width="4" height="28" rx="2" fill="#C4973A"/>
+        <rect x="94" y="95" width="4" height="22" rx="2" fill="#888"/>
+        <text x="60" y="26" font-family="Arial" font-size="5.5" fill="#888" text-anchor="middle" letter-spacing="0.5">LEUCHTTURM1917</text>
+        </svg>
+    </div>
+    <div class="product-body">
+      <div class="product-meta">
+        <div class="product-num">Tool 02</div>
+        <div class="product-name">Leuchtturm1917 Notebook</div>
+        <ul class="product-bullets">
+          <li>Pre-numbered pages + index — no decision fatigue</li>
+          <li>Same notebook every session = conditioned start cue</li>
+          <li>Hardcover, elastic band, two bookmarks</li>
+        </ul>
+      </div>
+      <a href="https://amzn.to/48aqQP5" target="_blank" rel="noopener" class="shop-btn">Shop on Amazon →</a>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img img-anker">
+      <svg viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="22" width="120" height="52" rx="10" fill="#2A2A2A" filter="drop-shadow(2px 4px 8px rgba(0,0,0,0.4))"/>
+        <rect x="20" y="30" width="80" height="36" rx="5" fill="url(#mesh)"/>
+        <defs>
+          <pattern id="mesh" x="0" y="0" width="5" height="5" patternUnits="userSpaceOnUse">
+            <rect width="5" height="5" fill="#2A2A2A"/>
+            <circle cx="2.5" cy="2.5" r="1.2" fill="#383838"/>
+          </pattern>
+        </defs>
+        <circle cx="112" cy="34" r="6" fill="#333" stroke="#444" stroke-width="1"/>
+        <circle cx="112" cy="34" r="3" fill="#444"/>
+        <circle cx="112" cy="54" r="6" fill="#333" stroke="#444" stroke-width="1"/>
+        <circle cx="112" cy="54" r="3" fill="#444"/>
+        <text x="60" y="54" font-family="Arial" font-size="9" font-weight="bold" fill="#555" text-anchor="middle" letter-spacing="3">ANKER</text>
+        <circle cx="14" cy="48" r="5" fill="#333"/>
+        <circle cx="126" cy="48" r="5" fill="#333"/>
+        </svg>
+    </div>
+    <div class="product-body">
+      <div class="product-meta">
+        <div class="product-num">Tool 03</div>
+        <div class="product-name">Anker Soundcore 2</div>
+        <ul class="product-bullets">
+          <li>Same music every session = trained start signal</li>
+          <li>24-hr battery, IPX7 waterproof</li>
+          <li>Brown/lo-fi noise regulates nervous system without distraction</li>
+        </ul>
+      </div>
+      <a href="https://amzn.to/4cwVxAd" target="_blank" rel="noopener" class="shop-btn">Shop on Amazon →</a>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img img-fullfocus">
+      <svg viewBox="0 0 130 120" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="8" width="60" height="100" rx="3" fill="#1A2640" filter="drop-shadow(2px 2px 6px rgba(0,0,0,0.3))"/>
+        <rect x="8" y="8" width="5" height="100" fill="#141E33"/>
+        <rect x="65" y="8" width="60" height="100" rx="3" fill="#F8F5EF" stroke="#E0D8C8" stroke-width="1"/>
+        <text x="35" y="52" font-family="Georgia" font-size="6" fill="rgba(255,255,255,0.4)" text-anchor="middle">FULL</text>
+        <text x="35" y="62" font-family="Georgia" font-size="6" fill="rgba(255,255,255,0.4)" text-anchor="middle">FOCUS</text>
+        <text x="95" y="28" font-family="Arial" font-size="6" fill="#AAA" text-anchor="middle">MONDAY</text>
+        <line x1="70" y1="34" x2="120" y2="34" stroke="#E0D8C8" stroke-width="1"/>
+        <line x1="70" y1="44" x2="120" y2="44" stroke="#EEE" stroke-width="0.8"/>
+        <line x1="70" y1="52" x2="120" y2="52" stroke="#EEE" stroke-width="0.8"/>
+        <line x1="70" y1="60" x2="120" y2="60" stroke="#EEE" stroke-width="0.8"/>
+        <line x1="70" y1="68" x2="120" y2="68" stroke="#EEE" stroke-width="0.8"/>
+        <line x1="70" y1="76" x2="120" y2="76" stroke="#EEE" stroke-width="0.8"/>
+        <line x1="70" y1="84" x2="120" y2="84" stroke="#EEE" stroke-width="0.8"/>
+        <circle cx="74" cy="40" r="3" fill="none" stroke="#CCC" stroke-width="1"/>
+        <circle cx="74" cy="48" r="3" fill="none" stroke="#CCC" stroke-width="1"/>
+        <circle cx="74" cy="56" r="3" fill="none" stroke="#CCC" stroke-width="1"/>
+        </svg>
+    </div>
+    <div class="product-body">
+      <div class="product-meta">
+        <div class="product-num">Tool 04</div>
+        <div class="product-name">Full Focus Planner</div>
+        <ul class="product-bullets">
+          <li>'Big 3' daily format — removes overwhelm of blank planning</li>
+          <li>Night-before prep = zero decisions for tomorrow-you</li>
+          <li>Hardcover, structured daily + weekly pages</li>
+        </ul>
+      </div>
+      <a href="https://amzn.to/4mr9VO4" target="_blank" rel="noopener" class="shop-btn">Shop on Amazon →</a>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img img-zenflow">
+      <svg viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="18" width="124" height="94" rx="3" fill="#2D5A3D" filter="drop-shadow(2px 2px 6px rgba(0,0,0,0.2))"/>
+        <rect x="8" y="18" width="124" height="24" rx="3" fill="#245030"/>
+        <text x="70" y="34" font-family="Georgia" font-size="8" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="1">WEEKLY PLANNER</text>
+        <rect x="12" y="42" width="120" height="66" rx="2" fill="#F8F8F5"/>
+        <line x1="12" y1="56" x2="132" y2="56" stroke="#E0E0D8" stroke-width="0.8"/>
+        <line x1="12" y1="68" x2="132" y2="68" stroke="#E0E0D8" stroke-width="0.8"/>
+        <line x1="12" y1="80" x2="132" y2="80" stroke="#E0E0D8" stroke-width="0.8"/>
+        <line x1="12" y1="92" x2="132" y2="92" stroke="#E0E0D8" stroke-width="0.8"/>
+        <line x1="30" y1="42" x2="30" y2="108" stroke="#E0E0D8" stroke-width="0.8"/>
+        <line x1="50" y1="42" x2="50" y2="108" stroke="#E0E0D8" stroke-width="0.8"/>
+        <line x1="70" y1="42" x2="70" y2="108" stroke="#E0E0D8" stroke-width="0.8"/>
+        <line x1="90" y1="42" x2="90" y2="108" stroke="#E0E0D8" stroke-width="0.8"/>
+        <line x1="110" y1="42" x2="110" y2="108" stroke="#E0E0D8" stroke-width="0.8"/>
+        <text x="19" y="52" font-family="Arial" font-size="5" fill="#AAA" text-anchor="middle">MON</text>
+        <text x="40" y="52" font-family="Arial" font-size="5" fill="#AAA" text-anchor="middle">TUE</text>
+        <text x="60" y="52" font-family="Arial" font-size="5" fill="#AAA" text-anchor="middle">WED</text>
+        <text x="80" y="52" font-family="Arial" font-size="5" fill="#AAA" text-anchor="middle">THU</text>
+        <text x="100" y="52" font-family="Arial" font-size="5" fill="#AAA" text-anchor="middle">FRI</text>
+        <text x="120" y="52" font-family="Arial" font-size="5" fill="#AAA" text-anchor="middle">SAT</text>
+        <rect x="8" y="10" width="8" height="10" rx="4" fill="#555"/>
+        <rect x="22" y="10" width="8" height="10" rx="4" fill="#555"/>
+        <rect x="36" y="10" width="8" height="10" rx="4" fill="#555"/>
+        <rect x="50" y="10" width="8" height="10" rx="4" fill="#555"/>
+        <rect x="64" y="10" width="8" height="10" rx="4" fill="#555"/>
+        <rect x="78" y="10" width="8" height="10" rx="4" fill="#555"/>
+        <rect x="92" y="10" width="8" height="10" rx="4" fill="#555"/>
+        <rect x="106" y="10" width="8" height="10" rx="4" fill="#555"/>
+        <rect x="120" y="10" width="8" height="10" rx="4" fill="#555"/>
+        </svg>
+    </div>
+    <div class="product-body">
+      <div class="product-meta">
+        <div class="product-num">Tool 05</div>
+        <div class="product-name">Zen & Flow Weekly Desk Pad</div>
+        <ul class="product-bullets">
+          <li>Full week visible at a glance — reduces 'what am I forgetting?'</li>
+          <li>Undated = no guilt for missed days, just keep going</li>
+          <li>Large format, wire-bound, stays flat on desk</li>
+        </ul>
+      </div>
+      <a href="https://amzn.to/4mmKQ6P" target="_blank" rel="noopener" class="shop-btn">Shop on Amazon →</a>
+    </div>
+  </div>
+</div>
+
+<div class="pattern-nav">
+  <a href="freeze.html" class="nav-card freeze">
+    <div><div class="nav-card-label">Also explore</div><div class="nav-card-name">FREEZE</div></div>
+    <div class="nav-arrow">→</div>
+  </a>
+  <a href="scatter.html" class="nav-card scatter">
+    <div><div class="nav-card-label">Also explore</div><div class="nav-card-name">SCATTER</div></div>
+    <div class="nav-arrow">→</div>
+  </a>
+</div>
+
+<footer>
+  <p>OT-curated tools — not paid placement. Amazon affiliate links: ADL Lab earns a small commission at no extra cost to you.<br>Educational content only — not clinical advice. © ADL Lab · Ahra Roh, OTR/L, ATP</p>
+</footer>
+
+</body>
+</html>
