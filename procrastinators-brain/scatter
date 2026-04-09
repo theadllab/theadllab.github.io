@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior:smooth;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scatter Toolkit — ADL Lab</title>
+<meta name="description" content="OT-vetted tools for reducing sensory input. 5 picks, clinical reasons, Amazon links.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1A2640; --gold: #C4973A; --warm-white: #FDFCF9;
+    --muted: #7A7A7A; --border: #DDD8CE; --bg: #F0EDE6;
+    --accent: #E65100;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--navy); font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+  header { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: var(--warm-white); z-index: 100; }
+  .logo { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); text-decoration: none; }
+  .logo .dot { color: var(--gold); margin: 0 3px; }
+  .back { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.18s; }
+  .back:hover { color: var(--accent); }
+
+  .hero { background: var(--navy); padding: 52px 24px 44px; position: relative; overflow: hidden; }
+  .hero::before { content: 'SCATTER'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); font-family: 'Syne', sans-serif; font-size: clamp(60px, 14vw, 120px); font-weight: 800; color: rgba(230,81,0,0.1); line-height: 1; letter-spacing: -0.04em; pointer-events: none; user-select: none; }
+  .hero-inner { max-width: 680px; position: relative; }
+  .hero-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: block; }
+  .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(36px, 8vw, 60px); font-weight: 800; color: white; letter-spacing: -0.02em; line-height: 1; margin-bottom: 18px; }
+  .hero-sub { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.75; max-width: 480px; margin-bottom: 24px; }
+  .hero-quote { display: inline-flex; background: rgba(230,81,0,0.15); border: 1px solid rgba(230,81,0,0.3); border-radius: 100px; padding: 8px 16px; font-size: 13px; color: rgba(255,255,255,0.8); font-style: italic; }
+
+  .ot-note { max-width: 960px; margin: 0 auto; padding: 20px 24px 0; }
+  .ot-note-inner { background: var(--warm-white); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 14px 18px; font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .ot-note-inner strong { color: var(--navy); font-weight: 600; }
+
+  .products { max-width: 960px; margin: 0 auto; padding: 20px 24px 48px; display: flex; flex-direction: column; gap: 14px; }
+
+  .product-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: grid; grid-template-columns: 180px 1fr; transition: box-shadow 0.2s, transform 0.2s; box-shadow: 0 2px 12px rgba(26,38,64,0.05); }
+  .product-card:hover { box-shadow: 0 8px 32px rgba(26,38,64,0.1); transform: translateY(-2px); }
+
+  .product-img { min-height: 170px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+
+  .img-xm5, .img-ch720, .img-loop, .img-lightbar, .img-bamboo { padding: 12px; }
+  .product-img svg { width: 100%; height: 100%; max-width: 140px; max-height: 140px; }
+
+  .product-body { padding: 24px 28px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; border-left: 3px solid var(--accent); }
+  .product-meta { display: flex; flex-direction: column; gap: 8px; }
+  .product-num { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .product-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--navy); line-height: 1.35; }
+
+  .shop-btn { align-self: flex-start; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 18px; background: var(--accent); color: white; border-radius: 8px; text-decoration: none; transition: opacity 0.18s; display: inline-flex; align-items: center; gap: 6px; }
+  .shop-btn:hover { opacity: 0.85; }
+
+  .pattern-nav { max-width: 960px; margin: 0 auto 64px; padding: 0 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .nav-card { flex: 1; min-width: 200px; background: var(--warm-white); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; text-decoration: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; transition: border-color 0.18s, transform 0.18s; }
+  .nav-card:hover { transform: translateY(-2px); }
+  .nav-card.freeze:hover { border-color: #2A5FF6; }
+  .nav-card.wait:hover { border-color: #2E7D32; }
+  .nav-card-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .nav-card-name { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; }
+  .nav-card.freeze .nav-card-name { color: #2A5FF6; }
+  .nav-card.wait .nav-card-name { color: #2E7D32; }
+  .nav-arrow { font-size: 18px; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 11px; color: var(--muted); line-height: 2; }
+
+
+  .product-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 5px; }
+  .product-bullets li { font-size: 13px; color: var(--muted); line-height: 1.45; display: flex; align-items: flex-start; gap: 7px; }
+  .product-bullets li::before { content: "—"; color: var(--accent); flex-shrink: 0; font-weight: 700; margin-top: 0; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .product-card:nth-child(1) { animation: fadeUp 0.35s 0.05s ease both; }
+  .product-card:nth-child(2) { animation: fadeUp 0.35s 0.10s ease both; }
+  .product-card:nth-child(3) { animation: fadeUp 0.35s 0.15s ease both; }
+  .product-card:nth-child(4) { animation: fadeUp 0.35s 0.20s ease both; }
+  .product-card:nth-child(5) { animation: fadeUp 0.35s 0.25s ease both; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 36px 18px 32px; }
+    .product-card { grid-template-columns: 1fr; }
+    .product-img { min-height: 130px; }
+    .product-body { border-left: none; border-top: 3px solid var(--accent); padding: 20px; }
+    .products, .ot-note, .pattern-nav { padding-left: 16px; padding-right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://theadllab.github.io" class="logo">ADL <span class="dot">·</span> Lab</a>
+  <a href="index.html" class="back">← All Patterns</a>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-label">Pattern 02 of 03</span>
+    <h1>SCATTER</h1>
+    <p class="hero-sub">Tools to reduce sensory input — so your brain stops chasing every signal in the room.</p>
+    <div class="hero-quote">"I sat down to work then noticed a dish, then an email… two hours gone."</div>
+  </div>
+</section>
+
+<div class="ot-note">
+  <div class="ot-note-inner">
+    <strong>Why these tools?</strong> Highly sensitive nervous systems pick up more environmental input and respond to it more strongly. Every stimulus competes for attention. The brain gets pulled toward whatever is most immediate, leaving the original task behind. These tools reduce the number of competing inputs. Selected by Ahra Roh, OTR/L, ATP — not sponsored.
+  </div>
+</div>
+
+<div class="products">
+
+  <div class="product-card">
+    <div class="product-img img-xm5">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <path d="M28 72 Q28 28 60 28 Q92 28 92 72" fill="none" stroke="#4A4A4A" stroke-width="11" stroke-linecap="round"/>
+        <ellipse cx="24" cy="80" rx="20" ry="22" fill="#3A3A3A"/>
+        <ellipse cx="24" cy="80" rx="13" ry="15" fill="#2A2A2A"/>
+        <ellipse cx="24" cy="80" rx="7" ry="8" fill="#484848"/>
+        <ellipse cx="96" cy="80" rx="20" ry="22" fill="#3A3A3A"/>
+        <ellipse cx="96" cy="80" rx="13" ry="15" fill="#2A2A2A"/>
+        <ellipse cx="96" cy="80" rx="7" ry="8" fill="#484848"/>
+        <circle cx="20" cy="74" r="3" fill="#CC2200"/>
+        <text x="60" y="114" font-family="Arial" font-size="7" fill="#555" text-anchor="middle" letter-spacing="2">SONY</text>
+        </svg>
+    </div>
+    <div class="product-body">
+      <div class="product-meta">
+        <div class="product-num">Tool 01</div>
+        <div class="product-name">Sony WH-1000XM5</div>
+        <ul class="product-bullets">
+          <li>Industry-leading ANC, low clamping pressure</li>
+          <li>Blocks low-frequency hum without sensory overload</li>
+          <li>30-hr battery, adjustable noise cancellation</li>
+        </ul>
+      </div>
+      <a href="https://amzn.to/3NPyWFS" target="_blank" rel="noopener" class="shop-btn">Shop on Amazon →</a>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img img-ch720">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32 74 Q32 34 60 34 Q88 34 88 74" fill="none" stroke="#3A3A3A" stroke-width="8" stroke-linecap="round"/>
+        <ellipse cx="28" cy="82" rx="17" ry="19" fill="#2E2E2E"/>
+        <ellipse cx="28" cy="82" rx="11" ry="13" fill="#222"/>
+        <ellipse cx="28" cy="82" rx="6" ry="7" fill="#3A3A3A"/>
+        <ellipse cx="92" cy="82" rx="17" ry="19" fill="#2E2E2E"/>
+        <ellipse cx="92" cy="82" rx="11" ry="13" fill="#222"/>
+        <ellipse cx="92" cy="82" rx="6" ry="7" fill="#3A3A3A"/>
+        <text x="60" y="114" font-family="Arial" font-size="6.5" fill="#444" text-anchor="middle" letter-spacing="1.5">SONY</text>
+        </svg>
+    </div>
+    <div class="product-body">
+      <div class="product-meta">
+        <div class="product-num">Tool 02</div>
+        <div class="product-name">Sony WH-CH720N — Budget Pick</div>
+        <ul class="product-bullets">
+          <li>Lightweight 192g — won't press on sensitive ears</li>
+          <li>Dual noise sensor ANC at half the price</li>
+          <li>Best for: finds heavy headphones activating</li>
+        </ul>
+      </div>
+      <a href="https://amzn.to/48B1OIN" target="_blank" rel="noopener" class="shop-btn">Shop on Amazon →</a>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img img-loop">
+      <svg viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="30" r="18" fill="#2A2A2A"/>
+        <circle cx="60" cy="30" r="10" fill="#3A3A3A"/>
+        <circle cx="60" cy="30" r="4" fill="#4A4A4A"/>
+        <rect x="56" y="46" width="8" height="18" rx="4" fill="#2A2A2A"/>
+        <circle cx="60" cy="84" r="26" fill="none" stroke="#2A2A2A" stroke-width="12"/>
+        <circle cx="60" cy="84" r="12" fill="#F0EDE6"/>
+        <circle cx="60" cy="84" r="5" fill="#E0DDD8"/>
+        <text x="60" y="122" font-family="Arial" font-size="9" fill="#888" text-anchor="middle" letter-spacing="2">loop</text>
+        </svg>
+    </div>
+    <div class="product-body">
+      <div class="product-meta">
+        <div class="product-num">Tool 03</div>
+        <div class="product-name">Loop Quiet 2 Earplugs</div>
+        <ul class="product-bullets">
+          <li>24dB noise reduction without full occlusion</li>
+          <li>Discreet, reusable, comfortable all day</li>
+          <li>Best for: complete silence feels too intense</li>
+        </ul>
+      </div>
+      <a href="https://amzn.to/4c92J4k" target="_blank" rel="noopener" class="shop-btn">Shop on Amazon →</a>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img img-lightbar">
+      <svg viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="glow2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(255,200,80,0)"/>
+            <stop offset="50%" stop-color="rgba(255,200,80,0.8)"/>
+            <stop offset="100%" stop-color="rgba(255,200,80,0)"/>
+          </linearGradient>
+        </defs>
+        <rect x="8" y="28" width="124" height="11" rx="5" fill="#333"/>
+        <rect x="8" y="39" width="124" height="5" rx="2" fill="url(#glow2)"/>
+        <rect x="56" y="18" width="28" height="13" rx="3" fill="#444"/>
+        <rect x="62" y="12" width="16" height="8" rx="2" fill="#555"/>
+        <circle cx="40" cy="88" r="22" fill="#252525" stroke="#3A3A3A" stroke-width="2"/>
+        <circle cx="40" cy="84" r="10" fill="#2E2E2E"/>
+        <circle cx="40" cy="84" r="4" fill="#555"/>
+        <circle cx="40" cy="84" r="1.5" fill="#777"/>
+        <text x="40" y="106" font-family="Arial" font-size="5.5" fill="#666" text-anchor="middle" letter-spacing="1">POWER</text>
+        <text x="100" y="108" font-family="Arial" font-size="7" fill="#555" text-anchor="middle">Quntis</text>
+        </svg>
+    </div>
+    <div class="product-body">
+      <div class="product-meta">
+        <div class="product-num">Tool 04</div>
+        <div class="product-name">Quntis Monitor Light Bar</div>
+        <ul class="product-bullets">
+          <li>No screen glare, no fluorescent flicker</li>
+          <li>Warm light signals 'safe to focus' to nervous system</li>
+          <li>Mounts on monitor — zero desk space used</li>
+        </ul>
+      </div>
+      <a href="https://amzn.to/4mevrVW" target="_blank" rel="noopener" class="shop-btn">Shop on Amazon →</a>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img img-bamboo">
+      <svg viewBox="0 0 130 120" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="42" width="90" height="64" rx="3" fill="#C8A96A"/>
+        <rect x="8" y="34" width="90" height="12" rx="2" fill="#D4B878"/>
+        <rect x="12" y="47" width="82" height="24" rx="2" fill="#B8946A" stroke="#A07850" stroke-width="0.8"/>
+        <circle cx="53" cy="59" r="4.5" fill="#8A6040"/>
+        <rect x="12" y="75" width="82" height="24" rx="2" fill="#B8946A" stroke="#A07850" stroke-width="0.8"/>
+        <circle cx="53" cy="87" r="4.5" fill="#8A6040"/>
+        <rect x="94" y="16" width="28" height="90" rx="3" fill="#D0B070" stroke="#B89050" stroke-width="1"/>
+        <rect x="94" y="16" width="28" height="5" rx="2" fill="#C0A060"/>
+        <line x1="102" y1="8" x2="102" y2="21" stroke="#E8C840" stroke-width="3.5" stroke-linecap="round"/>
+        <line x1="109" y1="5" x2="109" y2="21" stroke="#6A90E0" stroke-width="3.5" stroke-linecap="round"/>
+        <line x1="116" y1="9" x2="116" y2="21" stroke="#E07060" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+    </div>
+    <div class="product-body">
+      <div class="product-meta">
+        <div class="product-num">Tool 05</div>
+        <div class="product-name">Wisuce Bamboo Desk Organizer</div>
+        <ul class="product-bullets">
+          <li>Contains desk clutter into one visual unit</li>
+          <li>Natural bamboo = no reflective surfaces or visual noise</li>
+          <li>3 drawers + pen holder, no assembly needed</li>
+        </ul>
+      </div>
+      <a href="https://amzn.to/4srh962" target="_blank" rel="noopener" class="shop-btn">Shop on Amazon →</a>
+    </div>
+  </div>
+</div>
+
+<div class="pattern-nav">
+  <a href="freeze.html" class="nav-card freeze">
+    <div><div class="nav-card-label">Also explore</div><div class="nav-card-name">FREEZE</div></div>
+    <div class="nav-arrow">→</div>
+  </a>
+  <a href="wait.html" class="nav-card wait">
+    <div><div class="nav-card-label">Next pattern</div><div class="nav-card-name">WAIT</div></div>
+    <div class="nav-arrow">→</div>
+  </a>
+</div>
+
+<footer>
+  <p>OT-curated tools — not paid placement. Amazon affiliate links: ADL Lab earns a small commission at no extra cost to you.<br>Educational content only — not clinical advice. © ADL Lab · Ahra Roh, OTR/L, ATP</p>
+</footer>
+
+</body>
+</html>
