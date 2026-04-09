@@ -1,1 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior:smooth;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Procrastinator's Brain — ADL Lab</title>
+<meta name="description" content="Why you keep putting things off. A nervous system guide.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1A2640; --gold: #C4973A; --warm-white: #FDFCF9;
+    --muted: #7A7A7A; --border: #DDD8CE; --bg: #F0EDE6;
+    --blue: #2A5FF6; --orange: #E65100; --green: #2E7D32;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--navy); font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
 
+  header { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: var(--warm-white); z-index: 100; }
+  .logo { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); text-decoration: none; }
+  .logo .dot { color: var(--gold); margin: 0 3px; }
+  .cred { font-size: 11px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+
+  /* ── HERO ── */
+  .hero { padding: 56px 24px 40px; max-width: 640px; margin: 0 auto; text-align: center; animation: fadeUp 0.4s ease both; }
+  .hero-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
+  .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(30px, 6vw, 50px); font-weight: 800; line-height: 1.08; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 14px; }
+  .hero h1 em { color: var(--blue); font-style: normal; }
+  .hero-sub { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 420px; margin: 0 auto; }
+
+  /* ── PATTERN CARDS ── */
+  .patterns { max-width: 960px; margin: 40px auto 0; padding: 0 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+  .pattern-card {
+    background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px;
+    text-decoration: none; display: flex; flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 10px rgba(26,38,64,0.05); overflow: hidden;
+  }
+  .pattern-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(26,38,64,0.1); }
+  .pattern-card:hover.freeze { border-color: var(--blue); }
+  .pattern-card:hover.scatter { border-color: var(--orange); }
+  .pattern-card:hover.wait { border-color: var(--green); }
+
+  /* color top bar */
+  .card-bar { height: 4px; }
+  .freeze .card-bar { background: var(--blue); }
+  .scatter .card-bar { background: var(--orange); }
+  .wait .card-bar { background: var(--green); }
+
+
+  .card-body { padding: 24px 22px 26px; display: flex; flex-direction: column; gap: 10px; }
+  .card-num { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+
+  .card-name { font-family: 'Syne', sans-serif; font-size: clamp(20px, 3vw, 28px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; overflow: visible; white-space: nowrap; }
+  .freeze .card-name { color: var(--blue); }
+  .scatter .card-name { color: var(--orange); }
+  .wait .card-name { color: var(--green); }
+
+  .card-quote { font-size: 12px; color: var(--muted); font-style: italic; line-height: 1.5; border-left: 2px solid var(--border); padding-left: 9px; }
+  .card-cta { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; display: flex; align-items: center; gap: 5px; transition: gap 0.18s; margin-top: 4px; }
+  .freeze .card-cta { color: var(--blue); }
+  .scatter .card-cta { color: var(--orange); }
+  .wait .card-cta { color: var(--green); }
+  .pattern-card:hover .card-cta { gap: 9px; }
+
+  /* ── FLOW ── */
+  .mechanism { max-width: 960px; margin: 52px auto 0; padding: 0 24px; }
+  .section-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: block; }
+  .mechanism h2 { font-family: 'Syne', sans-serif; font-size: clamp(20px, 4vw, 28px); font-weight: 800; color: var(--navy); letter-spacing: -0.01em; margin-bottom: 18px; }
+
+  .flow { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+  .flow-step { padding: 20px 16px; border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
+  .flow-step:last-child { border-right: none; }
+  .flow-step:nth-child(1) { background: var(--navy); }
+  .flow-step:nth-child(2) { background: var(--warm-white); }
+  .flow-step:nth-child(3) { background: #1A1A1A; }
+  .flow-step:nth-child(4) { background: #E8EFFE; }
+
+  .flow-num { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.5; margin-bottom: 4px; }
+  .flow-step:nth-child(1) .flow-num, .flow-step:nth-child(3) .flow-num { color: white; }
+  .flow-step:nth-child(2) .flow-num, .flow-step:nth-child(4) .flow-num { color: var(--navy); }
+  .flow-head { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; line-height: 1.2; }
+  .flow-step:nth-child(1) .flow-head, .flow-step:nth-child(3) .flow-head { color: white; }
+  .flow-step:nth-child(2) .flow-head, .flow-step:nth-child(4) .flow-head { color: var(--navy); }
+  .flow-tag { font-size: 11px; line-height: 1.5; }
+  .flow-step:nth-child(1) .flow-tag, .flow-step:nth-child(3) .flow-tag { color: rgba(255,255,255,0.55); }
+  .flow-step:nth-child(2) .flow-tag, .flow-step:nth-child(4) .flow-tag { color: var(--muted); }
+
+  /* ── CALLOUT ── */
+  .callout { max-width: 960px; margin: 16px auto 0; padding: 0 24px; }
+  .callout-inner { background: var(--navy); border-radius: 14px; padding: 26px 30px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .callout-text strong { display: block; font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: white; margin-bottom: 4px; }
+  .callout-text strong em { color: var(--blue); font-style: normal; }
+  .callout-text p { font-size: 13px; color: rgba(255,255,255,0.55); }
+  .callout-btn { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 14px 22px; background: var(--gold); color: var(--navy); border-radius: 8px; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: opacity 0.18s; min-height: 48px; display: flex; align-items: center; }
+  .callout-btn:hover { opacity: 0.88; }
+
+  /* ── BUNDLE CONTENTS ── */
+  .inside { max-width: 960px; margin: 48px auto 0; padding: 0 24px 64px; }
+  .inside h2 { font-family: 'Syne', sans-serif; font-size: clamp(18px, 3.5vw, 26px); font-weight: 800; color: var(--navy); letter-spacing: -0.01em; margin-bottom: 18px; }
+  .inside-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px; }
+  .inside-item { background: var(--warm-white); border: 1px solid var(--border); border-radius: 12px; padding: 18px 16px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .inside-icon { font-size: 20px; }
+  .inside-title { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy); line-height: 1.3; }
+  .inside-desc { font-size: 11.5px; color: var(--muted); line-height: 1.55; }
+  .gumroad-btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 14px 26px; background: var(--navy); color: white; border-radius: 10px; text-decoration: none; transition: background 0.18s; }
+  .gumroad-btn:hover { background: var(--blue); }
+  .gumroad-note { font-size: 11px; color: var(--muted); margin-top: 8px; }
+
+  footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 11px; color: var(--muted); line-height: 2; }
+  footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+  .footer-links { margin-top: 8px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .pattern-card:nth-child(1) { animation: fadeUp 0.4s 0.08s ease both; }
+  .pattern-card:nth-child(2) { animation: fadeUp 0.4s 0.15s ease both; }
+  .pattern-card:nth-child(3) { animation: fadeUp 0.4s 0.22s ease both; }
+
+  @media (max-width: 700px) {
+    header { padding: 14px 18px; }
+    .cred { display: none; }
+    .hero { padding: 36px 18px 28px; text-align: left; }
+    .patterns { grid-template-columns: 1fr; padding: 0 16px; margin-top: 28px; }
+    .card-name { font-size: 28px; }
+    .flow { grid-template-columns: 1fr 1fr; }
+    .flow-step:nth-child(2) { border-right: none; }
+    .flow-step:nth-child(3) { border-top: 1px solid var(--border); }
+    .flow-step:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+    .inside-grid { grid-template-columns: repeat(2, 1fr); }
+    .callout-inner { flex-direction: column; align-items: flex-start; }
+    .callout-btn { width: 100%; justify-content: center; }
+    .mechanism, .callout, .inside { padding-left: 16px; padding-right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://theadllab.github.io" class="logo">ADL <span class="dot">·</span> Lab</a>
+  <span class="cred">Ahra Roh, OTR/L, ATP</span>
+</header>
+
+<section class="hero">
+  <span class="hero-label">Nervous System Series</span>
+  <h1>The Procrastinator's<br><em>Brain</em></h1>
+  <p class="hero-sub">Not a willpower problem. A nervous system pattern. Here's what's actually happening — and what to do about it.</p>
+</section>
+
+<!-- PATTERN CARDS -->
+<div class="patterns">
+
+  <a href="freeze.html" class="pattern-card freeze">
+    <div class="card-bar"></div>
+    <div class="card-body">
+      <div class="card-num">Pattern 01</div>
+      <div class="card-name">FREEZE</div>
+      <div class="card-quote">"I don't know where to start."</div>
+      <div class="card-cta">See tools <span>→</span></div>
+    </div>
+  </a>
+
+  <a href="scatter.html" class="pattern-card scatter">
+    <div class="card-bar"></div>
+    <div class="card-body">
+      <div class="card-num">Pattern 02</div>
+      <div class="card-name">SCATTER</div>
+      <div class="card-quote">"Everything is distracting me."</div>
+      <div class="card-cta">See tools <span>→</span></div>
+    </div>
+  </a>
+
+  <a href="wait.html" class="pattern-card wait">
+    <div class="card-bar"></div>
+    <div class="card-body">
+      <div class="card-num">Pattern 03</div>
+      <div class="card-name">WAIT</div>
+      <div class="card-quote">"I'll start when the time is right."</div>
+      <div class="card-cta">See tools <span>→</span></div>
+    </div>
+  </a>
+
+</div>
+
+<!-- THE MECHANISM -->
+<div class="mechanism" style="margin-top: 52px;">
+  <span class="section-label">The Mechanism</span>
+  <h2>Why your brain does this</h2>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">01</div>
+      <div class="flow-head">Task appears</div>
+      <div class="flow-tag">Brain starts scanning for threats</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">02</div>
+      <div class="flow-head">Ambiguity detected</div>
+      <div class="flow-tag">Unclear = low-grade threat signal</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">03</div>
+      <div class="flow-head">Avoidance activates</div>
+      <div class="flow-tag">Brain escapes to easier stimuli</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">04</div>
+      <div class="flow-head">Procrastination</div>
+      <div class="flow-tag">Protection protocol. Not laziness.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CALLOUT -->
+<div class="callout" style="margin-top: 36px;">
+  <div class="callout-inner">
+    <div class="callout-text">
+      <strong>Get the full guide — <em>PDF + Worksheets</em></strong>
+      <p>8-page guide · Daily Start Sheet · Index Card System · OT-vetted product picks</p>
+    </div>
+    <a href="https://adllab.gumroad.com" class="callout-btn">Get it on Gumroad →</a>
+  </div>
+</div>
+
+<!-- WHAT'S INSIDE -->
+<div class="inside">
+  <span class="section-label">What's Inside</span>
+  <h2>The full bundle</h2>
+  <div class="inside-grid">
+    <div class="inside-item">
+      <div class="inside-icon">📖</div>
+      <div class="inside-title">8-Page Guide</div>
+      <div class="inside-desc">3 patterns explained with OT clinical reasoning</div>
+    </div>
+    <div class="inside-item">
+      <div class="inside-icon">📋</div>
+      <div class="inside-title">Daily Start Sheet</div>
+      <div class="inside-desc">Print daily — one task, one first step, done</div>
+    </div>
+    <div class="inside-item">
+      <div class="inside-icon">🗂️</div>
+      <div class="inside-title">Index Card System</div>
+      <div class="inside-desc">TO DO / FIRST ACTION / DONE physical system</div>
+    </div>
+    <div class="inside-item">
+      <div class="inside-icon">🛍️</div>
+      <div class="inside-title">Product Pages</div>
+      <div class="inside-desc">5 OT-vetted tools per pattern, clickable links</div>
+    </div>
+  </div>
+  <a href="https://adllab.gumroad.com" class="gumroad-btn">Get the full bundle →</a>
+  <p class="gumroad-note">Gumroad · PDF download · Amazon affiliate links inside</p>
+</div>
+
+<footer>
+  <p>OT-curated — not paid placement. Amazon affiliate links inside.<br>Educational content only — not clinical advice. © ADL Lab · Ahra Roh, OTR/L, ATP</p>
+  <div class="footer-links">
+    <a href="https://adllab.substack.com" target="_blank" rel="noopener">Substack</a>
+    <a href="https://theadllab.github.io/store/" target="_blank" rel="noopener">Tool Store</a>
+    <a href="https://instagram.com/adllab" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</footer>
+
+</body>
+</html>
