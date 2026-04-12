@@ -22,48 +22,20 @@
   .jump-nav a:hover { background: var(--navy); color: white; border-color: var(--navy); }
 
   .store { max-width: 900px; margin: 0 auto; padding: 12px 20px 80px; }
-
-  /* SECTION — clear visual separation */
   .section { margin-bottom: 12px; }
-
-  .section-block {
-    background: var(--warm-white);
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(26,38,64,0.05);
-  }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 18px 20px 14px;
-    border-bottom: 1px solid var(--border);
-    background: var(--warm-white);
-  }
-
+  .section-block { background: var(--warm-white); border-radius: 16px; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 2px 8px rgba(26,38,64,0.05); }
+  .section-header { display: flex; align-items: center; gap: 10px; padding: 18px 20px 14px; border-bottom: 1px solid var(--border); background: var(--warm-white); }
   .section-emoji { font-size: 20px; line-height: 1; flex-shrink: 0; }
-
-  .section-label {
-    font-family: 'Syne', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--navy);
-    margin: 0;
-    padding: 0;
-  }
-
+  .section-label { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); margin: 0; padding: 0; }
   .section-items { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
 
-  /* ITEM */
   .item { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: box-shadow 0.18s ease; }
   .item:hover { box-shadow: 0 3px 12px rgba(26,38,64,0.08); }
   .item-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; cursor: pointer; user-select: none; gap: 12px; min-height: 60px; -webkit-tap-highlight-color: transparent; }
-  .item-header-left { display: flex; align-items: center; gap: 10px; flex: 1; }
+  .item-header-left { display: flex; flex-direction: column; flex: 1; gap: 2px; }
+  .item-top { display: flex; align-items: center; gap: 10px; }
   .item-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy); line-height: 1.3; }
+  .item-for { font-size: 12px; color: var(--muted); line-height: 1.4; }
   .ot { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); background: rgba(196,151,58,0.1); border: 1px solid rgba(196,151,58,0.25); padding: 3px 8px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
   .item-chevron { font-size: 13px; color: var(--muted); transition: transform 0.22s ease; flex-shrink: 0; width: 24px; text-align: center; }
   .item.open .item-chevron { transform: rotate(180deg); }
@@ -73,7 +45,6 @@
 
   .why-block { background: rgba(196,151,58,0.06); border-left: 3px solid var(--gold); padding: 12px 16px; border-radius: 0 8px 8px 0; }
   .why-block p { font-size: 14px; color: var(--navy); line-height: 1.7; }
-
   .bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
   .bullets li { font-size: 14px; color: var(--muted); display: flex; gap: 10px; align-items: flex-start; line-height: 1.6; }
   .bullets li::before { content: "●"; color: var(--gold); font-size: 7px; margin-top: 6px; flex-shrink: 0; }
@@ -120,7 +91,6 @@
     footer { padding: 20px 18px; }
   }
 
-
   .page-hero { height: 190px; position: relative; overflow: hidden; background: radial-gradient(ellipse 70% 60% at 15% 85%, rgba(101,120,80,0.35) 0%, transparent 55%), radial-gradient(ellipse 60% 50% at 85% 15%, rgba(196,151,58,0.2) 0%, transparent 55%), linear-gradient(155deg, #2C3220 0%, #3A3E28 30%, #4A3C28 60%, #3C3020 100%); }
   .pebble { position: absolute; border-radius: 50%; }
   .pebble:nth-child(1) { width: 80px; height: 62px; background: radial-gradient(circle at 35% 35%, #D4B870, #8A7040); top: 28px; left: 28px; border-radius: 60% 40% 55% 45% / 50% 60% 40% 55%; opacity: 0.22; }
@@ -133,12 +103,7 @@
   .hero-text { position: absolute; bottom: 24px; left: 28px; }
   .hero-eyebrow { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(232,201,122,0.55); margin-bottom: 6px; }
   .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(24px, 6vw, 34px); font-weight: 700; color: white; line-height: 1.1; }
-
-  @media (max-width: 640px) {
-    .page-hero { height: 180px; }
-    .hero-text { left: 20px; bottom: 20px; }
-  }
-
+  @media (max-width: 640px) { .page-hero { height: 180px; } .hero-text { left: 20px; bottom: 20px; } }
 </style>
 </head>
 <body>
@@ -174,287 +139,199 @@
 
   <div class="section" id="tactile">
     <div class="section-block">
-      <div class="section-header">
-        <span class="section-emoji">✋</span>
-        <span class="section-label">Tactile</span>
-      </div>
+      <div class="section-header"><span class="section-emoji">✋</span><span class="section-label">Tactile</span></div>
       <div class="section-items">
 
-
     <div class="item">
       <div class="item-header" onclick="toggle(this)">
         <div class="item-header-left">
-          <span class="item-name">Fidget Tool</span>
-          <span class="ot">OT Pick</span>
+          <div class="item-top"><span class="item-name">Fidget Tool</span><span class="ot">OT Pick</span></div>
+          <div class="item-for">When your hands need to move before your brain can focus</div>
         </div>
         <span class="item-chevron">▾</span>
       </div>
-      <div class="item-body">
-        <div class="item-inner">
-          <div class="why-block"><p>Tactile hand input quiets the default mode network — the part of the brain responsible for mind-wandering. It fills a background sensory need so the rest of the brain can settle into the task. A fidget ring is almost completely invisible, which matters in professional settings.</p></div>
-          <ul class="bullets">
-            <li>Standard clinical OT practice — this isn't a wellness trend</li>
-            <li>Works best for Sensation Seeking and Low Registration types who need continuous input to stay regulated</li>
-            <li>I recommend the ring most — it's on your finger, so it's always there without requiring a decision</li>
-          </ul>
-          <div class="options">
-            <a href="https://amzn.to/4t1wTO7" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Textured Fidget Slider</div><div class="opt-tag">On finger · invisible · I recommend this most</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-            <a href="https://amzn.to/3PGE5R8" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Fidget Roller (alt 1)</div><div class="opt-tag">Different texture / style</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-            <a href="https://amzn.to/4sgsR3j" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Fidget Cube (alt 2)</div><div class="opt-tag">Different texture / style</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-          </div>
+      <div class="item-body"><div class="item-inner">
+        <div class="why-block"><p>Tactile hand input quiets the default mode network — the part of the brain responsible for mind-wandering. It fills a background sensory need so the rest of the brain can settle into the task. A fidget ring is almost completely invisible, which matters in professional settings.</p></div>
+        <ul class="bullets">
+          <li>Standard clinical OT practice — this isn't a wellness trend</li>
+          <li>Works best for Sensation Seeking and Low Registration types who need continuous input to stay regulated</li>
+          <li>I recommend the ring most — it's on your finger, so it's always there without requiring a decision</li>
+        </ul>
+        <div class="options">
+          <a href="https://amzn.to/4t1wTO7" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Textured Fidget Slider</div><div class="opt-tag">On finger · invisible · I recommend this most</div></div><span class="opt-arrow">→</span></a>
+          <a href="https://amzn.to/3PGE5R8" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Fidget Roller (alt 1)</div><div class="opt-tag">Different texture / style</div></div><span class="opt-arrow">→</span></a>
+          <a href="https://amzn.to/4sgsR3j" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Fidget Cube (alt 2)</div><div class="opt-tag">Different texture / style</div></div><span class="opt-arrow">→</span></a>
         </div>
-      </div>
+      </div></div>
     </div>
 
     <div class="item">
       <div class="item-header" onclick="toggle(this)">
         <div class="item-header-left">
-          <span class="item-name">Weighted Lap Pad</span>
-          <span class="ot">OT Pick</span>
+          <div class="item-top"><span class="item-name">Weighted Lap Pad</span><span class="ot">OT Pick</span></div>
+          <div class="item-for">When your body feels scattered until something holds it in place</div>
         </div>
         <span class="item-chevron">▾</span>
       </div>
-      <div class="item-body">
-        <div class="item-inner">
-          <div class="why-block"><p>Deep touch pressure during seated work activates proprioceptors and helps regulate arousal. A lap pad gives localized grounding input — same neurological effect as a full weighted blanket but smaller, cooler, and usable at a desk. Passive input, no interruption to what you're doing.</p></div>
-          <ul class="bullets">
-            <li>Most effective for people who feel better with something in their lap — this is your system asking for proprioceptive input</li>
-            <li>Harkla is OT-designed and I recommend it specifically — adult sizing, appropriate weight</li>
-            <li>Fun and Function is the clinical version I've used in therapy settings — wipe-clean surface</li>
-          </ul>
-          <div class="options">
-            <a href="https://amzn.to/4soSGyk" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Harkla Weighted Lap Pad (5lb)</div><div class="opt-tag">OT brand · adult sizing · my top recommendation</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-            <a href="https://amzn.to/4mctPvV" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Fun and Function Wipe-Clean Lap Pad</div><div class="opt-tag">Clinical grade · easy to clean · therapy use</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-          </div>
+      <div class="item-body"><div class="item-inner">
+        <div class="why-block"><p>Deep touch pressure during seated work activates proprioceptors and helps regulate arousal. A lap pad gives localized grounding input — same neurological effect as a full weighted blanket but smaller, cooler, and usable at a desk. Passive input, no interruption to what you're doing.</p></div>
+        <ul class="bullets">
+          <li>Most effective for people who feel better with something in their lap — this is your system asking for proprioceptive input</li>
+          <li>Harkla is OT-designed and I recommend it specifically — adult sizing, appropriate weight</li>
+          <li>Fun and Function is the clinical version I've used in therapy settings — wipe-clean surface</li>
+        </ul>
+        <div class="options">
+          <a href="https://amzn.to/4soSGyk" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Harkla Weighted Lap Pad (5lb)</div><div class="opt-tag">OT brand · adult sizing · my top recommendation</div></div><span class="opt-arrow">→</span></a>
+          <a href="https://amzn.to/4mctPvV" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Fun and Function Wipe-Clean Lap Pad</div><div class="opt-tag">Clinical grade · easy to clean · therapy use</div></div><span class="opt-arrow">→</span></a>
         </div>
-      </div>
+      </div></div>
+    </div>
+
       </div>
     </div>
-  </div>
   </div>
 
   <div class="section" id="movement">
     <div class="section-block">
-      <div class="section-header">
-        <span class="section-emoji">🌀</span>
-        <span class="section-label">Movement</span>
-      </div>
+      <div class="section-header"><span class="section-emoji">🌀</span><span class="section-label">Movement</span></div>
       <div class="section-items">
 
-
     <div class="item">
       <div class="item-header" onclick="toggle(this)">
         <div class="item-header-left">
-          <span class="item-name">Seated Movement</span>
-          <span class="ot">OT Pick</span>
+          <div class="item-top"><span class="item-name">Seated Movement</span><span class="ot">OT Pick</span></div>
+          <div class="item-for">When your body needs to move to think</div>
         </div>
         <span class="item-chevron">▾</span>
       </div>
-      <div class="item-body">
-        <div class="item-inner">
-          <div class="why-block"><p>Movement raises dopamine and norepinephrine — the neurotransmitters ADHD brains are often running low on. An unstable surface creates constant postural adjustment, which gives your vestibular and proprioceptive systems continuous input without requiring you to get up. Stay at your desk, get the regulatory benefit.</p></div>
-          <ul class="bullets">
-            <li>Balance disk is the entry point — affordable, portable, immediate effect</li>
-            <li>Under-desk elliptical is for people who need more input — active pedaling while working</li>
-            <li>I recommend these frequently to clients in desk jobs who say they can't focus sitting still</li>
-          </ul>
-          <div class="options">
-            <a href="https://amzn.to/47I2VWQ" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Balance Disk / Wobble Cushion</div><div class="opt-tag">On chair · affordable · frequently recommended</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-            <a href="https://amzn.to/4trWUWu" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Balance Disk (alt)</div><div class="opt-tag">Different size / firmness</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-            <a href="https://amzn.to/4vaWk1d" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Balance Board for Standing Desk</div><div class="opt-tag">Rocker Wobble Board to increase focus & movement</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-               <a href="https://amzn.to/4sfE0kQ" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Ergonomic Cross Legged Office Chair</div><div class="opt-tag">Wide Criss Cross Design with Lumbar Support, Kneeling Chair</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-            <a href="https://amzn.to/4tvKf5d" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Under-Desk Elliptical</div><div class="opt-tag">Active pedaling · higher input · frequently recommended</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-          </div>
+      <div class="item-body"><div class="item-inner">
+        <div class="why-block"><p>Movement raises dopamine and norepinephrine — the neurotransmitters ADHD brains are often running low on. An unstable surface creates constant postural adjustment, which gives your vestibular and proprioceptive systems continuous input without requiring you to get up. Stay at your desk, get the regulatory benefit.</p></div>
+        <ul class="bullets">
+          <li>Balance disk is the entry point — affordable, portable, immediate effect</li>
+          <li>Under-desk elliptical is for people who need more input — active pedaling while working</li>
+          <li>I recommend these frequently to clients in desk jobs who say they can't focus sitting still</li>
+        </ul>
+        <div class="options">
+          <a href="https://amzn.to/47I2VWQ" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Balance Disk / Wobble Cushion</div><div class="opt-tag">On chair · affordable · frequently recommended</div></div><span class="opt-arrow">→</span></a>
+          <a href="https://amzn.to/4trWUWu" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Balance Disk (alt)</div><div class="opt-tag">Different size / firmness</div></div><span class="opt-arrow">→</span></a>
+          <a href="https://amzn.to/4vaWk1d" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Balance Board for Standing Desk</div><div class="opt-tag">Rocker Wobble Board to increase focus & movement</div></div><span class="opt-arrow">→</span></a>
+          <a href="https://amzn.to/4sfE0kQ" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Ergonomic Cross Legged Office Chair</div><div class="opt-tag">Wide Criss Cross Design with Lumbar Support, Kneeling Chair</div></div><span class="opt-arrow">→</span></a>
+          <a href="https://amzn.to/4tvKf5d" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Under-Desk Elliptical</div><div class="opt-tag">Active pedaling · higher input · frequently recommended</div></div><span class="opt-arrow">→</span></a>
         </div>
-      </div>
+      </div></div>
     </div>
 
     <div class="item">
       <div class="item-header" onclick="toggle(this)">
         <div class="item-header-left">
-          <span class="item-name">Posture & Resistance</span>
-          <span class="ot">OT Pick</span>
+          <div class="item-top"><span class="item-name">Posture & Resistance</span><span class="ot">OT Pick</span></div>
+          <div class="item-for">When you need to move but can't leave your desk</div>
         </div>
         <span class="item-chevron">▾</span>
       </div>
-      <div class="item-body">
-        <div class="item-inner">
-          <div class="why-block"><p>A sit-to-stand shift resets attention faster than a break — the postural change triggers a state change without requiring you to leave your task. A resistance band on chair legs channels the movement impulse into resistance instead of suppressing it, which is neurologically more sustainable.</p></div>
-          <ul class="bullets">
-            <li>Standing desk converter: the ability to shift posture mid-task is often enough to break through a stuck state</li>
-            <li>Resistance band: quiet, invisible, and gives the leg-bouncing energy somewhere to go</li>
-            <li>I use a standing desk converter myself — I recommend it to almost every client who works from home</li>
-          </ul>
-          <div class="options">
-            <a href="https://amzn.to/4s9vHqF" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Standing Desk Converter</div><div class="opt-tag">Sit / stand · I use this · frequently recommended</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-            <a href="https://amzn.to/4e1dQi7" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Standing Desk Converter (alt)</div><div class="opt-tag">Different size / style</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-            <a href="https://amzn.to/4c3qtGX" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Resistance Band (Chair)</div><div class="opt-tag">Leg resistance · invisible · frequently recommended</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-            <a href="https://amzn.to/41QX2TG" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Resistance Band (alt)</div><div class="opt-tag">KICK BANDS · desk leg attachment</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-          </div>
+      <div class="item-body"><div class="item-inner">
+        <div class="why-block"><p>A sit-to-stand shift resets attention faster than a break — the postural change triggers a state change without requiring you to leave your task. A resistance band on chair legs channels the movement impulse into resistance instead of suppressing it, which is neurologically more sustainable.</p></div>
+        <ul class="bullets">
+          <li>Standing desk converter: the ability to shift posture mid-task is often enough to break through a stuck state</li>
+          <li>Resistance band: quiet, invisible, and gives the leg-bouncing energy somewhere to go</li>
+          <li>I use a standing desk converter myself — I recommend it to almost every client who works from home</li>
+        </ul>
+        <div class="options">
+          <a href="https://amzn.to/4s9vHqF" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Standing Desk Converter</div><div class="opt-tag">Sit / stand · I use this · frequently recommended</div></div><span class="opt-arrow">→</span></a>
+          <a href="https://amzn.to/4e1dQi7" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Standing Desk Converter (alt)</div><div class="opt-tag">Different size / style</div></div><span class="opt-arrow">→</span></a>
+          <a href="https://amzn.to/4c3qtGX" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Resistance Band (Chair)</div><div class="opt-tag">Leg resistance · invisible · frequently recommended</div></div><span class="opt-arrow">→</span></a>
+          <a href="https://amzn.to/41QX2TG" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Resistance Band (alt)</div><div class="opt-tag">KICK BANDS · desk leg attachment</div></div><span class="opt-arrow">→</span></a>
         </div>
-      </div>
+      </div></div>
+    </div>
+
       </div>
     </div>
-  </div>
   </div>
 
   <div class="section" id="auditory">
     <div class="section-block">
-      <div class="section-header">
-        <span class="section-emoji">🎧</span>
-        <span class="section-label">Auditory</span>
-      </div>
+      <div class="section-header"><span class="section-emoji">🎧</span><span class="section-label">Auditory</span></div>
       <div class="section-items">
-
 
     <div class="item">
       <div class="item-header" onclick="toggle(this)">
         <div class="item-header-left">
-          <span class="item-name">Focus Audio Layer</span>
-          <span class="ot">OT Pick</span>
+          <div class="item-top"><span class="item-name">Focus Audio Layer</span><span class="ot">OT Pick</span></div>
+          <div class="item-for">When silence makes it harder, not easier, to focus</div>
         </div>
         <span class="item-chevron">▾</span>
       </div>
-      <div class="item-body">
-        <div class="item-inner">
-          <div class="why-block"><p>Complete silence is often counterproductive for Sensation Seeking and Low Registration brains — the absence of input causes the brain to go searching for stimulation, which is where distractions come from. A steady auditory layer gives the brain something to rest on, so it stops scanning. Bone conduction keeps your ears open; open-back gives full audio without sealing your ear canal.</p></div>
-          <ul class="bullets">
-            <li>Bone conduction: you can hear your environment, talk to people, stay physically aware — while still having an audio layer</li>
-            <li>Open-back headphones: more immersive sound, less sealed feeling than closed-back — better for long sessions</li>
-            <li>The key is what you play, not just the hardware — steady, non-vocal sound works best for focus</li>
-          </ul>
-          <div class="options">
-            <a href="https://amzn.to/47KxMlI" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Bone Conduction Headphones</div><div class="opt-tag">Ears open · stay aware · frequently recommended</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-            <a href="https://amzn.to/3PNPUoA" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Bone Conduction (alt)</div><div class="opt-tag">Different model</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-            <a href="https://amzn.to/3PLLqik" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Open-Back Headphones (Philips SHP9600)</div><div class="opt-tag">Immersive audio · not sealed · home use</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-            <a href="https://amzn.to/3O5ckRI" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Open-Back Headphones (Sennheiser HD 560S)</div><div class="opt-tag">Higher fidelity · audiophile option</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-          </div>
+      <div class="item-body"><div class="item-inner">
+        <div class="why-block"><p>Complete silence is often counterproductive for Sensation Seeking and Low Registration brains — the absence of input causes the brain to go searching for stimulation, which is where distractions come from. A steady auditory layer gives the brain something to rest on, so it stops scanning. Bone conduction keeps your ears open; open-back gives full audio without sealing your ear canal.</p></div>
+        <ul class="bullets">
+          <li>Bone conduction: you can hear your environment, talk to people, stay physically aware — while still having an audio layer</li>
+          <li>Open-back headphones: more immersive sound, less sealed feeling than closed-back — better for long sessions</li>
+          <li>The key is what you play, not just the hardware — steady, non-vocal sound works best for focus</li>
+        </ul>
+        <div class="options">
+          <a href="https://amzn.to/47KxMlI" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Bone Conduction Headphones</div><div class="opt-tag">Ears open · stay aware · frequently recommended</div></div><span class="opt-arrow">→</span></a>
+          <a href="https://amzn.to/3PNPUoA" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Bone Conduction (alt)</div><div class="opt-tag">Different model</div></div><span class="opt-arrow">→</span></a>
+          <a href="https://amzn.to/3PLLqik" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Open-Back Headphones (Philips SHP9600)</div><div class="opt-tag">Immersive audio · not sealed · home use</div></div><span class="opt-arrow">→</span></a>
+          <a href="https://amzn.to/3O5ckRI" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Open-Back Headphones (Sennheiser HD 560S)</div><div class="opt-tag">Higher fidelity · audiophile option</div></div><span class="opt-arrow">→</span></a>
         </div>
-      </div>
+      </div></div>
+    </div>
+
       </div>
     </div>
-  </div>
   </div>
 
   <div class="section" id="oral">
     <div class="section-block">
-      <div class="section-header">
-        <span class="section-emoji">🌿</span>
-        <span class="section-label">Oral & Scent</span>
-      </div>
+      <div class="section-header"><span class="section-emoji">🌿</span><span class="section-label">Oral & Scent</span></div>
       <div class="section-items">
 
-
     <div class="item">
       <div class="item-header" onclick="toggle(this)">
         <div class="item-header-left">
-          <span class="item-name">Oral Motor Input</span>
-          <span class="ot">OT Pick</span>
+          <div class="item-top"><span class="item-name">Oral Motor Input</span><span class="ot">OT Pick</span></div>
+          <div class="item-for">When you chew pens, ice, or anything within reach</div>
         </div>
         <span class="item-chevron">▾</span>
       </div>
-      <div class="item-body">
-        <div class="item-inner">
-          <div class="why-block"><p>Chewing activates the reticular activating system — the brain's arousal regulation center. Rhythmic jaw movement simultaneously reduces anxiety and increases alertness. This is standard clinical OT practice, used routinely in sensory diets and attention regulation programs. It's not a wellness hack.</p></div>
-          <ul class="bullets">
-            <li>The resistance matters — chewing gum is lower input; something chewier like dried squid or jerky is higher input</li>
-            <li>Match the input to your need: mild restlessness → gum; can't get started or staying focused feels hard → chewier option</li>
-            <li>Xylitol gum is tooth-safe for extended chewing sessions</li>
-          </ul>
-          <div class="options">
-            <a href="https://amzn.to/47N117s" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Xylitol Chewing Gum</div><div class="opt-tag">Tooth-safe · lower resistance · longer chew time</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-          </div>
+      <div class="item-body"><div class="item-inner">
+        <div class="why-block"><p>Chewing activates the reticular activating system — the brain's arousal regulation center. Rhythmic jaw movement simultaneously reduces anxiety and increases alertness. This is standard clinical OT practice, used routinely in sensory diets and attention regulation programs. It's not a wellness hack.</p></div>
+        <ul class="bullets">
+          <li>The resistance matters — chewing gum is lower input; something chewier like dried squid or jerky is higher input</li>
+          <li>Match the input to your need: mild restlessness → gum; can't get started or staying focused feels hard → chewier option</li>
+          <li>Xylitol gum is tooth-safe for extended chewing sessions</li>
+        </ul>
+        <div class="options">
+          <a href="https://amzn.to/47N117s" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Xylitol Chewing Gum</div><div class="opt-tag">Tooth-safe · lower resistance · longer chew time</div></div><span class="opt-arrow">→</span></a>
         </div>
-      </div>
+      </div></div>
     </div>
 
     <div class="item">
       <div class="item-header" onclick="toggle(this)">
         <div class="item-header-left">
-          <span class="item-name">Alerting Scent</span>
+          <div class="item-top"><span class="item-name">Alerting Scent</span></div>
+          <div class="item-for">When you need your brain to wake up, fast</div>
         </div>
         <span class="item-chevron">▾</span>
       </div>
-      <div class="item-body">
-        <div class="item-inner">
-          <div class="why-block"><p>Peppermint and citrus activate the sympathetic nervous system almost immediately — smell bypasses the cortex and hits the limbic system directly. It's the fastest arousal shift available without medication. Use it only during focused work and it becomes a conditioned cue over time — your brain starts shifting into focus mode as soon as you smell it.</p></div>
-          <ul class="bullets">
-            <li>Inhale before starting a task, not during — let the arousal shift happen first</li>
-            <li>Consistency builds the cue — same scent, same context, same response over time</li>
-            <li>Essential oil spray is the most versatile; herbal pen is discreet for shared spaces</li>
-          </ul>
-          <div class="options">
-            <a href="https://amzn.to/4sb5WX5" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Essential Oil Spray (Peppermint/Citrus)</div><div class="opt-tag">Most studied for alerting · inhale before starting</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-            <a href="https://amzn.to/4scvSBq" class="opt" target="_blank" rel="noopener">
-              <div class="opt-left"><div class="opt-name">Herbal Diffuser Pen</div><div class="opt-tag">Portable · discreet · shared office use</div></div>
-              <span class="opt-arrow">→</span>
-            </a>
-          </div>
+      <div class="item-body"><div class="item-inner">
+        <div class="why-block"><p>Peppermint and citrus activate the sympathetic nervous system almost immediately — smell bypasses the cortex and hits the limbic system directly. It's the fastest arousal shift available without medication. Use it only during focused work and it becomes a conditioned cue over time — your brain starts shifting into focus mode as soon as you smell it.</p></div>
+        <ul class="bullets">
+          <li>Inhale before starting a task, not during — let the arousal shift happen first</li>
+          <li>Consistency builds the cue — same scent, same context, same response over time</li>
+          <li>Essential oil spray is the most versatile; herbal pen is discreet for shared spaces</li>
+        </ul>
+        <div class="options">
+          <a href="https://amzn.to/4sb5WX5" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Essential Oil Spray (Peppermint/Citrus)</div><div class="opt-tag">Most studied for alerting · inhale before starting</div></div><span class="opt-arrow">→</span></a>
+          <a href="https://amzn.to/4scvSBq" class="opt" target="_blank" rel="noopener"><div class="opt-left"><div class="opt-name">Herbal Diffuser Pen</div><div class="opt-tag">Portable · discreet · shared office use</div></div><span class="opt-arrow">→</span></a>
         </div>
-      </div>
+      </div></div>
+    </div>
+
       </div>
     </div>
-  </div>
   </div>
 
 </div>
@@ -486,6 +363,5 @@
     if (!isOpen) item.classList.add('open');
   }
 </script>
-
 </body>
 </html>
