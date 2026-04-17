@@ -311,6 +311,96 @@
   .coming-soon-badge { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; background: var(--cream); color: var(--muted); border: 1px solid var(--light-border); padding: 4px 10px; border-radius: 20px; }
 
   /* ═══════════════════════════════════════
+     SUBSCRIBE SECTION — Mid-results placement
+  ═══════════════════════════════════════ */
+  .subscribe-section {
+    margin: 36px 0 40px;
+    padding: 36px 28px;
+    background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream) 100%);
+    border: 1px solid var(--gold);
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .subscribe-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+  }
+
+  .subscribe-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .subscribe-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(24px, 6vw, 32px);
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .subscribe-title em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .subscribe-promise {
+    font-size: clamp(14px, 3.6vw, 16px);
+    color: var(--navy);
+    line-height: 1.7;
+    margin-bottom: 8px;
+    max-width: 480px;
+  }
+
+  .subscribe-detail {
+    font-size: clamp(13px, 3.4vw, 14px);
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 22px;
+    max-width: 480px;
+  }
+
+  .subscribe-embed-wrap {
+    background: white;
+    border: 1px solid var(--light-border);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    min-height: 100px;
+  }
+
+  .subscribe-embed-wrap iframe {
+    width: 100% !important;
+    border: none !important;
+    background: transparent !important;
+    display: block;
+  }
+
+  .subscribe-footnote {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 480px) {
+    .subscribe-section {
+      padding: 28px 20px;
+      margin: 28px 0 32px;
+    }
+  }
+
+  /* ═══════════════════════════════════════
      TOOL STORE — AFFILIATE PRODUCT SECTION
   ═══════════════════════════════════════ */
   .tool-store-section {
@@ -579,7 +669,7 @@
   /* PDF print styles */
   @media print {
     header, .save-section, .restart-row, .tool-store-section,
-    .affiliate-note, nav, .nav { display: none !important; }
+    .affiliate-note, nav, .nav, .subscribe-section { display: none !important; }
     body { background: white; }
     #results { display: block !important; }
     main { padding: 20px; max-width: 100%; }
@@ -738,6 +828,36 @@
     <div class="rec-section">
       <div class="section-label">Environment Adjustments</div>
       <div id="recCards"></div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         SUBSCRIBE — Pattern-aware CTA
+    ═══════════════════════════════════ -->
+    <div class="subscribe-section" id="subscribeSection">
+      <div class="subscribe-eyebrow">Weekly Sensory Calibration</div>
+      <div class="subscribe-title" id="subscribeTitle">
+        Your pattern is the <em>starting point</em>.
+      </div>
+      <p class="subscribe-promise" id="subscribePromise">
+        Each week, ADL Lab sends one structural adjustment for nervous systems like yours — grounded in occupational therapy and sensory processing research.
+      </p>
+      <p class="subscribe-detail">
+        Frameworks for environment design, friction mapping, and the OT-informed translation of sensory science into adult daily life.
+      </p>
+
+      <div class="subscribe-embed-wrap">
+        <iframe src="https://adllab.substack.com/embed"
+                width="100%"
+                height="100"
+                style="border:0; background:transparent;"
+                frameborder="0"
+                scrolling="no">
+        </iframe>
+      </div>
+
+      <p class="subscribe-footnote">
+        Free · One email per week · Unsubscribe anytime
+      </p>
     </div>
 
     <!-- 8. SENSORY TOOL STORE -->
@@ -927,13 +1047,32 @@ const dunnPatterns = {
   }
 };
 
+// ─── PATTERN-AWARE SUBSCRIBE MESSAGES ───────────────────────────
+const subscribeMessages = {
+  lowReg: {
+    title: "Your pattern needs <em>more signal</em>.",
+    promise: "Each week, ADL Lab sends one structural adjustment for Low Signal processors — how to design environments that meet your nervous system's threshold instead of fighting it."
+  },
+  sensSeek: {
+    title: "Your pattern is built to <em>seek</em>.",
+    promise: "Each week, ADL Lab sends one structural adjustment for Stimulation Seekers — how to design work and life around movement, variety, and novelty instead of suppressing them."
+  },
+  sensSens: {
+    title: "Your pattern registers <em>everything</em>.",
+    promise: "Each week, ADL Lab sends one structural adjustment for High Sensitivity processors — how to reduce ambient sensory load and protect threshold capacity in everyday environments."
+  },
+  sensAvoid: {
+    title: "Your pattern protects the <em>threshold</em>.",
+    promise: "Each week, ADL Lab sends one structural adjustment for Threshold Protectors — how to design predictable environments that meet your nervous system's regulatory needs."
+  }
+};
+
 const spectrumAxes = [
   { label: "Input Registration", left: "Needs more signal", right: "Registers intensely", leftKey: "lowReg", rightKey: "sensSens" },
   { label: "Behavioral Response", left: "Seeks stimulation", right: "Avoids overload", leftKey: "sensSeek", rightKey: "sensAvoid" }
 ];
 
 // ─── TOOL STORE DATA ─────────────────────────────────────────────
-// Each tool: { name, why, patterns: ['lowReg','sensSeek','sensSens','sensAvoid'], primary link, altLinks[], badge }
 const toolStore = {
   rest: [
     {
@@ -1311,13 +1450,21 @@ function computeDunnScores() {
 
 function getPrimaryPattern(d) { return Object.entries(d).sort((a,b) => b[1]-a[1])[0][0]; }
 
+// ─── PATTERN-AWARE SUBSCRIBE ─────────────────────────────────────
+function customizeSubscribe(primaryPattern) {
+  const msg = subscribeMessages[primaryPattern];
+  if (msg) {
+    document.getElementById('subscribeTitle').innerHTML = msg.title;
+    document.getElementById('subscribePromise').textContent = msg.promise;
+  }
+}
+
 // ─── TOOL STORE RENDERING ────────────────────────────────────────
 function buildToolStore(primaryPattern) {
   ['rest', 'workspace', 'focus'].forEach(domain => {
     const grid = document.getElementById(`tool-grid-${domain}`);
     const tools = toolStore[domain];
 
-    // Sort: pattern-matched first, then others
     const matched = tools.filter(t => t.patterns.includes(primaryPattern));
     const others = tools.filter(t => !t.patterns.includes(primaryPattern));
     const sorted = [...matched, ...others];
@@ -1465,7 +1612,10 @@ function showResults() {
         </div>
       </div>`).join('');
 
-  // 8. Tool Store — pattern-filtered
+  // 8. Subscribe — pattern-aware messaging
+  customizeSubscribe(primaryPattern);
+
+  // 9. Tool Store — pattern-filtered
   buildToolStore(primaryPattern);
 }
 
@@ -1532,10 +1682,9 @@ function showLoading(show) {
   document.getElementById('saveLoading').style.display = show ? 'block' : 'none';
 }
 
-// PDF — print-to-PDF via browser
 function downloadPDF() {
   showLoading(true);
-  const hideEls = document.querySelectorAll('.save-section, .restart-row, .tool-store-section, .affiliate-note');
+  const hideEls = document.querySelectorAll('.save-section, .restart-row, .tool-store-section, .affiliate-note, .subscribe-section');
   hideEls.forEach(el => el.dataset.prevDisplay = el.style.display || '');
   hideEls.forEach(el => el.style.display = 'none');
   const origTitle = document.title;
@@ -1547,24 +1696,20 @@ function downloadPDF() {
     showLoading(false);
   }
 
-  // Listen for afterprint — works in all modern browsers
   window.addEventListener('afterprint', function onAfterPrint() {
     window.removeEventListener('afterprint', onAfterPrint);
     restore();
   });
 
-  // Fallback: restore after 8s in case afterprint doesn't fire
   const fallback = setTimeout(restore, 8000);
   window.addEventListener('afterprint', () => clearTimeout(fallback), { once: true });
 
   setTimeout(() => window.print(), 300);
 }
 
-// Image — html2canvas capture of results summary card
 function downloadImage() {
   showLoading(true);
 
-  // Load html2canvas if not already loaded
   if (typeof html2canvas === 'undefined') {
     const script = document.createElement('script');
     script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
@@ -1580,7 +1725,6 @@ function downloadImage() {
 }
 
 function captureImage() {
-  // Build a clean summary card for capture
   const pattern = dunnPatterns[currentPrimaryPattern];
   const domainScores = [0,1,2,3,4].map(di => getDomainScore(di));
   const levels = domainScores.map(s => getLevel(s));
@@ -1612,29 +1756,24 @@ function captureImage() {
   ).join('');
 
   card.innerHTML = `
-    <!-- Header -->
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid #E8E2D9;">
       <div style="font-size:13px;letter-spacing:0.22em;text-transform:uppercase;color:#1E2B4A;font-weight:600;">ADL · Lab</div>
       <div style="font-size:11px;color:#6A6A6A;letter-spacing:0.1em;text-transform:uppercase;">Ahra Roh, OTR/L, ATP</div>
     </div>
 
-    <!-- Pattern -->
     <div style="margin-bottom:28px;">
       <div style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#C9A84C;margin-bottom:8px;font-weight:500;">Your Sensory Profile</div>
       <div style="font-size:36px;font-weight:400;color:#1E2B4A;line-height:1.1;margin-bottom:10px;font-family:'DM Sans',sans-serif;">${getPatternLabel()}</div>
       <div style="font-size:15px;color:#6A6A6A;line-height:1.7;">${pattern.tagline}</div>
     </div>
 
-    <!-- Friction bars -->
     <div style="margin-bottom:28px;">
       <div style="font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:#6A6A6A;margin-bottom:14px;font-weight:600;">Friction by Environment</div>
       ${envRows}
     </div>
 
-    <!-- Tags -->
     <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;">${tags}</div>
 
-    <!-- Footer -->
     <div style="padding-top:20px;border-top:1px solid #E8E2D9;display:flex;justify-content:space-between;align-items:center;">
       <div style="font-size:12px;color:#6A6A6A;">theadllab.github.io</div>
       <div style="font-size:11px;color:#6A6A6A;letter-spacing:0.1em;text-transform:uppercase;">Find Your Sensory Pattern</div>
