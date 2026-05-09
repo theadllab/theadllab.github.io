@@ -3,916 +3,519 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="OT-Tech Specialist bridging clinical occupational therapy and product design. Advising teams in health tech, wearables, AI accessibility, and aging-tech.">
+<meta name="description" content="Ahra Roh, OT-Tech Specialist — bridging occupational science and product design across digital, physical, and spatial experiences.">
 <title>Ahra Roh — OT-Tech Specialist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #FAF8F3;
-    --bg-elev: #FFFFFF;
-    --ink: #0A0A0A;
-    --ink-2: #2A2A28;
-    --ink-3: #5A5A56;
-    --rule: #1A1A18;
-    --rule-soft: rgba(10,10,10,0.08);
-    --gold: #B8924F;
-    --gold-deep: #8B6E3A;
-    --ink-bg: #0A0A0A;
-    --gold-on-dark: #D4B876;
-    --display: 'Fraunces', Georgia, serif;
-    --body: 'Inter Tight', system-ui, sans-serif;
-    --mono: 'JetBrains Mono', ui-monospace, monospace;
-    --gutter: clamp(1.5rem, 4vw, 3rem);
-    --section-y: clamp(5rem, 10vw, 9rem);
-    --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
-    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    font-size: 16px;
   }
 
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: #FAF8F4;
+    color: #1A1A1A;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: #C62828; color: #FAF8F4; }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  .skip-link {
+    position: absolute; top: -48px; left: 0;
+    background: #1A1A1A; color: #FAF8F4;
+    padding: 12px 20px; z-index: 300;
+    text-decoration: none; font-size: 15px;
+    transition: top 0.2s;
+  }
+  .skip-link:focus { top: 0; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,248,244,0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 0.5px solid rgba(26,26,26,0.12);
+  }
+
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 clamp(1.25rem, 4vw, 3rem);
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem; font-weight: 400;
+    color: #1A1A1A; text-decoration: none;
+    letter-spacing: -0.01em; flex-shrink: 0;
+  }
+
+  .nav-brand-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem; font-weight: 500;
+    color: #C62828; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-left: 0.6rem;
+  }
+
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 400;
+    color: #3D3D3D; text-decoration: none;
+    padding: 4px 0;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #C62828; }
+
+  /* Hamburger */
+  .nav-toggle {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    padding: 8px; margin-right: -8px;
+    color: #1A1A1A;
+  }
+
+  .nav-toggle svg { display: block; }
+
+  /* Mobile menu */
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+    background: #FAF8F4;
+    border-top: 0.5px solid rgba(26,26,26,0.12);
+    padding: 0.5rem 0 1rem;
+  }
+
+  .nav-mobile.open { display: flex; }
+
+  .nav-mobile a {
+    font-size: 1rem; font-weight: 400;
+    color: #1A1A1A; text-decoration: none;
+    padding: 0.85rem clamp(1.25rem, 4vw, 3rem);
+    border-bottom: 0.5px solid rgba(26,26,26,0.07);
+    min-height: 48px; display: flex; align-items: center;
+  }
+
+  /* ── LAYOUT ── */
+  .page-wrap {
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 clamp(1.25rem, 4vw, 3rem);
+  }
+
+  /* ── EYEBROW ── */
+  .eyebrow {
+    display: flex; align-items: center; gap: 0.7rem;
+    font-size: 0.72rem; font-weight: 500;
+    color: #C62828; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 1.25rem;
+  }
+  .eyebrow::before {
+    content: ''; width: 20px; height: 1px;
+    background: #C62828; display: block; flex-shrink: 0;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top: 80px;
+    min-height: 100svh;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 4.5vw, 3.8rem);
+    font-weight: 400; line-height: 1.1;
+    letter-spacing: -0.02em; color: #1A1A1A;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 em { font-style: italic; color: #C62828; }
+
+  .hero-sub {
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    color: #3D3D3D; line-height: 1.8;
+    margin-bottom: 2rem;
+    max-width: 480px;
+  }
+
+  .hero-cta { display: flex; gap: 0.85rem; flex-wrap: wrap; }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 14px 26px;
+    min-height: 48px;
+    background: #1A1A1A; color: #FAF8F4;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem; font-weight: 500;
+    letter-spacing: 0.04em; text-decoration: none;
+    transition: background 0.25s; border: none; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-primary:hover { background: #C62828; color: #FAF8F4; }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 13px 26px;
+    min-height: 48px;
+    background: transparent; color: #1A1A1A;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem; font-weight: 500;
+    letter-spacing: 0.04em; text-decoration: none;
+    border: 1.5px solid #1A1A1A;
+    transition: all 0.25s; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-secondary:hover { border-color: #C62828; color: #C62828; }
+
+  /* ── HERO IMAGE ── */
+  .hero-img-wrap { position: relative; }
+
+  .hero-img-frame {
+    aspect-ratio: 4/5; overflow: hidden;
+    background: #E0DBD4;
+  }
+
+  .hero-img-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    transition: transform 1.2s ease;
+  }
+  .hero-img-wrap:hover .hero-img-frame img { transform: scale(1.03); }
+
+  .hero-img-tag {
+    position: absolute; bottom: 0; right: 0;
+    background: #C62828; color: #FAF8F4;
+    padding: 1rem 1.2rem;
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.07em; text-transform: uppercase; line-height: 1.6;
+  }
+
+  /* ── DIVIDER ── */
+  hr { border: none; border-top: 0.5px solid rgba(26,26,26,0.12); }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: clamp(3.5rem, 7vw, 6.5rem) 0;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+    font-weight: 400; line-height: 1.15;
+    letter-spacing: -0.02em; color: #1A1A1A;
+    margin-bottom: 1.25rem;
+  }
+  .section-title em { font-style: italic; color: #C62828; }
+
+  .section-lede {
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    color: #3D3D3D; line-height: 1.8;
+    max-width: 640px; margin-bottom: 1.25rem;
+  }
+
+  .section-body {
+    font-size: clamp(0.9rem, 1.3vw, 1rem);
+    color: #3D3D3D; line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+
+  /* ── WHY OT-TECH ── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 2.5rem;
+    border-top: 1.5px solid #1A1A1A;
+  }
+
+  .why-item {
+    padding: 2rem 2rem 2rem 0;
+    border-right: 0.5px solid rgba(26,26,26,0.12);
+  }
+  .why-item:nth-child(2) { padding-left: 2rem; }
+  .why-item:last-child { border-right: none; padding-left: 2rem; padding-right: 0; }
+
+  .why-vs {
+    font-size: 0.68rem; font-weight: 500; color: #757575;
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+
+  .why-item h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    font-weight: 400; color: #1A1A1A;
+    margin-bottom: 0.65rem; line-height: 1.25;
+  }
+  .why-item h3 em { font-style: italic; color: #C62828; }
+  .why-item p { font-size: clamp(0.85rem, 1.2vw, 0.95rem); color: #3D3D3D; line-height: 1.78; }
+
+  /* ── STATEMENT ── */
+  .statement {
+    background: #1A1A1A;
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.25rem, 4vw, 3rem);
+    border-left: 4px solid #C62828;
+  }
+  .statement-inner { max-width: 1200px; margin: 0 auto; }
+  .statement p {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.15rem, 2.5vw, 1.85rem);
+    font-weight: 400; font-style: italic;
+    line-height: 1.5; color: #FAF8F4; max-width: 820px;
+  }
+  .statement p strong { font-style: normal; font-weight: 500; color: #FF8A80; }
+
+  /* ── SERVICES ── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 2.5rem;
+  }
+
+  .service-item {
+    padding: 2rem 2.5rem 2rem 0;
+    border-top: 0.5px solid rgba(26,26,26,0.15);
+    border-bottom: 0.5px solid rgba(26,26,26,0.15);
+  }
+  .service-item:nth-child(odd) { border-right: 0.5px solid rgba(26,26,26,0.12); }
+  .service-item:nth-child(even) { padding-left: 2.5rem; padding-right: 0; }
+
+  .service-num {
+    font-size: 0.68rem; font-weight: 500; color: #C62828;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 0.65rem; display: block;
+  }
+
+  .service-item h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    font-weight: 400; color: #1A1A1A;
+    margin-bottom: 0.65rem; line-height: 1.25;
+  }
+  .service-item p { font-size: clamp(0.85rem, 1.2vw, 0.95rem); color: #3D3D3D; line-height: 1.78; }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: start; margin-top: 2.5rem;
+  }
+
+  .about-quote {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.05rem, 2vw, 1.4rem);
+    font-style: italic; font-weight: 400;
+    color: #1A1A1A; line-height: 1.55;
+    border-left: 2px solid #C62828;
+    padding-left: 1.25rem; margin-bottom: 1.5rem;
+  }
+
+  .cred-list { list-style: none; }
+  .cred-list li {
+    padding: 0.85rem 0;
+    border-bottom: 0.5px solid rgba(26,26,26,0.12);
+    display: grid; grid-template-columns: 1.75rem 1fr;
+    gap: 0.6rem; align-items: start;
+    font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+    color: #3D3D3D; line-height: 1.65;
+  }
+  .cred-list li:first-child {
+    border-top: 0.5px solid rgba(26,26,26,0.12); padding-top: 0;
+  }
+
+  .cred-n {
+    font-size: 0.65rem; font-weight: 500;
+    color: #C62828; letter-spacing: 0.06em; margin-top: 4px;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.6rem; font-weight: 500;
+    color: #C62828; letter-spacing: 0.08em; text-transform: uppercase;
+    background: #FFEBEE; padding: 2px 6px;
+    margin-left: 5px; vertical-align: middle;
+  }
+
+  /* ── NEWSLETTER ── */
+  .newsletter-bg {
+    background: #FFFFFF;
+    border-top: 0.5px solid rgba(26,26,26,0.12);
+    border-bottom: 0.5px solid rgba(26,26,26,0.12);
+    padding: clamp(3.5rem, 7vw, 6.5rem) clamp(1.25rem, 4vw, 3rem);
+  }
+  .newsletter-inner { max-width: 1200px; margin: 0 auto; }
+
+  .newsletter-card {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem); align-items: start;
+    margin-top: 2.5rem; padding-top: 2.5rem;
+    border-top: 1.5px solid #1A1A1A;
+  }
+
+  .newsletter-card h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+    font-weight: 400; color: #1A1A1A;
+    margin-bottom: 1rem; line-height: 1.2;
+  }
+  .newsletter-card h3 em { font-style: italic; color: #C62828; }
+  .newsletter-card p {
+    font-size: clamp(0.9rem, 1.3vw, 1rem);
+    color: #3D3D3D; line-height: 1.8; margin-bottom: 1.5rem;
+  }
+  .newsletter-meta { font-size: 0.75rem; color: #757575; margin-top: 0.75rem; }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    padding: clamp(3.5rem, 7vw, 6.5rem) 0;
+  }
+
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: start; margin-top: 2.5rem;
+  }
+
+  .contact-stmt {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.35rem, 2.8vw, 2rem);
+    font-weight: 400; line-height: 1.3;
+    color: #1A1A1A; letter-spacing: -0.01em;
+  }
+  .contact-stmt em { font-style: italic; color: #C62828; }
+
+  .contact-info { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .contact-row { display: flex; flex-direction: column; gap: 0.2rem; }
+
+  .contact-label {
+    font-size: 0.68rem; font-weight: 500; color: #757575;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+
+  .contact-row a {
+    font-size: clamp(0.9rem, 1.3vw, 1rem);
+    color: #1A1A1A; text-decoration: none;
+    border-bottom: 1px solid transparent;
+    width: fit-content; padding: 2px 0;
+    min-height: 44px; display: inline-flex; align-items: center;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .contact-row a:hover { color: #C62828; border-bottom-color: #C62828; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 0.5px solid rgba(26,26,26,0.12);
+    padding: 1.75rem clamp(1.25rem, 4vw, 3rem);
+    display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  .footer-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.95rem; color: #3D3D3D; font-weight: 400;
+  }
+  .footer-meta { font-size: 0.75rem; color: #757575; }
+
+  /* ── RESPONSIVE: TABLET ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .why-grid { grid-template-columns: 1fr; }
+    .why-item { border-right: none; padding: 1.75rem 0; border-bottom: 0.5px solid rgba(26,26,26,0.12); }
+    .why-item:nth-child(2), .why-item:last-child { padding-left: 0; }
+  }
+
+  /* ── RESPONSIVE: MOBILE ── */
+  @media (max-width: 680px) {
+    html { font-size: 17px; }
+
+    .nav-links { display: none; }
+    .nav-toggle { display: flex; align-items: center; justify-content: center; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      padding-top: 80px;
+      min-height: auto;
+      padding-bottom: 3rem;
+      gap: 2rem;
+    }
+
+    .hero-img-wrap {
+      order: -1;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    .hero-img-frame { aspect-ratio: 3/4; }
+
+    .hero h1 { font-size: clamp(1.85rem, 8vw, 2.4rem); }
+
+    .hero-sub { max-width: 100%; }
+
+    .hero-cta { flex-direction: column; }
+    .btn-primary, .btn-secondary { width: 100%; justify-content: center; font-size: 0.95rem; padding: 16px 24px; }
+
+    .why-grid { grid-template-columns: 1fr; }
+    .why-item { border-right: none; padding: 1.5rem 0; border-bottom: 0.5px solid rgba(26,26,26,0.12); }
+    .why-item:nth-child(2), .why-item:last-child { padding-left: 0; }
+    .why-item h3 { font-size: 1.1rem; }
+
+    .statement p { font-size: clamp(1.05rem, 4.5vw, 1.3rem); }
+
+    .services-grid { grid-template-columns: 1fr; }
+    .service-item { padding: 1.5rem 0; border-right: none !important; border-bottom: 0.5px solid rgba(26,26,26,0.15); }
+    .service-item:nth-child(even) { padding-left: 0; }
+    .service-item h3 { font-size: 1.1rem; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-quote { font-size: 1.05rem; }
+
+    .newsletter-card { grid-template-columns: 1fr; gap: 1.75rem; }
+    .newsletter-card h3 { font-size: 1.4rem; }
+    .newsletter-bg .btn-primary { width: 100%; justify-content: center; }
+
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-stmt { font-size: clamp(1.3rem, 6vw, 1.6rem); }
+
+    footer { flex-direction: column; gap: 0.4rem; }
+    .footer-name { font-size: 0.88rem; }
+
+    .section-title { font-size: clamp(1.5rem, 7vw, 2rem); }
+  }
+
+  /* ── FOCUS STYLES ── */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid #C62828;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ── REDUCED MOTION ── */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
-  }
-
-  body {
-    font-family: var(--body);
-    background: var(--bg);
-    color: var(--ink);
-    font-size: 18px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  ::selection { background: var(--ink); color: var(--bg); }
-
-  .skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--ink);
-    color: var(--bg);
-    padding: 12px 20px;
-    z-index: 200;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 14px;
-  }
-  .skip-link:focus { top: 0; }
-
-  *:focus-visible {
-    outline: 2px solid var(--gold-deep);
-    outline-offset: 4px;
-    border-radius: 2px;
-  }
-
-  /* NAV */
-  .nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.25rem var(--gutter);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(250, 248, 243, 0.85);
-    backdrop-filter: saturate(180%) blur(12px);
-    -webkit-backdrop-filter: saturate(180%) blur(12px);
-    border-bottom: 1px solid var(--rule-soft);
-  }
-
-  .nav-brand {
-    font-family: var(--display);
-    font-size: 1.25rem;
-    font-weight: 400;
-    color: var(--ink);
-    text-decoration: none;
-    letter-spacing: -0.01em;
-    display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
-  }
-
-  .nav-brand-tag {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--gold-deep);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .nav-list {
-    display: flex;
-    gap: 2.25rem;
-    list-style: none;
-  }
-
-  .nav-list a {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--ink-2);
-    text-decoration: none;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    position: relative;
-    padding: 4px 0;
-    transition: color 0.3s var(--ease);
-  }
-
-  .nav-list a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: var(--ink);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.4s var(--ease-out);
-  }
-
-  .nav-list a:hover { color: var(--ink); }
-  .nav-list a:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    padding: 7rem var(--gutter) 5rem;
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 5rem;
-    align-items: center;
-    max-width: 1280px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(to right, var(--rule-soft) 1px, transparent 1px);
-    background-size: calc(100% / 12) 100%;
-    pointer-events: none;
-    opacity: 0.4;
-    z-index: 0;
-  }
-
-  .hero > * { position: relative; z-index: 1; }
-
-  .hero-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    margin-bottom: 2rem;
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--ink-3);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    animation: fadeUp 0.8s var(--ease-out) 0.1s both;
-  }
-
-  .hero-meta-line {
-    width: 32px;
-    height: 1px;
-    background: var(--gold-deep);
-  }
-
-  .hero-meta strong {
-    color: var(--gold-deep);
-    font-weight: 500;
-  }
-
-  .hero h1 {
-    font-family: var(--display);
-    font-size: clamp(2.6rem, 5.8vw, 4.6rem);
-    font-weight: 300;
-    line-height: 1.04;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin-bottom: 1.75rem;
-    font-variation-settings: "opsz" 144;
-    animation: fadeUp 0.9s var(--ease-out) 0.25s both;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--gold-deep);
-  }
-
-  .hero h1 .accent-mark {
-    position: relative;
-    display: inline-block;
-  }
-
-  .hero h1 .accent-mark::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 100%;
-    height: 2px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transform-origin: left;
-    animation: drawLine 1.2s var(--ease-out) 1.4s forwards;
-  }
-
-  .hero-sub {
-    font-size: 1.125rem;
-    color: var(--ink-2);
-    line-height: 1.7;
-    margin-bottom: 2.5rem;
-    max-width: 520px;
-    animation: fadeUp 0.9s var(--ease-out) 0.4s both;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 1.25rem;
-    flex-wrap: wrap;
-    animation: fadeUp 0.9s var(--ease-out) 0.55s both;
-  }
-
-  /* BUTTONS */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 14px 28px;
-    font-family: var(--mono);
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.4s var(--ease-out);
-    border: none;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-primary {
-    background: var(--ink);
-    color: var(--bg);
-  }
-
-  .btn-primary::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--gold-deep);
-    transform: translateY(100%);
-    transition: transform 0.4s var(--ease-out);
-  }
-
-  .btn-primary:hover::before { transform: translateY(0); }
-  .btn-primary > * { position: relative; z-index: 1; }
-
-  .btn-primary .arrow {
-    display: inline-block;
-    transition: transform 0.4s var(--ease-out);
-  }
-
-  .btn-primary:hover .arrow { transform: translateX(4px); }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--ink);
-    border: 1px solid var(--ink);
-  }
-
-  .btn-secondary:hover {
-    background: var(--ink);
-    color: var(--bg);
-  }
-
-  /* HERO PORTRAIT */
-  .hero-portrait {
-    position: relative;
-    animation: fadeIn 1.2s var(--ease-out) 0.3s both;
-  }
-
-  .hero-portrait-frame {
-    position: relative;
-    aspect-ratio: 3/4;
-    width: 100%;
-    overflow: hidden;
-    background: var(--ink-bg);
-  }
-
-  .hero-portrait-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 75%;
-    filter: contrast(1.05) saturate(0.92);
-    transition: transform 1.2s var(--ease-out);
-  }
-
-  .hero-portrait:hover .hero-portrait-frame img {
-    transform: scale(1.03);
-  }
-
-  .hero-portrait-tag {
-    position: absolute;
-    top: -1.25rem;
-    left: 1rem;
-    background: var(--bg);
-    padding: 0.35rem 0.85rem;
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--ink-2);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: 1px solid var(--rule-soft);
-    z-index: 2;
-  }
-
-  .hero-portrait-credit {
-    margin-top: 1rem;
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--ink-3);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-align: right;
-  }
-
-  /* SECTIONS */
-  .section {
-    padding: var(--section-y) var(--gutter);
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-
-  .section-eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--gold-deep);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-  }
-
-  .section-eyebrow::before {
-    content: '';
-    width: 32px;
-    height: 1px;
-    background: var(--gold-deep);
-  }
-
-  .section-eyebrow .num { color: var(--ink-3); }
-
-  .section-title {
-    font-family: var(--display);
-    font-size: clamp(2rem, 4.5vw, 3.4rem);
-    font-weight: 300;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin-bottom: 2rem;
-    max-width: 850px;
-    font-variation-settings: "opsz" 96;
-  }
-
-  .section-title em {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--gold-deep);
-  }
-
-  .section-lede {
-    font-size: 1.18rem;
-    color: var(--ink-2);
-    line-height: 1.7;
-    max-width: 650px;
-    margin-bottom: 1.25rem;
-  }
-
-  .section-body {
-    font-size: 1.0625rem;
-    color: var(--ink-2);
-    line-height: 1.75;
-    max-width: 650px;
-    margin-bottom: 1.25rem;
-  }
-
-  /* THESIS CARD */
-  .thesis-card {
-    margin: 4rem auto;
-    background: var(--ink-bg);
-    color: var(--bg);
-    padding: 3.5rem clamp(2rem, 5vw, 4rem);
-    max-width: 820px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .thesis-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--gold);
-  }
-
-  .thesis-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at top right, rgba(212, 184, 118, 0.06), transparent 60%);
-    pointer-events: none;
-  }
-
-  .thesis-label {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--gold-on-dark);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  .thesis-label::before {
-    content: '§';
-    font-family: var(--display);
-    font-size: 1rem;
-  }
-
-  .thesis-text {
-    font-family: var(--display);
-    font-size: clamp(1.4rem, 2.6vw, 1.85rem);
-    font-weight: 300;
-    font-style: italic;
-    line-height: 1.45;
-    color: var(--bg);
-    position: relative;
-    font-variation-settings: "opsz" 96;
-  }
-
-  .thesis-text strong {
-    font-style: normal;
-    font-weight: 500;
-    color: var(--gold-on-dark);
-  }
-
-  /* MARKETS */
-  .markets {
-    margin-top: 2.5rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--rule-soft);
-  }
-
-  .markets-label {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--ink-3);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .markets-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .market-tag {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--ink);
-    background: transparent;
-    padding: 0.5rem 0.95rem;
-    border: 1px solid var(--ink);
-    letter-spacing: 0.04em;
-    transition: all 0.3s var(--ease);
-  }
-
-  .market-tag:hover {
-    background: var(--ink);
-    color: var(--bg);
-  }
-
-  /* SERVICES */
-  .services {
-    margin-top: 4rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0;
-  }
-
-  .service-item {
-    padding: 2.25rem 2.25rem 2.25rem 0;
-    border-top: 1px solid var(--rule);
-    position: relative;
-  }
-
-  .service-item:nth-child(odd) {
-    padding-right: 3rem;
-    border-right: 1px solid var(--rule-soft);
-    padding-left: 0;
-  }
-
-  .service-item:nth-child(even) {
-    padding-left: 3rem;
-  }
-
-  .service-item:nth-last-child(-n+2) {
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .service-num {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--gold-deep);
-    letter-spacing: 0.1em;
-    margin-bottom: 0.85rem;
-    display: block;
-  }
-
-  .service-item h3 {
-    font-family: var(--display);
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: var(--ink);
-    margin-bottom: 0.85rem;
-    line-height: 1.25;
-    letter-spacing: -0.01em;
-    font-variation-settings: "opsz" 36;
-  }
-
-  .service-item p {
-    font-size: 1rem;
-    color: var(--ink-2);
-    line-height: 1.7;
-  }
-
-  /* ABOUT */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 5rem;
-    align-items: start;
-    margin-top: 3rem;
-  }
-
-  .about-quote {
-    font-family: var(--display);
-    font-size: clamp(1.4rem, 2.4vw, 1.7rem);
-    font-style: italic;
-    font-weight: 300;
-    color: var(--ink);
-    line-height: 1.45;
-    border-left: 2px solid var(--gold);
-    padding-left: 1.75rem;
-    margin-bottom: 2.5rem;
-    font-variation-settings: "opsz" 96;
-  }
-
-  .credentials { list-style: none; }
-
-  .credentials li {
-    padding: 1.1rem 0;
-    border-bottom: 1px solid var(--rule-soft);
-    display: grid;
-    grid-template-columns: 28px 1fr;
-    gap: 1rem;
-    align-items: start;
-  }
-
-  .credentials li:first-child { padding-top: 0; }
-
-  .cred-num {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--gold-deep);
-    letter-spacing: 0.05em;
-    margin-top: 6px;
-  }
-
-  .cred-text {
-    font-size: 0.95rem;
-    color: var(--ink-2);
-    line-height: 1.6;
-  }
-
-  .cred-current {
-    display: inline-block;
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    font-weight: 500;
-    color: var(--gold-deep);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    background: rgba(184, 146, 79, 0.1);
-    padding: 2px 7px;
-    margin-left: 6px;
-    vertical-align: middle;
-  }
-
-  /* WRITING */
-  .writing-section {
-    background: var(--ink-bg);
-    color: var(--bg);
-    padding: var(--section-y) 0;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .writing-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(to right, rgba(212, 184, 118, 0.04) 1px, transparent 1px);
-    background-size: calc(100% / 12) 100%;
-    pointer-events: none;
-  }
-
-  .writing-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 var(--gutter);
-    position: relative;
-  }
-
-  .writing-section .section-eyebrow { color: var(--gold-on-dark); }
-  .writing-section .section-eyebrow::before { background: var(--gold-on-dark); }
-  .writing-section .section-eyebrow .num { color: rgba(255,255,255,0.4); }
-  .writing-section .section-title { color: var(--bg); }
-  .writing-section .section-title em { color: var(--gold-on-dark); }
-  .writing-section .section-lede { color: rgba(255,255,255,0.78); }
-
-  .writing-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    margin-top: 3.5rem;
-  }
-
-  .writing-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 2.5rem;
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.4s var(--ease-out);
-    position: relative;
-    overflow: hidden;
-    display: block;
-  }
-
-  .writing-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--gold-on-dark);
-    transition: width 0.5s var(--ease-out);
-  }
-
-  .writing-card:hover {
-    background: rgba(212, 184, 118, 0.06);
-    border-color: var(--gold-on-dark);
-    transform: translateY(-4px);
-  }
-
-  .writing-card:hover::before { width: 100%; }
-
-  .writing-card-tag {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--gold-on-dark);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 1.25rem;
-  }
-
-  .writing-card h3 {
-    font-family: var(--display);
-    font-size: 1.75rem;
-    font-weight: 400;
-    margin-bottom: 0.85rem;
-    color: var(--bg);
-    font-variation-settings: "opsz" 48;
-  }
-
-  .writing-card p {
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.7;
-    margin-bottom: 1.75rem;
-  }
-
-  .writing-card-link {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--gold-on-dark);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  .writing-card-link .arrow {
-    transition: transform 0.4s var(--ease-out);
-  }
-
-  .writing-card:hover .writing-card-link .arrow {
-    transform: translateX(6px);
-  }
-
-  /* CONTACT */
-  .contact {
-    text-align: center;
-    padding: var(--section-y) var(--gutter);
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .contact .section-eyebrow { justify-content: center; }
-  .contact .section-eyebrow::before { display: none; }
-
-  .contact .section-title {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .contact .section-lede {
-    margin: 0 auto 2.5rem;
-    max-width: 540px;
-  }
-
-  .contact-email { margin-bottom: 4rem; }
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid var(--rule-soft);
-  }
-
-  .contact-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: center;
-  }
-
-  .contact-item-label {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--ink-3);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .contact-item a {
-    font-size: 0.95rem;
-    color: var(--ink);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s var(--ease);
-    padding: 2px 0;
-  }
-
-  .contact-item a:hover {
-    border-bottom-color: var(--gold-deep);
-    color: var(--gold-deep);
-  }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--rule-soft);
-    padding: 2rem var(--gutter);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-
-  .footer-name {
-    font-family: var(--display);
-    font-size: 1rem;
-    color: var(--ink-2);
-  }
-
-  .footer-name strong { font-weight: 500; }
-
-  .footer-meta {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--ink-3);
-    letter-spacing: 0.06em;
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes drawLine {
-    to { transform: scaleX(1); }
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 860px) {
-    body { font-size: 17px; }
-
-    .nav { padding: 1rem var(--gutter); }
-    .nav-list { gap: 1.25rem; }
-    .nav-list a { font-size: 0.72rem; }
-
-    .hero {
-      grid-template-columns: 1fr;
-      gap: 3.5rem;
-      padding-top: 6rem;
-      min-height: auto;
-    }
-
-    .hero-portrait {
-      order: -1;
-      max-width: 380px;
-      margin: 0 auto;
-    }
-
-    .hero-portrait-frame {
-      aspect-ratio: 4/3;
-    }
-
-    .hero-portrait-frame img {
-      object-position: center 70%;
-    }
-
-    .about-grid {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-
-    .services { grid-template-columns: 1fr; }
-
-    .service-item:nth-child(odd),
-    .service-item:nth-child(even) {
-      padding: 2rem 0;
-      border-right: none;
-    }
-
-    .service-item:nth-last-child(-n+2):not(:last-child) {
-      border-bottom: 1px solid var(--rule-soft);
-    }
-
-    .writing-grid {
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
-    }
-
-    .contact-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .thesis-card { padding: 2.5rem 2rem; }
   }
 </style>
 </head>
@@ -920,248 +523,208 @@
 
 <a href="#main" class="skip-link">Skip to main content</a>
 
-<nav class="nav" aria-label="Primary">
-  <a href="#" class="nav-brand">
-    Ahra Roh
-    <span class="nav-brand-tag">OTR/L · ATP</span>
-  </a>
-  <ul class="nav-list">
-    <li><a href="#consulting">Consulting</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#writing">Writing</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+<nav aria-label="Primary">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">Ahra Roh <span class="nav-brand-tag">OTR/L · ATP</span></a>
+    <ul class="nav-links" id="nav-desktop">
+      <li><a href="#why">Why OT-Tech</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#writing">Newsletter</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile" id="nav-toggle">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+        <line x1="3" y1="7" x2="21" y2="7"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="17" x2="21" y2="17"/>
+      </svg>
+    </button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile" role="navigation" aria-label="Mobile menu">
+    <a href="#why" onclick="closeMobileNav()">Why OT-Tech</a>
+    <a href="#services" onclick="closeMobileNav()">Services</a>
+    <a href="#about" onclick="closeMobileNav()">About</a>
+    <a href="#writing" onclick="closeMobileNav()">Newsletter</a>
+    <a href="#contact" onclick="closeMobileNav()">Contact</a>
+  </div>
 </nav>
 
 <main id="main">
 
-  <section class="hero" aria-labelledby="hero-heading">
-    <div>
-      <p class="hero-meta">
-        <span class="hero-meta-line" aria-hidden="true"></span>
-        <strong>OT-Tech Specialist</strong>
-        <span aria-hidden="true">·</span>
-        <span>Los Angeles</span>
-      </p>
-      <h1 id="hero-heading">
-        Bringing <em>clinical insight</em> into the rooms where <span class="accent-mark">technology</span> is designed.
-      </h1>
-      <p class="hero-sub">
-        I bridge clinical occupational therapy and product design — advising teams in health tech, wearables, AI accessibility, and aging-tech on how real users actually live with their tools.
-      </p>
-      <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">
-          <span>Work with me</span>
-          <span class="arrow" aria-hidden="true">→</span>
-        </a>
-        <a href="#consulting" class="btn btn-secondary">What I do</a>
-      </div>
-    </div>
-
-    <div class="hero-portrait">
-      <div class="hero-portrait-frame">
-        <span class="hero-portrait-tag">2026</span>
-        <img src="Headshot_USC_1.png" alt="Ahra Roh, occupational therapist and OT-Tech Specialist">
-      </div>
-      <p class="hero-portrait-credit">USC · Los Angeles</p>
-    </div>
-  </section>
-
-  <section class="section" id="consulting" aria-labelledby="consulting-heading">
-    <p class="section-eyebrow"><span class="num">01 ·</span> Consulting</p>
-    <h2 class="section-title" id="consulting-heading">
-      Compliance gets you to the door.<br>
-      Clinical expertise gets you <em>inside.</em>
-    </h2>
-    <p class="section-lede">
-      Most accessibility evaluations check boxes. I find what they miss. I evaluate how real users — with motor impairments, sensory differences, cognitive load variations — actually interact with your product. What they can grip. What fatigues them. What sensory friction makes them quit. What they'll abandon after week three.
-    </p>
-    <p class="section-body">
-      Beyond physical accessibility, I work extensively with sensory processing differences in adults — an area most product teams overlook. Through ADL Lab, I translate clinical sensory science into design frameworks teams can actually use, integrating Dunn's Sensory Processing Framework with current research in interoception and cognitive load.
-    </p>
-    <p class="section-body">
-      This is what 14 years of clinical OT looks like applied to product design. Engineers and UX researchers can't replicate it.
-    </p>
-
-    <aside class="thesis-card" aria-label="Underlying philosophy">
-      <p class="thesis-label">Underlying Philosophy</p>
-      <p class="thesis-text">
-        "Accessibility is not a magic wand to cater every request. It facilitates and decreases the gap, <strong>not freely hands the result.</strong> That distinction shapes everything I bring to product teams."
-      </p>
-    </aside>
-
-    <div class="markets">
-      <p class="markets-label">Markets I work with</p>
-      <div class="markets-row">
-        <span class="market-tag">Health Tech</span>
-        <span class="market-tag">Wearables</span>
-        <span class="market-tag">AI Accessibility</span>
-        <span class="market-tag">Aging Tech</span>
-        <span class="market-tag">Medical Devices</span>
-        <span class="market-tag">Higher Ed Tools</span>
-        <span class="market-tag">Rehab Technology</span>
-      </div>
-    </div>
-
-    <div class="services">
-      <article class="service-item">
-        <span class="service-num">— 01</span>
-        <h3>Product audits</h3>
-        <p>Clinical evaluation of how real users with disabilities or sensory differences interact with your product. Physical, sensory, cognitive, and sustained-use lenses.</p>
-      </article>
-      <article class="service-item">
-        <span class="service-num">— 02</span>
-        <h3>Sensory & accessibility reviews</h3>
-        <p>OT-level analysis of interface design, cognitive load, and sustained use. Specific changes, specific reasons — not compliance checklists.</p>
-      </article>
-      <article class="service-item">
-        <span class="service-num">— 03</span>
-        <h3>Advisory roles</h3>
-        <p>Ongoing input for product, research, or program teams building for disability, aging, or sensory-diverse markets. Retainer or project-based.</p>
-      </article>
-      <article class="service-item">
-        <span class="service-num">— 04</span>
-        <h3>User testing advisory</h3>
-        <p>Protocol design for disability and sensory user testing — what to test, who to recruit, what to observe. The right study, before you run it.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="section" id="about" aria-labelledby="about-heading">
-    <p class="section-eyebrow"><span class="num">02 ·</span> About</p>
-    <h2 class="section-title" id="about-heading">
-      Fourteen years at the meeting point of <em>bodies, environments, and tools.</em>
-    </h2>
-
-    <div class="about-grid">
+  <div class="page-wrap">
+    <section class="hero" aria-labelledby="hero-heading">
       <div>
-        <p class="about-quote">
-          "Products designed well for disability and sensory-diverse users work better for everyone. That's not a theory — it's what universal design looks like in practice."
-        </p>
-        <p class="section-body" style="max-width:none;">
-          I'm an OT-Tech Specialist (Occupational Therapy + Technology) — bringing 14+ years of clinical OT into the rooms where technology is designed. I've spent those years watching real users navigate real products in real homes, classrooms, and rehab settings.
-        </p>
-        <p class="section-body" style="max-width:none;">
-          My work bridges three worlds that rarely meet: the clinical literature on how human bodies and nervous systems actually function, the product teams shipping the next generation of consumer and medical technology, and the daily reality of users who'll be living with what those teams build.
-        </p>
+        <p class="eyebrow">OT-Tech Specialist · Los Angeles</p>
+        <h1 id="hero-heading">The <em>human performance</em> lens your product team is missing.</h1>
+        <p class="hero-sub">Most products are built around what technology can do. It's easy to focus on the end goal and overlook the actual experience of getting there. That gap is where I work.</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn-primary">Work with me →</a>
+          <a href="#why" class="btn-secondary">Why OT-Tech</a>
+        </div>
       </div>
+      <div class="hero-img-wrap">
+        <div class="hero-img-frame">
+          <img src="Ahra_Roh_Profile.png" alt="Ahra Roh, OT-Tech Specialist">
+        </div>
+        <div class="hero-img-tag">OT-Tech Specialist<br>Founder, ADL Lab</div>
+      </div>
+    </section>
+  </div>
 
-      <ul class="credentials">
-        <li>
-          <span class="cred-num">01</span>
-          <span class="cred-text">14+ years clinical OT — neuro-rehab, SCI, acute care, pediatrics</span>
-        </li>
-        <li>
-          <span class="cred-num">02</span>
-          <span class="cred-text">OT/ATP, High Tech Training Center, Santa Monica College
-            <span class="cred-current">Current</span><br>
-            <span style="color: var(--ink-3); font-size: 0.85rem;">AT evaluation, training & education for students with disabilities</span>
-          </span>
-        </li>
-        <li>
-          <span class="cred-num">03</span>
-          <span class="cred-text">Adjunct Faculty, Santa Monica College
-            <span class="cred-current">Current</span>
-          </span>
-        </li>
-        <li>
-          <span class="cred-num">04</span>
-          <span class="cred-text">Founder, ADL Lab — sensory environment design framework for adults</span>
-        </li>
-        <li>
-          <span class="cred-num">05</span>
-          <span class="cred-text">ATP, certified by RESNA</span>
-        </li>
-        <li>
-          <span class="cred-num">06</span>
-          <span class="cred-text">M.A. Occupational Science & Occupational Therapy, USC</span>
-        </li>
-        <li>
-          <span class="cred-num">07</span>
-          <span class="cred-text">B.A. Neuroscience, USC</span>
-        </li>
-        <li>
-          <span class="cred-num">08</span>
-          <span class="cred-text">AT Certificate, CSUN</span>
-        </li>
-        <li>
-          <span class="cred-num">09</span>
-          <span class="cred-text">Korean–English bilingual · Based in Los Angeles</span>
-        </li>
-      </ul>
+  <hr>
+
+  <div class="page-wrap">
+    <section class="section" id="why" aria-labelledby="why-heading">
+      <p class="eyebrow">01 · Why OT-Tech</p>
+      <h2 class="section-title" id="why-heading">Not a UX researcher. Not an accessibility consultant. <em>A clinically trained specialist who understands what happens between a human and a tool — at a level most product teams have never had access to.</em></h2>
+      <p class="section-lede">You've been looking for this role — you just didn't know who to look for. I bridge occupational science, the study of how humans actually perform tasks, with product design. That means 14 years of clinical practice plus real-world observation of how everyday people navigate tools, spaces, and technology in their daily lives. That combination doesn't exist anywhere else.</p>
+      <div class="why-grid">
+        <div class="why-item">
+          <p class="why-vs">vs. UX Researcher</p>
+          <h3>They study <em>behavior.</em><br>I study function.</h3>
+          <p>UX researchers follow what users say and do. I evaluate the physical, sensory, and cognitive cost of doing it — fatigue, friction, breakdown points most user testing never surfaces.</p>
+        </div>
+        <div class="why-item">
+          <p class="why-vs">vs. Accessibility Consultant</p>
+          <h3>They audit <em>compliance.</em><br>I audit performance.</h3>
+          <p>Accessibility consultants check whether a product meets standards. I evaluate whether the product actually works for the human using it — across the full spectrum of how people function.</p>
+        </div>
+        <div class="why-item">
+          <p class="why-vs">vs. AT Specialist / ATP</p>
+          <h3>They fit tools <em>to users.</em><br>I design the system.</h3>
+          <p>ATPs certify that someone can use a device. I architect the full human-tool-environment relationship — any product, any context — built around how that person actually performs.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="statement">
+    <div class="statement-inner">
+      <p>Technology is any tool that helps a human perform a task — a spoon, a wearable, an AI agent. <strong>What most product teams are missing isn't more technology. It's the lens to know whether it actually works for the human using it.</strong></p>
     </div>
-  </section>
+  </div>
 
-  <section class="writing-section" id="writing" aria-labelledby="writing-heading">
-    <div class="writing-inner">
-      <p class="section-eyebrow"><span class="num">03 ·</span> Writing</p>
-      <h2 class="section-title" id="writing-heading">
-        Notes from the <em>gap.</em>
-      </h2>
-      <p class="section-lede">
-        Field observations, clinical perspectives, and framework writing on what product teams often miss about how people actually live with their tools.
-      </p>
+  <div class="page-wrap">
+    <section class="section" id="services" aria-labelledby="services-heading">
+      <p class="eyebrow">02 · Services</p>
+      <h2 class="section-title" id="services-heading">Where I work with <em>product teams.</em></h2>
+      <p class="section-lede">I work across digital, physical, and spatial products. The throughline is always the same: evaluating the relationship between a human, a task, and the tools they use to complete it.</p>
+      <div class="services-grid">
+        <article class="service-item">
+          <span class="service-num">01</span>
+          <h3>Human-Performance Audits</h3>
+          <p>A clinical read on how real users interact with your product — physical usability, sensory load, cognitive demand, sustained use. Not a compliance checklist. A functional analysis of what works and what breaks down.</p>
+        </article>
+        <article class="service-item">
+          <span class="service-num">02</span>
+          <h3>Product Design Advisory</h3>
+          <p>Ongoing input at any stage of product development. I translate occupational science into design decisions your team can act on, upstream — not as a patch after the fact.</p>
+        </article>
+        <article class="service-item">
+          <span class="service-num">03</span>
+          <h3>AT Integration Architecture</h3>
+          <p>For products that interact with tools, devices, or environments: I design the full human-tool-environment system, evaluating how components interact with each other and with the user.</p>
+        </article>
+        <article class="service-item">
+          <span class="service-num">04</span>
+          <h3>Research & Testing Advisory</h3>
+          <p>Protocol design for user research that actually surfaces functional friction — what to test, who to recruit, what to observe. I help teams ask better questions before they run the study.</p>
+        </article>
+      </div>
+    </section>
+  </div>
 
-      <div class="writing-grid">
-        <a href="https://adllab.substack.com" target="_blank" rel="noopener" class="writing-card">
-          <p class="writing-card-tag">Substack · OT in Practice</p>
-          <h3>ADL Lab</h3>
-          <p>In-depth essays on sensory environment design, accessibility law in practice, and the gap between clinical OT and product design.</p>
-          <span class="writing-card-link">
-            Read on Substack
-            <span class="arrow" aria-hidden="true">→</span>
-          </span>
-        </a>
-        <a href="https://www.linkedin.com/in/ahra-roh-65632a44/" target="_blank" rel="noopener" class="writing-card">
-          <p class="writing-card-tag">LinkedIn · Industry Notes</p>
-          <h3>Field Observations</h3>
-          <p>Shorter notes from the field — AT evaluation work, industry observations, and the OT-Tech bridge in practice.</p>
-          <span class="writing-card-link">
-            Follow on LinkedIn
-            <span class="arrow" aria-hidden="true">→</span>
-          </span>
-        </a>
+  <hr>
+
+  <div class="page-wrap">
+    <section class="section" id="about" aria-labelledby="about-heading">
+      <p class="eyebrow">03 · About</p>
+      <h2 class="section-title" id="about-heading">14 years at the intersection of <em>bodies, environments, and tools.</em></h2>
+      <div class="about-grid">
+        <div>
+          <p class="about-quote">"Most products are built around what technology can do. It's easy to focus on the end goal and overlook the actual experience of getting there. That gap is where I work."</p>
+          <p class="section-body">I'm Ahra Roh, an OT-Tech Specialist with 14 years of clinical occupational therapy experience across a variety of age groups and contexts. I founded ADL Lab to bring occupational science into the product design process, not as an afterthought, but as a structural foundation.</p>
+          <p class="section-body">My lens covers the full spectrum of human performance: physical usability, sensory load, cognitive demand, and the spatial and environmental context people actually live and work in. That applies to any product: digital, physical, or spatial.</p>
+          <p class="section-body">What I offer isn't a compliance review. It's a human-performance read on whether your product works for the human using it, and a strategic path to close that gap.</p>
+        </div>
+        <ul class="cred-list">
+          <li><span class="cred-n">01</span><span>14+ years clinical OT across neuro-rehab, SCI, acute care, pediatrics, and community settings</span></li>
+          <li><span class="cred-n">02</span><span>OT/ATP, High Tech Training Center, Santa Monica College <span class="badge">Current</span></span></li>
+          <li><span class="cred-n">03</span><span>Adjunct Faculty, Santa Monica College <span class="badge">Current</span></span></li>
+          <li><span class="cred-n">04</span><span>Founder, ADL Lab</span></li>
+          <li><span class="cred-n">05</span><span>ATP, certified by RESNA</span></li>
+          <li><span class="cred-n">06</span><span>M.A. Occupational Science & Occupational Therapy, USC</span></li>
+          <li><span class="cred-n">07</span><span>B.A. Neuroscience, USC</span></li>
+          <li><span class="cred-n">08</span><span>AT Certificate, CSUN</span></li>
+          <li><span class="cred-n">09</span><span>Korean–English bilingual · Los Angeles</span></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <div class="newsletter-bg" id="writing">
+    <div class="newsletter-inner">
+      <p class="eyebrow">04 · Newsletter</p>
+      <h2 class="section-title">Notes from the <em>gap.</em></h2>
+      <div class="newsletter-card">
+        <div>
+          <h3>OT-Tech Notes<br><em>on LinkedIn</em></h3>
+          <p>I write about what I observe — the pain points people don't articulate, the misconceptions around AT and traditional OT roles, and what the industry gets wrong about how humans actually function. It's my point of view. It's also the clearest way to understand what I bring to a product team.</p>
+          <a href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=745713784369039360" target="_blank" rel="noopener" class="btn-primary">Subscribe on LinkedIn →</a>
+          <p class="newsletter-meta">Published on LinkedIn · @ahraroh</p>
+        </div>
+        <div>
+          <p class="section-body">Part of a 6-part manifesto series on OT + Tech — understanding the world view and why the industry needs us.</p>
+          <p class="section-body">Covers: Accessibility · Assistive Technology · Universal Design · Cognitive Load · Sensory Architecture · Environmental Modification.</p>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="contact" id="contact" aria-labelledby="contact-heading">
-    <p class="section-eyebrow"><span class="num">04 ·</span> Contact</p>
-    <h2 class="section-title" id="contact-heading">
-      Let's <em>talk.</em>
-    </h2>
-    <p class="section-lede">
-      If your team is building for disability, aging, or sensory-diverse markets, I'd like to hear what you're working on. Open to remote and on-site engagements.
-    </p>
-    <div class="contact-email">
-      <a href="mailto:AhraRohOT@gmail.com" class="btn btn-primary">
-        <span>AhraRohOT@gmail.com</span>
-        <span class="arrow" aria-hidden="true">→</span>
-      </a>
-    </div>
-
-    <div class="contact-grid">
-      <div class="contact-item">
-        <span class="contact-item-label">Phone</span>
-        <a href="tel:3103631252">310 · 363 · 1252</a>
+  <div class="page-wrap">
+    <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+      <p class="eyebrow">05 · Contact</p>
+      <div class="contact-grid">
+        <h2 class="contact-stmt" id="contact-heading">If your team is building something and wants to know if it actually works for the <em>human using it</em> — let's talk.</h2>
+        <div class="contact-info">
+          <p class="section-body" style="margin-bottom: 0.25rem;">Open to product audits, advisory roles, and design collaboration. Remote and on-site welcome.</p>
+          <div class="contact-row"><span class="contact-label">Email</span><a href="mailto:AhraRohOT@gmail.com">AhraRohOT@gmail.com</a></div>
+          <div class="contact-row"><span class="contact-label">Phone</span><a href="tel:3103631252">310 · 363 · 1252</a></div>
+          <div class="contact-row"><span class="contact-label">LinkedIn</span><a href="https://www.linkedin.com/in/ahra-roh-65632a44/" target="_blank" rel="noopener">Ahra Roh (@ahraroh)</a></div>
+          <div class="contact-row"><span class="contact-label">Newsletter</span><a href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=745713784369039360" target="_blank" rel="noopener">OT-Tech Notes on LinkedIn</a></div>
+        </div>
       </div>
-      <div class="contact-item">
-        <span class="contact-item-label">LinkedIn</span>
-        <a href="https://www.linkedin.com/in/ahra-roh-65632a44/" target="_blank" rel="noopener">Ahra Roh</a>
-      </div>
-      <div class="contact-item">
-        <span class="contact-item-label">Writing</span>
-        <a href="https://adllab.substack.com" target="_blank" rel="noopener">ADL Lab</a>
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
 </main>
 
 <footer>
-  <p class="footer-name"><strong>Ahra Roh</strong>, OTR/L, ATP · OT-Tech Specialist</p>
+  <p class="footer-name">Ahra Roh, OTR/L, ATP · OT-Tech Specialist · Founder, ADL Lab</p>
   <p class="footer-meta">© 2026 · Los Angeles, CA</p>
 </footer>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const mobileNav = document.getElementById('nav-mobile');
+
+  toggle.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+    toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    toggle.innerHTML = isOpen
+      ? `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>`
+      : `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>`;
+  });
+
+  function closeMobileNav() {
+    mobileNav.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
+    toggle.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>`;
+  }
+</script>
 
 </body>
 </html>
