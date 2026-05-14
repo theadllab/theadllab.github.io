@@ -282,34 +282,43 @@
   }
   .statement p strong { font-style: normal; font-weight: 500; color: #FF8A80; }
 
-  /* ── SERVICES ── */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+  /* ── COLLABORATION ── */
+  .collab-intro {
     margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1.5px solid #1A1A1A;
   }
 
-  .service-item {
-    padding: 2rem 2.5rem 2rem 0;
-    border-top: 0.5px solid rgba(26,26,26,0.15);
-    border-bottom: 0.5px solid rgba(26,26,26,0.15);
-  }
-  .service-item:nth-child(odd) { border-right: 0.5px solid rgba(26,26,26,0.12); }
-  .service-item:nth-child(even) { padding-left: 2.5rem; padding-right: 0; }
-
-  .service-num {
-    font-size: 0.68rem; font-weight: 500; color: #C62828;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    margin-bottom: 0.65rem; display: block;
+  .collab-list {
+    list-style: none;
+    margin: 2rem 0;
+    display: grid;
+    gap: 1.25rem;
   }
 
-  .service-item h3 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-    font-weight: 400; color: #1A1A1A;
-    margin-bottom: 0.65rem; line-height: 1.25;
+  .collab-list li {
+    padding: 1.25rem 0 1.25rem 1.5rem;
+    border-left: 2px solid #C62828;
+    font-size: clamp(0.92rem, 1.3vw, 1rem);
+    color: #1A1A1A;
+    line-height: 1.7;
   }
-  .service-item p { font-size: clamp(0.85rem, 1.2vw, 0.95rem); color: #3D3D3D; line-height: 1.78; }
+
+  .collab-list li strong {
+    font-weight: 500;
+    color: #1A1A1A;
+  }
+
+  .collab-note {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(198, 40, 40, 0.05);
+    border-left: 3px solid #C62828;
+    font-size: clamp(0.88rem, 1.25vw, 0.98rem);
+    color: #3D3D3D;
+    line-height: 1.75;
+    font-style: italic;
+  }
 
   /* ── ABOUT ── */
   .about-grid {
@@ -481,11 +490,6 @@
 
     .statement p { font-size: clamp(1.05rem, 4.5vw, 1.3rem); }
 
-    .services-grid { grid-template-columns: 1fr; }
-    .service-item { padding: 1.5rem 0; border-right: none !important; border-bottom: 0.5px solid rgba(26,26,26,0.15); }
-    .service-item:nth-child(even) { padding-left: 0; }
-    .service-item h3 { font-size: 1.1rem; }
-
     .about-grid { grid-template-columns: 1fr; gap: 2rem; }
     .about-quote { font-size: 1.05rem; }
 
@@ -528,7 +532,7 @@
     <a href="#" class="nav-brand">Ahra Roh <span class="nav-brand-tag">OTR/L · ATP</span></a>
     <ul class="nav-links" id="nav-desktop">
       <li><a href="#why">Why OT-Tech</a></li>
-      <li><a href="#services">Services</a></li>
+      <li><a href="#collab">Collaboration</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#writing">Newsletter</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -543,7 +547,7 @@
   </div>
   <div class="nav-mobile" id="nav-mobile" role="navigation" aria-label="Mobile menu">
     <a href="#why" onclick="closeMobileNav()">Why OT-Tech</a>
-    <a href="#services" onclick="closeMobileNav()">Services</a>
+    <a href="#collab" onclick="closeMobileNav()">Collaboration</a>
     <a href="#about" onclick="closeMobileNav()">About</a>
     <a href="#writing" onclick="closeMobileNav()">Newsletter</a>
     <a href="#contact" onclick="closeMobileNav()">Contact</a>
@@ -557,9 +561,9 @@
       <div>
         <p class="eyebrow">OT-Tech Specialist · Los Angeles</p>
         <h1 id="hero-heading">The <em>human performance</em> lens your product team is missing.</h1>
-        <p class="hero-sub">Most products are built around what technology can do. It's easy to focus on the end goal and overlook the actual experience of getting there. That gap is where I work.</p>
+        <p class="hero-sub">Most products are built around what technology can do. It's easy to focus on the end goal and overlook the actual experience of getting there. That gap is what ADL Lab is built around.</p>
         <div class="hero-cta">
-          <a href="#contact" class="btn-primary">Work with me →</a>
+          <a href="#contact" class="btn-primary">Start a conversation →</a>
           <a href="#why" class="btn-secondary">Why OT-Tech</a>
         </div>
       </div>
@@ -577,23 +581,23 @@
   <div class="page-wrap">
     <section class="section" id="why" aria-labelledby="why-heading">
       <p class="eyebrow">01 · Why OT-Tech</p>
-      <h2 class="section-title" id="why-heading">Not a UX researcher. Not an accessibility consultant. <em>A clinically trained specialist who understands what happens between a human and a tool — at a level most product teams have never had access to.</em></h2>
-      <p class="section-lede">You've been looking for this role — you just didn't know who to look for. I bridge occupational science, the study of how humans actually perform tasks, with product design. That means 14 years of clinical practice plus real-world observation of how everyday people navigate tools, spaces, and technology in their daily lives. That combination doesn't exist anywhere else.</p>
+      <h2 class="section-title" id="why-heading">A clinically trained specialist who reads <em>what happens between a human and a tool</em> — sitting next to UX, accessibility, and AT, not replacing them.</h2>
+      <p class="section-lede">I bridge occupational science, the study of how humans actually perform tasks, with product design. That means 14 years of clinical practice plus real-world observation of how everyday people navigate tools, spaces, and technology in their daily lives. It's a specific combination that's still rare in product rooms.</p>
       <div class="why-grid">
         <div class="why-item">
-          <p class="why-vs">vs. UX Researcher</p>
-          <h3>They study <em>behavior.</em><br>I study function.</h3>
-          <p>UX researchers follow what users say and do. I evaluate the physical, sensory, and cognitive cost of doing it — fatigue, friction, breakdown points most user testing never surfaces.</p>
+          <p class="why-vs">Alongside UX Research</p>
+          <h3>They study <em>behavior.</em><br>I add the function layer.</h3>
+          <p>UX researchers follow what users say and do. I add evaluation of the physical, sensory, and cognitive cost of doing it — fatigue, friction, and breakdown points that often sit underneath observed behavior.</p>
         </div>
         <div class="why-item">
-          <p class="why-vs">vs. Accessibility Consultant</p>
-          <h3>They audit <em>compliance.</em><br>I audit performance.</h3>
-          <p>Accessibility consultants check whether a product meets standards. I evaluate whether the product actually works for the human using it — across the full spectrum of how people function.</p>
+          <p class="why-vs">Alongside Accessibility</p>
+          <h3>They audit <em>compliance.</em><br>I add performance.</h3>
+          <p>Accessibility consultants check whether a product meets standards. I add a read on whether the product actually works for the human using it — across the full spectrum of how people function.</p>
         </div>
         <div class="why-item">
-          <p class="why-vs">vs. AT Specialist / ATP</p>
-          <h3>They fit tools <em>to users.</em><br>I design the system.</h3>
-          <p>ATPs certify that someone can use a device. I architect the full human-tool-environment relationship — any product, any context — built around how that person actually performs.</p>
+          <p class="why-vs">Alongside AT Specialists</p>
+          <h3>They fit tools <em>to users.</em><br>I read the system.</h3>
+          <p>ATPs (myself included) fit specific devices to specific users. In a product context, I extend that lens to the full human-tool-environment relationship — across any product, any context.</p>
         </div>
       </div>
     </section>
@@ -601,36 +605,23 @@
 
   <div class="statement">
     <div class="statement-inner">
-      <p>Technology is any tool that helps a human perform a task — a spoon, a wearable, an AI agent. <strong>What most product teams are missing isn't more technology. It's the lens to know whether it actually works for the human using it.</strong></p>
+      <p>Technology is any tool that helps a human perform a task — a spoon, a wearable, an AI agent. <strong>What's often missing from product rooms isn't more technology. It's the lens to know whether it actually works for the human using it.</strong></p>
     </div>
   </div>
 
   <div class="page-wrap">
-    <section class="section" id="services" aria-labelledby="services-heading">
-      <p class="eyebrow">02 · Services</p>
-      <h2 class="section-title" id="services-heading">Where I work with <em>product teams.</em></h2>
-      <p class="section-lede">I work across digital, physical, and spatial products. The throughline is always the same: evaluating the relationship between a human, a task, and the tools they use to complete it.</p>
-      <div class="services-grid">
-        <article class="service-item">
-          <span class="service-num">01</span>
-          <h3>Human-Performance Audits</h3>
-          <p>A clinical read on how real users interact with your product — physical usability, sensory load, cognitive demand, sustained use. Not a compliance checklist. A functional analysis of what works and what breaks down.</p>
-        </article>
-        <article class="service-item">
-          <span class="service-num">02</span>
-          <h3>Product Design Advisory</h3>
-          <p>Ongoing input at any stage of product development. I translate occupational science into design decisions your team can act on, upstream — not as a patch after the fact.</p>
-        </article>
-        <article class="service-item">
-          <span class="service-num">03</span>
-          <h3>AT Integration Architecture</h3>
-          <p>For products that interact with tools, devices, or environments: I design the full human-tool-environment system, evaluating how components interact with each other and with the user.</p>
-        </article>
-        <article class="service-item">
-          <span class="service-num">04</span>
-          <h3>Research & Testing Advisory</h3>
-          <p>Protocol design for user research that actually surfaces functional friction — what to test, who to recruit, what to observe. I help teams ask better questions before they run the study.</p>
-        </article>
+    <section class="section" id="collab" aria-labelledby="collab-heading">
+      <p class="eyebrow">02 · Collaboration</p>
+      <h2 class="section-title" id="collab-heading">Open to a <em>range of conversations</em>, not a fixed service menu.</h2>
+      <p class="section-lede">ADL Lab is in its foundation year. I'm building toward a consulting practice in OT-Tech, with first paid engagements opening up in late 2026 and into 2027. In the meantime, I'm open to a wide range of conversations rather than packaged services. If any of these resonate with what you or your team is working on, reach out.</p>
+      <div class="collab-intro">
+        <ul class="collab-list">
+          <li><strong>Companies or product teams</strong> curious about an OT lens on what you're building — consumer products across digital, physical, and spatial categories.</li>
+          <li><strong>Higher education programs</strong> (design, engineering, architecture, rehab engineering, OT, AT) looking for a guest speaker or workshop on OT frameworks applied to product design.</li>
+          <li><strong>Researchers and practitioners</strong> exploring human function, AT, sensory processing, cognitive load, or consumer product design — open to collaboration or exchange.</li>
+          <li><strong>Students in higher education</strong> working at the intersection of OT, rehab engineering, product design, digital design, or inclusive design — selective informal mentorship available.</li>
+        </ul>
+        <p class="collab-note">I'm not packaging fixed consulting services yet. The shape of each collaboration depends on what's actually useful. Some will be paid, some won't, and I'll be honest about which is which when we talk.</p>
       </div>
     </section>
   </div>
@@ -643,7 +634,7 @@
       <h2 class="section-title" id="about-heading">14 years at the intersection of <em>bodies, environments, and tools.</em></h2>
       <div class="about-grid">
         <div>
-          <p class="about-quote">"Most products are built around what technology can do. It's easy to focus on the end goal and overlook the actual experience of getting there. That gap is where I work."</p>
+          <p class="about-quote">"Most products are built around what technology can do. It's easy to focus on the end goal and overlook the actual experience of getting there. That gap is what ADL Lab is built around."</p>
           <p class="section-body">I'm Ahra Roh, an OT-Tech Specialist with 14 years of clinical occupational therapy experience across a variety of age groups and contexts. I founded ADL Lab to bring occupational science into the product design process, not as an afterthought, but as a structural foundation.</p>
           <p class="section-body">My lens covers the full spectrum of human performance: physical usability, sensory load, cognitive demand, and the spatial and environmental context people actually live and work in. That applies to any product: digital, physical, or spatial.</p>
           <p class="section-body">What I offer isn't a compliance review. It's a human-performance read on whether your product works for the human using it, and a strategic path to close that gap.</p>
@@ -670,12 +661,12 @@
       <div class="newsletter-card">
         <div>
           <h3>OT-Tech Notes<br><em>on LinkedIn</em></h3>
-          <p>I write about what I observe — the pain points people don't articulate, the misconceptions around AT and traditional OT roles, and what the industry gets wrong about how humans actually function. It's my point of view. It's also the clearest way to understand what I bring to a product team.</p>
+          <p>I write about what I observe — the pain points people don't articulate, the misconceptions around AT and traditional OT roles, and what the industry often gets wrong about how humans actually function. It's my point of view. It's also the clearest way to understand what I bring to a product conversation.</p>
           <a href="https://www.linkedin.com/newsletters/ot-tech-notes-7457137843690393600/" target="_blank" rel="noopener" class="btn-primary">Subscribe on LinkedIn →</a>
           <p class="newsletter-meta">Published on LinkedIn · @ahraroh</p>
         </div>
         <div>
-          <p class="section-body">Part of a 6-part manifesto series on OT + Tech — understanding the world view and why the industry needs us.</p>
+          <p class="section-body">Part of an ongoing manifesto series on OT + Tech — building out a worldview and why product rooms need this lens.</p>
           <p class="section-body">Covers: Accessibility · Assistive Technology · Universal Design · Cognitive Load · Sensory Architecture · Environmental Modification.</p>
         </div>
       </div>
@@ -686,9 +677,9 @@
     <section class="contact-section" id="contact" aria-labelledby="contact-heading">
       <p class="eyebrow">05 · Contact</p>
       <div class="contact-grid">
-        <h2 class="contact-stmt" id="contact-heading">If your team is building something and wants to know if it actually works for the <em>human using it</em> — let's talk.</h2>
+        <h2 class="contact-stmt" id="contact-heading">If your team is building something and wants to think about whether it actually works for the <em>human using it</em> — let's talk.</h2>
         <div class="contact-info">
-          <p class="section-body" style="margin-bottom: 0.25rem;">Open to product audits, advisory roles, and design collaboration. Remote and on-site welcome.</p>
+          <p class="section-body" style="margin-bottom: 0.25rem;">Currently in build year. Open to conversations, guest speaking, workshops, and selective mentorship. First paid engagements opening late 2026.</p>
           <div class="contact-row"><span class="contact-label">Email</span><a href="mailto:AhraRohOT@gmail.com">AhraRohOT@gmail.com</a></div>
           <div class="contact-row"><span class="contact-label">Phone</span><a href="tel:3103631252">310 · 363 · 1252</a></div>
           <div class="contact-row"><span class="contact-label">LinkedIn</span><a href="https://www.linkedin.com/in/ahra-roh-65632a44/" target="_blank" rel="noopener">Ahra Roh (@ahraroh)</a></div>
