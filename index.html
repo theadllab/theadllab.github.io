@@ -7,11 +7,20 @@
 <title>Ahra Roh — OT-Tech Specialist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=Noto+Serif+KR:wght@400;500&family=Pretendard:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- 최신 테크 감성의 Space Grotesk 폰트와 본문용 Inter 폰트 적용 -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /*
-    WCAG 2.1 AAA color palette
+  /* 
+    Modern High-end Tech Theme (WCAG 2.1 AAA Compliant)
   */
+  :root {
+    --bg-color: #F8F9FA;
+    --text-main: #09090B;
+    --text-muted: #52525B;
+    --accent: #E11D48; /* High-contrast tech rose/red */
+    --surface: #FFFFFF;
+    --border: #E4E4E7;
+  }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -23,670 +32,283 @@
   }
 
   body {
-    font-family: 'DM Sans', system-ui, sans-serif;
-    background: #FAF8F4;
-    color: #1A1A1A;
-    line-height: 1.75;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
     overflow-x: hidden;
   }
 
-  /* Korean font stack when lang=ko */
+  /* Korean font stack */
   html[lang="ko"] body {
-    font-family: 'Pretendard', 'DM Sans', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
-    line-height: 1.78;
+    font-family: 'Pretendard', 'Inter', system-ui, sans-serif;
+    line-height: 1.7;
   }
 
-  html[lang="ko"] .nav-brand,
-  html[lang="ko"] .hero h1,
-  html[lang="ko"] .section-title,
-  html[lang="ko"] .about-quote,
-  html[lang="ko"] .contact-stmt,
-  html[lang="ko"] .statement p,
-  html[lang="ko"] .newsletter-card h3,
-  html[lang="ko"] .footer-name {
-    font-family: 'Playfair Display', 'Noto Serif KR', Georgia, serif;
+  /* Heading Font (Trendy Geometric) */
+  h1, h2, h3, .nav-brand, .eyebrow, .btn-primary, .btn-secondary, .lang-btn {
+    font-family: 'Space Grotesk', 'Pretendard', sans-serif;
   }
 
-  ::selection { background: #A01818; color: #FAF8F4; }
+  ::selection { background: var(--text-main); color: var(--bg-color); }
 
   img { max-width: 100%; display: block; }
   a { color: inherit; }
 
   .sr-only {
-    position: absolute;
-    width: 1px; height: 1px;
-    padding: 0; margin: -1px;
-    overflow: hidden; clip: rect(0,0,0,0);
-    white-space: nowrap; border: 0;
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
   }
 
-  /* Toggle visibility based on lang */
   html[lang="en"] .ko { display: none; }
   html[lang="ko"] .en { display: none; }
 
   .skip-link {
-    position: absolute; top: -48px; left: 0;
-    background: #1A1A1A; color: #FAF8F4;
-    padding: 12px 20px; z-index: 300;
-    text-decoration: none; font-size: 1rem;
-    transition: top 0.2s;
+    position: absolute; top: -48px; left: 0; background: var(--text-main); color: var(--bg-color);
+    padding: 12px 20px; z-index: 300; text-decoration: none; font-size: 1rem; transition: top 0.2s;
   }
   .skip-link:focus { top: 0; }
+
+  /* ── SCROLL REVEAL ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.active { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
 
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(250,248,244,0.96);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(26,26,26,0.32);
+    background: rgba(248, 249, 250, 0.85);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
   }
 
   .nav-inner {
-    max-width: 1200px; margin: 0 auto;
-    padding: 0 clamp(1.25rem, 4vw, 3rem);
-    height: 64px;
-    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1400px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem);
+    height: 72px; display: flex; align-items: center; justify-content: space-between;
   }
 
   .nav-brand {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.15rem; font-weight: 400;
-    color: #1A1A1A; text-decoration: none;
-    letter-spacing: -0.01em; flex-shrink: 0;
+    font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;
   }
-
   .nav-brand-tag {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.78rem; font-weight: 600;
-    color: #A01818; letter-spacing: 0.08em;
-    text-transform: uppercase; margin-left: 0.6rem;
+    font-size: 0.75rem; font-weight: 600; color: var(--surface); background: var(--text-main);
+    padding: 2px 8px; border-radius: 999px; letter-spacing: 0.05em;
   }
 
-  .nav-right {
-    display: flex; align-items: center; gap: 1.5rem;
-  }
-
-  .nav-links {
-    display: flex; gap: 2rem; list-style: none;
-  }
-
+  .nav-right { display: flex; align-items: center; gap: 2rem; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a {
-    font-size: 0.95rem; font-weight: 400;
-    color: #2D2D2D; text-decoration: none;
-    padding: 4px 0;
-    transition: color 0.2s;
+    font-size: 0.95rem; font-weight: 500; text-decoration: none;
+    transition: color 0.2s; position: relative;
   }
-  .nav-links a:hover { color: #A01818; }
-  .nav-links a:focus-visible {
-    outline: 2px solid #A01818;
-    outline-offset: 4px;
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+    background: var(--text-main); transition: width 0.3s ease;
   }
+  .nav-links a:hover::after { width: 100%; }
 
-  /* Language toggle */
-  .lang-toggle {
-    display: flex; align-items: center;
-    background: transparent;
-    border: 1px solid rgba(26,26,26,0.4);
-    border-radius: 2px;
-    overflow: hidden;
-    min-height: 36px;
-  }
-
+  .lang-toggle { display: flex; background: var(--border); border-radius: 999px; padding: 4px; }
   .lang-btn {
-    background: transparent;
-    border: none;
-    padding: 6px 12px;
-    font-family: 'DM Sans', 'Pretendard', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: #2D2D2D;
-    cursor: pointer;
-    letter-spacing: 0.05em;
-    min-height: 36px;
-    min-width: 44px;
-    transition: background 0.2s, color 0.2s;
+    background: transparent; border: none; padding: 6px 14px; border-radius: 999px;
+    font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.3s ease;
   }
-  .lang-btn:hover { color: #A01818; }
-  .lang-btn[aria-pressed="true"] {
-    background: #1A1A1A;
-    color: #FAF8F4;
-  }
-  .lang-btn:focus-visible {
-    outline: 2px solid #A01818;
-    outline-offset: 2px;
-  }
+  .lang-btn[aria-pressed="true"] { background: var(--surface); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
 
-  /* Hamburger */
   .nav-toggle {
-    display: none;
-    background: none; border: none; cursor: pointer;
-    padding: 8px; margin-right: -8px;
-    color: #1A1A1A;
-    min-width: 48px; min-height: 48px;
-    align-items: center; justify-content: center;
+    display: none; background: none; border: none; cursor: pointer; padding: 8px;
   }
 
-  .nav-toggle svg { display: block; }
-
-  /* Mobile menu */
   .nav-mobile {
-    display: none;
-    flex-direction: column;
-    list-style: none;
-    background: #FAF8F4;
-    border-top: 1px solid rgba(26,26,26,0.32);
-    padding: 0.5rem 0 1rem;
+    display: none; flex-direction: column; background: var(--surface); border-bottom: 1px solid var(--border);
   }
-
   .nav-mobile.open { display: flex; }
-  .nav-mobile li { list-style: none; }
   .nav-mobile a {
-    font-size: 1.05rem; font-weight: 400;
-    color: #1A1A1A; text-decoration: none;
-    padding: 0.85rem clamp(1.25rem, 4vw, 3rem);
-    border-bottom: 1px solid rgba(26,26,26,0.2);
-    min-height: 48px; display: flex; align-items: center;
+    font-size: 1.1rem; font-weight: 500; padding: 1rem clamp(1.25rem, 4vw, 3rem);
+    border-top: 1px solid var(--border); display: block; text-decoration: none;
   }
 
   /* ── LAYOUT ── */
-  .page-wrap {
-    max-width: 1200px; margin: 0 auto;
-    padding: 0 clamp(1.25rem, 4vw, 3rem);
-  }
+  .page-wrap { max-width: 1400px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
 
-  /* ── EYEBROW ── */
   .eyebrow {
-    display: flex; align-items: center; gap: 0.7rem;
-    font-size: 0.82rem; font-weight: 600;
-    color: #A01818; letter-spacing: 0.1em;
-    text-transform: uppercase; margin-bottom: 1.25rem;
-  }
-  html[lang="ko"] .eyebrow {
-    letter-spacing: 0.06em;
-    text-transform: none;
-  }
-  .eyebrow::before {
-    content: ''; width: 20px; height: 2px;
-    background: #A01818; display: block; flex-shrink: 0;
+    display: inline-block; font-size: 0.85rem; font-weight: 600; color: var(--accent);
+    letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem;
+    padding: 6px 12px; border: 1px solid rgba(225, 29, 72, 0.2); border-radius: 999px;
   }
 
   /* ── HERO ── */
   .hero {
-    padding-top: 80px;
-    min-height: 100svh;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: clamp(2rem, 5vw, 4rem);
-    align-items: center;
-    padding-bottom: clamp(3rem, 6vw, 5rem);
+    padding-top: 120px; min-height: 100svh; display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(3rem, 6vw, 6rem); align-items: center; padding-bottom: 4rem;
   }
 
   .hero h1 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2rem, 4.5vw, 3.8rem);
-    font-weight: 400; line-height: 1.15;
-    letter-spacing: -0.02em; color: #1A1A1A;
-    margin-bottom: 1.25rem;
+    font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 700; line-height: 1.05;
+    letter-spacing: -0.03em; margin-bottom: 1.5rem;
   }
-  html[lang="ko"] .hero h1 {
-    font-size: clamp(1.85rem, 4vw, 3.4rem);
-    line-height: 1.3;
+  html[lang="ko"] .hero h1 { font-size: clamp(2.2rem, 4.5vw, 3.8rem); line-height: 1.2; word-break: keep-all; }
+  .hero h1 em { font-style: normal; color: var(--accent); position: relative; }
+  .hero h1 em::after { /* Hip text highlight effect */
+    content: ''; position: absolute; bottom: 8px; left: 0; width: 100%; height: 12px;
+    background: rgba(225, 29, 72, 0.15); z-index: -1; transform: skewX(-10deg);
   }
-  .hero h1 em { font-style: italic; color: #A01818; }
 
   .hero-sub {
-    font-size: clamp(1rem, 1.5vw, 1.1rem);
-    color: #2D2D2D; line-height: 1.8;
-    margin-bottom: 2rem;
-    max-width: 480px;
+    font-size: clamp(1.05rem, 1.5vw, 1.25rem); color: var(--text-muted); max-width: 520px; margin-bottom: 2.5rem;
   }
 
-  .hero-cta { display: flex; gap: 0.85rem; flex-wrap: wrap; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-  /* ── BUTTONS ── */
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    padding: 14px 26px;
-    min-height: 48px;
-    background: #1A1A1A; color: #FAF8F4;
-    font-family: inherit;
-    font-size: 0.95rem; font-weight: 500;
-    letter-spacing: 0.04em; text-decoration: none;
-    transition: background 0.25s; border: 2px solid #1A1A1A; cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
+  .btn-primary, .btn-secondary {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0 2rem; min-height: 56px; border-radius: 999px; /* Pill shape */
+    font-size: 1rem; font-weight: 600; text-decoration: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
   }
-  .btn-primary:hover { background: #A01818; border-color: #A01818; color: #FAF8F4; }
-  .btn-primary:focus-visible {
-    outline: 3px solid #A01818;
-    outline-offset: 3px;
-  }
+  .btn-primary { background: var(--text-main); color: var(--surface); border: 2px solid var(--text-main); }
+  .btn-primary:hover { background: transparent; color: var(--text-main); }
+  
+  .btn-secondary { background: transparent; color: var(--text-main); border: 2px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--text-main); }
 
-  .btn-secondary {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    padding: 12px 24px;
-    min-height: 48px;
-    background: transparent; color: #1A1A1A;
-    font-family: inherit;
-    font-size: 0.95rem; font-weight: 500;
-    letter-spacing: 0.04em; text-decoration: none;
-    border: 2px solid #1A1A1A;
-    transition: all 0.25s; cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .btn-secondary:hover { border-color: #A01818; color: #A01818; }
-  .btn-secondary:focus-visible {
-    outline: 3px solid #A01818;
-    outline-offset: 3px;
-  }
-
-  /* ── HERO IMAGE ── */
-  .hero-img-wrap { position: relative; }
-
-  .hero-img-frame {
-    aspect-ratio: 4/5; overflow: hidden;
-    background: #E0DBD4;
-  }
-
+  /* Hero Image - Editorial B&W Treatment */
+  .hero-img-wrap { position: relative; border-radius: 24px; overflow: hidden; background: #E4E4E7; }
+  .hero-img-frame { aspect-ratio: 4/5; }
   .hero-img-frame img {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: center top;
-    transition: transform 1.2s ease;
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(100%) contrast(110%); /* High-end B&W filter */
+    transition: transform 1.5s ease;
   }
-  .hero-img-wrap:hover .hero-img-frame img { transform: scale(1.03); }
-
+  .hero-img-wrap:hover .hero-img-frame img { transform: scale(1.05); }
+  
   .hero-img-tag {
-    position: absolute; bottom: 0; right: 0;
-    background: #A01818; color: #FAF8F4;
-    padding: 1rem 1.2rem;
-    font-size: 0.82rem; font-weight: 600;
-    letter-spacing: 0.07em; text-transform: uppercase; line-height: 1.6;
-  }
-  html[lang="ko"] .hero-img-tag {
-    text-transform: none;
-    letter-spacing: 0.04em;
-  }
-
-  /* ── DIVIDER ── */
-  hr {
-    border: none;
-    border-top: 1px solid rgba(26,26,26,0.32);
+    position: absolute; bottom: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(8px); padding: 1rem 1.5rem; border-radius: 16px;
+    font-weight: 600; font-size: 0.85rem; color: var(--text-main);
   }
 
   /* ── SECTIONS ── */
-  .section {
-    padding: clamp(3.5rem, 7vw, 6.5rem) 0;
-  }
-
+  .section { padding: clamp(5rem, 10vw, 8rem) 0; }
+  
   .section-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-    font-weight: 400; line-height: 1.25;
-    letter-spacing: -0.02em; color: #1A1A1A;
-    margin-bottom: 1.25rem;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1.15;
+    letter-spacing: -0.02em; margin-bottom: 1.5rem; max-width: 900px;
   }
-  html[lang="ko"] .section-title {
-    line-height: 1.4;
-    font-size: clamp(1.5rem, 3.2vw, 2.3rem);
-  }
-  .section-title em { font-style: italic; color: #A01818; }
+  html[lang="ko"] .section-title { line-height: 1.35; font-size: clamp(1.8rem, 3.5vw, 2.5rem); word-break: keep-all; }
+  .section-title em { font-style: normal; color: var(--accent); }
 
-  .section-lede {
-    font-size: clamp(1rem, 1.5vw, 1.1rem);
-    color: #2D2D2D; line-height: 1.8;
-    max-width: 640px; margin-bottom: 1.25rem;
-  }
+  .section-lede { font-size: clamp(1.1rem, 1.5vw, 1.25rem); color: var(--text-muted); max-width: 700px; margin-bottom: 3rem; }
 
-  .section-body {
-    font-size: clamp(0.95rem, 1.3vw, 1.05rem);
-    color: #2D2D2D; line-height: 1.85;
-    margin-bottom: 1rem;
+  /* ── BENTO BOX (WHY OT-TECH) ── */
+  .bento-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem;
   }
+  .bento-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 24px;
+    padding: clamp(2rem, 3vw, 2.5rem); transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .bento-card:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.04); transform: translateY(-4px); border-color: var(--text-main);
+  }
+  .bento-tag {
+    display: inline-block; font-size: 0.75rem; font-weight: 600; background: var(--bg-color);
+    padding: 6px 12px; border-radius: 8px; margin-bottom: 1.5rem; text-transform: uppercase;
+  }
+  .bento-card h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.3; }
+  .bento-card p { font-size: 0.95rem; color: var(--text-muted); }
 
-  /* ── WHY OT-TECH ── */
-  .why-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-top: 2.5rem;
-    border-top: 2px solid #1A1A1A;
-  }
-
-  .why-item {
-    padding: 2rem 2rem 2rem 0;
-    border-right: 1px solid rgba(26,26,26,0.32);
-  }
-  .why-item:nth-child(2) { padding-left: 2rem; }
-  .why-item:last-child { border-right: none; padding-left: 2rem; padding-right: 0; }
-
-  .why-vs {
-    font-size: 0.82rem; font-weight: 600; color: #595959;
-    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;
-  }
-  html[lang="ko"] .why-vs {
-    text-transform: none;
-    letter-spacing: 0.04em;
-  }
-
-  .why-item h3 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.1rem, 1.8vw, 1.3rem);
-    font-weight: 400; color: #1A1A1A;
-    margin-bottom: 0.65rem; line-height: 1.3;
-  }
-  html[lang="ko"] .why-item h3 {
-    line-height: 1.5;
-  }
-  .why-item h3 em { font-style: italic; color: #A01818; }
-  .why-item p {
-    font-size: clamp(0.95rem, 1.2vw, 1rem);
-    color: #2D2D2D; line-height: 1.78;
-  }
-
-  /* ── STATEMENT ── */
+  /* ── MANIFESTO (DARK THEME BAND) ── */
   .statement {
-    background: #1A1A1A;
-    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.25rem, 4vw, 3rem);
-    border-left: 4px solid #FFB4A8;
+    background: var(--text-main); color: var(--surface);
+    padding: clamp(4rem, 8vw, 6rem) clamp(1.25rem, 4vw, 3rem); text-align: center;
   }
-  .statement-inner { max-width: 1200px; margin: 0 auto; }
   .statement p {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.2rem, 2.5vw, 1.85rem);
-    font-weight: 400; font-style: italic;
-    line-height: 1.5; color: #FAF8F4; max-width: 820px;
+    font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 500; line-height: 1.4;
+    max-width: 1000px; margin: 0 auto; letter-spacing: -0.01em;
   }
-  html[lang="ko"] .statement p {
-    line-height: 1.65;
-    font-style: normal;
-  }
-  .statement p strong { font-style: normal; font-weight: 600; color: #FFB4A8; }
+  .statement p strong { color: var(--accent); font-weight: 600; }
 
-  /* ── COLLABORATION ── */
-  .collab-intro {
-    margin-top: 2.5rem;
-    padding-top: 2.5rem;
-    border-top: 2px solid #1A1A1A;
-  }
-
-  .collab-list {
-    list-style: none;
-    margin: 2rem 0;
-    display: grid;
-    gap: 1.25rem;
-  }
-
+  /* ── COLLABORATION LIST ── */
+  .collab-list { list-style: none; display: grid; gap: 1rem; margin: 2rem 0; }
   .collab-list li {
-    padding: 1.25rem 0 1.25rem 1.5rem;
-    border-left: 3px solid #A01818;
-    font-size: clamp(0.98rem, 1.3vw, 1.05rem);
-    color: #1A1A1A;
-    line-height: 1.7;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 1.5rem 2rem; font-size: 1.05rem; display: flex; flex-direction: column; gap: 0.5rem;
   }
-  html[lang="ko"] .collab-list li {
-    line-height: 1.78;
-  }
-
-  .collab-list li strong {
-    font-weight: 600;
-    color: #1A1A1A;
-  }
-
+  .collab-list li strong { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; }
   .collab-note {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background: #FFFFFF;
-    border-left: 4px solid #A01818;
-    border-top: 1px solid rgba(26,26,26,0.2);
-    border-right: 1px solid rgba(26,26,26,0.2);
-    border-bottom: 1px solid rgba(26,26,26,0.2);
-    font-size: clamp(0.95rem, 1.25vw, 1rem);
-    color: #2D2D2D;
-    line-height: 1.75;
-    font-style: italic;
-  }
-  html[lang="ko"] .collab-note {
-    font-style: normal;
+    margin-top: 2rem; padding: 1.5rem 2rem; background: rgba(225, 29, 72, 0.05);
+    border-radius: 16px; color: var(--text-main); font-weight: 500;
   }
 
   /* ── ABOUT ── */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(2.5rem, 5vw, 5rem);
-    align-items: start; margin-top: 2.5rem;
-  }
-
-  .about-quote {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
-    font-style: italic; font-weight: 400;
-    color: #1A1A1A; line-height: 1.55;
-    border-left: 3px solid #A01818;
-    padding-left: 1.25rem; margin-bottom: 1.5rem;
-  }
-  html[lang="ko"] .about-quote {
-    line-height: 1.7;
-    font-style: normal;
-  }
-
-  .cred-list { list-style: none; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 6vw, 6rem); align-items: start; }
+  .about-text { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+  
+  .cred-list { list-style: none; border-top: 1px solid var(--border); }
   .cred-list li {
-    padding: 0.85rem 0;
-    border-bottom: 1px solid rgba(26,26,26,0.2);
-    display: grid; grid-template-columns: 1.75rem 1fr;
-    gap: 0.6rem; align-items: start;
-    font-size: clamp(0.95rem, 1.2vw, 1rem);
-    color: #2D2D2D; line-height: 1.65;
+    padding: 1.25rem 0; border-bottom: 1px solid var(--border);
+    display: flex; gap: 1.5rem; font-size: 0.95rem; align-items: baseline;
   }
-  .cred-list li:first-child {
-    border-top: 1px solid rgba(26,26,26,0.2); padding-top: 1rem;
-  }
-
-  .cred-n {
-    font-size: 0.78rem; font-weight: 600;
-    color: #A01818; letter-spacing: 0.06em; margin-top: 4px;
-  }
-
+  .cred-n { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 0.85rem; }
   .badge {
-    display: inline-block;
-    font-size: 0.72rem; font-weight: 600;
-    color: #A01818; letter-spacing: 0.08em; text-transform: uppercase;
-    background: #FFEBEE; padding: 3px 8px;
-    margin-left: 5px; vertical-align: middle;
-    border: 1px solid rgba(160, 24, 24, 0.3);
-  }
-  html[lang="ko"] .badge {
-    text-transform: none;
-    letter-spacing: 0;
+    background: var(--text-main); color: var(--surface); padding: 2px 8px;
+    border-radius: 999px; font-size: 0.7rem; font-weight: 600; margin-left: 8px; vertical-align: middle;
   }
 
   /* ── NEWSLETTER ── */
-  .newsletter-bg {
-    background: #FFFFFF;
-    border-top: 1px solid rgba(26,26,26,0.32);
-    border-bottom: 1px solid rgba(26,26,26,0.32);
-    padding: clamp(3.5rem, 7vw, 6.5rem) clamp(1.25rem, 4vw, 3rem);
-  }
-  .newsletter-inner { max-width: 1200px; margin: 0 auto; }
-
   .newsletter-card {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: clamp(2rem, 5vw, 5rem); align-items: start;
-    margin-top: 2.5rem; padding-top: 2.5rem;
-    border-top: 2px solid #1A1A1A;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 32px;
+    padding: clamp(3rem, 6vw, 5rem); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
   }
-
-  .newsletter-card h3 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.4rem, 2.8vw, 1.9rem);
-    font-weight: 400; color: #1A1A1A;
-    margin-bottom: 1rem; line-height: 1.25;
-  }
-  html[lang="ko"] .newsletter-card h3 {
-    line-height: 1.4;
-  }
-  .newsletter-card h3 em { font-style: italic; color: #A01818; }
-  .newsletter-card p {
-    font-size: clamp(0.95rem, 1.3vw, 1.05rem);
-    color: #2D2D2D; line-height: 1.8; margin-bottom: 1.5rem;
-  }
-  .newsletter-meta {
-    font-size: 0.85rem; color: #595959; margin-top: 0.75rem;
-  }
-
+  .newsletter-card h3 { font-size: clamp(2rem, 3.5vw, 2.5rem); margin-bottom: 1.5rem; line-height: 1.1; }
+  
   /* ── CONTACT ── */
-  .contact-section {
-    padding: clamp(3.5rem, 7vw, 6.5rem) 0;
-  }
-
-  .contact-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: clamp(2.5rem, 5vw, 5rem);
-    align-items: start; margin-top: 2.5rem;
-  }
-
-  .contact-stmt {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.35rem, 2.8vw, 2rem);
-    font-weight: 400; line-height: 1.3;
-    color: #1A1A1A; letter-spacing: -0.01em;
-  }
-  html[lang="ko"] .contact-stmt {
-    line-height: 1.5;
-  }
-  .contact-stmt em { font-style: italic; color: #A01818; }
-
-  .contact-info { display: flex; flex-direction: column; gap: 1.25rem; }
-
-  .contact-row { display: flex; flex-direction: column; gap: 0.2rem; }
-
-  .contact-label {
-    font-size: 0.78rem; font-weight: 600; color: #595959;
-    letter-spacing: 0.1em; text-transform: uppercase;
-  }
-  html[lang="ko"] .contact-label {
-    text-transform: none;
-    letter-spacing: 0.04em;
-  }
-
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 6vw, 6rem); align-items: start; }
+  .contact-stmt { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; }
+  
+  .contact-links { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
+  .contact-row { display: flex; flex-direction: column; gap: 0.5rem; }
+  .contact-label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
   .contact-row a {
-    font-size: clamp(0.98rem, 1.3vw, 1.05rem);
-    color: #1A1A1A; text-decoration: none;
-    border-bottom: 1px solid rgba(26,26,26,0.32);
-    width: fit-content; padding: 4px 0;
-    min-height: 44px; display: inline-flex; align-items: center;
-    transition: color 0.2s, border-color 0.2s;
+    font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 500;
+    text-decoration: none; position: relative; width: fit-content;
   }
-  .contact-row a:hover { color: #A01818; border-bottom-color: #A01818; }
-  .contact-row a:focus-visible {
-    outline: 3px solid #A01818;
-    outline-offset: 3px;
-    border-radius: 2px;
+  .contact-row a::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
+    background: var(--accent); transition: width 0.3s ease;
   }
-
-  .ext-icon {
-    display: inline-block;
-    width: 12px; height: 12px;
-    margin-left: 4px;
-    vertical-align: baseline;
-    flex-shrink: 0;
-  }
+  .contact-row a:hover::after { width: 100%; }
 
   /* ── FOOTER ── */
   footer {
-    border-top: 1px solid rgba(26,26,26,0.32);
-    padding: 1.75rem clamp(1.25rem, 4vw, 3rem);
-    display: flex; align-items: center;
-    justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;
-    max-width: 1200px; margin: 0 auto;
+    border-top: 1px solid var(--border); padding: 3rem clamp(1.25rem, 4vw, 3rem);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    max-width: 1400px; margin: 0 auto;
   }
 
-  .footer-name {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1rem; color: #2D2D2D; font-weight: 400;
-  }
-  .footer-meta { font-size: 0.85rem; color: #595959; }
-
-  /* ── RESPONSIVE: TABLET ── */
-  @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .why-grid { grid-template-columns: 1fr; }
-    .why-item { border-right: none; padding: 1.75rem 0; border-bottom: 1px solid rgba(26,26,26,0.32); }
-    .why-item:nth-child(2), .why-item:last-child { padding-left: 0; }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .hero, .about-grid, .newsletter-card, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero { padding-top: 100px; }
+    .hero-img-wrap { order: -1; max-width: 400px; }
+    .bento-grid { grid-template-columns: 1fr; }
   }
 
-  /* ── RESPONSIVE: MOBILE ── */
   @media (max-width: 680px) {
-    html { font-size: 17px; }
-
     .nav-links { display: none; }
-    .nav-toggle { display: flex; }
-    .nav-right { gap: 0.5rem; }
-    .lang-toggle { min-height: 32px; }
-    .lang-btn { padding: 4px 10px; min-height: 32px; font-size: 0.78rem; }
-
-    .hero {
-      grid-template-columns: 1fr;
-      padding-top: 80px;
-      min-height: auto;
-      padding-bottom: 3rem;
-      gap: 2rem;
-    }
-
-    .hero-img-wrap {
-      order: -1;
-      max-width: 280px;
-      margin: 0 auto;
-    }
-
-    .hero-img-frame { aspect-ratio: 3/4; }
-
-    .hero h1 { font-size: clamp(1.85rem, 8vw, 2.4rem); }
-
-    .hero-sub { max-width: 100%; }
-
-    .hero-cta { flex-direction: column; }
-    .btn-primary, .btn-secondary { width: 100%; justify-content: center; font-size: 1rem; padding: 16px 24px; }
-
-    .why-grid { grid-template-columns: 1fr; }
-    .why-item { border-right: none; padding: 1.5rem 0; border-bottom: 1px solid rgba(26,26,26,0.32); }
-    .why-item:nth-child(2), .why-item:last-child { padding-left: 0; }
-    .why-item h3 { font-size: 1.15rem; }
-
-    .statement p { font-size: clamp(1.1rem, 4.5vw, 1.3rem); }
-
-    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .about-quote { font-size: 1.1rem; }
-
-    .newsletter-card { grid-template-columns: 1fr; gap: 1.75rem; }
-    .newsletter-card h3 { font-size: 1.4rem; }
-    .newsletter-bg .btn-primary { width: 100%; justify-content: center; }
-
-    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .contact-stmt { font-size: clamp(1.3rem, 6vw, 1.6rem); }
-
-    footer { flex-direction: column; gap: 0.4rem; }
-    .footer-name { font-size: 0.95rem; }
-
-    .section-title { font-size: clamp(1.5rem, 7vw, 2rem); }
+    .nav-toggle { display: block; }
+    .btn-primary, .btn-secondary { width: 100%; }
+    .section { padding: 4rem 0; }
+    .newsletter-card { padding: 2rem; border-radius: 20px; }
   }
 
-  a:focus-visible, button:focus-visible {
-    outline: 3px solid #A01818;
-    outline-offset: 3px;
-    border-radius: 2px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-    .hero-img-wrap:hover .hero-img-frame img { transform: none; }
-  }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 </style>
 </head>
 <body>
@@ -712,39 +334,37 @@
         <button class="lang-btn" data-lang="ko" aria-pressed="false" aria-label="한국어로 보기">KO</button>
       </div>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile" id="nav-toggle">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false">
-          <line x1="3" y1="7" x2="21" y2="7"/>
-          <line x1="3" y1="12" x2="21" y2="12"/>
-          <line x1="3" y1="17" x2="21" y2="17"/>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
         </svg>
       </button>
     </div>
   </div>
-  <ul class="nav-mobile" id="nav-mobile" aria-label="Mobile navigation">
-    <li><a href="#why" onclick="closeMobileNav()"><span class="en">Why OT-Tech</span><span class="ko">OT-Tech 소개</span></a></li>
-    <li><a href="#collab" onclick="closeMobileNav()"><span class="en">Collaboration</span><span class="ko">함께하기</span></a></li>
-    <li><a href="#about" onclick="closeMobileNav()"><span class="en">About</span><span class="ko">소개</span></a></li>
-    <li><a href="#writing" onclick="closeMobileNav()"><span class="en">Newsletter</span><span class="ko">뉴스레터</span></a></li>
-    <li><a href="#contact" onclick="closeMobileNav()"><span class="en">Contact</span><span class="ko">연락</span></a></li>
-  </ul>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="#why" onclick="closeMobileNav()"><span class="en">Why OT-Tech</span><span class="ko">OT-Tech 소개</span></a>
+    <a href="#collab" onclick="closeMobileNav()"><span class="en">Collaboration</span><span class="ko">함께하기</span></a>
+    <a href="#about" onclick="closeMobileNav()"><span class="en">About</span><span class="ko">소개</span></a>
+    <a href="#writing" onclick="closeMobileNav()"><span class="en">Newsletter</span><span class="ko">뉴스레터</span></a>
+    <a href="#contact" onclick="closeMobileNav()"><span class="en">Contact</span><span class="ko">연락</span></a>
+  </div>
 </nav>
 
 <main id="main">
 
   <div class="page-wrap">
-    <section class="hero" aria-labelledby="hero-heading">
+    <section class="hero reveal">
       <div>
         <p class="eyebrow">
           <span class="en">OT-Tech Specialist · Los Angeles</span>
-          <span class="ko">OT-Tech Specialist · LA · 한국 협업 가능</span>
+          <span class="ko">OT-Tech Specialist · LA</span>
         </p>
-        <h1 id="hero-heading">
+        <h1>
           <span class="en">The Overlooked Lens of <em>Human Performance</em> in Product Design.</span>
           <span class="ko">제품 팀이 간과하고 있는 <em>‘인간 수행(Human Performance)’</em>의 시선.</span>
         </h1>
         <p class="hero-sub">
-          <span class="en">Most products originate from technological capabilities. By focusing heavily on technical milestones, the actual experience users encounter in their daily lives is often overshadowed. ADL Lab exists to bridge this critical, misaligned gap.</span>
-          <span class="ko">대부분의 제품은 기술의 가능성에서 출발합니다. 기술적 지향점에 집중하다 보면, 사용자가 그 과정에서 마주하는 실제 경험은 간과되기 쉽습니다. ADL Lab은 바로 이 조화롭지 못한 공백을 메우기 위해 존재합니다.</span>
+          <span class="en">Most products originate from technological capabilities. By focusing heavily on technical milestones, the actual experience users encounter is often overshadowed. ADL Lab bridges this critical gap.</span>
+          <span class="ko">대부분의 제품은 기술의 가능성에서 출발합니다. 기술적 지향점에 집중하다 보면, 사용자가 마주하는 실제 경험은 간과되기 쉽습니다. ADL Lab은 이 공백을 메우기 위해 존재합니다.</span>
         </p>
         <div class="hero-cta">
           <a href="#contact" class="btn-primary">
@@ -752,315 +372,251 @@
             <span class="ko">프로젝트 논의하기</span>
           </a>
           <a href="#why" class="btn-secondary">
-            <span class="en">Explore the OT-Tech Philosophy</span>
+            <span class="en">Explore Philosophy</span>
             <span class="ko">OT-Tech 철학 보기</span>
           </a>
         </div>
       </div>
       <div class="hero-img-wrap">
         <div class="hero-img-frame">
+          <!-- 기존 프로필 이미지 경로 유지 -->
           <img src="Ahra_Roh_Profile.png" alt="Ahra Roh, OT-Tech Specialist">
         </div>
-        <div class="hero-img-tag" aria-hidden="true">
-          <span class="en">OT-Tech Specialist<br>Founder, ADL Lab</span>
-          <span class="ko">OT-Tech Specialist<br>Founder, ADL Lab</span>
+        <div class="hero-img-tag">
+          <span class="en">Founder, ADL Lab</span>
+          <span class="ko">Founder, ADL Lab</span>
         </div>
       </div>
     </section>
   </div>
 
-  <hr aria-hidden="true">
-
   <div class="page-wrap">
-    <section class="section" id="why" aria-labelledby="why-heading">
+    <section class="section reveal" id="why">
       <p class="eyebrow">
         <span class="en">01 · Why OT-Tech</span>
         <span class="ko">01 · OT-Tech 소개</span>
       </p>
-      <h2 class="section-title" id="why-heading">
-        <span class="en">Understanding the intricate interplay <em>between humans and tools</em> through a clinical lens. We do not replace UX, accessibility, or AT; we introduce a sophisticated, foundational layer of expertise.</span>
-        <span class="ko">인간과 도구 사이의 <em>상호작용</em>을 임상적 관점에서 통찰합니다. UX, 접근성(Accessibility), 보조공학(AT)을 대체하는 것이 아닌, 그 위에 전문적인 깊이를 한 겹 더하는 역할입니다.</span>
+      <h2 class="section-title">
+        <span class="en">Understanding the interplay <em>between humans and tools</em>. We introduce a foundational layer of expertise.</span>
+        <span class="ko">인간과 도구 사이의 <em>상호작용</em>을 통찰합니다. 우리는 전문적인 깊이를 한 겹 더하는 역할입니다.</span>
       </h2>
       <p class="section-lede">
-        <span class="en">We bridge Occupational Science—the study of how humans execute daily occupations—with product design. Grounded in 14 years of clinical expertise and meticulous observation of how users interact with tools, environments, and technology, we offer a rare and indispensable perspective in today’s global product ecosystem.</span>
-        <span class="ko">인간이 일상의 과업을 수행하는 방식을 연구하는 작업과학(Occupational Science)을 제품 디자인에 접목합니다. 14년간의 임상 경험과, 사용자가 일상에서 도구·공간·기술을 다루는 실제적 방식에 대한 치밀한 관찰이 그 토대입니다. 이는 현재 글로벌 제품 개발 환경에서도 매우 희소하고 독보적인 전문성입니다.</span>
+        <span class="en">We bridge Occupational Science with product design. Grounded in 14 years of clinical expertise, we offer a rare and indispensable perspective in today’s ecosystem.</span>
+        <span class="ko">인간이 과업을 수행하는 방식을 연구하는 작업과학(Occupational Science)을 제품 디자인에 접목합니다. 14년간의 임상 경험을 토대로 글로벌 환경에 희소한 전문성을 제공합니다.</span>
       </p>
-      <div class="why-grid">
-        <div class="why-item">
-          <p class="why-vs">
-            <span class="en">Alongside UX Research</span>
+      
+      <!-- Bento Box Layout -->
+      <div class="bento-grid">
+        <div class="bento-card">
+          <span class="bento-tag">
+            <span class="en">With UX Research</span>
             <span class="ko">UX Research와 함께</span>
-          </p>
+          </span>
           <h3>
-            <span class="en">While UX maps <em>behavior.</em><br>I decode the <em>functional layer.</em></span>
-            <span class="ko">UX가 <em>행동</em>을 분석한다면,<br>저는 그 바탕의 <em>기능적 레이어</em>를 더합니다.</span>
+            <span class="en">While UX maps behavior.<br>I decode the <em>functional layer.</em></span>
+            <span class="ko">UX가 행동을 분석할 때,<br>저는 <em>기능적 레이어</em>를 더합니다.</span>
           </h3>
           <p>
-            <span class="en">Where UX researchers track user statements and surface-level behaviors, I evaluate the underlying physical, sensory, and cognitive costs required to execute those behaviors. This reveals hidden fatigue, micro-frictions, and breakdown points that users rarely articulate.</span>
-            <span class="ko">UX 리서처가 사용자의 언어와 표면적 행동에 주목할 때, 저는 그 행동을 수행하는 데 수반되는 신체적·감각적·인지적 비용을 정밀하게 평가합니다. 겉으로 드러나는 행동 밑단에 숨겨진 피로도, 미세한 마찰, 그리고 경험이 단절되는 지점(Breakdown points)까지 추적합니다.</span>
+            <span class="en">I evaluate the underlying physical, sensory, and cognitive costs to execute behaviors, revealing hidden fatigue and breakdown points.</span>
+            <span class="ko">행동 수행에 수반되는 신체적·감각적·인지적 비용을 정밀하게 평가하여, 숨겨진 피로도와 경험이 단절되는 지점을 추적합니다.</span>
           </p>
         </div>
-        <div class="why-item">
-          <p class="why-vs">
-            <span class="en">Alongside Accessibility</span>
+        <div class="bento-card">
+          <span class="bento-tag">
+            <span class="en">With Accessibility</span>
             <span class="ko">Accessibility와 함께</span>
-          </p>
+          </span>
           <h3>
-            <span class="en">Moving beyond <em>Compliance.</em><br>to focus on real-world <em>Performance.</em></span>
-            <span class="ko">규격 준수(Compliance)를 넘어,<br>실질적인 <em>수행 역량(Performance)</em>에 집중합니다.</span>
+            <span class="en">Moving beyond Compliance<br>to real-world <em>Performance.</em></span>
+            <span class="ko">규격 준수(Compliance)를 넘어,<br>실질적인 <em>수행 역량</em>에 집중.</span>
           </h3>
           <p>
-            <span class="en">While accessibility consultants ensure compliance with rigid standards, I diagnose whether a product truly functions for the user. Human functioning spans a diverse spectrum, and static regulations alone cannot capture the fluid realities of human interaction.</span>
-            <span class="ko">접근성 컨설턴트가 제품의 표준 규격 충족 여부를 점검한다면, 저는 인간의 다채로운 기능적 스펙트럼을 고려하여 제품이 실질적으로 사용자에게 원활하게 작용하는지 진단합니다. 인간이 도구를 사용하는 방식은 무한히 다양하며, 정형화된 기준만으로는 완벽히 담아낼 수 없기 때문입니다.</span>
+            <span class="en">While consultants ensure rigid compliance, I diagnose whether a product truly functions across the diverse spectrum of human reality.</span>
+            <span class="ko">표준 규격을 넘어 인간의 다채로운 기능적 스펙트럼을 고려하여 제품이 실질적으로 원활하게 작용하는지 진단합니다.</span>
           </p>
         </div>
-        <div class="why-item">
-          <p class="why-vs">
-            <span class="en">Alongside AT Specialists</span>
+        <div class="bento-card">
+          <span class="bento-tag">
+            <span class="en">With AT Specialists</span>
             <span class="ko">AT Specialist와 함께</span>
-          </p>
+          </span>
           <h3>
-            <span class="en">Transcending <em>individual tools.</em><br>to synthesize the <em>entire system.</em></span>
-            <span class="ko">도구를 사용자에게 맞추는 단계를 넘어,<br><em>시스템 전체의 유기적 관계</em>를 통찰합니다.</span>
+            <span class="en">Transcending individual tools<br>to synthesize <em>the system.</em></span>
+            <span class="ko">도구 맞춤 단계를 넘어,<br><em>시스템 유기성</em> 통찰.</span>
           </h3>
           <p>
-            <span class="en">Assistive Technology Professionals (ATPs) typically customize specific devices for specific individuals. In product development, I elevate this approach to analyze the macro-relationship between the human, the tool, and the environment—seamlessly across any medium or context.</span>
-            <span class="ko">일반적인 보조공학 전문가(ATP)는 특정 기기를 특정 사용자에게 맞춤화하는 데 집중합니다. 그러나 제품 개발의 맥락에서 저는 이 시야를 확장하여 제품의 종류나 환경에 구애받지 않고 '인간-도구-환경' 간의 거시적인 관계를 총체적으로 분석합니다.</span>
+            <span class="en">I elevate the AT approach to analyze the macro-relationship between the human, the tool, and the environment seamlessly.</span>
+            <span class="ko">제품 종류나 환경에 구애받지 않고 '인간-도구-환경' 간의 거시적인 관계를 총체적으로 분석합니다.</span>
           </p>
         </div>
       </div>
     </section>
   </div>
 
-  <section class="statement" aria-labelledby="statement-heading">
-    <h2 id="statement-heading" class="sr-only">
-      <span class="en">Manifesto</span>
-      <span class="ko">매니페스토</span>
-    </h2>
-    <div class="statement-inner">
-      <p>
-        <span class="en">Technology is any medium that enables human execution—from a humble spoon to wearable devices and AI agents. <strong>What product teams lack today is not more advanced technology; it is the sophisticated lens required to discern whether that technology truly functions for the human.</strong></span>
-        <span class="ko">기술(Technology)이란 숟가락과 같은 일상의 도구부터 웨어러블 디바이스, AI 에이전트에 이르기까지 인간의 과업 수행을 돕는 모든 매개체를 뜻합니다. <strong>오늘날 제품 개발 현장에 정작 결핍되어 있는 것은 더 고도화된 기술 그 자체가 아닙니다. 그 기술이 인간에게 진정으로 실효성 있게 작용하는지 분별해내는 ‘정교한 시선’입니다.</strong></span>
-      </p>
-    </div>
+  <section class="statement reveal">
+    <p>
+      <span class="en">What product teams lack today is not more advanced technology; it is the <strong>sophisticated lens</strong> required to discern whether that technology truly functions for the human.</span>
+      <span class="ko">오늘날 제품 개발 현장에 정작 결핍되어 있는 것은 기술 그 자체가 아닙니다. 그 기술이 인간에게 진정으로 실효성 있게 작용하는지 분별해내는 <strong>‘정교한 시선’</strong>입니다.</span>
+    </p>
   </section>
 
   <div class="page-wrap">
-    <section class="section" id="collab" aria-labelledby="collab-heading">
+    <section class="section reveal" id="collab">
       <p class="eyebrow">
         <span class="en">02 · Collaboration</span>
         <span class="ko">02 · 함께하기</span>
       </p>
-      <h2 class="section-title" id="collab-heading">
-        <span class="en">Free from rigid service packages, we welcome <em>multi-dimensional collaboration</em> and strategic dialogue.</span>
-        <span class="ko">규격화된 서비스 메뉴에 갇히지 않고, <em>다차원적인 협업과 대화</em>에 언제나 열려 있습니다.</span>
+      <h2 class="section-title">
+        <span class="en">Free from rigid service packages, we welcome <em>strategic dialogue.</em></span>
+        <span class="ko">규격화된 서비스 메뉴에 갇히지 않고, <em>다차원적 대화</em>에 열려 있습니다.</span>
       </h2>
       <p class="section-lede">
-        <span class="en">ADL Lab prioritizes bespoke partnerships that challenge traditional product paradigms. Prior to the formal introduction of standardized consulting solutions, we are initiating exclusive, open-partnership dialogues to explore profound collaborative possibilities. If your vision aligns with ours, we invite you to initiate a conversation.</span>
-        <span class="ko">ADL Lab은 단순한 자문을 넘어 제품의 패러다임을 바꾸는 독창적인 파트너십을 지향합니다. 향후 공표될 정형화된 컨설팅 솔루션에 앞서, 현재는 깊이 있는 담론을 형성하고 다각적인 협업 가능성을 모색하기 위해 오픈 파트너십 형태의 전략적 대화를 우선적으로 전개하고자 합니다. 다음의 가치에 공감하신다면 언제든 긴밀한 제안을 환영합니다.</span>
+        <span class="en">Prior to the formal introduction of standardized solutions, we are initiating exclusive, open-partnership dialogues to explore profound collaborative possibilities.</span>
+        <span class="ko">정형화된 컨설팅 솔루션 공표에 앞서, 현재는 깊이 있는 담론을 형성하고 다각적인 협업 가능성을 모색하기 위해 오픈 파트너십 형태의 대화를 우선 전개합니다.</span>
       </p>
-      <div class="collab-intro">
-        <ul class="collab-list">
-          <li>
-            <span class="en"><strong>Enterprises & Product Teams:</strong> Consumer product teams (digital, physical hardware, and spatial) seeking to integrate an Occupational Therapy (OT) framework into their development lifecycle.</span>
-            <span class="ko"><strong>기업 및 제품 팀:</strong> 디지털, 물리적 하드웨어, 공간적 카테고리를 아우르는 소비재 제품(Consumer Product) 전반에 걸쳐 작업치료(OT)적 관점의 적용 방안을 모색하고자 하는 팀.</span>
-          </li>
-          <li>
-            <span class="en"><strong>Academic Institutions & Research Programs:</strong> Departments in design, engineering, architecture, rehabilitation technology, OT, and AT looking for guest lectures or workshops on applying the OT framework to product design.</span>
-            <span class="ko"><strong>고등 교육 기관 및 연구 프로그램:</strong> 디자인, 엔지니어링, 건축, 재활공학, 작업치료(OT), 보조공학(AT) 분야에서 제품 디자인에 OT 프레임워크를 접목하는 주제의 초청 강연이나 워크숍을 기획 중인 학과.</span>
-          </li>
-          <li>
-            <span class="en"><strong>Researchers & Industry Practitioners:</strong> Experts focusing on human function, AT, sensory processing, cognitive load, or consumer product design interested in knowledge sharing and joint research.</span>
-            <span class="ko"><strong>연구원 및 업계 실무자:</strong> 인간의 기능성(Human Function), 보조공학, 감각 처리, 인지 부하, 혹은 소비재 제품 디자인을 심도 있게 다루며 지식 공유 및 공동 연구에 뜻이 있는 전문가.</span>
-          </li>
-          <li>
-            <span class="en"><strong>Undergraduate & Graduate Students:</strong> Aspiring professionals studying at the intersection of OT, rehab tech, product/digital design, or inclusive design (selective mentoring available).</span>
-            <span class="ko"><strong>학부 및 대학원생:</strong> 작업치료, 재활공학, 제품 디자인, 디지털 및 인클루시브 디자인(Inclusive Design)의 교차 지점에서 학문적·비즈니스적 시야를 넓히고자 하는 학생 (선별적 멘토링 제공).</span>
-          </li>
-        </ul>
-        <p class="collab-note">
-          <span class="en">Rather than operating within standardized consulting packages, ADL Lab designs bespoke collaboration frameworks tailored to your strategic objectives and project complexities. The exact structure of engagement is meticulously shaped through deep, initial dialogue to ensure maximum impact.</span>
-          <span class="ko">ADL Lab은 정형화된 서비스 패키지에 갇히지 않고, 각 파트너사의 실질적인 비즈니스 목표와 프로젝트의 특성에 맞추어 유연하고 최적화된 협업 구조를 설계합니다. 구체적인 파트너십의 형태와 헌신(Engagement)의 방식은 심도 있는 대화를 통해 가장 밀도 있는 방향으로 조율해 나갑니다.</span>
-        </p>
-      </div>
+      
+      <ul class="collab-list">
+        <li>
+          <span class="en"><strong>Enterprises & Product Teams</strong> <br>Consumer product teams seeking to integrate an OT framework into their development lifecycle.</span>
+          <span class="ko"><strong>기업 및 제품 팀</strong> <br>소비재 제품 전반에 걸쳐 작업치료(OT)적 관점의 적용 방안을 모색하고자 하는 팀.</span>
+        </li>
+        <li>
+          <span class="en"><strong>Academic & Research Programs</strong> <br>Departments looking for guest lectures or workshops on applying OT frameworks to design.</span>
+          <span class="ko"><strong>교육 기관 및 연구 프로그램</strong> <br>제품 디자인에 OT 프레임워크를 접목하는 주제의 초청 강연이나 워크숍 기획 부서.</span>
+        </li>
+        <li>
+          <span class="en"><strong>Industry Practitioners</strong> <br>Experts focusing on human function, cognitive load, or AT interested in joint research.</span>
+          <span class="ko"><strong>연구원 및 업계 실무자</strong> <br>인간의 기능성, 인지 부하, 소비재 디자인을 다루며 지식 공유에 뜻이 있는 전문가.</span>
+        </li>
+      </ul>
+      <p class="collab-note">
+        <span class="en">ADL Lab designs bespoke collaboration frameworks tailored to your strategic objectives. The structure of engagement is meticulously shaped through deep dialogue.</span>
+        <span class="ko">ADL Lab은 파트너사의 비즈니스 목표에 맞추어 유연하게 협업 구조를 설계합니다. 구체적인 파트너십의 형태는 심도 있는 대화를 통해 조율해 나갑니다.</span>
+      </p>
     </section>
   </div>
 
-  <hr aria-hidden="true">
-
   <div class="page-wrap">
-    <section class="section" id="about" aria-labelledby="about-heading">
+    <section class="section reveal" id="about">
       <p class="eyebrow">
         <span class="en">03 · About</span>
         <span class="ko">03 · 소개</span>
       </p>
-      <h2 class="section-title" id="about-heading">
+      <h2 class="section-title">
         <span class="en">14 years at the intersection of <em>Bodies, Environments, and Tools.</em></span>
-        <span class="ko"><em>신체(Bodies), 환경, 그리고 도구</em>가 교차하는 접점에서 다져온 14년의 시간.</span>
+        <span class="ko"><em>신체, 환경, 그리고 도구</em>가 교차하는 접점에서 다져온 14년.</span>
       </h2>
       <div class="about-grid">
         <div>
-          <p class="about-quote">
-            <span class="en">I am Ahra Roh, an OT-Tech Specialist. With over 14 years of clinical experience spanning diverse demographics and environments, I founded ADL Lab to position Occupational Science as a core structural foundation of product design, rather than a mere post-launch evaluation.</span>
-            <span class="ko">안녕하세요, OT-Tech Specialist 노아라(Ahra Roh)입니다. 다양한 연령층과 다각적인 환경을 아우르며 14년간 임상 작업치료 실무 및 자문 경험을 쌓아왔습니다. 제가 ADL Lab을 설립한 이유는, 작업과학(Occupational Science)을 제품 디자인의 사후 보완적 수단이 아닌 제품의 본질적인 ‘구조적 토대(Structural Foundation)’로 정착시키기 위함입니다.</span>
+          <p class="about-text">
+            <span class="en">I am Ahra Roh. With over 14 years of clinical experience, I founded ADL Lab to position Occupational Science as a core structural foundation of product design, rather than a mere post-launch evaluation.</span>
+            <span class="ko">안녕하세요, OT-Tech Specialist 노아라입니다. 14년간 임상 작업치료 실무 경험을 쌓아왔으며, 작업과학을 제품의 본질적인 ‘구조적 토대’로 정착시키기 위해 ADL Lab을 설립했습니다.</span>
           </p>
-          <p class="section-body">
-            <span class="en">My focus encompasses the entire spectrum of human performance: physical usability, sensory architecture, cognitive demands, and the physical or virtual environments where people live and work. I apply this unified lens across digital solutions, physical hardware, and spatial design.</span>
-            <span class="ko">저의 시선은 신체적 사용성, 감각적 부하, 인지적 요구도뿐만 아니라 사용자가 실제로 삶을 영위하고 일하는 공간적·환경적 맥락까지, 인간 수행(Human Performance)의 모든 스펙트럼을 투영합니다. 이는 디지털 솔루션, 물리적 하드웨어, 공간 디자인 등 모든 제품 영역에 일관되게 적용됩니다.</span>
+          <p class="about-text">
+            <span class="en">My focus encompasses the entire spectrum of human performance: physical usability, sensory architecture, cognitive demands, and spatial context.</span>
+            <span class="ko">저의 시선은 신체적 사용성, 감각적 부하, 인지적 요구도뿐만 아니라 환경적 맥락까지, 인간 수행의 모든 스펙트럼을 투영합니다.</span>
           </p>
-          <p class="section-body">
-            <span class="en">The value I deliver transcends standard compliance reviews. It is a highly sophisticated diagnosis of how a product operates in real-world scenarios, accompanied by a strategic roadmap to seamlessly bridge the gap between design and human execution.</span>
-            <span class="ko">제가 제공하는 가치는 단순한 가이드라인 준수 여부(Compliance Review)의 확인이 아닙니다. 제품이 실질적으로 사용자에게 어떻게 기능하는지에 대한 고도화된 진단이며, 그 간극을 정교하게 좁혀나가는 전략적 로드맵의 제시입니다.</span>
-          </p>
-          <p class="section-body">
-            <span class="en">Based in Los Angeles, ADL Lab is fully equipped for seamless remote collaboration with international and Korean teams via advanced digital workflows.</span>
-            <span class="ko">로스앤젤레스(LA)를 기반으로 활동하고 있으나, 화상 회의 및 비대면 협업 툴을 통해 국내(한국) 팀과의 유기적인 원격 프로젝트 수행 역시 원활히 가능합니다.</span>
+          <p class="about-text">
+            <span class="en">Based in Los Angeles, fully equipped for seamless remote collaboration globally.</span>
+            <span class="ko">로스앤젤레스(LA) 기반으로 활동 중이며, 비대면 툴을 통해 원활한 글로벌 원격 프로젝트 수행이 가능합니다.</span>
           </p>
         </div>
-        <ul class="cred-list" aria-label="Credentials">
+        <ul class="cred-list">
           <li><span class="cred-n">01</span><span>
-            <span class="en">14+ years of clinical experience across neuro-rehabilitation, spinal cord injury (SCI), acute care, pediatrics, and community-based care.</span>
-            <span class="ko">신경재활, 척수손상(SCI), 급성기 관리, 소아 치료 및 지역사회 케어를 아우르는 14년 이상의 임상 경력</span>
+            <span class="en">14+ years of clinical experience across neuro-rehab and pediatrics.</span>
+            <span class="ko">신경재활, 소아 치료 등을 아우르는 14년 이상의 임상 경력</span>
           </span></li>
           <li><span class="cred-n">02</span><span>
-            <span class="en">OT/ATP at Santa Monica College, High Tech Training Center <span class="badge">Current</span></span>
-            <span class="ko">Santa Monica College, High Tech Training Center 소속 OT/ATP <span class="badge">현직</span></span>
+            <span class="en">OT/ATP at Santa Monica College <span class="badge">Current</span></span>
+            <span class="ko">Santa Monica College 소속 OT/ATP <span class="badge">현직</span></span>
           </span></li>
           <li><span class="cred-n">03</span><span>
             <span class="en">Adjunct Faculty at Santa Monica College <span class="badge">Current</span></span>
-            <span class="ko">Santa Monica College 겸임 교수(Adjunct Faculty) <span class="badge">현직</span></span>
+            <span class="ko">Santa Monica College 겸임 교수 <span class="badge">현직</span></span>
           </span></li>
           <li><span class="cred-n">04</span><span>
             <span class="en">Founder, ADL Lab</span>
-            <span class="ko">ADL Lab 창립자 (Founder)</span>
+            <span class="ko">ADL Lab 창립자</span>
           </span></li>
           <li><span class="cred-n">05</span><span>
-            <span class="en">RESNA Certified Assistive Technology Professional (ATP)</span>
+            <span class="en">RESNA Certified ATP</span>
             <span class="ko">RESNA 공인 보조공학 전문가 (ATP)</span>
           </span></li>
           <li><span class="cred-n">06</span><span>
-            <span class="en">M.A. in Occupational Science and Occupational Therapy, University of Southern California (USC)</span>
-            <span class="ko">남가주대학교(USC) 작업과학 및 작업치료학 석사 (M.A.)</span>
+            <span class="en">M.A. in Occupational Science & Therapy, USC</span>
+            <span class="ko">남가주대학교(USC) 작업과학 및 치료학 석사</span>
           </span></li>
           <li><span class="cred-n">07</span><span>
-            <span class="en">B.A. in Neuroscience, University of Southern California (USC)</span>
-            <span class="ko">남가주대학교(USC) 신경과학 학사 (B.A.)</span>
-          </span></li>
-          <li><span class="cred-n">08</span><span>
-            <span class="en">Assistive Technology Certificate, California State University, Northridge (CSUN)</span>
-            <span class="ko">캘리포니아 주립대 노스리지(CSUN) 보조공학(AT) 수료</span>
-          </span></li>
-          <li><span class="cred-n">09</span><span>
-            <span class="en">Fully bilingual (English/Korean) | Available for global remote partnerships</span>
-            <span class="ko">한국어·영어 완전 이중언어 구사 (Bilingual) / 로스앤젤레스 거주 및 국내 원격 협업 가능</span>
+            <span class="en">B.A. in Neuroscience, USC</span>
+            <span class="ko">남가주대학교(USC) 신경과학 학사</span>
           </span></li>
         </ul>
       </div>
     </section>
   </div>
 
-  <section class="newsletter-bg" id="writing" aria-labelledby="newsletter-heading">
-    <div class="newsletter-inner">
-      <p class="eyebrow">
-        <span class="en">04 · Newsletter</span>
-        <span class="ko">04 · 뉴스레터</span>
-      </p>
-      <h2 class="section-title" id="newsletter-heading">
-        <span class="en">Notes from the <em>Gap.</em></span>
-        <span class="ko"><em>공백(Gap)</em>의 경계에서 전하는 기록.</span>
-      </h2>
+  <div class="page-wrap">
+    <section class="section reveal" id="writing">
       <div class="newsletter-card">
         <div>
+          <p class="eyebrow" style="background: var(--bg-color);">
+            <span class="en">04 · Newsletter</span>
+            <span class="ko">04 · 뉴스레터</span>
+          </p>
           <h3>
-            <span class="en">OT-Tech Notes<br><em>on LinkedIn</em></span>
-            <span class="ko">OT-Tech Notes<br><em>on LinkedIn</em></span>
+            <span class="en">Notes from the <em>Gap.</em></span>
+            <span class="ko"><em>공백</em>의 경계에서 전하는 기록.</span>
           </h3>
-          <p>
-            <span class="en">I distill my observations into precise, written insights: the unarticulated pain points of users, prevailing market misconceptions surrounding AT and traditional OT roles, and the systemic blind spots industries face regarding actual human performance. This newsletter serves as a window into my distinct perspective and the unique business value I bring to product strategy.</span>
-            <span class="ko">제가 포착한 시선들을 글로 정제하여 공유합니다. 사용자가 미처 언어로 표현하지 못하는 숨겨진 페인 포인트(Pain Points), 보조공학(AT)과 전통적 작업치료(OT) 역할에 대한 시장의 오해, 그리고 인간의 실제 기능 수행 방식에 대해 관련 업계가 자주 간과하는 맹점들을 다룹니다. 이는 저만의 독창적인 시각이자, 제가 제품 설계 과정에서 제안할 수 있는 차별화된 비즈니스 가치를 확인하는 가장 확실한 통로가 될 것입니다.</span>
+          <p class="about-text" style="margin-bottom: 2rem;">
+            <span class="en">I distill my observations into precise insights: unarticulated pain points, market misconceptions, and systemic blind spots regarding actual human performance.</span>
+            <span class="ko">사용자가 표현하지 못하는 페인 포인트, 시장의 오해, 업계가 자주 간과하는 인간 기능 수행 방식의 맹점들을 정제하여 공유합니다.</span>
           </p>
-          <a href="https://www.linkedin.com/newsletters/ot-tech-notes-7457137843690393600/" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="OT-Tech Notes (opens in new tab)">
-            <span class="en">Subscribe on LinkedIn</span>
-            <span class="ko">LinkedIn에서 구독</span>
-            <svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/>
-              <line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
+          <a href="https://www.linkedin.com/newsletters/ot-tech-notes-7457137843690393600/" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            <span class="en">Read on LinkedIn</span>
+            <span class="ko">LinkedIn에서 읽기</span>
           </a>
-          <p class="newsletter-meta">
-            <span class="en">Published on LinkedIn · @ahraroh</span>
-            <span class="ko">LinkedIn 발행 · @ahraroh</span>
-          </p>
         </div>
-        <div>
-          <p class="section-body">
-            <span class="en">Part of an ongoing Manifesto series on 'OT + Tech,' exploring the core philosophy and the indispensable necessity of this lens in modern product development.</span>
-            <span class="ko">‘OT + Tech’를 테마로 연재 중인 매니페스토 시리즈의 일환으로, OT-Tech가 지향하는 독보적인 세계관과 오늘날의 제품 개발 현장에 왜 이러한 관점이 필수적인지 깊이 있게 풀어냅니다.</span>
+        <div style="display: flex; flex-direction: column; justify-content: center;">
+          <p class="about-text">
+            <span class="en"><strong>Part of a Manifesto series on 'OT + Tech'</strong> exploring the core philosophy and the indispensable necessity of this lens.</span>
+            <span class="ko"><strong>‘OT + Tech’ 매니페스토 시리즈</strong>로, 지향하는 세계관과 왜 이 관점이 제품 개발에 필수적인지 깊이 있게 풀어냅니다.</span>
           </p>
-          <p class="section-body">
-            <span class="en">Core Keywords: Accessibility · Assistive Technology · Universal Design · Cognitive Load · Sensory Architecture · Environmental Modification</span>
-            <span class="ko">다루는 주제: 접근성(Accessibility) · 보조공학(Assistive Technology) · 유니버설 디자인(Universal Design) · 인지 부하(Cognitive Load) · 감각 건축(Sensory Architecture) · 환경 수정(Environmental Modification)</span>
-          </p>
+          <div style="margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+            <p style="font-size: 0.85rem; color: var(--text-muted); font-family: 'Space Grotesk', sans-serif;">
+              <span class="en">KEYWORDS: Accessibility · Assistive Tech · Cognitive Load · Sensory Architecture</span>
+              <span class="ko">KEYWORDS: 접근성 · 보조공학 · 인지 부하 · 유니버설 디자인 · 감각 건축</span>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <div class="page-wrap">
-    <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+    <section class="section reveal" id="contact">
       <p class="eyebrow">
         <span class="en">05 · Contact</span>
         <span class="ko">05 · 연락</span>
       </p>
       <div class="contact-grid">
-        <h2 class="contact-stmt" id="contact-heading">
-          <span class="en">If your team is building a high-value product and you wish to rigorously diagnose whether it truly functions for your users, let us begin a conversation.</span>
-          <span class="ko">귀사의 팀이 고유의 가치를 구축하고 있으며, 그것이 사용자에게 실질적으로 유효하게 작용하는지 깊이 있게 진단하고 싶으시다면 언제든 논의를 시작해 보십시오.</span>
+        <h2 class="contact-stmt">
+          <span class="en">If your team is building a high-value product, let us begin a conversation.</span>
+          <span class="ko">귀사 제품이 실질적으로 유효하게 작용하는지 진단하고 싶으시다면 논의를 시작해 보십시오.</span>
         </h2>
-        <div class="contact-info">
-          <p class="section-body" style="margin-bottom: 0.25rem;">
-            <span class="en">ADL Lab welcomes strategic inquiries, guest lecture invitations, workshops, and selective mentorship proposals. Custom collaboration models tailored to your project’s scope and strategic direction can be elegantly formulated through an initial inquiry. While based in Los Angeles, our seamless remote collaboration infrastructure is fully optimized for international partnerships.</span>
-            <span class="ko">현재 ADL Lab은 다각적인 전략적 논의, 초청 강연, 워크숍 및 파트너십 제안을 환영합니다. 프로젝트의 성격과 세부 방향성에 따른 맞춤형 협업 방안은 문의를 통해 상세히 논의하실 수 있습니다. 로스앤젤레스 기반이나 국내 팀과의 원격 프로젝트 역시 유기적으로 진행됩니다.</span>
+        <div>
+          <p class="about-text">
+            <span class="en">ADL Lab welcomes strategic inquiries, guest lecture invitations, and selective mentorship proposals. Custom collaboration models can be elegantly formulated through an initial inquiry.</span>
+            <span class="ko">ADL Lab은 전략적 논의, 초청 강연 및 파트너십 제안을 환영합니다. 세부 방향성에 따른 맞춤형 협업 방안은 문의를 통해 상세히 논의하실 수 있습니다.</span>
           </p>
-          <div class="contact-row">
-            <span class="contact-label">
-              <span class="en">Email</span>
-              <span class="ko">이메일</span>
-            </span>
-            <a href="mailto:AhraRohOT@gmail.com">AhraRohOT@gmail.com</a>
-          </div>
-          <div class="contact-row">
-            <span class="contact-label">
-              <span class="en">Phone</span>
-              <span class="ko">전화</span>
-            </span>
-            <a href="tel:3103631252" aria-label="Phone: 310-363-1252">310 · 363 · 1252</a>
-          </div>
-          <div class="contact-row">
-            <span class="contact-label">LinkedIn</span>
-            <a href="https://www.linkedin.com/in/ahra-roh-65632a44/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)">
-              Ahra Roh (@ahraroh)
-              <svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-            </a>
-          </div>
-          <div class="contact-row">
-            <span class="contact-label">
-              <span class="en">Newsletter</span>
-              <span class="ko">뉴스레터</span>
-            </span>
-            <a href="https://www.linkedin.com/newsletters/ot-tech-notes-7457137843690393600/" target="_blank" rel="noopener noreferrer" aria-label="OT-Tech Notes (opens in new tab)">
-              OT-Tech Notes on LinkedIn
-              <svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-            </a>
+          <div class="contact-links">
+            <div class="contact-row">
+              <span class="contact-label"><span class="en">Email</span><span class="ko">이메일</span></span>
+              <a href="mailto:AhraRohOT@gmail.com">AhraRohOT@gmail.com</a>
+            </div>
+            <div class="contact-row">
+              <span class="contact-label">LinkedIn</span>
+              <a href="https://www.linkedin.com/in/ahra-roh-65632a44/" target="_blank" rel="noopener noreferrer">Ahra Roh (@ahraroh)</a>
+            </div>
           </div>
         </div>
       </div>
@@ -1070,16 +626,14 @@
 </main>
 
 <footer>
-  <p class="footer-name">Ahra Roh, OTR/L, ATP · OT-Tech Specialist · Founder, ADL Lab</p>
-  <p class="footer-meta">© 2026 · Los Angeles, CA</p>
+  <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.1rem;">Ahra Roh, OTR/L, ATP</div>
+  <div style="font-size: 0.85rem; color: var(--text-muted);">© 2026 · OT-Tech Specialist · Founder, ADL Lab</div>
 </footer>
 
 <script>
-  // Language toggle
+  // Bilingual Toggle Logic
   const langBtns = document.querySelectorAll('.lang-btn');
   const html = document.documentElement;
-
-  // Restore saved language preference (memory only, not persisted)
   const savedLang = sessionStorage.getItem('preferredLang') || 'en';
   setLang(savedLang);
 
@@ -1093,43 +647,30 @@
 
   function setLang(lang) {
     html.setAttribute('lang', lang);
-    langBtns.forEach(btn => {
-      btn.setAttribute('aria-pressed', btn.dataset.lang === lang);
-    });
+    langBtns.forEach(btn => btn.setAttribute('aria-pressed', btn.dataset.lang === lang));
   }
 
-  // Mobile menu
+  // Mobile Menu Logic
   const toggle = document.getElementById('nav-toggle');
   const mobileNav = document.getElementById('nav-mobile');
-
-  const openIcon = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>`;
-  const closeIcon = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>`;
-
   toggle.addEventListener('click', () => {
-    const isOpen = mobileNav.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', isOpen);
-    toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-    toggle.innerHTML = isOpen ? closeIcon : openIcon;
-
-    if (isOpen) {
-      const firstLink = mobileNav.querySelector('a');
-      if (firstLink) firstLink.focus();
-    }
+    mobileNav.classList.toggle('open');
   });
+  function closeMobileNav() { mobileNav.classList.remove('open'); }
 
-  function closeMobileNav() {
-    mobileNav.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-label', 'Open menu');
-    toggle.innerHTML = openIcon;
-  }
+  // Scroll Reveal Micro-Animations (Trendy fade-up effect)
+  const revealElements = document.querySelectorAll('.reveal');
+  const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+  
+  const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target);
+    });
+  }, revealOptions);
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
-      closeMobileNav();
-      toggle.focus();
-    }
-  });
+  revealElements.forEach(el => revealOnScroll.observe(el));
 </script>
 
 </body>
