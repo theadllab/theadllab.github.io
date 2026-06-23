@@ -224,6 +224,23 @@
   .bento-card h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.85rem; line-height: 1.35; }
   .bento-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; }
 
+  /* Method Flow (Task Analysis) */
+  .method-flow {
+    margin-top: 2.5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+    position: relative;
+  }
+  .method-step {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+    padding: clamp(1.5rem, 2.5vw, 2rem); position: relative; transition: all 0.4s var(--ease-out-expo);
+  }
+  .method-step:hover { border-color: var(--text-main); transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,0.04); }
+  .method-num {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.8rem;
+    color: var(--accent); letter-spacing: 0.05em; margin-bottom: 0.85rem; display: block;
+  }
+  .method-step h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.6rem; line-height: 1.3; }
+  .method-step p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
   /* Work Grid */
   .work-grid {
     display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 2.5rem;
@@ -330,9 +347,7 @@
   .footer-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.05rem; }
   .footer-meta { font-size: 0.8rem; color: var(--text-muted); }
 
-  /* =========================================
-     Scroll Reveal Animations CSS
-     ========================================= */
+  /* Scroll Reveal */
   .reveal {
     opacity: 0;
     transform: translateY(24px);
@@ -352,7 +367,7 @@
     .hero, .about-grid, .newsletter-card, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .hero { padding-top: 110px; padding-bottom: 3rem; }
     .hero-img-wrap { order: -1; max-width: 340px; margin: 0; }
-    .bento-grid, .work-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .bento-grid, .work-grid, .method-flow { grid-template-columns: 1fr; gap: 1rem; }
     .newsletter-card { gap: 2rem; }
     .delay-1, .delay-2, .delay-3, .delay-4 { transition-delay: 0s; }
   }
@@ -592,6 +607,59 @@
     </section>
   </div>
 
+  <div class="page-wrap">
+    <section class="section" id="method" style="padding-top:0;">
+      <p class="eyebrow reveal">
+        <span class="en">My Method</span>
+        <span class="ko">분석 방법</span>
+      </p>
+      <h2 class="section-title reveal">
+        <span class="en">I don't measure usability. I <em>interpret what the use means.</em></span>
+        <span class="ko">사용성을 '측정'하는 데 그치지 않고, <em>그 사용이 무엇을 의미하는지 '해석'</em>합니다.</span>
+      </h2>
+      <p class="section-lede reveal delay-1">
+        <span class="en">This is what sets an OT lens apart from human factors or ergonomics. They measure the interface. I break the use into its real steps, read the body, mind, and senses at each one, then interpret what it all means for the task the person is actually trying to finish.</span>
+        <span class="ko">이것이 작업치료(OT)의 관점이 인간공학(Human Factors)이나 인체공학(Ergonomics)과 구별되는 지점입니다. 그들이 인터페이스를 '측정'한다면, 저는 하나의 사용 행위를 실제 단계로 분해하고, 각 단계에서 신체·인지·감각에 무슨 일이 일어나는지 읽어낸 뒤, 그것이 사용자가 완수하려는 '과업(Task)' 전체에 어떤 의미인지 해석합니다.</span>
+      </p>
+
+      <div class="method-flow">
+        <div class="method-step reveal delay-1">
+          <span class="method-num">01 · TASK ANALYSIS</span>
+          <h3>
+            <span class="en">Break the use into real steps.</span>
+            <span class="ko">사용 행위를 실제 단계로 분해</span>
+          </h3>
+          <p>
+            <span class="en">An everyday action is never one motion. I break it into the actual sequence a person moves through, so nothing gets hidden inside the word "use."</span>
+            <span class="ko">일상적인 동작은 결코 하나의 움직임이 아닙니다. 사람이 실제로 거치는 단계의 순서로 행위를 분해하여, '사용'이라는 한 단어 속에 가려진 것들을 드러냅니다.</span>
+          </p>
+        </div>
+        <div class="method-step reveal delay-2">
+          <span class="method-num">02 · DEMAND READING</span>
+          <h3>
+            <span class="en">Read the demand at each step.</span>
+            <span class="ko">각 단계의 요구 부하 분석</span>
+          </h3>
+          <p>
+            <span class="en">At every step I read what it asks of the body, the mind, and the senses — where effort, attention, or strain quietly accumulates.</span>
+            <span class="ko">각 단계마다 신체, 인지, 감각에 무엇을 요구하는지 읽어냅니다. 어디에서 힘과 주의력, 피로가 조용히 누적되는지를요.</span>
+          </p>
+        </div>
+        <div class="method-step reveal delay-3">
+          <span class="method-num">03 · FUNCTIONAL INTERPRETATION</span>
+          <h3>
+            <span class="en">Interpret it against the goal.</span>
+            <span class="ko">과업 목표 관점의 기능적 해석</span>
+          </h3>
+          <p>
+            <span class="en">A number alone isn't an answer. I interpret what the demand means for the real goal: does it support the task, or quietly work against it?</span>
+            <span class="ko">수치 하나만으로는 답이 되지 않습니다. 그 부하가 사용자의 실제 목표에 어떤 의미인지 해석합니다. 과업을 돕는가, 아니면 조용히 방해하는가?</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <section class="statement reveal">
     <p>
       <span class="en">A design detail that's <strong>crucial for some</strong> is almost always <strong>better for all.</strong> The control you can find without looking helps the driver with their eyes on the road, and everyone reaching for it in the dark. This isn't an accommodation mindset. It's a quality one.</span>
@@ -632,7 +700,7 @@
             <span class="ww-chip">UX Research</span>
             <span class="ww-chip">Human Factors</span>
             <span class="ww-chip">Ergonomics</span>
-            <span class="ww-chip"><span class="en">Inclusive Design</span><span class="ko">Inclusive Design</span></span>
+            <span class="ww-chip">Inclusive Design</span>
           </div>
         </div>
         <div class="ww-row">
@@ -787,7 +855,6 @@
 </footer>
 
 <script>
-  // Language Toggle
   const langBtns = document.querySelectorAll('.lang-btn');
   const html = document.documentElement;
   const savedLang = sessionStorage.getItem('preferredLang') || 'en';
@@ -806,7 +873,6 @@
     langBtns.forEach(btn => btn.setAttribute('aria-pressed', btn.dataset.lang === lang));
   }
 
-  // Mobile Nav Toggle
   const toggle = document.getElementById('nav-toggle');
   const mobileNav = document.getElementById('nav-mobile');
   toggle.addEventListener('click', () => {
@@ -814,7 +880,6 @@
   });
   function closeMobileNav() { mobileNav.classList.remove('open'); }
 
-  // Navbar Scroll Shadow
   window.addEventListener('scroll', () => {
     const nav = document.getElementById('navbar');
     if (window.scrollY > 20) {
@@ -824,13 +889,8 @@
     }
   });
 
-  // Scroll Reveal Animations (Intersection Observer)
   const revealElements = document.querySelectorAll('.reveal');
-  const revealOptions = {
-    threshold: 0.15,
-    rootMargin: "0px 0px -50px 0px"
-  };
-
+  const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
   const revealOnScroll = new IntersectionObserver(function(entries, observer) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -839,10 +899,7 @@
       }
     });
   }, revealOptions);
-
-  revealElements.forEach(el => {
-    revealOnScroll.observe(el);
-  });
+  revealElements.forEach(el => { revealOnScroll.observe(el); });
 </script>
 
 </body>
