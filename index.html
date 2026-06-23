@@ -16,7 +16,7 @@
     --accent: #E11D48;
     --surface: #FFFFFF;
     --border: #ECECEF;
-    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1); /* 부드러운 애니메이션 곡선 */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -68,7 +68,7 @@
   }
   .skip-link:focus { top: 0; }
 
-  /* Navigation Bar - 스크롤 그림자 효과 추가 */
+  /* Navigation */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     background: rgba(250, 250, 250, 0.85);
@@ -140,6 +140,7 @@
     background: rgba(225, 29, 72, 0.02);
   }
 
+  /* Hero Section */
   .hero {
     padding-top: 140px; min-height: 90svh; display: grid; grid-template-columns: 1.1fr 0.9fr;
     gap: clamp(2.5rem, 5vw, 5rem); align-items: center; padding-bottom: 5rem;
@@ -159,7 +160,6 @@
 
   .hero-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
-  /* Buttons - 촉각적 피드백(Scale & Shadow) 추가 */
   .btn-primary, .btn-secondary {
     display: inline-flex; align-items: center; justify-content: center;
     padding: 0 1.75rem; min-height: 54px; border-radius: 999px;
@@ -169,10 +169,7 @@
     will-change: transform;
   }
   .btn-primary { background: var(--text-main); color: var(--surface); border: 2px solid var(--text-main); }
-  .btn-primary:hover { 
-    background: transparent; color: var(--text-main); 
-    box-shadow: 0 4px 14px rgba(0,0,0,0.08); 
-  }
+  .btn-primary:hover { background: transparent; color: var(--text-main); box-shadow: 0 4px 14px rgba(0,0,0,0.08); }
   .btn-primary:active { transform: scale(0.97); box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
   
   .btn-secondary { background: transparent; color: var(--text-main); border: 2px solid var(--border); }
@@ -196,6 +193,7 @@
     border: 1px solid rgba(0,0,0,0.05);
   }
 
+  /* General Section Settings */
   .section { padding: clamp(4rem, 8vw, 7rem) 0; }
   
   .section-title {
@@ -207,6 +205,7 @@
 
   .section-lede { font-size: clamp(1.05rem, 1.4vw, 1.2rem); color: var(--text-muted); max-width: 720px; margin-bottom: 2.5rem; line-height: 1.7; }
 
+  /* Bento Grid */
   .bento-grid {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem;
   }
@@ -225,7 +224,7 @@
   .bento-card h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.85rem; line-height: 1.35; }
   .bento-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; }
 
-  /* What I Do — 작업 단계 카드 */
+  /* Work Grid */
   .work-grid {
     display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 2.5rem;
   }
@@ -240,6 +239,7 @@
   .work-card h3 em { font-style: normal; color: var(--accent); }
   .work-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
 
+  /* Focus List */
   .focus-list { list-style: none; display: grid; gap: 0.75rem; margin-top: 2.5rem; }
   .focus-list li {
     display: flex; gap: 1rem; align-items: baseline;
@@ -250,6 +250,7 @@
   .focus-list li:hover { border-color: #D4D4D8; transform: translateX(4px); }
   .focus-list .fx { color: var(--accent); font-weight: 700; font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; white-space: nowrap; }
 
+  /* Work With (Chips) */
   .ww-block { margin-top: 2.5rem; display: grid; gap: 1.5rem; }
   .ww-label { font-size: 0.78rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.85rem; font-family: 'Space Grotesk', sans-serif; }
   .ww-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; }
@@ -260,6 +261,7 @@
   }
   .ww-chip:hover { border-color: var(--text-main); background: #F4F4F5; }
 
+  /* Statement Section */
   .statement {
     background: var(--text-main); color: var(--surface);
     padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1rem, 4vw, 3rem); text-align: center;
@@ -276,6 +278,7 @@
     border-left: 3px solid var(--accent);
   }
 
+  /* About Grid */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 5vw, 5rem); align-items: start; }
   .about-text { font-size: 0.98rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.7; }
   
@@ -293,12 +296,14 @@
     white-space: nowrap; display: inline-block; vertical-align: middle;
   }
 
+  /* Newsletter Card */
   .newsletter-card {
     background: var(--surface); border: 1px solid var(--border); border-radius: 28px;
     padding: clamp(2rem, 5vw, 4.5rem); display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem;
   }
   .newsletter-card h3 { font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: 1.25rem; line-height: 1.15; }
   
+  /* Contact Section */
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 5vw, 5rem); align-items: start; }
   .contact-stmt { font-size: clamp(1.6rem, 3.2vw, 2.2rem); font-weight: 600; line-height: 1.25; letter-spacing: -0.02em; }
   
@@ -316,6 +321,7 @@
   .contact-row a:hover::after { width: 100%; }
   .contact-row a:hover { color: var(--accent); }
 
+  /* Footer */
   footer {
     border-top: 1px solid var(--border); padding: 2.5rem clamp(1rem, 4vw, 3rem);
     display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
@@ -348,7 +354,7 @@
     .hero-img-wrap { order: -1; max-width: 340px; margin: 0; }
     .bento-grid, .work-grid { grid-template-columns: 1fr; gap: 1rem; }
     .newsletter-card { gap: 2rem; }
-    .delay-1, .delay-2, .delay-3, .delay-4 { transition-delay: 0s; } /* 모바일에서는 시차 등장 해제하여 속도감 확보 */
+    .delay-1, .delay-2, .delay-3, .delay-4 { transition-delay: 0s; }
   }
 
   @media (max-width: 768px) {
@@ -556,7 +562,7 @@
           </h3>
           <p>
             <span class="en">Not the whole product. One unit at a time: a trigger button, a dial, a haptic interface, a dashboard. Small enough to be precise, specific enough to act on.</span>
-            <span class="ko">제품 전체를 뭉뚱그려 보지 않습니다. 트리거 버튼, 다이얼, 햅틱 피드백, 대시보드 등 한 번에 하나의 요소에 집중합니다. 정확하게 분석하고 구체적인 개선안을 도출할 수 있는 단위로 접근합니다.</span>
+            <span class="ko">제품 전체를 뭉뚱그려 보지 않습니다. 트리거 버튼, 다이얼, 햅틱 피드백, 대시보드 등 한 번에 하나의 요소에 집중합니다. 정확하게 분석하고 구체적인 개선안 도출할 수 있는 단위로 접근합니다.</span>
           </p>
         </div>
       </div>
@@ -829,7 +835,7 @@
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
-        observer.unobserve(entry.target); // 한번 나타나면 다시 애니메이션 반복 안 함
+        observer.unobserve(entry.target); 
       }
     });
   }, revealOptions);
