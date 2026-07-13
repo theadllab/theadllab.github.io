@@ -2,668 +2,936 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ADL Friction Report — Isaac K.</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="description" content="Ahra Roh, OT-Tech Specialist — bringing an occupational therapy lens to how people actually use consumer products, across physical, digital, and spatial experiences.">
+<title>Ahra Roh — OT-Tech Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1E2B4A;
-    --gold: #C9A84C;
-    --cream: #F7F4EF;
-    --warm-white: #FDFBF8;
-    --muted: #8A8A8A;
-    --light-border: #E8E2D9;
-    --low: #6B8F71;
-    --mid: #C9A84C;
-    --high: #B85C4A;
+    /* 하이엔드 에디토리얼 프리미엄 컬러 에셋 */
+    --bg-color: #F8F9FA;
+    --text-main: #0A0A0C;
+    --text-muted: #5A5E6B;
+    --accent: #9F1239; /* 기존 로즈 레드를 우아한 버건디 크림슨 톤으로 조율 */
+    --accent-light: rgba(159, 18, 57, 0.04);
+    --surface: #FFFFFF;
+    --border: rgba(10, 10, 12, 0.06);
+    --border-hover: rgba(10, 10, 12, 0.15);
+    
+    /* 2026 트렌디 유기적 스프링 인터랙션 큐빅 */
+    --ease-spring: cubic-bezier(0.2, 1, 0.2, 1);
+    --transition-smooth: all 0.5s var(--ease-spring);
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    background: var(--bg-color);
+  }
 
   body {
-    background: var(--warm-white);
-    color: var(--navy);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
+    font-family: 'Inter', 'Pretendard', system-ui, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-main);
     line-height: 1.7;
+    overflow-x: hidden;
+    letter-spacing: -0.01em;
   }
 
-  .print-bar {
-    background: var(--navy);
-    padding: 12px 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .print-bar span { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
-  .print-btn {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 10px 24px;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    background: transparent;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.2s;
-  }
-  .print-btn:hover { background: var(--gold); color: var(--navy); }
-
-  .page { max-width: 860px; margin: 0 auto; padding: 48px 64px 72px; }
-
-  .report-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding-bottom: 28px;
-    border-bottom: 1px solid var(--light-border);
-    margin-bottom: 32px;
-  }
-  .logo { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--navy); }
-  .logo span { color: var(--gold); margin: 0 6px; }
-  .report-meta { text-align: right; }
-  .report-meta .label { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
-  .report-meta .name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; }
-  .report-meta .sub { font-size: 11px; color: var(--muted); }
-
-  .part-divider {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin: 36px 0 24px;
-  }
-  .part-label { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); white-space: nowrap; font-weight: 500; }
-  .part-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--navy); white-space: nowrap; }
-  .part-line { flex: 1; height: 1px; background: var(--light-border); }
-
-  .section-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
-  .eyebrow { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
-
-  .summary-block {
-    background: var(--navy);
-    color: white;
-    padding: 28px 32px;
-    border-radius: 4px;
-    margin-bottom: 12px;
-  }
-  .summary-block .eyebrow { color: var(--gold); margin-bottom: 10px; }
-  .summary-block p { font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.85); }
-  .summary-block p strong { color: white; font-weight: 500; }
-  .summary-block .highlight {
-    display: block;
-    background: rgba(201,168,76,0.15);
-    border-left: 2px solid var(--gold);
-    padding: 10px 14px;
-    margin-top: 14px;
-    font-size: 12px;
-    color: rgba(255,255,255,0.9);
-    border-radius: 0 3px 3px 0;
+  h1, h2, h3, p, span, li {
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
-  .disclaimer {
-    font-size: 10px;
-    color: var(--muted);
-    font-style: italic;
-    line-height: 1.6;
-    padding: 10px 0 20px;
-    border-bottom: 1px solid var(--light-border);
-    margin-bottom: 4px;
+  h1, h2, h3, .nav-brand, .eyebrow, .btn-primary, .btn-secondary, .lang-btn, .method-num {
+    font-family: 'Space Grotesk', 'Pretendard', sans-serif;
+    letter-spacing: -0.02em;
   }
 
-  .overview-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 24px; }
-  .overview-card { border: 1px solid var(--light-border); border-radius: 4px; padding: 18px 20px; background: white; text-align: center; }
-  .overview-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; line-height: 1; margin-bottom: 4px; }
-  .overview-num.high { color: var(--high); }
-  .overview-num.mid { color: var(--mid); }
-  .overview-num.low { color: var(--low); }
-  .overview-label { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-  .overview-desc { font-size: 11px; color: var(--navy); line-height: 1.4; }
+  ::selection { background: var(--text-main); color: var(--surface); }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
 
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-  .panel { border: 1px solid var(--light-border); border-radius: 4px; padding: 20px 22px; background: white; }
-
-  .domain-bars { display: flex; flex-direction: column; gap: 14px; }
-  .bar-row { display: flex; flex-direction: column; gap: 5px; }
-  .bar-meta { display: flex; justify-content: space-between; align-items: center; }
-  .bar-name { font-size: 12px; color: var(--navy); font-weight: 400; }
-  .bar-badge { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; }
-  .bar-badge.high { background: rgba(184,92,74,0.1); color: var(--high); }
-  .bar-badge.mid { background: rgba(201,168,76,0.1); color: var(--mid); }
-  .bar-badge.low { background: rgba(107,143,113,0.1); color: var(--low); }
-  .bar-track { height: 6px; background: var(--light-border); border-radius: 3px; overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 3px; }
-  .bar-fill.high { background: var(--high); }
-  .bar-fill.mid { background: var(--mid); }
-  .bar-fill.low { background: var(--low); }
-
-  .sensory-pattern { display: inline-block; background: var(--cream); border-radius: 3px; padding: 5px 10px; font-size: 11px; font-weight: 500; color: var(--navy); margin-bottom: 12px; }
-  .sensory-rows { display: flex; flex-direction: column; gap: 6px; }
-  .sensory-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--light-border); }
-  .sensory-row:last-child { border-bottom: none; }
-  .sensory-badge { font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 7px; border-radius: 2px; flex-shrink: 0; min-width: 58px; text-align: center; }
-  .sensory-badge.often { background: rgba(184,92,74,0.1); color: var(--high); }
-  .sensory-badge.sometimes { background: rgba(201,168,76,0.1); color: var(--mid); }
-  .sensory-badge.always { background: rgba(30,43,74,0.1); color: var(--navy); }
-  .sensory-badge.rarely { background: rgba(107,143,113,0.1); color: var(--low); }
-  .sensory-text { font-size: 11px; color: var(--navy); line-height: 1.4; }
-
-  .cost-block { border: 1px solid var(--light-border); border-radius: 4px; padding: 20px 22px; background: white; margin-bottom: 24px; }
-  .cost-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 300; color: var(--navy); margin-bottom: 14px; }
-  .cost-rows { display: flex; flex-direction: column; }
-  .cost-row { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--light-border); }
-  .cost-row:last-child { border-bottom: none; }
-  .cost-situation { font-size: 12px; color: var(--navy); }
-  .cost-input { display: flex; align-items: center; gap: 6px; }
-  .cost-input input { width: 60px; border: 1px solid var(--light-border); border-radius: 2px; padding: 5px 8px; font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--navy); text-align: center; background: var(--warm-white); }
-  .cost-unit { font-size: 9px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
-  .cost-note { font-size: 10px; color: var(--muted); margin-top: 10px; font-style: italic; line-height: 1.6; }
-
-  .constraint-block {
-    background: var(--navy);
-    color: white;
-    padding: 24px 28px;
-    border-radius: 4px;
-    margin-bottom: 24px;
-  }
-  .constraint-block .eyebrow { color: var(--gold); margin-bottom: 8px; }
-  .constraint-block h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; margin-bottom: 8px; line-height: 1.3; }
-  .constraint-block p { font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.7; }
-
-  .bullet-section { margin-bottom: 20px; }
-  .bullet-card { border: 1px solid var(--light-border); border-radius: 4px; background: white; overflow: hidden; margin-bottom: 12px; }
-  .bullet-card-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 18px;
-    background: var(--cream);
-    border-bottom: 1px solid var(--light-border);
-  }
-  .bullet-card-icon { font-size: 13px; }
-  .bullet-card-title { font-size: 12px; font-weight: 500; color: var(--navy); letter-spacing: 0.02em; }
-  .bullet-list { padding: 4px 0; }
-  .bullet-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 9px 18px;
-    border-bottom: 1px solid var(--light-border);
-    font-size: 12px;
-    color: var(--navy);
-    line-height: 1.5;
-  }
-  .bullet-item:last-child { border-bottom: none; }
-  .bullet-marker { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 6px; }
-
-  .bullet-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-
-  .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
-  .tool-card { border: 1px solid var(--light-border); border-radius: 4px; padding: 16px 18px; background: white; display: flex; flex-direction: column; gap: 5px; }
-  .tool-category { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
-  .tool-name { font-size: 13px; font-weight: 500; color: var(--navy); }
-  .tool-why { font-size: 10px; color: var(--muted); line-height: 1.5; flex: 1; }
-  .tool-link { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 1px; align-self: flex-start; }
-
-  .impl-rows { display: flex; flex-direction: column; margin-bottom: 24px; }
-  .impl-row { display: grid; grid-template-columns: 88px 1fr; border-bottom: 1px solid var(--light-border); }
-  .impl-row:last-child { border-bottom: none; }
-  .impl-time { padding: 14px 16px 14px 0; display: flex; flex-direction: column; justify-content: flex-start; border-right: 2px solid var(--gold); margin-right: 20px; padding-top: 16px; }
-  .impl-time-label { font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 2px; }
-  .impl-time-val { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; color: var(--navy); line-height: 1; }
-  .impl-actions { padding: 14px 0; display: flex; flex-direction: column; gap: 7px; }
-  .impl-action { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--navy); line-height: 1.4; }
-  .impl-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 5px; }
-
-  .cta-block {
-    border: 1px solid var(--gold);
-    border-radius: 4px;
-    padding: 28px 32px;
-    background: white;
-    margin-bottom: 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 32px;
-  }
-  .cta-text .eyebrow { margin-bottom: 6px; }
-  .cta-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--navy); margin-bottom: 6px; line-height: 1.3; }
-  .cta-text p { font-size: 11px; color: var(--muted); line-height: 1.6; max-width: 400px; }
-  .cta-btn {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 14px 28px;
-    background: var(--navy);
-    color: white;
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
-    white-space: nowrap;
-    text-decoration: none;
-    display: inline-block;
-    transition: background 0.2s;
-  }
-  .cta-btn:hover { background: var(--gold); }
-
-  .report-footer { padding-top: 20px; border-top: 1px solid var(--light-border); display: flex; justify-content: space-between; align-items: center; }
-  .footer-note { font-size: 10px; color: var(--muted); line-height: 1.6; max-width: 440px; }
-  .footer-brand { text-align: right; }
-  .footer-brand .logo { font-size: 11px; display: block; margin-bottom: 2px; }
-  .footer-brand .cred { font-size: 9px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
-
-  @media print {
-    .print-bar { display: none; }
-    .page { padding: 36px 48px; }
-    body { background: white; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
   }
 
-  @media (max-width: 640px) {
-    .page { padding: 24px 20px; }
-    .two-col, .overview-grid, .tools-grid, .bullet-two-col { grid-template-columns: 1fr; }
-    .cta-block { flex-direction: column; }
-    .print-bar { padding: 12px 20px; }
+  html[lang="en"] .ko { display: none !important; }
+  html[lang="ko"] .en { display: none !important; }
+
+  .skip-link {
+    position: absolute; top: -48px; left: 0; background: var(--text-main); color: var(--surface);
+    padding: 12px 20px; z-index: 300; font-size: 0.9rem; transition: top 0.3s var(--ease-spring);
+  }
+  .skip-link:focus { top: 0; }
+
+  /* Navigation: 플로팅 글래스모피즘 스타일 */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(248, 249, 25A, 0.75);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid transparent;
+    transition: var(--transition-smooth);
+  }
+  nav.scrolled {
+    border-bottom: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  .nav-inner {
+    max-width: 1440px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem);
+    height: 84px; display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-size: 1.15rem; font-weight: 600; color: var(--text-main);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  
+  .nav-brand-tag {
+    font-size: 0.68rem; font-weight: 500; color: var(--text-muted); 
+    border: 1px solid var(--border);
+    padding: 2px 8px; border-radius: 4px; letter-spacing: 0.05em;
+  }
+
+  .nav-right { display: flex; align-items: center; gap: 2rem; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.88rem; font-weight: 400; color: var(--text-muted);
+    transition: color 0.3s ease; position: relative;
+    padding: 0.5rem 0;
+  }
+  .nav-links a:hover { color: var(--text-main); }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 1px;
+    background: var(--text-main); transition: all 0.3s var(--ease-spring); transform: translateX(-50%);
+  }
+  .nav-links a:hover::after { width: 100%; }
+
+  .lang-toggle { display: flex; background: rgba(10, 10, 12, 0.04); border-radius: 999px; padding: 2px; }
+  .lang-btn {
+    background: transparent; border: none; padding: 4px 10px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); color: var(--text-muted);
+  }
+  .lang-btn[aria-pressed="true"] { background: var(--surface); color: var(--text-main); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+
+  .nav-toggle {
+    display: none; background: none; border: none; cursor: pointer; padding: 6px; color: var(--text-main);
+  }
+
+  /* 모바일 네비게이션 고도화 */
+  .nav-mobile {
+    display: none; flex-direction: column; background: var(--surface); 
+    position: fixed; top: 84px; left: 0; right: 0; bottom: 0;
+    padding: 2rem clamp(1.5rem, 5vw, 4rem); gap: 1rem;
+    opacity: 0; transform: translateY(-10px);
+    transition: opacity 0.4s var(--ease-spring), transform 0.4s var(--ease-spring);
+    pointer-events: none; z-index: 99;
+  }
+  .nav-mobile.open { display: flex; opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .nav-mobile a {
+    font-size: 1.5rem; font-weight: 400; padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border); color: var(--text-main);
+  }
+
+  .page-wrap { max-width: 1440px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
+
+  .eyebrow {
+    display: inline-block; font-size: 0.75rem; font-weight: 600; color: var(--accent);
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.5rem;
+    padding: 4px 12px; border: 1px solid rgba(159, 18, 57, 0.12); border-radius: 4px;
+    background: var(--accent-light);
+  }
+
+  /* Hero Section: 와이드 비대칭 하이엔드 레이아웃 */
+  .hero {
+    padding-top: 180px; min-height: 92dvh; display: grid; grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(3rem, 7vw, 6rem); align-items: center; padding-bottom: 7rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 4.8vw, 4.2rem); font-weight: 500; line-height: 1.15;
+    letter-spacing: -0.03em; margin-bottom: 2rem; color: var(--text-main);
+  }
+  html[lang="ko"] .hero h1 { font-size: clamp(2rem, 4.2vw, 3.4rem); line-height: 1.35; font-weight: 600; }
+  .hero h1 em { font-style: normal; color: var(--accent); font-weight: 600; }
+
+  .hero-sub {
+    font-size: clamp(1.05rem, 1.25vw, 1.2rem); color: var(--text-muted); max-width: 580px; margin-bottom: 3rem;
+    line-height: 1.8; font-weight: 300;
+  }
+
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary, .btn-secondary {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0 2.2rem; min-height: 56px; border-radius: 4px;
+    font-size: 0.9rem; font-weight: 500; transition: var(--transition-smooth);
+    cursor: pointer; white-space: nowrap; position: relative; overflow: hidden;
+  }
+  .btn-primary { background: var(--text-main); color: var(--surface); border: 1px solid var(--text-main); }
+  .btn-primary:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(159,18,57,0.15); }
+  
+  .btn-secondary { background: transparent; color: var(--text-main); border: 1px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--text-main); background: rgba(10,10,12,0.02); transform: translateY(-2px); }
+
+  .hero-img-wrap { position: relative; border-radius: 8px; overflow: hidden; background: #E4E4E7; box-shadow: 0 30px 60px rgba(0,0,0,0.04); }
+  .hero-img-frame { aspect-ratio: 4/5; }
+  .hero-img-frame img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(100%) contrast(102%);
+    transition: transform 1.8s var(--ease-spring);
+  }
+  .hero-img-wrap:hover .hero-img-frame img { transform: scale(1.04); }
+  
+  .hero-img-tag {
+    position: absolute; bottom: 1.5rem; right: 1.5rem; background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); 
+    padding: 0.8rem 1.4rem; border-radius: 4px;
+    font-weight: 500; font-size: 0.75rem; color: var(--text-main);
+    border: 1px solid rgba(255,255,255,0.4); letter-spacing: 0.03em;
+  }
+
+  /* Sections */
+  .section { padding: clamp(6rem, 10vw, 9rem) 0; }
+  .section-title {
+    font-size: clamp(2rem, 3.8vw, 2.8rem); font-weight: 500; line-height: 1.25;
+    letter-spacing: -0.02em; margin-bottom: 1.75rem; max-width: 960px;
+  }
+  html[lang="ko"] .section-title { line-height: 1.45; font-size: clamp(1.7rem, 3.4vw, 2.4rem); font-weight: 600; }
+  .section-title em { font-style: normal; color: var(--accent); }
+
+  .section-lede { font-size: clamp(1.1rem, 1.5vw, 1.25rem); color: var(--text-muted); max-width: 760px; margin-bottom: 4rem; line-height: 1.8; font-weight: 300; }
+
+  /* Bento Grid: 라인 중심의 정갈한 디자인 테넌트 */
+  .bento-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem;
+  }
+  .bento-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: clamp(2rem, 3vw, 2.75rem); transition: var(--transition-smooth);
+    display: flex; flex-direction: column; justify-content: cubic-bezier(0.2, 1, 0.2, 1);
+  }
+  .bento-card:hover {
+    border-color: var(--border-hover); box-shadow: 0 20px 48px rgba(10,10,12,0.03); transform: translateY(-4px);
+  }
+  .bento-tag {
+    display: inline-block; font-size: 0.7rem; font-weight: 600; background: var(--bg-color);
+    padding: 4px 10px; border-radius: 4px; margin-bottom: 1.5rem; text-transform: uppercase;
+    color: var(--text-muted); border: 1px solid var(--border); letter-spacing: 0.05em; width: fit-content;
+  }
+  .bento-card h3 { font-size: 1.3rem; font-weight: 500; margin-bottom: 1rem; line-height: 1.4; color: var(--text-main); }
+  html[lang="ko"] .bento-card h3 { font-weight: 600; }
+  .bento-card h3 em { font-style: normal; color: var(--accent); }
+  .bento-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
+
+  /* Method Flow (Task Analysis) */
+  .method-flow {
+    margin-top: 3.5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .method-step {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: clamp(2rem, 3vw, 2.5rem); transition: var(--transition-smooth);
+  }
+  .method-step:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: 0 20px 48px rgba(10,10,12,0.03); }
+  .method-num {
+    font-size: 0.75rem; font-weight: 600; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 1.25rem; display: block;
+  }
+  .method-step h3 { font-size: 1.2rem; font-weight: 500; margin-bottom: 0.8rem; line-height: 1.4; }
+  html[lang="ko"] .method-step h3 { font-weight: 600; }
+  .method-step p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
+
+  /* Work Grid */
+  .work-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3.5rem;
+  }
+  .work-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: clamp(2rem, 3.5vw, 3rem); transition: var(--transition-smooth);
+  }
+  .work-card:hover { border-color: var(--border-hover); box-shadow: 0 20px 48px rgba(10,10,12,0.03); transform: translateY(-4px); }
+  .work-card h3 { font-size: 1.3rem; font-weight: 500; margin-bottom: 1rem; line-height: 1.4; }
+  html[lang="ko"] .work-card h3 { font-weight: 600; }
+  .work-card h3 em { font-style: normal; color: var(--accent); }
+  .work-card p { font-size: 0.98rem; color: var(--text-muted); line-height: 1.75; font-weight: 300; }
+
+  /* Focus List: 에디토리얼 인덱스 스타일 */
+  .focus-list { list-style: none; display: grid; gap: 1rem; margin-top: 3.5rem; }
+  .focus-list li {
+    display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start;
+    padding: 1.5rem 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+    font-size: 0.98rem; color: var(--text-main); line-height: 1.7; transition: var(--transition-smooth);
+  }
+  .focus-list li:hover { border-color: var(--text-main); transform: translateX(6px); }
+  .focus-list .fx { color: var(--accent); font-weight: 600; font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; letter-spacing: 0.05em; padding-top: 2px; }
+
+  /* Work With (Chips) */
+  .ww-block { margin-top: 4rem; display: grid; gap: 2rem; }
+  .ww-row { border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
+  .ww-row:last-child { border: none; padding-bottom: 0; }
+  .ww-label { font-size: 0.75rem; font-weight: 600; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem; }
+  .ww-chips { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .ww-chip {
+    font-size: 0.88rem; padding: 0.6rem 1.2rem; border-radius: 4px;
+    background: var(--surface); border: 1px solid var(--border); color: var(--text-muted);
+    line-height: 1.4; transition: var(--transition-smooth); font-weight: 300;
+  }
+  .ww-chip:hover { border-color: var(--text-main); color: var(--text-main); background: var(--bg-color); }
+
+  /* Statement Section: 딥 버건디 솔리드 스테이트먼트 */
+  .statement {
+    background: #111113; color: var(--surface);
+    padding: clamp(5rem, 9vw, 8rem) clamp(1.5rem, 5vw, 4rem); text-align: center;
+  }
+  .statement p {
+    font-size: clamp(1.4rem, 2.6vw, 2.2rem); font-weight: 300; line-height: 1.55;
+    max-width: 1040px; margin: 0 auto; letter-spacing: -0.02em;
+  }
+  html[lang="ko"] .statement p { font-weight: 400; line-height: 1.65; }
+  .statement p strong { color: #FDA4AF; font-weight: 500; }
+
+  .collab-note {
+    margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--accent-light);
+    border-radius: 4px; color: var(--text-main); font-weight: 500; font-size: 0.95rem;
+    border-left: 4px solid var(--accent); text-align: left; max-width: 800px; margin-left: auto; margin-right: auto;
+  }
+
+  /* About Grid */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 7vw, 6rem); align-items: start; }
+  .about-text { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.8; font-weight: 300; }
+  .about-text strong { font-weight: 500; color: var(--text-main); }
+  
+  .cred-list { list-style: none; border-top: 1px solid var(--text-main); }
+  .cred-list li {
+    padding: 1.25rem 0; border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: 40px 1fr; font-size: 0.95rem; align-items: start;
+  }
+  .cred-n { font-family: 'Space Grotesk', sans-serif; font-weight: 500; color: var(--text-muted); font-size: 0.85rem; padding-top: 2px; }
+  .cred-text { color: var(--text-main); line-height: 1.6; font-weight: 400; }
+  
+  .badge {
+    background: var(--text-main); color: var(--surface); padding: 1px 8px;
+    border-radius: 2px; font-size: 0.65rem; font-weight: 500; margin-left: 8px; 
+    white-space: nowrap; display: inline-block; vertical-align: middle; letter-spacing: 0.05em;
+  }
+
+  /* Newsletter Card */
+  .newsletter-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: clamp(2.5rem, 6vw, 5rem); display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem;
+  }
+  .newsletter-card h3 { font-size: clamp(1.8rem, 3.2vw, 2.4rem); margin-bottom: 1.5rem; line-height: 1.2; font-weight: 500; }
+  html[lang="ko"] .newsletter-card h3 { font-weight: 600; }
+  .newsletter-card h3 em { font-style: normal; color: var(--accent); }
+  
+  /* Contact Section */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 7vw, 6rem); align-items: start; }
+  .contact-stmt { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 400; line-height: 1.3; letter-spacing: -0.03em; }
+  html[lang="ko"] .contact-stmt { font-weight: 500; line-height: 1.45; }
+  
+  .contact-links { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
+  .contact-row { display: flex; flex-direction: column; gap: 0.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
+  .contact-row:last-child { border: none; }
+  .contact-label { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-row a {
+    font-family: 'Space Grotesk', 'Pretendard', sans-serif; font-size: 1.5rem; font-weight: 400; color: var(--text-main);
+    width: fit-content; transition: var(--transition-smooth);
+  }
+  .contact-row a:hover { color: var(--accent); transform: translateX(4px); }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border); padding: 3rem clamp(1.5rem, 5vw, 4rem);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;
+    max-width: 1440px; margin: 0 auto;
+  }
+  .footer-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.05rem; }
+  .footer-meta { font-size: 0.82rem; color: var(--text-muted); font-weight: 300; letter-spacing: 0.02em; }
+
+  /* Advanced Scroll Reveal 인터랙션 */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.2s var(--ease-spring), transform 1.2s var(--ease-spring);
+    will-change: opacity, transform;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+
+  @media (max-width: 1100px) {
+    .hero, .about-grid, .newsletter-card, .contact-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+    .hero { padding-top: 140px; padding-bottom: 4rem; text-align: left; }
+    .hero-img-wrap { max-width: 440px; margin: 0; }
+    .bento-grid, .work-grid, .method-flow { grid-template-columns: 1fr; gap: 1.5rem; }
+    .newsletter-card { gap: 2.5rem; }
+    .delay-1, .delay-2, .delay-3 { transition-delay: 0s; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links, .nav-brand-tag { display: none; }
+    .nav-toggle { display: block; }
+    .nav-right { gap: 1rem; }
+    .btn-primary, .btn-secondary { width: 100%; }
+    .section { padding: 4.5rem 0; }
+    .newsletter-card { padding: 2rem; border-radius: 8px; }
+    .contact-row a { font-size: 1.25rem; }
+    .focus-list li { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.25rem 1.5rem; }
   }
 </style>
 </head>
 <body>
 
-<div class="print-bar">
-  <span>ADL Friction Report · Confidential</span>
-  <button class="print-btn" onclick="window.print()">Save as PDF →</button>
-</div>
+<a href="#main" class="skip-link">
+  <span class="en">Skip to main content</span>
+  <span class="ko">본문으로 건너뛰기</span>
+</a>
 
-<div class="page">
-
-  <!-- HEADER -->
-  <div class="report-header">
-    <div class="logo">ADL <span>·</span> Lab</div>
-    <div class="report-meta">
-      <div class="label">Friction Report · Personalized</div>
-      <div class="name">Isaac K.</div>
-      <div class="sub">Software Engineer · March 2026</div>
+<nav aria-label="Primary" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">Ahra Roh <span class="nav-brand-tag">OTR/L · ATP</span></a>
+    <div class="nav-right">
+      <ul class="nav-links" id="nav-desktop">
+        <li><a href="#why"><span class="en">Why OT-Tech</span><span class="ko">OT-Tech 소개</span></a></li>
+        <li><a href="#work"><span class="en">What I Do</span><span class="ko">주요 업무</span></a></li>
+        <li><a href="#collab"><span class="en">Collaboration</span><span class="ko">협업 제안</span></a></li>
+        <li><a href="#about"><span class="en">About</span><span class="ko">소개</span></a></li>
+        <li><a href="#writing"><span class="en">Newsletter</span><span class="ko">뉴스레터</span></a></li>
+        <li><a href="#contact"><span class="en">Contact</span><span class="ko">문의하기</span></a></li>
+      </ul>
+      <div class="lang-toggle" role="group" aria-label="Language selector">
+        <button class="lang-btn" data-lang="en" aria-pressed="true" aria-label="Switch to English">EN</button>
+        <button class="lang-btn" data-lang="ko" aria-pressed="false" aria-label="한국어로 보기">KO</button>
+      </div>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile" id="nav-toggle">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/>
+        </svg>
+      </button>
     </div>
   </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="#why" onclick="closeMobileNav()"><span class="en">Why OT-Tech</span><span class="ko">OT-Tech 소개</span></a>
+    <a href="#work" onclick="closeMobileNav()"><span class="en">What I Do</span><span class="ko">주요 업무</span></a>
+    <a href="#collab" onclick="closeMobileNav()"><span class="en">Collaboration</span><span class="ko">협업 제안</span></a>
+    <a href="#about" onclick="closeMobileNav()"><span class="en">About</span><span class="ko">소개</span></a>
+    <a href="#writing" onclick="closeMobileNav()"><span class="en">Newsletter</span><span class="ko">뉴스레터</span></a>
+    <a href="#contact" onclick="closeMobileNav()"><span class="en">Contact</span><span class="ko">문의하기</span></a>
+  </div>
+</nav>
 
-  <!-- EXECUTIVE SUMMARY -->
-  <div class="summary-block">
-    <div class="eyebrow">Structural Summary</div>
+<main id="main">
+
+  <div class="page-wrap">
+    <section class="hero">
+      <div class="reveal active">
+        <p class="eyebrow">
+          <span class="en">OT-Tech Specialist · Los Angeles</span>
+          <span class="ko">OT-Tech Specialist · LA</span>
+        </p>
+        <h1>
+          <span class="en">How a product <em>feels to use</em> is a different question from whether it works.</span>
+          <span class="ko">제품이 '작동하는가'와 쓸 때 <em>'어떻게 느껴지는가'</em>는 완전히 다른 문제입니다.</span>
+        </h1>
+        <p class="hero-sub">
+          <span class="en">Most products are built around what the technology can do. I look at the other half: what happens to a person's hands, body, and attention in the moment they actually use it. That gap is where I work.</span>
+          <span class="ko">대부분의 제품은 기술로 구현할 수 있는 기능에 집중합니다. 하지만 저는 나머지 절반을 봅니다. 사람이 제품을 실제로 사용하는 순간, 우리의 손과 몸, 그리고 인지에 어떤 일이 일어나는지를 살핍니다. 그 간극을 채우는 것이 제 역할입니다.</span>
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn-primary">
+            <span class="en">Start a Conversation</span>
+            <span class="ko">프로젝트 논의하기</span>
+          </a>
+          <a href="#work" class="btn-secondary">
+            <span class="en">See What I Do</span>
+            <span class="ko">작업 살펴보기</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-img-wrap reveal delay-1 active">
+        <div class="hero-img-frame">
+          <img src="Ahra_Roh_Profile.png" alt="Ahra Roh, OT-Tech Specialist">
+        </div>
+        <div class="hero-img-tag">
+          <span>Founder, ADL Lab</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="page-wrap">
+    <section class="section" id="why">
+      <p class="eyebrow reveal">
+        <span class="en">01 · Why OT-Tech</span>
+        <span class="ko">01 · OT-Tech 소개</span>
+      </p>
+      <h2 class="section-title reveal">
+        <span class="en">I read the <em>moment of use</em>, not just the spec sheet.</span>
+        <span class="ko">단순한 스펙이 아닌, <em>'사용하는 순간'</em>을 읽어냅니다.</span>
+      </h2>
+      <p class="section-lede reveal delay-1">
+        <span class="en">Occupational therapy is the study of how people carry out the real activities of daily life. I bring that lens to products: how a button, a grip, or an interface actually performs in a person's hands. It rarely sits in a product room.</span>
+        <span class="ko">작업치료는 사람이 일상적인 활동을 어떻게 수행하는지 연구하는 분야입니다. 저는 이 관점을 제품에 적용합니다. 버튼의 위치, 손잡이의 그립감, 인터페이스 하나가 사람의 손끝에서 실제로 어떻게 작동하는지 분석합니다. 이는 기존 제품 개발 현장에서는 쉽게 찾아보기 힘든 새로운 접근입니다.</span>
+      </p>
+      
+      <div class="bento-grid">
+        <div class="bento-card reveal delay-1">
+          <span class="bento-tag">
+            <span class="en">Body</span>
+            <span class="ko">신체 (Body)</span>
+          </span>
+          <h3>
+            <span class="en">What the <em>hands and body</em> do.</span>
+            <span class="ko"><em>손과 몸</em>의 움직임.</span>
+          </h3>
+          <p>
+            <span class="en">Grip, force, reach, posture, repetition. Where a movement strains, tires, or quietly works against the person over time.</span>
+            <span class="ko">손에 쥐는 방식, 가해지는 힘, 닿는 거리, 자세와 반복 동작. 어떤 움직임이 신체에 무리를 주고 피로를 유발하며, 장기적으로 사용자에게 불편을 초래하는지 파악합니다.</span>
+          </p>
+        </div>
+        <div class="bento-card reveal delay-2">
+          <span class="bento-tag">
+            <span class="en">Mind</span>
+            <span class="ko">인지 (Mind)</span>
+          </span>
+          <h3>
+            <span class="en">What the <em>mind has to process.</em></span>
+            <span class="ko"><em>인지적</em> 처리 과정.</span>
+          </h3>
+          <p>
+            <span class="en">The thinking a screen or control demands: how much attention, how many steps, how much is held in memory while doing something else.</span>
+            <span class="ko">화면이나 조작부가 요구하는 인지적 부담. 주의력이 얼마나 필요한지, 몇 단계를 거쳐야 하는지, 다른 작업을 수행하면서 얼마나 많은 정보를 기억해야 하는지 분석합니다.</span>
+          </p>
+        </div>
+        <div class="bento-card reveal delay-3">
+          <span class="bento-tag">
+            <span class="en">Senses & Context</span>
+            <span class="ko">감각과 사용 환경</span>
+          </span>
+          <h3>
+            <span class="en">What the <em>senses and setting</em> ask.</span>
+            <span class="ko"><em>감각적 반응</em>과 주변 상황.</span>
+          </h3>
+          <p>
+            <span class="en">Touch feedback, sound, visibility, and the real setting of use: driving, cooking, tired, hands full, low light.</span>
+            <span class="ko">촉각 피드백, 소리, 시인성뿐만 아니라 실제 제품이 쓰이는 상황을 고려합니다. 운전 중이거나 요리를 할 때, 피곤할 때, 양손에 짐이 있을 때, 혹은 어두운 곳에서 사용할 때를 모두 포함합니다.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="page-wrap">
+    <section class="section" id="work">
+      <p class="eyebrow reveal">
+        <span class="en">02 · What I Do</span>
+        <span class="ko">02 · 주요 업무</span>
+      </p>
+      <h2 class="section-title reveal">
+        <span class="en">A read on the <em>experience of use</em> — what works, what doesn't, and who it's for.</span>
+        <span class="ko"><em>사용 경험(UX) 진단</em> — 무엇이 매끄럽고, 무엇이 불편하며, 누구에게 최적화되어 있는지 파악합니다.</span>
+      </h2>
+      <p class="section-lede reveal delay-1">
+        <span class="en">I don't evaluate the core technology. I evaluate the experience of using it. This can come in early, while an idea is forming, or later, when a product is being refined.</span>
+        <span class="ko">저는 핵심 기술 자체를 평가하지 않습니다. 대신, 그 기술을 '사용하는 경험'을 평가합니다. 아이디어가 기획되는 초기 단계부터, 제품을 정교하게 다듬는 후반 단계까지 모든 과정에 참여할 수 있습니다.</span>
+      </p>
+
+      <div class="work-grid">
+        <div class="work-card reveal delay-1">
+          <h3>
+            <span class="en">I find what <em>already works.</em></span>
+            <span class="ko">이미 <em>훌륭하게 작동하는 요소</em>를 찾습니다.</span>
+          </h3>
+          <p>
+            <span class="en">This isn't fault-finding. Well-resourced products get a lot right. I name why a detail feels good in the hand, so the team knows what to protect.</span>
+            <span class="ko">단순히 문제점만 찾는 것이 아닙니다. 훌륭한 제품은 이미 많은 것을 제대로 갖추고 있습니다. 어떤 디테일이 왜 사용자에게 편안함을 주는지 명확히 짚어내어, 팀이 반드시 유지해야 할 강점을 알려줍니다.</span>
+          </p>
+        </div>
+        <div class="work-card reveal delay-2">
+          <h3>
+            <span class="en">I locate the <em>friction.</em></span>
+            <span class="ko">경험의 <em>마찰점</em>을 찾아냅니다.</span>
+          </h3>
+          <p>
+            <span class="en">The small snags that interrupt flow: the button that needs an awkward press, the screen-only control that fails when your eyes are elsewhere, the grip that tires a wrist.</span>
+            <span class="ko">사용의 흐름을 끊는 미세한 불편함들. 누르기 불편한 버튼, 화면을 보지 않으면 조작하기 힘든 터치 인터페이스, 손목에 피로를 주는 그립 등을 찾아냅니다.</span>
+          </p>
+        </div>
+        <div class="work-card reveal delay-1">
+          <h3>
+            <span class="en">I map <em>who it fits.</em></span>
+            <span class="ko"><em>어떤 사용자</em>에게 적합한지 매핑합니다.</span>
+          </h3>
+          <p>
+            <span class="en">A product works differently for different people and situations. I map who a design serves well, who it leaves out, and when it shines.</span>
+            <span class="ko">하나의 제품이라도 사용자와 상황에 따라 경험이 다릅니다. 이 디자인이 어떤 사람에게 가장 유용한지, 누구를 소외시키고 있는지, 언제 진가를 발휘하는지 분석합니다.</span>
+          </p>
+        </div>
+        <div class="work-card reveal delay-2">
+          <h3>
+            <span class="en">I work at the <em>interface level.</em></span>
+            <span class="ko"><em>인터페이스 단위</em>로 미시적 분석을 진행합니다.</span>
+          </h3>
+          <p>
+            <span class="en">Not the whole product. One unit at a time: a trigger button, a dial, a haptic interface, a dashboard. Small enough to be precise, specific enough to act on.</span>
+            <span class="ko">제품 전체를 뭉뚱그려 보지 않습니다. 트리거 버튼, 다이얼, 햅틱 피드백, 대시보드 등 한 번에 하나의 요소에 집중합니다. 정확하게 분석하고 구체적인 개선안 도출할 수 있는 단위로 접근합니다.</span>
+          </p>
+        </div>
+      </div>
+
+      <ul class="focus-list reveal delay-2">
+        <li>
+          <span class="fx">EX</span>
+          <div>
+            <span class="en">A vacuum trigger you hold down: how much force, for how long, and what the hand pays for it.</span>
+            <span class="ko">손가락으로 계속 누르고 있어야 하는 청소기 트리거: 어느 정도의 힘으로, 얼마나 오래 유지해야 하며, 그로 인해 손에 어떤 부담이 가해지는지.</span>
+          </div>
+        </li>
+        <li>
+          <span class="fx">EX</span>
+          <div>
+            <span class="en">A car's flat, screen-only interface: what it asks of attention while the eyes belong on the road.</span>
+            <span class="ko">자동차의 터치스크린 인터페이스: 시선이 도로를 향해야 하는 상황에서 사용자에게 얼마만큼의 인지적 주의력을 요구하는지.</span>
+          </div>
+        </li>
+        <li>
+          <span class="fx">EX</span>
+          <div>
+            <span class="en">A washer with no haptic feedback: how a person knows an action registered, without touch to confirm it.</span>
+            <span class="ko">물리적 피드백이 없는 터치형 세탁기: 촉각적 확인 없이 사용자가 기기 조작 여부를 어떻게 인지할 수 있는지.</span>
+          </div>
+        </li>
+        <li>
+          <span class="fx">EX</span>
+          <div>
+            <span class="en">A kitchen or workspace layout: how the placement of a handle, shelf, or control shapes the whole sequence of a task.</span>
+            <span class="ko">주방이나 작업 공간의 레이아웃: 손잡이, 선반, 조작부의 위치가 전체 작업 흐름과 효율성에 어떤 영향을 미치는지.</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="page-wrap">
+    <section class="section" id="method" style="padding-top:0;">
+      <p class="eyebrow reveal">
+        <span class="en">My Method</span>
+        <span class="ko">분석 방법</span>
+      </p>
+      <h2 class="section-title reveal">
+        <span class="en">I don't measure usability. I <em>interpret what the use means.</em></span>
+        <span class="ko">사용성을 수치로 '측정'하는 데 그치지 않고, <em>사용 행위 이면의 의미를 '해석'합니다.</em></span>
+      </h2>
+      <p class="section-lede reveal delay-1">
+        <span class="en">This is what sets an OT lens apart from human factors or ergonomics. They measure the interface. I break the use into its real steps, read the body, mind, and senses at each one, then interpret what it all means for the task the person is actually trying to finish.</span>
+        <span class="ko">이것이 바로 작업치료(OT)의 시선이 기존의 인간공학이나 인체공학과 구별되는 지점입니다. 그들이 인터페이스를 측정할 때, 저는 일련의 사용 과정을 실제 행동 단위로 해체합니다. 그리고 각 단계마다 신체, 인지, 감각에 어떤 반응이 일어나는지 읽어낸 후, 이것이 사용자가 완수하려는 궁극적인 목적에 어떤 영향을 미치는지 해석해 냅니다.</span>
+      </p>
+
+      <div class="method-flow">
+        <div class="method-step reveal delay-1">
+          <span class="method-num">01 · TASK ANALYSIS</span>
+          <h3>
+            <span class="en">Break the use into real steps.</span>
+            <span class="ko">행위의 해체와 분해</span>
+          </h3>
+          <p>
+            <span class="en">An everyday action is never one motion. I break it into the actual sequence a person moves through, so nothing gets hidden inside the word "use."</span>
+            <span class="ko">일상의 동작은 결코 단일한 움직임으로 이루어지지 않습니다. 사람이 실제로 거치는 행위의 흐름을 단위별로 분해하여, '사용'이라는 모호한 단어 속에 가려진 미세한 지점들을 수면 위로 끌어올립니다.</span>
+          </p>
+        </div>
+        <div class="method-step reveal delay-2">
+          <span class="method-num">02 · DEMAND READING</span>
+          <h3>
+            <span class="en">Read the demand at each step.</span>
+            <span class="ko">보이지 않는 부하(Demand) 읽기</span>
+          </h3>
+          <p>
+            <span class="en">At every step I read what it asks of the body, the mind, and the senses — where effort, attention, or strain quietly accumulates.</span>
+            <span class="ko">분해된 각 단계가 신체와 인지, 감각에 어떤 것을 요구하는지 읽어냅니다. 무의식적인 노력이 필요한 곳, 주의력이 분산되는 곳, 그리고 피로가 조용히 누적되는 지점을 짚어냅니다.</span>
+          </p>
+        </div>
+        <div class="method-step reveal delay-3">
+          <span class="method-num">03 · FUNCTIONAL INTERPRETATION</span>
+          <h3>
+            <span class="en">Interpret it against the goal.</span>
+            <span class="ko">목적을 향한 기능적 해석</span>
+          </h3>
+          <p>
+            <span class="en">A number alone isn't an answer. I interpret what the demand means for the real goal: does it support the task, or quietly work against it?</span>
+            <span class="ko">단순한 수치만으로는 완벽한 해답이 될 수 없습니다. 발견된 마찰과 부하가 사용자의 최종 목적에 어떤 영향을 미치는지 기능적으로 해석합니다. 이 디자인은 사용자를 돕고 있습니까, 아니면 조용히 방해하고 있습니까?</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="statement reveal">
     <p>
-      You're running a hybrid work schedule — alternating between home weeks and office weeks with a 30–40 minute commute — while serving as a primary caregiver for a baby outside work hours. Your FFI scores are largely stable, which tells us your individual load tolerance is solid. But <strong>the friction isn't in the domains — it's in the transitions between them.</strong> Every shift from engineer to parent happens without a buffer, and night wake-ups are quietly compressing the recovery window that would otherwise protect your performance. The good news: you already know what works for you. Exercise first. Do hard things early. Automate what repeats. The goal now is to protect those instincts structurally so they hold even on the hard days.
+      <span class="en">A design detail that's <strong>crucial for some</strong> is almost always <strong>better for all.</strong> The control you can find without looking helps the driver with their eyes on the road, and everyone reaching for it in the dark. This isn't an accommodation mindset. It's a quality one.</span>
+      <span class="ko">특정 누군가에게 <strong>필수적인 디자인 디테일</strong>은 대개 <strong>모두에게 더 나은 경험</strong>을 제공합니다. 보지 않고도 쉽게 찾을 수 있는 조작부는 도로에 시선을 둔 운전자뿐만 아니라, 어두운 방 안에서 스위치를 찾는 모든 이를 돕습니다. 이는 소수를 위한 '배려'가 아니라 제품 전체의 '품질'을 높이는 일입니다.</span>
     </p>
-    <span class="highlight">→ Your morning energy window is your highest-value asset. Protecting it — and building a transition ritual that doesn't cost it — is the single highest-leverage change available to you right now.</span>
+  </section>
+
+  <div class="page-wrap">
+    <section class="section" id="collab">
+      <p class="eyebrow reveal">
+        <span class="en">03 · Collaboration</span>
+        <span class="ko">03 · 협업 제안</span>
+      </p>
+      <h2 class="section-title reveal">
+        <span class="en">No fixed service packages yet. <em>Open to conversations.</em></span>
+        <span class="ko">정형화된 패키지는 없습니다. <em>열린 마음으로 논의를 시작합니다.</em></span>
+      </h2>
+      <p class="section-lede reveal delay-1">
+        <span class="en">Before settling into standardized offerings, I'm starting with open conversations: to understand the problems worth solving and find where this lens actually fits.</span>
+        <span class="ko">정해진 서비스 모델을 제시하기보다, 먼저 열린 대화를 나누고자 합니다. 해결할 가치가 있는 문제가 무엇인지, 저의 전문성이 팀의 목표에 어떻게 기여할 수 있을지 함께 고민하고 싶습니다.</span>
+      </p>
+
+      <div class="ww-block reveal delay-2">
+        <div class="ww-row">
+          <p class="ww-label"><span class="en">At any stage</span><span class="ko">모든 개발 단계에서</span></p>
+          <div class="ww-chips">
+            <span class="ww-chip"><span class="en">Early design ideas</span><span class="ko">디자인 아이디어 구상 단계</span></span>
+            <span class="ww-chip"><span class="en">Prototype review</span><span class="ko">프로토타입 사용성 검토</span></span>
+            <span class="ww-chip"><span class="en">Refining a product</span><span class="ko">기존 제품 고도화 및 개선</span></span>
+            <span class="ww-chip"><span class="en">A professional read on user feedback</span><span class="ko">사용자 피드백 심층 분석</span></span>
+          </div>
+        </div>
+        <div class="ww-row">
+          <p class="ww-label"><span class="en">Alongside teams like</span><span class="ko">협업 가능한 부서</span></p>
+          <div class="ww-chips">
+            <span class="ww-chip">Industrial Design</span>
+            <span class="ww-chip">Product Design</span>
+            <span class="ww-chip">UX Research</span>
+            <span class="ww-chip">Human Factors</span>
+            <span class="ww-chip">Ergonomics</span>
+            <span class="ww-chip">Inclusive Design</span>
+          </div>
+        </div>
+        <div class="ww-row">
+          <p class="ww-label"><span class="en">From startups to established makers</span><span class="ko">다양한 규모의 기업과 함께</span></p>
+          <div class="ww-chips">
+            <span class="ww-chip"><span class="en">Startups with a new product</span><span class="ko">신제품을 개발 중인 스타트업</span></span>
+            <span class="ww-chip"><span class="en">Small teams needing a review</span><span class="ko">전문가의 리뷰가 필요한 소규모 팀</span></span>
+            <span class="ww-chip"><span class="en">Established consumer brands</span><span class="ko">사용성 개선이 필요한 기성 브랜드</span></span>
+          </div>
+        </div>
+      </div>
+      
+      <p class="collab-note reveal delay-3">
+        <span class="en">How we'd work together depends on what you're trying to do. I'd rather shape that through a real conversation than a fixed menu.</span>
+        <span class="ko">구체적인 협업 방식은 팀이 당면한 과제에 따라 유연하게 결정됩니다. 정해진 방식에 맞추기보다는, 깊이 있는 대화를 통해 최적의 해결책을 함께 찾아가기를 기대합니다.</span>
+      </p>
+    </section>
   </div>
 
-  <!-- DISCLAIMER -->
-  <div class="disclaimer">
-    This report reflects your self-reported responses at the time of intake. Results may shift as your environment or workload changes. This is a structural analysis tool — not a clinical assessment.
+  <div class="page-wrap">
+    <section class="section" id="about">
+      <p class="eyebrow reveal">
+        <span class="en">04 · About</span>
+        <span class="ko">04 · 소개</span>
+      </p>
+      <h2 class="section-title reveal">
+        <span class="en">14 years at the intersection of <em>bodies, environments, and tools.</em></span>
+        <span class="ko"><em>신체, 환경, 그리고 기기</em>가 교차하는 접점에서 쌓아온 14년의 전문성.</span>
+      </h2>
+      <div class="about-grid">
+        <div class="reveal delay-1">
+          <p class="about-text">
+            <span class="en">I'm Ahra Roh, an OT-Tech Specialist with 14 years of clinical occupational therapy experience and ATP certification. For years my work was reading how a real body and nervous system engage with a tool, moment to moment.</span>
+            <span class="ko">안녕하세요, OT-Tech Specialist 노아라입니다. 14년 이상의 임상 작업치료(OT) 경험과 미국 보조공학전문가(ATP) 자격을 보유하고 있습니다. 오랫동안 사람의 신체와 신경계가 도구와 어떻게 상호작용하는지 미시적인 관점에서 연구하고 분석해 왔습니다.</span>
+          </p>
+          <p class="about-text">
+            <span class="en">I founded ADL Lab to bring that lens to everyday products: not the ones built for disability, but the ones everyone uses. By product I mean anything a person operates to get something done, whether physical, digital, or spatial.</span>
+            <span class="ko">이러한 임상적 통찰을 일상적인 소비재에 적용하고자 ADL Lab을 설립했습니다. 특정 계층을 위한 보조 기기가 아니라, 누구나 매일 사용하는 보편적인 제품의 사용성을 혁신하는 것이 목표입니다. 물리적인 하드웨어, 디지털 인터페이스, 공간 디자인까지 사용자가 조작하고 경험하는 모든 것이 제 분석 대상입니다.</span>
+          </p>
+          <p class="about-text">
+            <span class="en">Based in Los Angeles. Bilingual in Korean and English, and set up to work remotely with teams in both markets.</span>
+            <span class="ko">미국 로스앤젤레스(LA)를 거점으로 활동하고 있습니다. 한국어와 영어에 모두 능통하며, 국내외 다양한 팀들과 긴밀하게 원격 협업을 진행합니다.</span>
+          </p>
+        </div>
+        <ul class="cred-list reveal delay-2">
+          <li><span class="cred-n">01</span><span class="cred-text">
+            <span class="en">14+ years of clinical OT across neuro-rehab and pediatrics.</span>
+            <span class="ko">신경계 재활 및 소아 치료를 아우르는 14년 이상의 작업치료 임상 경력</span>
+          </span></li>
+          <li><span class="cred-n">02</span><span class="cred-text">
+            <span class="en">OT / ATP at Santa Monica College <span class="badge">Current</span></span>
+            <span class="ko">Santa Monica College 소속 OT / ATP <span class="badge">현직</span></span>
+          </span></li>
+          <li><span class="cred-n">03</span><span class="cred-text">
+            <span class="en">Adjunct Faculty at Santa Monica College <span class="badge">Current</span></span>
+            <span class="ko">Santa Monica College 겸임 교수 <span class="badge">현직</span></span>
+          </span></li>
+          <li><span class="cred-n">04</span><span class="cred-text">
+            <span class="en">Founder, ADL Lab</span>
+            <span class="ko">ADL Lab 창립자</span>
+          </span></li>
+          <li><span class="cred-n">05</span><span class="cred-text">
+            <span class="en">RESNA Certified ATP</span>
+            <span class="ko">RESNA 공인 보조공학 전문가 (ATP)</span>
+          </span></li>
+          <li><span class="cred-n">06</span><span class="cred-text">
+            <span class="en">M.A. in Occupational Science & Therapy, USC</span>
+            <span class="ko">남가주대학교(USC) 작업과학 및 치료학 석사</span>
+          </span></li>
+          <li><span class="cred-n">07</span><span class="cred-text">
+            <span class="en">B.A. in Neuroscience, USC</span>
+            <span class="ko">남가주대학교(USC) 신경과학 학사</span>
+          </span></li>
+        </ul>
+      </div>
+    </section>
   </div>
 
-  <!-- ─── PART 1: AWARENESS ─── -->
-  <div class="part-divider">
-    <span class="part-label">Part 01</span>
-    <span class="part-title">Awareness — Results & Interpretation</span>
-    <div class="part-line"></div>
+  <div class="page-wrap">
+    <section class="section" id="writing">
+      <div class="newsletter-card reveal">
+        <div>
+          <p class="eyebrow" style="background: var(--bg-color);">
+            <span class="en">05 · Newsletter</span>
+            <span class="ko">05 · 뉴스레터</span>
+          </p>
+          <h3>
+            <span class="en">Notes from the <em>Gap.</em></span>
+            <span class="ko">경험의 <em>간극</em>을 좁히는 기록.</span>
+          </h3>
+          <p class="about-text" style="margin-bottom: 2.5rem;">
+            <span class="en">Field notes on what I notice: pain points people can't quite name, common misreadings of accessibility, and the parts of using a product that design tends to skip.</span>
+            <span class="ko">현장에서 발견한 인사이트를 나눕니다. 사용자가 정확히 언어화하지 못하는 불편함, 접근성(Accessibility)에 대한 흔한 오해, 그리고 제품 디자인 과정에서 간과하기 쉬운 '실제 사용 순간'의 디테일을 다룹니다.</span>
+          </p>
+          <a href="https://www.linkedin.com/newsletters/ot-tech-notes-7457137843690393600/" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            <span class="en">Read on LinkedIn</span>
+            <span class="ko">LinkedIn에서 읽기</span>
+          </a>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: center;">
+          <p class="about-text">
+            <span class="en"><strong>Part of the 'OT + Tech' series</strong> — what this lens is, and why it belongs in product work.</span>
+            <span class="ko"><strong>‘OT + Tech’ 시리즈의 일환</strong>으로, 작업치료적 관점이 제품 개발에 왜 필수적인지 심도 있게 풀어냅니다.</span>
+          </p>
+          <div style="margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1.5rem;">
+            <p style="font-size: 0.75rem; color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.05em; line-height: 1.5;">
+              <span class="en">KEYWORDS: Usability · Human Performance · Cognitive Load · Inclusive Design</span>
+              <span class="ko">KEYWORDS: 사용성 · 인체공학 · 인지 부하 · 포용적 디자인</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <!-- OVERVIEW NUMBERS -->
-  <div class="overview-grid">
-    <div class="overview-card">
-      <div class="overview-num mid">1</div>
-      <div class="overview-label">Elevated domain</div>
-      <div class="overview-desc">Interpersonal & Social (6/15) — caregiver load, schedule variability</div>
-    </div>
-    <div class="overview-card">
-      <div class="overview-num low">Morning</div>
-      <div class="overview-label">Peak energy window</div>
-      <div class="overview-desc">Mornings are your highest-output window — protect aggressively</div>
-    </div>
-    <div class="overview-card">
-      <div class="overview-num mid">2</div>
-      <div class="overview-label">Active life contexts</div>
-      <div class="overview-desc">Hybrid engineer (home + office weeks) + infant caregiver, daily</div>
-    </div>
+  <div class="page-wrap">
+    <section class="section" id="contact">
+      <p class="eyebrow reveal">
+        <span class="en">06 · Contact</span>
+        <span class="ko">06 · 문의하기</span>
+      </p>
+      <div class="contact-grid">
+        <h2 class="contact-stmt reveal delay-1">
+          <span class="en">If your team is building something people use, let's start a conversation.</span>
+          <span class="ko">사람들이 매일 사용하는 프로덕트를 만들고 계신다면, 언제든 편하게 연락해 주세요.</span>
+        </h2>
+        <div class="reveal delay-2">
+          <p class="about-text">
+            <span class="en">I'm open to product conversations, guest lectures, workshops, and research collaboration. The best fit usually becomes clear through a first conversation.</span>
+            <span class="ko">제품 사용성 컨설팅, 초청 강연, 사내 워크숍, 리서치 협업 등 다양한 형태의 제안을 환영합니다. 가벼운 첫 만남을 통해 팀에 가장 적합한 협업 방식을 찾아보세요.</span>
+          </p>
+          <div class="contact-links">
+            <div class="contact-row">
+              <span class="contact-label"><span class="en">Email</span><span class="ko">이메일</span></span>
+              <a href="mailto:AhraRohOT@gmail.com">AhraRohOT@gmail.com</a>
+            </div>
+            <div class="contact-row">
+              <span class="contact-label">LinkedIn</span>
+              <a href="https://www.linkedin.com/in/ahra-roh-65632a44/" target="_blank" rel="noopener noreferrer">Ahra Roh (@ahraroh)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <!-- DOMAIN BARS + SENSORY -->
-  <div class="two-col">
-    <div class="panel">
-      <div class="section-label">Domain Load</div>
-      <div class="domain-bars">
-        <div class="bar-row">
-          <div class="bar-meta"><span class="bar-name">Cognitive & Executive</span><span class="bar-badge low">Stable</span></div>
-          <div class="bar-track"><div class="bar-fill low" style="width:33%"></div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-meta"><span class="bar-name">Sensory & Environmental</span><span class="bar-badge low">Stable</span></div>
-          <div class="bar-track"><div class="bar-fill low" style="width:33%"></div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-meta"><span class="bar-name">Somatic & Physical</span><span class="bar-badge low">Stable</span></div>
-          <div class="bar-track"><div class="bar-fill low" style="width:33%"></div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-meta"><span class="bar-name">Interpersonal & Social</span><span class="bar-badge mid">Elevated</span></div>
-          <div class="bar-track"><div class="bar-fill mid" style="width:40%"></div></div>
-        </div>
-      </div>
-    </div>
+</main>
 
-    <div class="panel">
-      <div class="section-label">Sensory Profile</div>
-      <div class="sensory-pattern">Moderate Sensitivity · Context-Dependent</div>
-      <div class="sensory-rows">
-        <div class="sensory-row"><span class="sensory-badge sometimes">Sometimes</span><span class="sensory-text">Noise, clutter, or interruptions throw off focus</span></div>
-        <div class="sensory-row"><span class="sensory-badge sometimes">Sometimes</span><span class="sensory-text">Needs movement or variety to stay engaged</span></div>
-        <div class="sensory-row"><span class="sensory-badge sometimes">Sometimes</span><span class="sensory-text">Social interaction feels depleting, even when it went well</span></div>
-        <div class="sensory-row"><span class="sensory-badge often">Often</span><span class="sensory-text">Functions best with predictable environments and schedule</span></div>
-        <div class="sensory-row"><span class="sensory-badge sometimes">Sometimes</span><span class="sensory-text">Overrides hunger or fatigue signals without noticing</span></div>
-      </div>
-    </div>
-  </div>
+<footer>
+  <div class="footer-title">Ahra Roh, OTR/L, ATP</div>
+  <div class="footer-meta">© 2026 · OT-Tech Specialist · Founder, ADL Lab</div>
+</footer>
 
-  <!-- COST -->
-  <div class="cost-block">
-    <div class="section-label">Estimated Weekly Leak</div>
-    <div class="cost-title">How many hours per week is each friction point consuming?</div>
-    <div class="cost-rows">
-      <div class="cost-row">
-        <div class="cost-situation">Re-entering deep work focus after unplanned baby care interruptions</div>
-        <div class="cost-input"><input type="number" placeholder="?"><span class="cost-unit">hrs/wk lost</span></div>
-      </div>
-      <div class="cost-row">
-        <div class="cost-situation">Commute overhead on office weeks (prep time + transit + re-settling)</div>
-        <div class="cost-input"><input type="number" placeholder="?"><span class="cost-unit">hrs/wk lost</span></div>
-      </div>
-      <div class="cost-row">
-        <div class="cost-situation">Morning performance loss from night wake-ups (fragmented sleep)</div>
-        <div class="cost-input"><input type="number" placeholder="?"><span class="cost-unit">hrs/wk lost</span></div>
-      </div>
-      <div class="cost-row">
-        <div class="cost-situation">Avoided home task (cleaning) — mental overhead of avoidance + catch-up cost</div>
-        <div class="cost-input"><input type="number" placeholder="?"><span class="cost-unit">hrs/wk lost</span></div>
-      </div>
-    </div>
-    <div class="cost-note">Total hours × your hourly rate = structural cost per week. Night wake-up loss compounds: even partial sleep disruption reduces next-day cognitive output by 20–30%.</div>
-  </div>
+<script>
+  // Language Toggle
+  const langBtns = document.querySelectorAll('.lang-btn');
+  const html = document.documentElement;
+  const savedLang = sessionStorage.getItem('preferredLang') || 'en';
+  setLang(savedLang);
 
-  <!-- ─── PART 2: ACCEPTANCE ─── -->
-  <div class="part-divider">
-    <span class="part-label">Part 02</span>
-    <span class="part-title">Acceptance — Why This Is Happening</span>
-    <div class="part-line"></div>
-  </div>
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const newLang = btn.dataset.lang;
+      setLang(newLang);
+      try { sessionStorage.setItem('preferredLang', newLang); } catch(e) {}
+    });
+  });
 
-  <div class="constraint-block">
-    <div class="eyebrow">Primary Structural Constraint</div>
-    <h3>Your peak morning window is unprotected — and the baby doesn't negotiate timing.</h3>
-    <p>You already know what works: exercise first, hard things early, automate what repeats. That's a sound strategy. The problem is that it was designed for a life with more schedule control than you currently have. Night wake-ups compress your recovery and erode the morning quality your whole system depends on. The work-to-parent switch happens reactively — whenever the baby needs it — without a buffer. Over time, unplanned transitions accumulate into a chronic low-grade drain. This isn't a motivation problem. It's a constraint problem. The solution isn't to work harder — it's to build defaults small enough that they survive the hard days: the days you woke up twice, have an office commute, and still need to produce.</p>
-  </div>
+  function setLang(lang) {
+    html.setAttribute('lang', lang);
+    langBtns.forEach(btn => btn.setAttribute('aria-pressed', btn.dataset.lang === lang));
+  }
 
-  <!-- ─── PART 3: ADJUST ─── -->
-  <div class="part-divider">
-    <span class="part-label">Part 03</span>
-    <span class="part-title">Adjust — What You Can Do</span>
-    <div class="part-line"></div>
-  </div>
+  // Mobile Nav Toggle
+  const toggle = document.getElementById('nav-toggle');
+  const mobileNav = document.getElementById('nav-mobile');
+  toggle.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', mobileNav.classList.contains('open'));
+  });
+  function closeMobileNav() { 
+    mobileNav.classList.remove('open'); 
+    toggle.setAttribute('aria-expanded', 'false');
+  }
 
-  <!-- QUICK WINS -->
-  <div class="bullet-section">
-    <div class="section-label">Start Here — Quick Wins This Week</div>
-    <div class="bullet-two-col">
-      <div class="bullet-card">
-        <div class="bullet-card-header">
-          <span class="bullet-card-icon">✦</span>
-          <span class="bullet-card-title">Protect the Morning Window</span>
-        </div>
-        <div class="bullet-list">
-          <div class="bullet-item"><div class="bullet-marker"></div>Exercise before anything else — even 20 min. This is non-negotiable on low-sleep days especially.</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Block your first 90 min for your hardest engineering task — before Slack, before standup if possible</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Write tomorrow's first task tonight — so you don't decide it in the morning</div>
-        </div>
-      </div>
-      <div class="bullet-card">
-        <div class="bullet-card-header">
-          <span class="bullet-card-icon">✦</span>
-          <span class="bullet-card-title">Work-to-Parent Transition</span>
-        </div>
-        <div class="bullet-list">
-          <div class="bullet-item"><div class="bullet-marker"></div>Keep your existing break habit — it's working. Now formalize it: same cue, same length, every day</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Add a physical cue to the break (change clothes, wash hands) to signal the mode switch to your nervous system</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>No reopening work apps or Slack for 30 min after caregiver mode begins</div>
-        </div>
-      </div>
-      <div class="bullet-card">
-        <div class="bullet-card-header">
-          <span class="bullet-card-icon">✦</span>
-          <span class="bullet-card-title">Automate What Repeats</span>
-        </div>
-        <div class="bullet-list">
-          <div class="bullet-item"><div class="bullet-marker"></div>Set a recurring grocery order — remove one weekly decision entirely</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Assign cleaning tasks to fixed days on a recurring calendar — stops the avoidance loop</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Identify one more recurring task this week that can be automated or scheduled — add it to the system</div>
-        </div>
-      </div>
-      <div class="bullet-card">
-        <div class="bullet-card-header">
-          <span class="bullet-card-icon">✦</span>
-          <span class="bullet-card-title">Office Week Defaults</span>
-        </div>
-        <div class="bullet-list">
-          <div class="bullet-item"><div class="bullet-marker"></div>Batch all meetings and collaboration on office days — protect home weeks for deep work</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Pack your bag the night before — remove one morning decision on commute days</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Pre-decide dinner for office days — commute eats time; don't also spend energy deciding food</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  // Navbar Scroll Shadow
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 20) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
 
-  <!-- SENSORY REGULATION -->
-  <div class="bullet-section">
-    <div class="section-label">Sensory Regulation Strategies</div>
-    <div class="bullet-two-col">
-      <div class="bullet-card">
-        <div class="bullet-card-header">
-          <span class="bullet-card-icon">◎</span>
-          <span class="bullet-card-title">Deep Work & Focus</span>
-        </div>
-        <div class="bullet-list">
-          <div class="bullet-item"><div class="bullet-marker"></div>Consistent audio anchor (brown noise or lofi) for every coding session — trains focus response over time</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Headphones on = do not disturb — both at home desk and in office</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Keep a physical notepad at desk for interruption capture — note it, return to task immediately</div>
-        </div>
-      </div>
-      <div class="bullet-card">
-        <div class="bullet-card-header">
-          <span class="bullet-card-icon">◎</span>
-          <span class="bullet-card-title">Sleep & Night Wake Recovery</span>
-        </div>
-        <div class="bullet-list">
-          <div class="bullet-item"><div class="bullet-marker"></div>After a disrupted night, protect the first 30 min of morning — quiet start, no reactive inputs</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>On low-sleep days, explicitly reduce scope — one key task done well beats three done poorly</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>A 20-min nap around midday (if baby allows) restores working memory more than caffeine</div>
-        </div>
-      </div>
-      <div class="bullet-card">
-        <div class="bullet-card-header">
-          <span class="bullet-card-icon">◎</span>
-          <span class="bullet-card-title">Physical Regulation</span>
-        </div>
-        <div class="bullet-list">
-          <div class="bullet-item"><div class="bullet-marker"></div>On days you can't do a full workout — 10-min walk still fires the cue and maintains the habit</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Slow neck rolls + extended exhale breathing (4 in, 6 out) between engineering work and parent mode</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Set a midday alarm — you tend to override hunger signals; don't wait until depletion to eat</div>
-        </div>
-      </div>
-      <div class="bullet-card">
-        <div class="bullet-card-header">
-          <span class="bullet-card-icon">◎</span>
-          <span class="bullet-card-title">Interpersonal Recovery</span>
-        </div>
-        <div class="bullet-list">
-          <div class="bullet-item"><div class="bullet-marker"></div>After high-interaction office days, build in a 15-min quiet buffer before engaging at home</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Communicate your low-bandwidth days to your partner — ask for reduced demands when you're depleted</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Protect one block of solo time weekly — even 30 min — for cognitive reset without task pressure</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  // Scroll Reveal Animations (Intersection Observer)
+  const revealElements = document.querySelectorAll('.reveal');
+  const revealOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -60px 0px"
+  };
 
-  <!-- ENVIRONMENTAL MODIFICATIONS -->
-  <div class="bullet-section">
-    <div class="section-label">Environmental Modifications</div>
-    <div class="bullet-two-col">
-      <div class="bullet-card">
-        <div class="bullet-card-header">
-          <span class="bullet-card-icon">⊞</span>
-          <span class="bullet-card-title">Home Work Environment</span>
-        </div>
-        <div class="bullet-list">
-          <div class="bullet-item"><div class="bullet-marker"></div>Create a physical boundary for "work mode" at home — even a dedicated chair or desk corner</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Close work setup visually at end of day — visual closure reinforces the transition</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Keep baby supplies outside the work zone — reduce context bleed between roles</div>
-        </div>
-      </div>
-      <div class="bullet-card">
-        <div class="bullet-card-header">
-          <span class="bullet-card-icon">⊞</span>
-          <span class="bullet-card-title">Digital Environment</span>
-        </div>
-        <div class="bullet-list">
-          <div class="bullet-item"><div class="bullet-marker"></div>One task system only — pick it, commit to it, stop maintaining multiple lists</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Silence non-critical Slack and email during your first deep work block — protect the morning window</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Batch async replies into one or two windows per day — stop treating messages as interrupts</div>
-        </div>
-      </div>
-      <div class="bullet-card">
-        <div class="bullet-card-header">
-          <span class="bullet-card-icon">⊞</span>
-          <span class="bullet-card-title">Office Week Structure</span>
-        </div>
-        <div class="bullet-list">
-          <div class="bullet-item"><div class="bullet-marker"></div>Treat commute time as protected — podcast, thinking, or silence; not reactive Slack</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Pre-decide the office day schedule the night before — no morning decision overhead</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Batch collaboration and meetings on office days — don't replicate them on home weeks</div>
-        </div>
-      </div>
-      <div class="bullet-card">
-        <div class="bullet-card-header">
-          <span class="bullet-card-icon">⊞</span>
-          <span class="bullet-card-title">Household Structural Defaults</span>
-        </div>
-        <div class="bullet-list">
-          <div class="bullet-item"><div class="bullet-marker"></div>Cleaning: assign specific tasks to specific fixed days — no re-deciding, no avoidance spiral</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Weekly family logistics check-in: same day, 15 min, covers the week ahead with your partner</div>
-          <div class="bullet-item"><div class="bullet-marker"></div>Automate everything that repeats: groceries, bills, household supplies — decide once, run on autopilot</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target); 
+      }
+    });
+  }, revealOptions);
 
-  <!-- TOOLS -->
-  <div class="section-label">Recommended Tools</div>
-  <div class="tools-grid">
-    <div class="tool-card">
-      <div class="tool-category">Task System</div>
-      <div class="tool-name">Linear</div>
-      <div class="tool-why">Engineer-native task tracking. Clean, fast, keeps work context contained and off your mind.</div>
-      <a href="https://linear.app" class="tool-link" target="_blank">linear.app →</a>
-    </div>
-    <div class="tool-card">
-      <div class="tool-category">Household</div>
-      <div class="tool-name">Tody</div>
-      <div class="tool-why">Assigns cleaning tasks to fixed schedules automatically. Eliminates the avoidance loop entirely.</div>
-      <a href="https://todyapp.com" class="tool-link" target="_blank">todyapp.com →</a>
-    </div>
-    <div class="tool-card">
-      <div class="tool-category">Focus Audio</div>
-      <div class="tool-name">Brain.fm</div>
-      <div class="tool-why">Functional audio engineered for sustained deep work. Same cue, home and office.</div>
-      <a href="https://www.brain.fm" class="tool-link" target="_blank">brain.fm →</a>
-    </div>
-    <div class="tool-card">
-      <div class="tool-category">Groceries</div>
-      <div class="tool-name">Instacart / Amazon Fresh</div>
-      <div class="tool-why">Recurring order automation. One weekly decision removed permanently from your plate.</div>
-      <a href="https://www.instacart.com" class="tool-link" target="_blank">instacart.com →</a>
-    </div>
-    <div class="tool-card">
-      <div class="tool-category">Body Signals</div>
-      <div class="tool-name">Alarmy</div>
-      <div class="tool-why">Persistent alarms for midday meal and movement check-ins — you tend to override; this overrides back.</div>
-      <a href="https://alar.my" class="tool-link" target="_blank">alar.my →</a>
-    </div>
-    <div class="tool-card">
-      <div class="tool-category">Daily Capture</div>
-      <div class="tool-name">Analog by Ugmonk</div>
-      <div class="tool-why">Physical card for daily priorities and brain dump. Closes open loops before bed.</div>
-      <a href="https://ugmonk.com/analog" class="tool-link" target="_blank">ugmonk.com →</a>
-    </div>
-  </div>
+  revealElements.forEach(el => {
+    revealOnScroll.observe(el);
+  });
+</script>
 
-  <!-- IMPLEMENTATION SEQUENCE -->
-  <div class="section-label">Implementation Sequence</div>
-  <div class="impl-rows">
-    <div class="impl-row">
-      <div class="impl-time">
-        <div class="impl-time-label">Today</div>
-        <div class="impl-time-val">Day 1</div>
-      </div>
-      <div class="impl-actions">
-        <div class="impl-action"><div class="impl-dot"></div>Write tomorrow's first engineering task before you close your laptop tonight</div>
-        <div class="impl-action"><div class="impl-dot"></div>Set a recurring midday meal alarm — override your tendency to push through</div>
-        <div class="impl-action"><div class="impl-dot"></div>Pick one recurring home task (groceries or cleaning) and automate or schedule it now</div>
-      </div>
-    </div>
-    <div class="impl-row">
-      <div class="impl-time">
-        <div class="impl-time-label">This week</div>
-        <div class="impl-time-val">Wk 1</div>
-      </div>
-      <div class="impl-actions">
-        <div class="impl-action"><div class="impl-dot"></div>Formalize your existing break ritual — same cue, same length, physical transition signal added</div>
-        <div class="impl-action"><div class="impl-dot"></div>Block your first 90 min every morning for deep work — no Slack, no meetings</div>
-        <div class="impl-action"><div class="impl-dot"></div>Assign all cleaning tasks to fixed days in your calendar or Tody — done once, runs itself</div>
-        <div class="impl-action"><div class="impl-dot"></div>Pre-plan office week schedule the Sunday before — batch meetings, protect morning windows</div>
-      </div>
-    </div>
-    <div class="impl-row">
-      <div class="impl-time">
-        <div class="impl-time-label">Next week</div>
-        <div class="impl-time-val">Wk 2</div>
-      </div>
-      <div class="impl-actions">
-        <div class="impl-action"><div class="impl-dot"></div>Add a consistent audio anchor to all deep work sessions — home and office, same cue</div>
-        <div class="impl-action"><div class="impl-dot"></div>Schedule a 15-min weekly family logistics review — same time each week, covers the week ahead</div>
-        <div class="impl-action"><div class="impl-dot"></div>Implement one more automation — recurring grocery order, bill pay, or household supply reorder</div>
-        <div class="impl-action"><div class="impl-dot"></div>Review: which defaults survived the low-sleep days? Those are your keepers. Drop what didn't hold.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CTA -->
-  <div class="cta-block">
-    <div class="cta-text">
-      <div class="eyebrow">Next Step</div>
-      <h3>Want to go deeper on your structure?</h3>
-      <p>The ADL Lab Substack publishes weekly frameworks on sustainable performance, friction reduction, and structural design — grounded in occupational science. Free to subscribe.</p>
-    </div>
-    <a href="https://adllab.substack.com/subscribe" class="cta-btn" target="_blank">Subscribe to ADL Lab →</a>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="report-footer">
-    <div class="footer-note">
-      Informed by occupational science and neuroscience. Not a clinical service — does not replace medical or therapeutic care. ADL Lab · adllab.substack.com
-    </div>
-    <div class="footer-brand">
-      <span class="logo">ADL <span>·</span> Lab</span>
-      <span class="cred">Ahra Roh, OTR/L, ATP</span>
-    </div>
-  </div>
-
-</div>
 </body>
 </html>
