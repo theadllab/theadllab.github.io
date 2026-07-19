@@ -2,12 +2,11 @@ BEGIN:VCARD
 VERSION:3.0
 N:Roh;Ahra;;;
 FN:Ahra Roh
-TITLE:Functional Usability Specialist
-ROLE:Occupational Therapist, Assistive Technology Professional
+TITLE:Functional Usability Specialist, Consultant
 ORG:ADL Lab
 EMAIL;TYPE=WORK,INTERNET:ahrarohot@gmail.com
 URL;TYPE=WORK:https://theadllab.github.io/
 URL;TYPE=SOCIAL:https://www.linkedin.com/in/ahra-roh-65632a44/
 ADR;TYPE=WORK:;;;Los Angeles;CA;;USA
-NOTE:Functional Usability Specialist — I look at how people actually use products.
+NOTE:Occupational Therapist / Assistive Technology Professional
 END:VCARD
