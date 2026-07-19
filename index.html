@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<meta name="description" content="Ahra Roh, OT-Tech Specialist — bringing an occupational therapy lens to how people actually use consumer products, across physical, digital, and spatial experiences.">
-<title>Ahra Roh — OT-Tech Specialist</title>
+<meta name="description" content="Ahra Roh, Functional Usability Specialist — bringing an occupational science lens to how people actually use consumer products, across physical, digital, and spatial experiences.">
+<title>Ahra Roh — Functional Usability Specialist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -142,8 +142,8 @@
 
   /* Hero Section */
   .hero {
-    padding-top: 140px; min-height: 90svh; display: grid; grid-template-columns: 1.1fr 0.9fr;
-    gap: clamp(2.5rem, 5vw, 5rem); align-items: center; padding-bottom: 5rem;
+    padding-top: 140px; min-height: 80svh; display: grid; grid-template-columns: 1.5fr 0.5fr;
+    gap: clamp(2.5rem, 5vw, 4rem); align-items: center; padding-bottom: 5rem;
   }
 
   .hero h1 {
@@ -176,25 +176,28 @@
   .btn-secondary:hover { border-color: var(--text-main); background: rgba(0,0,0,0.02); }
   .btn-secondary:active { transform: scale(0.97); }
 
-  .hero-img-wrap { position: relative; border-radius: 20px; overflow: hidden; background: #F4F4F5; }
-  .hero-img-frame { aspect-ratio: 4/5; }
+  .hero-img-wrap {
+    position: relative; border-radius: 20px; overflow: hidden; background: #F4F4F5;
+    max-width: 260px; margin-left: auto; justify-self: end;
+  }
+  .hero-img-frame { aspect-ratio: 3/4; }
   .hero-img-frame img {
     width: 100%; height: 100%; object-fit: cover;
-    filter: grayscale(100%) contrast(105%);
+    filter: contrast(102%) saturate(102%);
     transition: transform 1.2s ease;
   }
   .hero-img-wrap:hover .hero-img-frame img { transform: scale(1.03); }
   
   .hero-img-tag {
-    position: absolute; bottom: 1.25rem; right: 1.25rem; background: rgba(255, 255, 255, 0.92);
+    position: absolute; bottom: 0.85rem; right: 0.85rem; background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); 
-    padding: 0.75rem 1.25rem; border-radius: 12px;
-    font-weight: 600; font-size: 0.8rem; color: var(--text-main);
+    padding: 0.5rem 0.85rem; border-radius: 10px;
+    font-weight: 600; font-size: 0.7rem; color: var(--text-main);
     border: 1px solid rgba(0,0,0,0.05);
   }
 
   /* General Section Settings */
-  .section { padding: clamp(4rem, 8vw, 7rem) 0; }
+  .section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   
   .section-title {
     font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; line-height: 1.2;
@@ -224,22 +227,30 @@
   .bento-card h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.85rem; line-height: 1.35; }
   .bento-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; }
 
-  /* Method Flow (Task Analysis) */
-  .method-flow {
-    margin-top: 2.5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
-    position: relative;
-  }
+  /* Method Flow (Accordion) */
+  .method-flow { margin-top: 2.5rem; display: grid; gap: 0.85rem; }
   .method-step {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
-    padding: clamp(1.5rem, 2.5vw, 2rem); position: relative; transition: all 0.4s var(--ease-out-expo);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    overflow: hidden; transition: border-color 0.3s ease;
   }
-  .method-step:hover { border-color: var(--text-main); transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,0.04); }
+  .method-step.open { border-color: var(--text-main); }
+  .method-head {
+    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: clamp(1.15rem, 2vw, 1.5rem) clamp(1.25rem, 2.5vw, 1.75rem);
+    background: none; border: none; cursor: pointer; text-align: left; font-family: inherit;
+  }
+  .method-head-left { display: flex; align-items: center; gap: 1rem; }
   .method-num {
-    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.8rem;
-    color: var(--accent); letter-spacing: 0.05em; margin-bottom: 0.85rem; display: block;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.78rem;
+    color: var(--accent); letter-spacing: 0.05em; white-space: nowrap;
   }
-  .method-step h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.6rem; line-height: 1.3; }
-  .method-step p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+  .method-head h3 { font-size: 1.05rem; font-weight: 600; line-height: 1.3; }
+  .method-chevron { flex-shrink: 0; transition: transform 0.3s var(--ease-out-expo); color: var(--text-muted); }
+  .method-step.open .method-chevron { transform: rotate(180deg); }
+  .method-body { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease-out-expo); }
+  .method-step.open .method-body { max-height: 300px; }
+  .method-body-inner { padding: 0 clamp(1.25rem, 2.5vw, 1.75rem) clamp(1.15rem, 2vw, 1.5rem); }
+  .method-body p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; }
 
   /* Work Grid */
   .work-grid {
@@ -250,25 +261,40 @@
     padding: clamp(1.75rem, 3vw, 2.5rem); transition: all 0.4s var(--ease-out-expo);
   }
   .work-card:hover { 
-    box-shadow: 0 16px 36px rgba(0,0,0,0.04); border-color: var(--text-main); transform: translateY(-4px); 
+    box-shadow: 0 16px 36px rgba(0,0,0,0.04); border-color: var(--text-main);
   }
   .work-card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.75rem; line-height: 1.35; }
   .work-card h3 em { font-style: normal; color: var(--accent); }
   .work-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
 
-  /* Focus List */
-  .focus-list { list-style: none; display: grid; gap: 0.75rem; margin-top: 2.5rem; }
-  .focus-list li {
-    display: flex; gap: 1rem; align-items: baseline;
-    padding: 1rem 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
-    font-size: 0.95rem; color: var(--text-main); line-height: 1.6;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+  .ex-toggle {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 1.1rem; padding: 0; background: none; border: none; cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; font-weight: 600;
+    color: var(--text-main); border-bottom: 1px solid var(--text-main);
+    transition: color 0.2s, border-color 0.2s;
   }
-  .focus-list li:hover { border-color: #D4D4D8; transform: translateX(4px); }
-  .focus-list .fx { color: var(--accent); font-weight: 700; font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; white-space: nowrap; }
+  .ex-toggle:hover { color: var(--accent); border-color: var(--accent); }
+  .ex-toggle .plus { font-weight: 400; transition: transform 0.3s var(--ease-out-expo); display: inline-block; }
+  .ex-toggle[aria-expanded="true"] .plus { transform: rotate(45deg); }
+  .ex-panel {
+    max-height: 0; overflow: hidden; opacity: 0;
+    transition: max-height 0.5s var(--ease-out-expo), opacity 0.35s ease, margin-top 0.3s ease;
+  }
+  .ex-panel.open { max-height: 400px; opacity: 1; margin-top: 0.9rem; }
+  .ex-panel-inner {
+    padding-top: 0.9rem; border-top: 1px dashed var(--border);
+    display: grid; gap: 0.9rem;
+  }
+  .ex-item { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+  .ex-item .ex-tag {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.66rem;
+    color: var(--accent); letter-spacing: 0.08em; margin-bottom: 0.25rem;
+  }
 
   /* Work With (Chips) */
-  .ww-block { margin-top: 2.5rem; display: grid; gap: 1.5rem; }
+  .ww-block { margin-top: 1.5rem; display: grid; gap: 1.5rem; }
   .ww-label { font-size: 0.78rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.85rem; font-family: 'Space Grotesk', sans-serif; }
   .ww-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; }
   .ww-chip {
@@ -288,12 +314,6 @@
     max-width: 960px; margin: 0 auto; letter-spacing: -0.01em;
   }
   .statement p strong { color: #FF4A6B; font-weight: 600; }
-
-  .collab-note {
-    margin-top: 1.5rem; padding: 1.25rem 1.5rem; background: rgba(225, 29, 72, 0.04);
-    border-radius: 12px; color: var(--text-main); font-weight: 500; font-size: 0.92rem;
-    border-left: 3px solid var(--accent);
-  }
 
   /* About Grid */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 5vw, 5rem); align-items: start; }
@@ -315,10 +335,17 @@
 
   /* Newsletter Card */
   .newsletter-card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 28px;
-    padding: clamp(2rem, 5vw, 4.5rem); display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 24px;
+    padding: clamp(2rem, 4vw, 3rem); display: flex; flex-direction: column; gap: 1.25rem;
   }
-  .newsletter-card h3 { font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: 1.25rem; line-height: 1.15; }
+  .newsletter-card h3 { font-size: clamp(1.5rem, 2.5vw, 1.9rem); line-height: 1.2; }
+  .newsletter-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
+  .newsletter-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .keyword-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .kw-chip {
+    font-size: 0.76rem; font-weight: 500; padding: 0.35rem 0.75rem; border-radius: 999px;
+    background: var(--bg-color); border: 1px solid var(--border); color: var(--text-muted);
+  }
   
   /* Contact Section */
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 5vw, 5rem); align-items: start; }
@@ -364,11 +391,10 @@
   .delay-4 { transition-delay: 0.4s; }
 
   @media (max-width: 1024px) {
-    .hero, .about-grid, .newsletter-card, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .hero { padding-top: 110px; padding-bottom: 3rem; }
-    .hero-img-wrap { order: -1; max-width: 340px; margin: 0; }
-    .bento-grid, .work-grid, .method-flow { grid-template-columns: 1fr; gap: 1rem; }
-    .newsletter-card { gap: 2rem; }
+    .hero-img-wrap { order: -1; max-width: 220px; margin: 0; justify-self: start; }
+    .bento-grid, .work-grid { grid-template-columns: 1fr; gap: 1rem; }
     .delay-1, .delay-2, .delay-3, .delay-4 { transition-delay: 0s; }
   }
 
@@ -377,8 +403,8 @@
     .nav-toggle { display: block; }
     .nav-right { gap: 0.85rem; }
     .btn-primary, .btn-secondary { width: 100%; }
-    .section { padding: 3.5rem 0; }
-    .newsletter-card { padding: 1.75rem; border-radius: 20px; }
+    .section { padding: 3rem 0; }
+    .newsletter-card { padding: 1.5rem; border-radius: 18px; }
     .contact-row a { font-size: 1.15rem; }
   }
 </style>
@@ -395,7 +421,7 @@
     <a href="#" class="nav-brand">Ahra Roh <span class="nav-brand-tag">OTR/L · ATP</span></a>
     <div class="nav-right">
       <ul class="nav-links" id="nav-desktop">
-        <li><a href="#why"><span class="en">Why OT-Tech</span><span class="ko">OT-Tech 소개</span></a></li>
+        <li><a href="#why"><span class="en">Why It Matters</span><span class="ko">왜 중요한가</span></a></li>
         <li><a href="#work"><span class="en">What I Do</span><span class="ko">주요 업무</span></a></li>
         <li><a href="#collab"><span class="en">Collaboration</span><span class="ko">협업 제안</span></a></li>
         <li><a href="#about"><span class="en">About</span><span class="ko">소개</span></a></li>
@@ -414,7 +440,7 @@
     </div>
   </div>
   <div class="nav-mobile" id="nav-mobile">
-    <a href="#why" onclick="closeMobileNav()"><span class="en">Why OT-Tech</span><span class="ko">OT-Tech 소개</span></a>
+    <a href="#why" onclick="closeMobileNav()"><span class="en">Why It Matters</span><span class="ko">왜 중요한가</span></a>
     <a href="#work" onclick="closeMobileNav()"><span class="en">What I Do</span><span class="ko">주요 업무</span></a>
     <a href="#collab" onclick="closeMobileNav()"><span class="en">Collaboration</span><span class="ko">협업 제안</span></a>
     <a href="#about" onclick="closeMobileNav()"><span class="en">About</span><span class="ko">소개</span></a>
@@ -429,16 +455,16 @@
     <section class="hero">
       <div class="reveal active">
         <p class="eyebrow">
-          <span class="en">OT-Tech Specialist · Los Angeles</span>
-          <span class="ko">OT-Tech Specialist · LA</span>
+          <span class="en">Functional Usability Specialist · Los Angeles</span>
+          <span class="ko">Functional Usability Specialist · LA</span>
         </p>
         <h1>
           <span class="en">How a product <em>feels to use</em> is a different question from whether it works.</span>
           <span class="ko">제품이 '작동하는가'와 쓸 때 <em>'어떻게 느껴지는가'</em>는 완전히 다른 문제입니다.</span>
         </h1>
         <p class="hero-sub">
-          <span class="en">Most products are built around what the technology can do. I look at the other half: what happens to a person's hands, body, and attention in the moment they actually use it. That gap is where I work.</span>
-          <span class="ko">대부분의 제품은 기술로 구현할 수 있는 기능에 집중합니다. 하지만 저는 나머지 절반을 봅니다. 사람이 제품을 실제로 사용하는 순간, 우리의 손과 몸, 그리고 인지에 어떤 일이 일어나는지를 살핍니다. 그 간극을 채우는 것이 제 역할입니다.</span>
+          <span class="en">Most products are built around what the technology can do. I look at the other half: what a person's body, attention, and senses go through in the moment they actually use it — physical or digital. That gap is where I work.</span>
+          <span class="ko">대부분의 제품은 기술로 구현할 수 있는 기능에 집중합니다. 하지만 저는 나머지 절반을 봅니다. 물리적이든 디지털이든, 사람이 제품을 실제로 쓰는 순간 그 사람의 몸과 주의력, 감각에 무슨 일이 일어나는지를 살핍니다. 그 간극을 채우는 것이 제 역할입니다.</span>
         </p>
         <div class="hero-cta">
           <a href="#contact" class="btn-primary">
@@ -453,7 +479,7 @@
       </div>
       <div class="hero-img-wrap reveal delay-1 active">
         <div class="hero-img-frame">
-          <img src="Ahra_Roh_Profile.png" alt="Ahra Roh, OT-Tech Specialist">
+          <img src="Ahra_Roh_Profile_2.png" alt="Ahra Roh, Functional Usability Specialist">
         </div>
         <div class="hero-img-tag">
           <span>Founder, ADL Lab</span>
@@ -465,16 +491,16 @@
   <div class="page-wrap">
     <section class="section" id="why">
       <p class="eyebrow reveal">
-        <span class="en">01 · Why OT-Tech</span>
-        <span class="ko">01 · OT-Tech 소개</span>
+        <span class="en">01 · Why It Matters</span>
+        <span class="ko">01 · 왜 중요한가</span>
       </p>
       <h2 class="section-title reveal">
         <span class="en">I read the <em>moment of use</em>, not just the spec sheet.</span>
         <span class="ko">단순한 스펙이 아닌, <em>'사용하는 순간'</em>을 읽어냅니다.</span>
       </h2>
       <p class="section-lede reveal delay-1">
-        <span class="en">Occupational therapy is the study of how people carry out the real activities of daily life. I bring that lens to products: how a button, a grip, or an interface actually performs in a person's hands. It rarely sits in a product room.</span>
-        <span class="ko">작업치료는 사람이 일상적인 활동을 어떻게 수행하는지 연구하는 분야입니다. 저는 이 관점을 제품에 적용합니다. 버튼의 위치, 손잡이의 그립감, 인터페이스 하나가 사람의 손끝에서 실제로 어떻게 작동하는지 분석합니다. 이는 기존 제품 개발 현장에서는 쉽게 찾아보기 힘든 새로운 접근입니다.</span>
+        <span class="en">Occupational science is the study of how people actually carry out the activities of daily life — physically, cognitively, and in context. I bring that lens to products: how a control, a screen, or a whole flow performs when a real person uses it, moment to moment. That question rarely sits in a product room.</span>
+        <span class="ko">작업과학(Occupational Science)은 사람이 일상의 활동을 신체적·인지적으로, 그리고 각자의 맥락 속에서 실제로 어떻게 수행하는지 연구하는 학문입니다. 저는 이 관점을 제품에 적용합니다. 조작부 하나, 화면 하나, 혹은 전체 흐름이 실제 사용자에게 순간순간 어떻게 작동하는지를 봅니다. 이는 기존 제품 개발 현장에서는 쉽게 다뤄지지 않는 질문입니다.</span>
       </p>
       
       <div class="bento-grid">
@@ -484,12 +510,12 @@
             <span class="ko">신체 (Body)</span>
           </span>
           <h3>
-            <span class="en">What the <em>hands and body</em> do.</span>
-            <span class="ko"><em>손과 몸</em>의 움직임.</span>
+            <span class="en">What the <em>body</em> does.</span>
+            <span class="ko"><em>몸</em>이 하는 일.</span>
           </h3>
           <p>
-            <span class="en">Grip, force, reach, posture, repetition. Where a movement strains, tires, or quietly works against the person over time.</span>
-            <span class="ko">손에 쥐는 방식, 가해지는 힘, 닿는 거리, 자세와 반복 동작. 어떤 움직임이 신체에 무리를 주고 피로를 유발하며, 장기적으로 사용자에게 불편을 초래하는지 파악합니다.</span>
+            <span class="en">Posture, effort, reach, repetition, endurance. Where sustained use quietly strains or tires a person over time — not in a demo, but on the hundredth use.</span>
+            <span class="ko">자세, 힘, 동선, 반복, 지구력. 지속적인 사용이 시간이 지나며 사람에게 조용히 무리를 주거나 피로를 쌓는 지점 — 데모가 아니라 백 번째 사용에서 드러나는 것들.</span>
           </p>
         </div>
         <div class="bento-card reveal delay-2">
@@ -512,8 +538,8 @@
             <span class="ko">감각과 사용 환경</span>
           </span>
           <h3>
-            <span class="en">What the <em>senses and setting</em> ask.</span>
-            <span class="ko"><em>감각적 반응</em>과 주변 상황.</span>
+            <span class="en">What the <em>environment</em> asks.</span>
+            <span class="ko"><em>주변 환경</em>이 요구하는 것.</span>
           </h3>
           <p>
             <span class="en">Touch feedback, sound, visibility, and the real setting of use: driving, cooking, tired, hands full, low light.</span>
@@ -543,12 +569,31 @@
         <div class="work-card reveal delay-1">
           <h3>
             <span class="en">I find what <em>already works.</em></span>
-            <span class="ko">이미 <em>훌륭하게 작동하는 요소</em>를 찾습니다.</span>
+            <span class="ko">이미 <em>잘 작동하는 것</em>을 찾습니다.</span>
           </h3>
           <p>
-            <span class="en">This isn't fault-finding. Well-resourced products get a lot right. I name why a detail feels good in the hand, so the team knows what to protect.</span>
-            <span class="ko">단순히 문제점만 찾는 것이 아닙니다. 훌륭한 제품은 이미 많은 것을 제대로 갖추고 있습니다. 어떤 디테일이 왜 사용자에게 편안함을 주는지 명확히 짚어내어, 팀이 반드시 유지해야 할 강점을 알려줍니다.</span>
+            <span class="en">This isn't fault-finding. Well-made products get a lot right. I name why something feels effortless and obvious — no manual, no learning curve — so the team knows what to protect.</span>
+            <span class="ko">단순히 문제점만 찾는 것이 아닙니다. 잘 만든 제품은 이미 많은 것을 제대로 갖추고 있습니다. 왜 어떤 것이 설명서도 학습도 없이 자연스럽고 명확하게 느껴지는지 짚어내어, 팀이 반드시 지켜야 할 강점을 알려줍니다.</span>
           </p>
+          <button class="ex-toggle" aria-expanded="false" aria-controls="ex-works">
+            <span class="plus" aria-hidden="true">+</span>
+            <span class="en">See examples</span>
+            <span class="ko">예시 보기</span>
+          </button>
+          <div class="ex-panel" id="ex-works">
+            <div class="ex-panel-inner">
+              <div class="ex-item">
+                <span class="ex-tag">PHYSICAL</span><br>
+                <span class="en">A control you reach for without looking, and it's simply there. Nobody notices it — which is exactly the sign it works.</span>
+                <span class="ko">보지 않고 손을 뻗어도 조작부가 그냥 거기 있는 것. 아무도 눈치채지 못합니다 — 그게 바로 잘 작동한다는 신호입니다.</span>
+              </div>
+              <div class="ex-item">
+                <span class="ex-tag">DIGITAL</span><br>
+                <span class="en">An app whose first screen is understood in one glance — no onboarding tour needed. The design already speaks the user's expectations.</span>
+                <span class="ko">첫 화면을 한눈에 이해하게 되는 앱 — 온보딩 투어가 필요 없습니다. 디자인이 이미 사용자의 기대를 그대로 반영하고 있는 것입니다.</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="work-card reveal delay-2">
           <h3>
@@ -556,54 +601,88 @@
             <span class="ko">경험의 <em>마찰점</em>을 찾아냅니다.</span>
           </h3>
           <p>
-            <span class="en">The small snags that interrupt flow: the button that needs an awkward press, the screen-only control that fails when your eyes are elsewhere, the grip that tires a wrist.</span>
-            <span class="ko">사용의 흐름을 끊는 미세한 불편함들. 누르기 불편한 버튼, 화면을 보지 않으면 조작하기 힘든 터치 인터페이스, 손목에 피로를 주는 그립 등을 찾아냅니다.</span>
+            <span class="en">The small costs that don't show in a demo but accumulate with real use — physical strain over time, or the mental toll of a flow that asks a little too much, a little too often.</span>
+            <span class="ko">데모에서는 드러나지 않지만 실제 사용에서 누적되는 작은 비용들 — 시간이 지나며 쌓이는 신체적 부담, 혹은 조금씩 과한 요구가 반복되며 쌓이는 인지적 피로.</span>
           </p>
+          <button class="ex-toggle" aria-expanded="false" aria-controls="ex-friction">
+            <span class="plus" aria-hidden="true">+</span>
+            <span class="en">See examples</span>
+            <span class="ko">예시 보기</span>
+          </button>
+          <div class="ex-panel" id="ex-friction">
+            <div class="ex-panel-inner">
+              <div class="ex-item">
+                <span class="ex-tag">PHYSICAL</span><br>
+                <span class="en">A control that must be held down the whole time it runs. Fine for thirty seconds, quietly exhausting across a full task, repeated daily.</span>
+                <span class="ko">작동하는 내내 계속 누르고 있어야 하는 조작부. 30초는 괜찮지만, 하나의 작업 내내, 매일 반복되면 조용히 사람을 지치게 합니다.</span>
+              </div>
+              <div class="ex-item">
+                <span class="ex-tag">DIGITAL</span><br>
+                <span class="en">A task that takes three taps every time. Barely noticeable once — but done dozens of times a day, it's a real, measurable drain.</span>
+                <span class="ko">매번 세 번씩 탭해야 하는 작업. 한 번은 별것 아니지만, 하루에 수십 번 반복되면 실제로 측정 가능한 피로가 됩니다.</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="work-card reveal delay-1">
           <h3>
             <span class="en">I map <em>who it fits.</em></span>
-            <span class="ko"><em>어떤 사용자</em>에게 적합한지 매핑합니다.</span>
+            <span class="ko"><em>누구에게 맞는지</em> 파악합니다.</span>
           </h3>
           <p>
-            <span class="en">A product works differently for different people and situations. I map who a design serves well, who it leaves out, and when it shines.</span>
-            <span class="ko">하나의 제품이라도 사용자와 상황에 따라 경험이 다릅니다. 이 디자인이 어떤 사람에게 가장 유용한지, 누구를 소외시키고 있는지, 언제 진가를 발휘하는지 분석합니다.</span>
+            <span class="en">A product works differently by age, experience, culture, and setting. What's intuitive to a young designer can be a puzzle to a first-time or older user. I map who it serves, who it leaves out, and when it shines.</span>
+            <span class="ko">제품은 나이, 경험, 문화, 사용 환경에 따라 다르게 작동합니다. 젊은 디자이너에게 직관적인 것이 처음 쓰는 사람이나 고령 사용자에겐 수수께끼일 수 있습니다. 누구에게 유용하고, 누구를 소외시키며, 언제 진가를 발휘하는지 매핑합니다.</span>
           </p>
+          <button class="ex-toggle" aria-expanded="false" aria-controls="ex-fits">
+            <span class="plus" aria-hidden="true">+</span>
+            <span class="en">See examples</span>
+            <span class="ko">예시 보기</span>
+          </button>
+          <div class="ex-panel" id="ex-fits">
+            <div class="ex-panel-inner">
+              <div class="ex-item">
+                <span class="ex-tag">AGE & EXPERIENCE</span><br>
+                <span class="en">An unlabeled icon that's obvious to someone who grew up with smartphones, and a dead end for a user meeting it for the first time.</span>
+                <span class="ko">스마트폰과 함께 자란 사람에겐 명확하지만, 처음 접하는 사용자에겐 막다른 길이 되는 라벨 없는 아이콘.</span>
+              </div>
+              <div class="ex-item">
+                <span class="ex-tag">CULTURE & CONTEXT</span><br>
+                <span class="en">A gesture or metaphor that's instant in one market and needs learning in another — same design, very different experience.</span>
+                <span class="ko">한 시장에서는 즉각적이지만 다른 시장에서는 학습이 필요한 제스처나 은유 — 같은 디자인이지만 경험은 완전히 다릅니다.</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="work-card reveal delay-2">
           <h3>
-            <span class="en">I work at the <em>interface level.</em></span>
-            <span class="ko"><em>인터페이스 단위</em>로 미시적 분석을 진행합니다.</span>
+            <span class="en">I read the <em>cognitive load.</em></span>
+            <span class="ko"><em>인지 부하</em>를 읽어냅니다.</span>
           </h3>
           <p>
-            <span class="en">Not the whole product. One unit at a time: a trigger button, a dial, a haptic interface, a dashboard. Small enough to be precise, specific enough to act on.</span>
-            <span class="ko">제품 전체를 뭉뚱그려 보지 않습니다. 트리거 버튼, 다이얼, 햅틱 피드백, 대시보드 등 한 번에 하나의 요소에 집중합니다. 정확하게 분석하고 구체적인 개선안 도출할 수 있는 단위로 접근합니다.</span>
+            <span class="en">How much a person has to think, remember, and decide to get through a task — and whether the design carries that weight for them or hands it over. Often invisible until it quietly overwhelms.</span>
+            <span class="ko">하나의 작업을 끝내기 위해 사람이 얼마나 생각하고, 기억하고, 결정해야 하는지 — 그리고 디자인이 그 무게를 대신 짊어지는지, 사용자에게 떠넘기는지를 봅니다. 조용히 사용자를 압도하기 전까지는 잘 드러나지 않습니다.</span>
           </p>
+          <button class="ex-toggle" aria-expanded="false" aria-controls="ex-interface">
+            <span class="plus" aria-hidden="true">+</span>
+            <span class="en">See examples</span>
+            <span class="ko">예시 보기</span>
+          </button>
+          <div class="ex-panel" id="ex-interface">
+            <div class="ex-panel-inner">
+              <div class="ex-item">
+                <span class="ex-tag">PHYSICAL</span><br>
+                <span class="en">A flat panel with no feedback: "did it register?" With nothing to confirm the action, the user has to hold the uncertainty themselves.</span>
+                <span class="ko">아무 피드백이 없는 평면 패널: "눌린 거 맞아?" 동작을 확인해 줄 것이 없으면, 그 불확실함을 사용자가 떠안게 됩니다.</span>
+              </div>
+              <div class="ex-item">
+                <span class="ex-tag">DIGITAL</span><br>
+                <span class="en">Twelve options on one screen. Every choice competes for attention, and the user pays for it in decision fatigue before they even start.</span>
+                <span class="ko">한 화면에 열두 개의 선택지. 모든 선택이 주의를 두고 경쟁하고, 사용자는 시작하기도 전에 결정 피로로 그 대가를 치릅니다.</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <ul class="focus-list reveal delay-2">
-        <li>
-          <span class="fx">EX</span>
-          <span class="en">A vacuum trigger you hold down: how much force, for how long, and what the hand pays for it.</span>
-          <span class="ko">손가락으로 계속 누르고 있어야 하는 청소기 트리거: 어느 정도의 힘으로, 얼마나 오래 유지해야 하며, 그로 인해 손에 어떤 부담이 가해지는지.</span>
-        </li>
-        <li>
-          <span class="fx">EX</span>
-          <span class="en">A car's flat, screen-only interface: what it asks of attention while the eyes belong on the road.</span>
-          <span class="ko">자동차의 터치스크린 인터페이스: 시선이 도로를 향해야 하는 상황에서 사용자에게 얼마만큼의 인지적 주의력을 요구하는지.</span>
-        </li>
-        <li>
-          <span class="fx">EX</span>
-          <span class="en">A washer with no haptic feedback: how a person knows an action registered, without touch to confirm it.</span>
-          <span class="ko">물리적 피드백이 없는 터치형 세탁기: 촉각적 확인 없이 사용자가 기기 조작 여부를 어떻게 인지할 수 있는지.</span>
-        </li>
-        <li>
-          <span class="fx">EX</span>
-          <span class="en">A kitchen or workspace layout: how the placement of a handle, shelf, or control shapes the whole sequence of a task.</span>
-          <span class="ko">주방이나 작업 공간의 레이아웃: 손잡이, 선반, 조작부의 위치가 전체 작업 흐름과 효율성에 어떤 영향을 미치는지.</span>
-        </li>
-      </ul>
     </section>
   </div>
 
@@ -618,43 +697,71 @@
         <span class="ko">사용성을 수치로 '측정'하는 데 그치지 않고, <em>사용 행위 이면의 의미를 '해석'합니다.</em></span>
       </h2>
       <p class="section-lede reveal delay-1">
-        <span class="en">This is what sets an OT lens apart from human factors or ergonomics. They measure the interface. I break the use into its real steps, read the body, mind, and senses at each one, then interpret what it all means for the task the person is actually trying to finish.</span>
-        <span class="ko">이것이 바로 작업치료(OT)의 시선이 기존의 인간공학이나 인체공학과 구별되는 지점입니다. 그들이 인터페이스를 측정할 때, 저는 일련의 사용 과정을 실제 행동 단위로 해체합니다. 그리고 각 단계마다 신체, 인지, 감각에 어떤 반응이 일어나는지 읽어낸 후, 이것이 사용자가 완수하려는 궁극적인 목적에 어떤 영향을 미치는지 해석해 냅니다.</span>
+        <span class="en">This is what sets an occupational science lens apart from human factors or ergonomics. They measure the interface. I interpret what it means for the task a person is actually trying to finish.</span>
+        <span class="ko">이것이 작업과학(Occupational Science)의 시선이 인간공학과 구별되는 지점입니다. 그들이 인터페이스를 측정할 때, 저는 그것이 사용자가 완수하려는 목적에 어떤 의미인지 해석합니다.</span>
       </p>
 
-      <div class="method-flow">
-        <div class="method-step reveal delay-1">
-          <span class="method-num">01 · TASK ANALYSIS</span>
-          <h3>
-            <span class="en">Break the use into real steps.</span>
-            <span class="ko">행위의 해체와 분해</span>
-          </h3>
-          <p>
-            <span class="en">An everyday action is never one motion. I break it into the actual sequence a person moves through, so nothing gets hidden inside the word "use."</span>
-            <span class="ko">일상의 동작은 결코 단일한 움직임으로 이루어지지 않습니다. 사람이 실제로 거치는 행위의 흐름을 단위별로 분해하여, '사용'이라는 모호한 단어 속에 가려진 미세한 지점들을 수면 위로 끌어올립니다.</span>
-          </p>
+      <div class="method-flow reveal delay-2">
+        <div class="method-step" data-step="1">
+          <button class="method-head" aria-expanded="false" aria-controls="method-1">
+            <span class="method-head-left">
+              <span class="method-num">01 · TASK ANALYSIS</span>
+              <span></span>
+              <h3>
+                <span class="en">Break the use into real steps.</span>
+                <span class="ko">행위를 실제 단계로 분해합니다.</span>
+              </h3>
+            </span>
+            <svg class="method-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="method-body" id="method-1">
+            <div class="method-body-inner">
+              <p>
+                <span class="en">An everyday action is never one motion. I break it into the actual sequence a person moves through, so nothing gets hidden inside the word "use."</span>
+                <span class="ko">일상의 동작은 결코 단일한 움직임으로 이루어지지 않습니다. 사람이 실제로 거치는 행위의 흐름을 단위별로 분해하여, '사용'이라는 모호한 단어 속에 가려진 미세한 지점들을 드러냅니다.</span>
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="method-step reveal delay-2">
-          <span class="method-num">02 · DEMAND READING</span>
-          <h3>
-            <span class="en">Read the demand at each step.</span>
-            <span class="ko">보이지 않는 부하(Demand) 읽기</span>
-          </h3>
-          <p>
-            <span class="en">At every step I read what it asks of the body, the mind, and the senses — where effort, attention, or strain quietly accumulates.</span>
-            <span class="ko">분해된 각 단계가 신체와 인지, 감각에 어떤 것을 요구하는지 읽어냅니다. 무의식적인 노력이 필요한 곳, 주의력이 분산되는 곳, 그리고 피로가 조용히 누적되는 지점을 짚어냅니다.</span>
-          </p>
+        <div class="method-step" data-step="2">
+          <button class="method-head" aria-expanded="false" aria-controls="method-2">
+            <span class="method-head-left">
+              <span class="method-num">02 · DEMAND READING</span>
+              <h3>
+                <span class="en">Read the demand at each step.</span>
+                <span class="ko">각 단계의 부하를 읽습니다.</span>
+              </h3>
+            </span>
+            <svg class="method-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="method-body" id="method-2">
+            <div class="method-body-inner">
+              <p>
+                <span class="en">At every step I read what it asks of the body, the mind, and the senses — where effort, attention, or strain quietly accumulates.</span>
+                <span class="ko">각 단계가 신체와 인지, 감각에 어떤 것을 요구하는지 읽어냅니다. 노력과 주의력, 피로가 조용히 누적되는 지점을 짚어냅니다.</span>
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="method-step reveal delay-3">
-          <span class="method-num">03 · FUNCTIONAL INTERPRETATION</span>
-          <h3>
-            <span class="en">Interpret it against the goal.</span>
-            <span class="ko">목적을 향한 기능적 해석</span>
-          </h3>
-          <p>
-            <span class="en">A number alone isn't an answer. I interpret what the demand means for the real goal: does it support the task, or quietly work against it?</span>
-            <span class="ko">단순한 수치만으로는 완벽한 해답이 될 수 없습니다. 발견된 마찰과 부하가 사용자의 최종 목적에 어떤 영향을 미치는지 기능적으로 해석합니다. 이 디자인은 사용자를 돕고 있습니까, 아니면 조용히 방해하고 있습니까?</span>
-          </p>
+        <div class="method-step" data-step="3">
+          <button class="method-head" aria-expanded="false" aria-controls="method-3">
+            <span class="method-head-left">
+              <span class="method-num">03 · FUNCTIONAL INTERPRETATION</span>
+              <h3>
+                <span class="en">Interpret it against the goal.</span>
+                <span class="ko">목적에 비추어 해석합니다.</span>
+              </h3>
+            </span>
+            <svg class="method-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="method-body" id="method-3">
+            <div class="method-body-inner">
+              <p>
+                <span class="en">A number alone isn't an answer. I interpret what the demand means for the real goal: does it support the task, or quietly work against it?</span>
+                <span class="ko">단순한 수치만으로는 완벽한 해답이 될 수 없습니다. 그 부하가 사용자의 최종 목적을 돕고 있는지, 아니면 조용히 방해하고 있는지 해석합니다.</span>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -674,15 +781,11 @@
         <span class="ko">03 · 협업 제안</span>
       </p>
       <h2 class="section-title reveal">
-        <span class="en">No fixed service packages yet. <em>Open to conversations.</em></span>
-        <span class="ko">정형화된 패키지는 없습니다. <em>열린 마음으로 논의를 시작합니다.</em></span>
+        <span class="en">Ways we could work together.</span>
+        <span class="ko">함께할 수 있는 방식들.</span>
       </h2>
-      <p class="section-lede reveal delay-1">
-        <span class="en">Before settling into standardized offerings, I'm starting with open conversations: to understand the problems worth solving and find where this lens actually fits.</span>
-        <span class="ko">정해진 서비스 모델을 제시하기보다, 먼저 열린 대화를 나누고자 합니다. 해결할 가치가 있는 문제가 무엇인지, 저의 전문성이 팀의 목표에 어떻게 기여할 수 있을지 함께 고민하고 싶습니다.</span>
-      </p>
 
-      <div class="ww-block reveal delay-2">
+      <div class="ww-block reveal delay-1">
         <div class="ww-row">
           <p class="ww-label"><span class="en">At any stage</span><span class="ko">모든 개발 단계에서</span></p>
           <div class="ww-chips">
@@ -712,11 +815,6 @@
           </div>
         </div>
       </div>
-      
-      <p class="collab-note reveal delay-3">
-        <span class="en">How we'd work together depends on what you're trying to do. I'd rather shape that through a real conversation than a fixed menu.</span>
-        <span class="ko">구체적인 협업 방식은 팀이 당면한 과제에 따라 유연하게 결정됩니다. 정해진 방식에 맞추기보다는, 깊이 있는 대화를 통해 최적의 해결책을 함께 찾아가기를 기대합니다.</span>
-      </p>
     </section>
   </div>
 
@@ -733,8 +831,8 @@
       <div class="about-grid">
         <div class="reveal delay-1">
           <p class="about-text">
-            <span class="en">I'm Ahra Roh, an OT-Tech Specialist with 14 years of clinical occupational therapy experience and ATP certification. For years my work was reading how a real body and nervous system engage with a tool, moment to moment.</span>
-            <span class="ko">안녕하세요, OT-Tech Specialist 노아라입니다. 14년 이상의 임상 작업치료(OT) 경험과 미국 보조공학전문가(ATP) 자격을 보유하고 있습니다. 오랫동안 사람의 신체와 신경계가 도구와 어떻게 상호작용하는지 미시적인 관점에서 연구하고 분석해 왔습니다.</span>
+            <span class="en">I'm Ahra Roh, a Functional Usability Specialist with a background in occupational science, neuroscience, and 14 years of clinical neuro-rehabilitation, plus ATP certification. My work has always been reading how a whole person — body, nervous system, attention — engages with a tool to get something done.</span>
+            <span class="ko">안녕하세요, Functional Usability Specialist 노아라입니다. 작업과학(Occupational Science)과 신경과학(Neuroscience)을 배경으로, 14년간의 임상 신경재활 경험과 미국 보조공학전문가(ATP) 자격을 갖추고 있습니다. 제 일은 언제나 한 사람 전체 — 몸, 신경계, 주의력 — 가 무언가를 해내기 위해 도구와 어떻게 상호작용하는지를 읽어내는 것이었습니다.</span>
           </p>
           <p class="about-text">
             <span class="en">I founded ADL Lab to bring that lens to everyday products: not the ones built for disability, but the ones everyone uses. By product I mean anything a person operates to get something done, whether physical, digital, or spatial.</span>
@@ -747,8 +845,8 @@
         </div>
         <ul class="cred-list reveal delay-2">
           <li><span class="cred-n">01</span><span class="cred-text">
-            <span class="en">14+ years of clinical OT across neuro-rehab and pediatrics.</span>
-            <span class="ko">신경계 재활 및 소아 치료를 아우르는 14년 이상의 작업치료 임상 경력</span>
+            <span class="en">14+ years of clinical practice in neuro-rehabilitation and human performance.</span>
+            <span class="ko">신경재활 및 인간 수행 분야에서의 14년 이상의 임상 경력</span>
           </span></li>
           <li><span class="cred-n">02</span><span class="cred-text">
             <span class="en">OT / ATP at Santa Monica College <span class="badge">Current</span></span>
@@ -782,34 +880,28 @@
   <div class="page-wrap">
     <section class="section" id="writing">
       <div class="newsletter-card reveal">
-        <div>
-          <p class="eyebrow" style="background: var(--bg-color);">
-            <span class="en">05 · Newsletter</span>
-            <span class="ko">05 · 뉴스레터</span>
-          </p>
-          <h3>
-            <span class="en">Notes from the <em>Gap.</em></span>
-            <span class="ko">경험의 <em>간극</em>을 좁히는 기록.</span>
-          </h3>
-          <p class="about-text" style="margin-bottom: 2rem;">
-            <span class="en">Field notes on what I notice: pain points people can't quite name, common misreadings of accessibility, and the parts of using a product that design tends to skip.</span>
-            <span class="ko">현장에서 발견한 인사이트를 나눕니다. 사용자가 정확히 언어화하지 못하는 불편함, 접근성(Accessibility)에 대한 흔한 오해, 그리고 제품 디자인 과정에서 간과하기 쉬운 '실제 사용 순간'의 디테일을 다룹니다.</span>
-          </p>
+        <p class="eyebrow" style="margin-bottom:0;">
+          <span class="en">05 · Newsletter</span>
+          <span class="ko">05 · 뉴스레터</span>
+        </p>
+        <h3>
+          <span class="en">Notes from the <em style="color:var(--accent); font-style:normal;">Gap.</em></span>
+          <span class="ko">경험의 <em style="color:var(--accent); font-style:normal;">간극</em>을 좁히는 기록.</span>
+        </h3>
+        <p>
+          <span class="en">Field notes on pain points people can't quite name, and what design tends to skip.</span>
+          <span class="ko">사용자가 언어화하지 못하는 불편함, 디자인이 놓치기 쉬운 지점에 관한 현장 기록.</span>
+        </p>
+        <div class="newsletter-actions">
           <a href="https://www.linkedin.com/newsletters/ot-tech-notes-7457137843690393600/" target="_blank" rel="noopener noreferrer" class="btn-primary">
             <span class="en">Read on LinkedIn</span>
             <span class="ko">LinkedIn에서 읽기</span>
           </a>
-        </div>
-        <div style="display: flex; flex-direction: column; justify-content: center;">
-          <p class="about-text">
-            <span class="en"><strong>Part of the 'OT + Tech' series</strong> — what this lens is, and why it belongs in product work.</span>
-            <span class="ko"><strong>‘OT + Tech’ 시리즈의 일환</strong>으로, 작업치료적 관점이 제품 개발에 왜 필수적인지 심도 있게 풀어냅니다.</span>
-          </p>
-          <div style="margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 1rem;">
-            <p style="font-size: 0.8rem; color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.02em;">
-              <span class="en">KEYWORDS: Usability · Human Performance · Cognitive Load · Inclusive Design</span>
-              <span class="ko">KEYWORDS: 사용성 · 인체공학 · 인지 부하 · 포용적 디자인</span>
-            </p>
+          <div class="keyword-chips">
+            <span class="kw-chip">Usability</span>
+            <span class="kw-chip">Human Performance</span>
+            <span class="kw-chip">Cognitive Load</span>
+            <span class="kw-chip">Inclusive Design</span>
           </div>
         </div>
       </div>
@@ -851,14 +943,14 @@
 
 <footer>
   <div class="footer-title">Ahra Roh, OTR/L, ATP</div>
-  <div class="footer-meta">© 2026 · OT-Tech Specialist · Founder, ADL Lab</div>
+  <div class="footer-meta">© 2026 · Functional Usability Specialist · Founder, ADL Lab</div>
 </footer>
 
 <script>
   // Language Toggle
   const langBtns = document.querySelectorAll('.lang-btn');
   const html = document.documentElement;
-  const savedLang = sessionStorage.getItem('preferredLang') || 'en';
+  const savedLang = (() => { try { return sessionStorage.getItem('preferredLang'); } catch(e) { return null; } })() || 'en';
   setLang(savedLang);
 
   langBtns.forEach(btn => {
@@ -910,6 +1002,26 @@
 
   revealElements.forEach(el => {
     revealOnScroll.observe(el);
+  });
+
+  // Example toggles (What I Do cards)
+  document.querySelectorAll('.ex-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const panel = document.getElementById(btn.getAttribute('aria-controls'));
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      panel.classList.toggle('open', !isOpen);
+    });
+  });
+
+  // Method accordion (single or multi-open, allow multiple)
+  document.querySelectorAll('.method-head').forEach(head => {
+    head.addEventListener('click', () => {
+      const step = head.closest('.method-step');
+      const isOpen = head.getAttribute('aria-expanded') === 'true';
+      head.setAttribute('aria-expanded', String(!isOpen));
+      step.classList.toggle('open', !isOpen);
+    });
   });
 </script>
 
