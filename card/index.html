@@ -1,1 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FBFAF8">
+<meta name="description" content="Ahra Roh — Functional Usability Specialist. Save contact, view work, or connect on LinkedIn.">
+<title>Ahra Roh — Functional Usability Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBFAF8;
+    --ink: #1F1E1C;
+    --ink-2: #4A4844;
+    --ink-3: #7A7770;
+    --line: #E5E1DA;
+    --surface: #FFFFFF;
+    --crimson: #B11A3A;
+    --crimson-soft: #F5E4E8;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex; flex-direction: column;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+
+  /* Crimson stripe echoes the card */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; bottom: 0; left: 0;
+    width: 6px;
+    background: var(--crimson);
+    z-index: 1;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 3rem 1.75rem 2rem;
+    display: flex; flex-direction: column;
+    flex: 1;
+  }
+
+  header { margin-bottom: 2.5rem; }
+  h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.1rem;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 0.9rem;
+  }
+  .title-line {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--crimson);
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.75rem;
+  }
+  .creds {
+    font-size: 0.9rem;
+    color: var(--ink-3);
+    line-height: 1.55;
+  }
+
+  .hook {
+    margin: 2rem 0 2rem;
+    font-size: 0.92rem;
+    color: var(--ink-3);
+    line-height: 1.55;
+    font-weight: 400;
+    letter-spacing: 0.005em;
+  }
+
+  .actions {
+    display: flex; flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .action {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.15rem 1.35rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform 0.2s var(--ease), border-color 0.25s ease, box-shadow 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .action:active {
+    transform: scale(0.985);
+    border-color: var(--ink);
+  }
+  @media (hover: hover) {
+    .action:hover {
+      border-color: var(--ink);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      transform: translateY(-1px);
+    }
+  }
+
+  .action-icon {
+    flex-shrink: 0;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg);
+    color: var(--crimson);
+    border: 1px solid var(--line);
+  }
+  .action.primary .action-icon {
+    background: var(--crimson);
+    color: var(--surface);
+    border-color: var(--crimson);
+  }
+  .action-body { flex: 1; }
+  .action-label {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 0.1rem;
+  }
+  .action-sub {
+    font-size: 0.78rem;
+    color: var(--ink-3);
+    line-height: 1.4;
+  }
+  .action-arrow {
+    flex-shrink: 0;
+    color: var(--ink-3);
+    transition: transform 0.25s var(--ease), color 0.25s;
+  }
+  .action:active .action-arrow,
+  .action:hover .action-arrow {
+    color: var(--crimson);
+    transform: translateX(3px);
+  }
+
+  .services {
+    list-style: none;
+    display: flex; flex-direction: column;
+    gap: 0.9rem;
+    margin: 1.5rem 0 0.25rem;
+  }
+  .services li {
+    position: relative;
+    padding-left: 0.9rem;
+    font-size: 0.95rem;
+    color: var(--ink);
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+  }
+  .services li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.16rem;
+    width: 3px;
+    height: 1.15rem;
+    background: var(--crimson);
+    border-radius: 1px;
+  }
+
+  footer {
+    margin-top: auto;
+    padding-top: 2rem;
+    font-size: 0.75rem;
+    color: var(--ink-3);
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+  footer .sep { color: var(--line); margin: 0 0.4rem; }
+
+  /* Focus visibility */
+  a:focus-visible {
+    outline: 2px solid var(--crimson);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+
+  /* Larger screens */
+  @media (min-width: 720px) {
+    .container {
+      max-width: 520px;
+      padding: 5rem 2rem 3rem;
+    }
+    h1 { font-size: 2.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>Ahra Roh</h1>
+    <div class="title-line">Functional Usability Specialist</div>
+    <div class="creds">
+      Occupational Therapist<br>
+      Assistive Technology Professional
+    </div>
+  </header>
+
+  <div class="hook">
+    <p>Three quick ways to stay in touch.</p>
+  </div>
+
+  <nav class="actions" aria-label="Contact and links">
+
+    <a href="ahra-roh.vcf" class="action primary" download="ahra-roh.vcf">
+      <span class="action-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <line x1="19" y1="8" x2="19" y2="14"/>
+          <line x1="16" y1="11" x2="22" y2="11"/>
+        </svg>
+      </span>
+      <span class="action-body">
+        <div class="action-label">Save contact</div>
+        <div class="action-sub">Add to your phone in one tap</div>
+      </span>
+      <span class="action-arrow" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </span>
+    </a>
+
+    <a href="https://theadllab.github.io/" class="action" target="_blank" rel="noopener">
+      <span class="action-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+      </span>
+      <span class="action-body">
+        <div class="action-label">View work</div>
+        <div class="action-sub">theadllab.github.io</div>
+      </span>
+      <span class="action-arrow" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </span>
+    </a>
+
+    <a href="https://www.linkedin.com/in/ahra-roh-65632a44/" class="action" target="_blank" rel="noopener">
+      <span class="action-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+      </span>
+      <span class="action-body">
+        <div class="action-label">LinkedIn</div>
+        <div class="action-sub">Connect &amp; read OT-Tech Notes</div>
+      </span>
+      <span class="action-arrow" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </span>
+    </a>
+
+  </nav>
+
+  <footer>
+    Los Angeles &nbsp;<span class="sep">·</span>&nbsp; Founder, ADL Lab
+    <br>© 2026 Ahra Roh
+  </footer>
+
+</div>
+
+</body>
+</html>
