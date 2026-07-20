@@ -239,10 +239,10 @@
     padding: clamp(1.15rem, 2vw, 1.5rem) clamp(1.25rem, 2.5vw, 1.75rem);
     background: none; border: none; cursor: pointer; text-align: left; font-family: inherit;
   }
-  .method-head-left { display: flex; align-items: center; gap: 1rem; min-width: 0; flex: 1; }
+  .method-head-left { display: flex; flex-direction: column; align-items: flex-start; gap: 0.35rem; min-width: 0; flex: 1; }
   .method-num {
-    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.78rem;
-    color: var(--accent); letter-spacing: 0.05em; white-space: nowrap;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.72rem;
+    color: var(--accent); letter-spacing: 0.05em;
   }
   .method-head h3 { font-size: 1.05rem; font-weight: 600; line-height: 1.3; }
   .method-chevron { flex-shrink: 0; transition: transform 0.3s var(--ease-out-expo); color: var(--text-muted); }
@@ -420,10 +420,9 @@
     .hero h1 { font-size: clamp(1.9rem, 8vw, 2.4rem); }
     .hero-cta { flex-direction: column; align-items: stretch; }
 
-    /* Method accordion: stack number over title, keep chevron in view */
+    /* Method accordion: keep chevron aligned to top on mobile */
     .method-head { align-items: flex-start; gap: 0.65rem; }
-    .method-head-left { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
-    .method-num { font-size: 0.7rem; }
+    .method-num { font-size: 0.68rem; }
     .method-head h3 { font-size: 1rem; }
     .method-chevron { margin-top: 0.15rem; }
 
@@ -752,7 +751,6 @@
           <button class="method-head" aria-expanded="false" aria-controls="method-1">
             <span class="method-head-left">
               <span class="method-num">01 · TASK ANALYSIS</span>
-              <span></span>
               <h3>
                 <span class="en">Break the use into real steps.</span>
                 <span class="ko">행위를 실제 단계로 분해합니다.</span>
