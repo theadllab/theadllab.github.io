@@ -235,11 +235,11 @@
   }
   .method-step.open { border-color: var(--text-main); }
   .method-head {
-    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
     padding: clamp(1.15rem, 2vw, 1.5rem) clamp(1.25rem, 2.5vw, 1.75rem);
     background: none; border: none; cursor: pointer; text-align: left; font-family: inherit;
   }
-  .method-head-left { display: flex; align-items: center; gap: 1rem; }
+  .method-head-left { display: flex; align-items: center; gap: 1rem; min-width: 0; flex: 1; }
   .method-num {
     font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.78rem;
     color: var(--accent); letter-spacing: 0.05em; white-space: nowrap;
@@ -406,6 +406,52 @@
     .section { padding: 3rem 0; }
     .newsletter-card { padding: 1.5rem; border-radius: 18px; }
     .contact-row a { font-size: 1.15rem; }
+
+    /* Roomier side padding so cards don't hug the edge */
+    .page-wrap { padding: 0 1.25rem; }
+
+    /* Eyebrow pill: allow it to sit as a block, smaller, no awkward 2-line pill */
+    .eyebrow {
+      font-size: 0.68rem; letter-spacing: 0.03em;
+      padding: 5px 11px; line-height: 1.4;
+    }
+
+    /* Hero: tighten and let CTA buttons stack full-width cleanly */
+    .hero h1 { font-size: clamp(1.9rem, 8vw, 2.4rem); }
+    .hero-cta { flex-direction: column; align-items: stretch; }
+
+    /* Method accordion: stack number over title, keep chevron in view */
+    .method-head { align-items: flex-start; gap: 0.65rem; }
+    .method-head-left { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+    .method-num { font-size: 0.7rem; }
+    .method-head h3 { font-size: 1rem; }
+    .method-chevron { margin-top: 0.15rem; }
+
+    /* Bento & work cards: comfortable inner padding */
+    .bento-card, .work-card { padding: 1.5rem 1.35rem; }
+
+    /* Example panels can be taller when opened on narrow screens */
+    .ex-panel.open { max-height: 640px; }
+
+    /* Chips slightly smaller to reduce awkward wraps */
+    .ww-chip { font-size: 0.82rem; padding: 0.45rem 0.85rem; }
+    .kw-chip { font-size: 0.72rem; }
+
+    /* Contact statement scales down a touch */
+    .contact-stmt { font-size: clamp(1.5rem, 6vw, 1.9rem); }
+
+    /* Newsletter actions stack */
+    .newsletter-actions { flex-direction: column; align-items: stretch; }
+    .newsletter-actions .btn-primary { width: 100%; }
+
+    /* Footer stacks centered */
+    footer { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  }
+
+  @media (max-width: 400px) {
+    .hero h1 { font-size: 1.75rem; }
+    .section-title { font-size: 1.5rem; }
+    .eyebrow { font-size: 0.64rem; }
   }
 </style>
 </head>
